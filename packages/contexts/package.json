@@ -1,0 +1,28 @@
+{
+  "name": "@repo/contexts",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./*": "./src/*.tsx"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "generate:component": "turbo gen react-component",
+    "check-types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@tanstack/react-query-devtools": "^5.83.0",
+    "@repo/typescript-config": "workspace:*",
+    "typescript": "5.8.2",
+    "@types/node": "^22.15.3",
+    "@types/react": "19.1.0",
+    "@types/react-dom": "19.1.1"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.83.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}
