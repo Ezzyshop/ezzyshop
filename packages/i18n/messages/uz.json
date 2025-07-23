@@ -1,0 +1,33 @@
+{
+  "common": {
+    "loading": "Yuklanmoqda...",
+    "error": "Xatolik",
+    "save": "Saqlash",
+    "cancel": "Bekor qilish",
+    "delete": "O'chirish",
+    "edit": "Tahrirlash",
+    "submit": "Yuborish",
+    "search": "Qidirish",
+    "close": "Yopish",
+    "open": "Ochish",
+    "yes": "Ha",
+    "no": "Yo'q"
+  },
+  "navigation": {
+    "home": "Bosh sahifa",
+    "about": "Biz haqimizda",
+    "contact": "Bog'lanish",
+    "services": "Xizmatlar",
+    "products": "Mahsulotlar"
+  },
+  "language": {
+    "switchLanguage": "Tilni o'zgartirish",
+    "currentLanguage": "O'zbekcha",
+    "selectLanguage": "Tilni tanlash"
+  },
+  "messages": {
+    "welcome": "Xush kelibsiz",
+    "thankYou": "Rahmat",
+    "comingSoon": "Tez orada"
+  }
+}

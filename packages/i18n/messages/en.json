@@ -1,0 +1,33 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "submit": "Submit",
+    "search": "Search",
+    "close": "Close",
+    "open": "Open",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "services": "Services",
+    "products": "Products"
+  },
+  "language": {
+    "switchLanguage": "Switch Language",
+    "currentLanguage": "English",
+    "selectLanguage": "Select Language"
+  },
+  "messages": {
+    "welcome": "Welcome to our application",
+    "thankYou": "Thank you for using our service",
+    "comingSoon": "Coming Soon"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@repo/i18n",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./config": "./src/config.ts",
+    "./middleware": "./src/middleware.ts",
+    "./components": "./src/components/index.ts",
+    "./routing": "./src/routing.ts",
+    "./hooks": "./src/hooks/index.ts",
+    "./utils": "./src/utils/index.ts",
+    "./types": "./src/types/index.ts"
+  },
+  "dependencies": {
+    "next-intl": "^3.25.0",
+    "next": "^15.3.0",
+    "react": "^19.1.0"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "@types/react": "19.1.0",
+    "typescript": "5.8.2",
+    "@types/node": "^22.15.3"
+  }
+}
