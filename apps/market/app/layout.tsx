@@ -12,10 +12,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
   return (
     <html>
-      <body
-        suppressHydrationWarning
-        className="antialiased max-w-[425px] mx-auto px-4 bg-secondary"
-      >
+      <body suppressHydrationWarning className="antialiased bg-secondary">
         <QueryClientProvider>{children}</QueryClientProvider>
       </body>
     </html>
