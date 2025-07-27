@@ -3,13 +3,17 @@ import { CategoriesProducts } from "../components/categories-products";
 import { PopularCategories } from "../components/popular-categories";
 import { Search } from "../components/search";
 
-export const HomepagePage = () => {
+interface IProps {
+  shopId: string;
+}
+
+export const HomepagePage = ({ shopId }: IProps) => {
   return (
     <div>
       <AddressSelect />
       <Search />
       <PopularCategories />
-      <CategoriesProducts />
+      <CategoriesProducts shopId={shopId} />
     </div>
   );
 };
