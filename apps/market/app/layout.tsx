@@ -1,14 +1,18 @@
-import "./globals.css";
+import { PropsWithChildren } from "react";
 import { QueryClientProvider } from "@repo/contexts/react-query.context";
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+import "./globals.css";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Market",
+  description: "Market",
+};
+
+export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
   return (
     <html>
-      <body className={`antialiased container mx-auto px-4`}>
+      <body className="antialiased max-w-[425px] mx-auto px-4 bg-secondary">
         <QueryClientProvider>{children}</QueryClientProvider>
       </body>
     </html>

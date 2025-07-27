@@ -5,7 +5,9 @@ export default function HomePage() {
 
   return (
     <div>
-      <h1>{t("messages.welcome")}</h1>
+      <h1 className="text-2xl font-bold text-red-500">
+        {t("messages.welcome")}
+      </h1>
     </div>
   );
 }

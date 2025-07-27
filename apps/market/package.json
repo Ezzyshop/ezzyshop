@@ -13,15 +13,11 @@
   "dependencies": {
     "@repo/contexts": "workspace:*",
     "@repo/ui": "workspace:*",
-    "@tailwindcss/cli": "^4.1.11",
-    "@tailwindcss/postcss": "^4.1.11",
+    "@repo/i18n": "workspace:*",
     "next": "15.4.2-canary.10",
-    "postcss": "^8.5.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "tailwindcss": "^4.1.11",
-    "next-intl": "^3.25.0",
-    "@repo/i18n": "workspace:*"
+    "next-intl": "^3.25.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
@@ -30,6 +26,10 @@
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
     "eslint": "^9.30.0",
-    "typescript": "5.8.2"
+    "typescript": "5.8.2",
+    "tailwindcss": "^4.1.11",
+    "@tailwindcss/postcss": "^4.1.11",
+    "postcss": "^8.5.6",
+    "autoprefixer": "^10.4.21"
   }
 }
