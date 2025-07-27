@@ -1,7 +1,21 @@
 import createMiddleware from "next-intl/middleware";
 import { routing } from "@repo/i18n/routing";
+import { NextRequest, NextResponse } from "next/server.js";
 
-export default createMiddleware(routing);
+export default function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/favicon") ||
+    pathname.startsWith("/images") ||
+    pathname.startsWith("/api")
+  ) {
+    return NextResponse.next();
+  }
+
+  return createMiddleware(routing)(request);
+}
 
 export const config = {
   // Match only internationalized pathnames
@@ -13,7 +27,7 @@ export const config = {
     "/(en|ru|uz)/:path*",
 
     // Enable redirects that add missing locales
-    // (e.g. `/pathnames` -> `/en/pathnames`)
-    "/((?!_next|_vercel|.*\\..*).*)",
+    // Exclude Next.js internals and static files
+    "/((?!_next/static|_next/image|_next/webpack-hmr|favicon.ico|robots.txt|sitemap.xml|.*\\..*).*)",
   ],
 };
