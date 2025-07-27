@@ -1,18 +1,20 @@
 {
-  "name": "docs",
+  "name": "restaruant",
   "version": "0.1.0",
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack --port 3001",
+    "dev": "next dev --turbopack --port 5002",
     "build": "next build",
     "start": "next start",
     "lint": "next lint --max-warnings 0",
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@repo/i18n": "workspace:*",
     "@repo/ui": "workspace:*",
     "next": "^15.3.0",
+    "next-intl": "^3.25.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
