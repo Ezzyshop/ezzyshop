@@ -1,5 +1,5 @@
 {
-  "name": "restaruant",
+  "name": "restaurant",
   "version": "0.1.0",
   "type": "module",
   "private": true,
@@ -13,6 +13,7 @@
   "dependencies": {
     "@repo/i18n": "workspace:*",
     "@repo/ui": "workspace:*",
+    "@repo/contexts": "workspace:*",
     "next": "^15.3.0",
     "next-intl": "^3.25.0",
     "react": "^19.1.0",

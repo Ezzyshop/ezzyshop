@@ -15,8 +15,8 @@ importers:
         specifier: ^2.5.4
         version: 2.5.5
       typescript:
-        specifier: 5.8.3
-        version: 5.8.3
+        specifier: 5.8.2
+        version: 5.8.2
 
   apps/market:
     dependencies:
@@ -76,8 +76,11 @@ importers:
         specifier: 5.8.2
         version: 5.8.2
 
-  apps/restaruant:
+  apps/restaurant:
     dependencies:
+      '@repo/contexts':
+        specifier: workspace:*
+        version: link:../../packages/contexts
       '@repo/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
