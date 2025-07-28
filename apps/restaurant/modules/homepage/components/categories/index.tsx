@@ -9,9 +9,9 @@ interface IProps {
 
 export const Categories = ({ shopId }: IProps) => {
   const { data } = useQuery({
-    queryKey: ["categories"],
+    queryKey: ["categories", shopId],
     queryFn: () => CategoriesService.getCategories(shopId),
   });
 
-  return <div>{JSON.stringify(data)}</div>;
+  return <div>categories</div>;
 };

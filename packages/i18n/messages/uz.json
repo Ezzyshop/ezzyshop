@@ -2,6 +2,9 @@
   "homepage": {
     "search": {
       "placeholder": "Qidirish"
+    },
+    "popular_categories": {
+      "title": "Mashhur kategoriyalar"
     }
   }
 }

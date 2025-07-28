@@ -7,12 +7,12 @@ import { Header } from "../components/header";
 
 export const HomepagePage = ({ shopId }: ICommonParams) => {
   return (
-    <>
+    <div className="space-y-4">
       <AddressSelect />
       <Header />
       <Search />
-      <PopularCategories />
+      <PopularCategories shopId={shopId} />
       <Categories shopId={shopId} />
-    </>
+    </div>
   );
 };

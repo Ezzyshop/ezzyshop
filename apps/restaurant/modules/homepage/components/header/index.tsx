@@ -22,7 +22,7 @@ export const Header = () => {
   };
 
   return (
-    <div className="py-5 px-4 flex items-center justify-between">
+    <div className="px-4 flex items-center justify-between">
       <Image
         src={logo ?? "/icons/logo.svg"}
         alt="logo"
