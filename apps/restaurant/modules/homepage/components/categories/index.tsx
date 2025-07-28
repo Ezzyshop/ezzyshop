@@ -18,8 +18,8 @@ export const Categories = ({ shopId }: IProps) => {
   });
 
   return (
-    <div className="mt-10">
-      <h2 className="font-semibold text-xl px-4">{t("title")}</h2>
+    <div className="mt-10 px-4">
+      <h2 className="font-semibold text-xl">{t("title")}</h2>
       <div className="grid grid-cols-4 place-content-center gap-2 mt-3">
         {data?.data.map((category) => (
           <div

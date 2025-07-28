@@ -9,7 +9,7 @@ export const Search = () => {
       <Input
         type="text"
         placeholder={t("placeholder")}
-        className="bg-secondary pl-8"
+        className="bg-secondary pl-12 py-6 rounded-2xl border-0"
         startIcon={SearchIcon}
       />
     </div>

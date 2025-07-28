@@ -1,0 +1,1 @@
+export type ProductByCategoryType = "most-popular" | "new-arrivals" | "on-sale";

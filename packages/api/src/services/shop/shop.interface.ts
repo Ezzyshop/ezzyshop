@@ -24,6 +24,7 @@ export interface IShopResponse {
   currency: {
     _id: string;
     name: string;
+    symbol: string;
   };
   address: {
     address: string;

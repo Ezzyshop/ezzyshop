@@ -176,7 +176,11 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
  *
  * Currently only works with horizontal orientation.
  */
-function CarouselDots({ className, ...props }: React.ComponentProps<"div">) {
+function CarouselDots({
+  className,
+  dotClassName,
+  ...props
+}: React.ComponentProps<"div"> & { dotClassName?: string }) {
   const { selectedIndex, scrollTo, api } = useCarousel();
 
   return (
@@ -198,7 +202,8 @@ function CarouselDots({ className, ...props }: React.ComponentProps<"div">) {
           aria-label={`Slide ${index + 1}`}
           className={cn(
             "size-2.5 rounded-full  cursor-pointer",
-            index === selectedIndex ? "bg-primary" : "bg-secondary"
+            index === selectedIndex ? "bg-primary" : "bg-secondary",
+            dotClassName
           )}
           onClick={() => scrollTo(index)}
         />

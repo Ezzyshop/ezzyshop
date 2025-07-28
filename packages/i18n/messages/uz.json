@@ -8,6 +8,15 @@
     },
     "categories": {
       "title": "Kategoriyalar"
+    },
+    "products": {
+      "most-popular": "Mashhur mahsulotlar",
+      "new-arrivals": "Yangi kelganlar",
+      "on-sale": "Chegirmalar",
+      "view-all": "Barcha mahsulotlar"
     }
+  },
+  "product": {
+    "add_to_cart": "Savatga qo'shish"
   }
 }
