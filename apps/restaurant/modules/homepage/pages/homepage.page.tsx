@@ -1,16 +1,18 @@
 import { ICommonParams } from "@/utils/interfaces";
 import { AddressSelect } from "../components/address-select";
-import { CategoriesProducts } from "../components/categories";
+import { Categories } from "../components/categories";
 import { PopularCategories } from "../components/popular-categories";
 import { Search } from "../components/search";
+import { Header } from "../components/header";
 
 export const HomepagePage = ({ shopId }: ICommonParams) => {
   return (
-    <div>
+    <>
       <AddressSelect />
+      <Header />
       <Search />
       <PopularCategories />
-      <CategoriesProducts shopId={shopId} />
-    </div>
+      <Categories shopId={shopId} />
+    </>
   );
 };

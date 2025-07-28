@@ -7,7 +7,7 @@ interface IProps {
   shopId: string;
 }
 
-export const CategoriesProducts = ({ shopId }: IProps) => {
+export const Categories = ({ shopId }: IProps) => {
   const { data } = useQuery({
     queryKey: ["categories"],
     queryFn: () => CategoriesService.getCategories(shopId),
