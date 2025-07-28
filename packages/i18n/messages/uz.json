@@ -5,6 +5,9 @@
     },
     "popular_categories": {
       "title": "Mashhur kategoriyalar"
+    },
+    "categories": {
+      "title": "Kategoriyalar"
     }
   }
 }
