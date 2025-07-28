@@ -1,33 +1,7 @@
 {
-  "common": {
-    "loading": "Загрузка...",
-    "error": "Что-то пошло не так",
-    "save": "Сохранить",
-    "cancel": "Отменить",
-    "delete": "Удалить",
-    "edit": "Редактировать",
-    "submit": "Отправить",
-    "search": "Поиск",
-    "close": "Закрыть",
-    "open": "Открыть",
-    "yes": "Да",
-    "no": "Нет"
-  },
-  "navigation": {
-    "home": "Главная",
-    "about": "О нас",
-    "contact": "Контакты",
-    "services": "Сервисы",
-    "products": "Продукты"
-  },
-  "language": {
-    "switchLanguage": "Сменить язык",
-    "currentLanguage": "Русский",
-    "selectLanguage": "Выбрать язык"
-  },
-  "messages": {
-    "welcome": "Добро пожаловать в наше приложение",
-    "thankYou": "Спасибо за использование нашего сервиса",
-    "comingSoon": "Скоро будет доступно"
+  "homepage": {
+    "search": {
+      "placeholder": "Search"
+    }
   }
 }

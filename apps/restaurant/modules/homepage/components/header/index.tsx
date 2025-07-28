@@ -1,7 +1,6 @@
 "use client";
 import { useShopContext } from "@/contexts/shop.context";
 import { useClientLocale } from "@repo/i18n/hooks";
-import { getLocaleFlag } from "@repo/i18n/utils";
 import { ChevronDown } from "@repo/ui/components/icons/index";
 import {
   DropdownMenu,
