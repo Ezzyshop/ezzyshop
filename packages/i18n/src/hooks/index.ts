@@ -41,9 +41,19 @@ export function useI18nRouter() {
 
 export function useClientLocale() {
   const locale = useLocale() as Locale;
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const locales = routing.locales;
+
+  const switchLocale = (newLocale: Locale) => {
+    router.push(`/${newLocale}${pathname.replace(`/${locale}`, "") || "/"}`);
+  };
 
   return {
+    locales,
     locale,
-    isRTL: false, // Add RTL support if needed
+    isRTL: false,
+    switchLocale,
   };
 }

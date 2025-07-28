@@ -1,6 +1,6 @@
 import { api } from "../../api";
 import { ICategoriesResponse, ICategoryParams } from "./category.interface";
-import { IPaginatedData } from "../../utils/interfaces";
+import { IPaginatedData } from "../../utils/interfaces/index";
 
 export class CategoriesService {
   static async getCategories(

@@ -7,9 +7,9 @@ export default function middleware(request: NextRequest) {
 
   if (
     pathname.startsWith("/_next") ||
-    pathname.startsWith("/favicon") ||
-    pathname.startsWith("/images") ||
-    pathname.startsWith("/api")
+    pathname.startsWith("/api") ||
+    pathname.includes("/icons") ||
+    pathname.includes("/images")
   ) {
     return NextResponse.next();
   }

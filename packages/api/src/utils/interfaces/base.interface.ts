@@ -15,3 +15,7 @@ export interface IPaginatedData<T> {
     limit: number;
   };
 }
+
+export interface IData<T> {
+  data: T;
+}

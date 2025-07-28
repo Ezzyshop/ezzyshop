@@ -3,6 +3,7 @@ import { getLocale } from "next-intl/server";
 
 import "./globals.css";
 import { QueryClientProvider } from "@repo/contexts/react-query.context";
+import { ShopProvider } from "@/contexts/shop.context";
 
 export const metadata: Metadata = {
   title: "Restaurant",
@@ -19,7 +20,9 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body suppressHydrationWarning className="bg-secondary">
-        <QueryClientProvider>{children}</QueryClientProvider>
+        <QueryClientProvider>
+          <ShopProvider>{children}</ShopProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );

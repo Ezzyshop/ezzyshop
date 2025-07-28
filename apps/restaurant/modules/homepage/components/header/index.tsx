@@ -1,3 +1,66 @@
+"use client";
+import { useShopContext } from "@/contexts/shop.context";
+import { useClientLocale } from "@repo/i18n/hooks";
+import { getLocaleFlag } from "@repo/i18n/utils";
+import { ChevronDown } from "@repo/ui/components/icons/index";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@repo/ui/components/ui/dropdown-menu";
+
+import Image from "next/image";
+
 export const Header = () => {
-  return <div>Header</div>;
+  const { locale, locales, switchLocale } = useClientLocale();
+  const { logo } = useShopContext();
+
+  const localeIcons = {
+    uz: "/images/uz.png",
+    ru: "/images/ru.png",
+    en: "/images/en.png",
+  };
+
+  return (
+    <div className="py-5 px-4 flex items-center justify-between">
+      <Image
+        src={logo ?? "/icons/logo.svg"}
+        alt="logo"
+        width={64}
+        height={64}
+        className="rounded-xl object-cover"
+        priority
+      />
+
+      <DropdownMenu>
+        <DropdownMenuTrigger className="flex items-center gap-2 bg-secondary px-2 py-1 rounded-md cursor-pointer">
+          <Image
+            src={localeIcons[locale]}
+            alt={locale}
+            width={20}
+            height={20}
+          />
+          <ChevronDown className="w-4 h-4" />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          {locales.map((locale) => (
+            <DropdownMenuItem
+              key={locale}
+              onClick={() => switchLocale(locale)}
+              className="flex items-center gap-2"
+            >
+              <Image
+                src={localeIcons[locale]}
+                alt={locale}
+                width={20}
+                height={20}
+              />
+              <span className="uppercase">{locale}</span>
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
+  );
 };
