@@ -23,8 +23,10 @@ export default async function LocaleLayout({ children, params }: IProps) {
   const messages = await getMessages();
 
   return (
-    <NextIntlClientProvider messages={messages}>
-      {children}
-    </NextIntlClientProvider>
+    <div className="max-w-[425px] mx-auto px-4 min-h-screen bg-background">
+      <NextIntlClientProvider messages={messages}>
+        {children}
+      </NextIntlClientProvider>
+    </div>
   );
 }

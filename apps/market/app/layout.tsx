@@ -1,8 +1,8 @@
 import { PropsWithChildren } from "react";
 import { QueryClientProvider } from "@repo/contexts/react-query.context";
+import { Metadata } from "next";
 
 import "./globals.css";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Market",
