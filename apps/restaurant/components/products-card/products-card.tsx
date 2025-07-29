@@ -33,7 +33,7 @@ export const ProductsCard = ({ product }: IProps) => {
                   src={image}
                   alt={product.name.en}
                   fill
-                  className="rounded-lg object-cover"
+                  className="rounded-lg object-fit"
                 />
               </div>
             </CarouselItem>
@@ -59,7 +59,7 @@ export const ProductsCard = ({ product }: IProps) => {
           </p>
         )}
 
-        <p className="text-muted-foreground text-sm mt-1">
+        <p className="text-muted-foreground text-sm mt-1 line-clamp-2">
           {product.name[locale]}
         </p>
       </div>

@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { CategoriesService } from "@repo/api/services";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
+import { ICategoryParams } from "@repo/api/services/category/category.interface";
 
 interface IProps {
   shopId: string;
@@ -12,15 +13,20 @@ interface IProps {
 export const Categories = ({ shopId }: IProps) => {
   const language = useLocale();
   const t = useTranslations("homepage.categories");
+
+  const filter: ICategoryParams = {
+    is_popular: false,
+  };
+
   const { data } = useQuery({
-    queryKey: ["categories", shopId],
-    queryFn: () => CategoriesService.getCategories(shopId),
+    queryKey: ["categories", shopId, filter],
+    queryFn: () => CategoriesService.getPublicCategories(shopId, filter),
   });
 
   return (
-    <div className="mt-10 px-4">
+    <div className="mt-14 px-4">
       <h2 className="font-semibold text-xl">{t("title")}</h2>
-      <div className="grid grid-cols-4 place-content-center gap-2 mt-3">
+      <div className="grid grid-cols-4 place-content-center gap-2 mt-3 ">
         {data?.data.map((category) => (
           <div
             key={category._id}
