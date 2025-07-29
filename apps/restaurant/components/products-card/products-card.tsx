@@ -13,6 +13,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { useShopContext } from "@/contexts/shop.context";
 import { Button } from "@repo/ui/components/ui/button";
 import { ShoppingCartIcon } from "@repo/ui/components/icons/index";
+import { ProductBadges } from "./product-badges";
 
 interface IProps {
   product: IProductResponse;
@@ -22,24 +23,28 @@ export const ProductsCard = ({ product }: IProps) => {
   const locale = useLocale();
   const t = useTranslations("product");
   const { currency } = useShopContext();
+
   return (
     <Card className="py-2 px-2 border-0 shadow-none flex flex-col ">
       <Carousel>
         <CarouselContent>
           {product.images.map((image) => (
             <CarouselItem key={image}>
-              <div className="relative aspect-[3/4] h-[194px] w-full rounded-lg">
+              <div className="relative aspect-[3/4] h-[194px] w-full rounded-lg ">
                 <Image
                   src={image}
                   alt={product.name.en}
                   fill
                   className="rounded-lg object-fit"
                 />
+                <ProductBadges product={product} />
               </div>
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselDots dotClassName="size-2" className="-bottom-4" />
+        {product.images.length > 1 && (
+          <CarouselDots dotClassName="size-2" className="-bottom-4" />
+        )}
       </Carousel>
 
       <div className="flex-grow">
@@ -49,13 +54,12 @@ export const ProductsCard = ({ product }: IProps) => {
             product.compare_at_price && "text-primary"
           )}
         >
-          {product.compare_at_price?.toLocaleString(locale) ??
-            product.price.toLocaleString(locale)}{" "}
+          {product.price.toLocaleString(locale)}
           {currency.symbol}
         </p>
         {product.compare_at_price && (
           <p className="text-muted-foreground line-through text-xs">
-            {product.price.toLocaleString()} {currency.symbol}
+            {product.compare_at_price.toLocaleString()} {currency.symbol}
           </p>
         )}
 

@@ -39,7 +39,7 @@ export const Categories = ({ shopId }: IProps) => {
               height={74}
               className=" w-[74px] h-[74px] object-cover rounded-full"
             />
-            <p className="text-center text-sm mt-2 font-medium">
+            <p className="text-center text-sm mt-2 font-medium line-clamp-2">
               {category.name[language]}
             </p>
           </div>

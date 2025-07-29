@@ -31,6 +31,14 @@ export enum ErrorMessages {
 
   CategoryLimitReached = "CATEGORY_LIMIT_REACHED",
   CategoryNotFound = "CATEGORY_NOT_FOUND",
+
+  ProductNotFound = "PRODUCT_NOT_FOUND",
+  DeliveryMethodNotFound = "DELIVERY_METHOD_NOT_FOUND",
+  PaymentMethodNotFound = "PAYMENT_METHOD_NOT_FOUND",
+  PaymentMethodTypeNotClick = "PAYMENT_METHOD_TYPE_NOT_CLICK",
+  TelegramBotNotFound = "TELEGRAM_BOT_NOT_FOUND",
+  OrderNotFound = "ORDER_NOT_FOUND",
+  YouHaveReachedTheLimitOfProducts = "YOU_HAVE_REACHED_THE_LIMIT_OF_PRODUCTS",
 }
 
 export const errorMessagesMap: Record<ErrorMessages, string> = {
@@ -71,4 +79,12 @@ export const errorMessagesMap: Record<ErrorMessages, string> = {
   [ErrorMessages.CategoryLimitReached]:
     "Limitingiz tugadi. Iltimos tarifni o'zgartiring",
   [ErrorMessages.CategoryNotFound]: "Kategoriya topilmadi",
+  [ErrorMessages.ProductNotFound]: "Mahsulot topilmadi",
+  [ErrorMessages.DeliveryMethodNotFound]: "Yetkazib berish usuli topilmadi",
+  [ErrorMessages.PaymentMethodNotFound]: "To'lov usuli topilmadi",
+  [ErrorMessages.PaymentMethodTypeNotClick]: "To'lov usuli topilmadi",
+  [ErrorMessages.TelegramBotNotFound]: "Telegram bot topilmadi",
+  [ErrorMessages.OrderNotFound]: "Buyurtma topilmadi",
+  [ErrorMessages.YouHaveReachedTheLimitOfProducts]:
+    "Mahsulotlar limitiga erishdingiz",
 };
