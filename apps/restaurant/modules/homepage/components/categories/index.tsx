@@ -5,6 +5,7 @@ import { CategoriesService } from "@repo/api/services";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { ICategoryParams } from "@repo/api/services/category/category.interface";
+import Link from "next/link";
 
 interface IProps {
   shopId: string;
@@ -25,9 +26,14 @@ export const Categories = ({ shopId }: IProps) => {
 
   return (
     <div className="mt-14 px-4">
-      <h2 className="font-semibold text-xl">{t("title")}</h2>
+      <div className="flex items-center justify-between">
+        <h2 className="font-semibold text-xl">{t("title")}</h2>
+        <Link href="/categories" locale={language}>
+          <span className="text-sm text-primary">{t("viewAll")}</span>
+        </Link>
+      </div>
       <div className="grid grid-cols-4 place-content-center gap-2 mt-3 ">
-        {data?.data.map((category) => (
+        {data?.data.slice(0, 8).map((category) => (
           <div
             key={category._id}
             className="flex flex-col items-center cursor-pointer"
