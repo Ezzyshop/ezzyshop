@@ -28,7 +28,7 @@ export const Categories = ({ shopId }: IProps) => {
     <div className="mt-14 px-4">
       <div className="flex items-center justify-between">
         <h2 className="font-semibold text-xl">{t("title")}</h2>
-        <Link href="/categories" locale={language}>
+        <Link href={`/${shopId}/categories`} locale={language}>
           <span className="text-sm text-primary">{t("viewAll")}</span>
         </Link>
       </div>
