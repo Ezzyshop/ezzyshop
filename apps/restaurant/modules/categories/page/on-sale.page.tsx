@@ -18,33 +18,32 @@ export const OnSaleProductsPage = ({ shopId }: ICommonParams) => {
     search: debouncedSearch,
   };
 
-  const { data, isLoading, hasNextPage, isFetchingNextPage, fetchNextPage } = useInfiniteQuery({
-    queryKey: ["on-sale-products", filterQuery],
-    queryFn: () => ProductService.getProductsByCategory(shopId, "on-sale", filterQuery),
-    initialPageParam: 1,
-    getNextPageParam: (lastPage) => {
-      if (lastPage.paginationInfo.hasNextPage) {
-        return lastPage.paginationInfo.currentPage + 1;
-      }
+  const { data, isLoading, hasNextPage, isFetchingNextPage, fetchNextPage } =
+    useInfiniteQuery({
+      queryKey: ["on-sale-products", filterQuery],
+      queryFn: () =>
+        ProductService.getProductsByCategory(shopId, "on-sale", filterQuery),
+      initialPageParam: 1,
+      getNextPageParam: (lastPage) => {
+        if (lastPage.paginationInfo.hasNextPage) {
+          return lastPage.paginationInfo.currentPage + 1;
+        }
 
-      return undefined;
-    },
-  });
+        return undefined;
+      },
+    });
 
   return (
     <div className="p-4 space-y-3">
       <h2 className="text-2xl font-bold">{t("on-sale")}</h2>
       <SearchInput value={search} onChange={(e) => setSearch(e.target.value)} />
-      {data?.pages.map((page) => (
-        <ProductsGrid
-          key={page.paginationInfo.currentPage}
-          data={page.data}
-          isLoading={isLoading}
-          hasNextPage={hasNextPage}
-          isFetchingNextPage={isFetchingNextPage}
-          fetchNextPage={fetchNextPage}
-        />
-      ))}
+      <ProductsGrid
+        infiniteData={data}
+        isLoading={isLoading}
+        hasNextPage={hasNextPage}
+        isFetchingNextPage={isFetchingNextPage}
+        fetchNextPage={fetchNextPage}
+      />
     </div>
   );
 };

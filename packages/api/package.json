@@ -6,7 +6,8 @@
   "exports": {
     ".": "./src/*.ts",
     "./services": "./src/services/index.ts",
-    "./services/*": "./src/services/*.ts"
+    "./services/*": "./src/services/*.ts",
+    "./utils/interfaces": "./src/utils/interfaces/index.ts"
   },
   "dependencies": {
     "axios": "^1.7.9",
