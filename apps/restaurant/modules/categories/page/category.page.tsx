@@ -8,9 +8,9 @@ import { CategoriesService } from "@repo/api/services";
 import { ICategoryParams } from "@repo/api/services/category/category.interface";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-let pageTitle: string;
+let pageTitle: string | undefined;
 
 export const CategoryPage = ({ shopId, categoryId }: ICommonParams) => {
   const { locale } = useParams();
@@ -38,6 +38,12 @@ export const CategoryPage = ({ shopId, categoryId }: ICommonParams) => {
     });
 
   pageTitle = pageTitle ?? data?.pages[0]?.data?.name[locale];
+
+  useEffect(() => {
+    return () => {
+      pageTitle = undefined;
+    };
+  }, []);
 
   return (
     <div className="p-4 space-y-3">
