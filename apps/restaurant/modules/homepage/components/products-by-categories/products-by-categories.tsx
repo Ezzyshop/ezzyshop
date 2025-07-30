@@ -24,7 +24,7 @@ export const ProductsByCategories = ({
   const t = useTranslations("homepage.products");
 
   return (
-    <div className="px-4 space-y-3">
+    <div className="px-4 py-3 space-y-3">
       <div className="flex items-center justify-between">
         <h2 className="font-semibold text-xl">{t(type)}</h2>
 

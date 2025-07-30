@@ -29,11 +29,11 @@ export const PopularCategories = ({ shopId }: ICommonParams) => {
   if (!categories?.data.length) return null;
 
   return (
-    <div className="px-4">
+    <div className="px-4 space-y-3">
       <h2 className="font-semibold text-xl">{t("title")}</h2>
 
       <Carousel
-        className="mt-3 h-[198px] rounded-xl"
+        className="h-[198px] rounded-xl"
         opts={{
           loop: true,
           inViewThreshold: 0.1,

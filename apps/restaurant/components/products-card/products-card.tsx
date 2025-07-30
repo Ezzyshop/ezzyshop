@@ -14,6 +14,7 @@ import { useShopContext } from "@/contexts/shop.context";
 import { Button } from "@repo/ui/components/ui/button";
 import { ShoppingCartIcon } from "@repo/ui/components/icons/index";
 import { ProductBadges } from "./product-badges";
+import Link from "next/link";
 
 interface IProps {
   product: IProductResponse;
@@ -22,7 +23,7 @@ interface IProps {
 export const ProductsCard = ({ product }: IProps) => {
   const locale = useLocale();
   const t = useTranslations("product");
-  const { currency } = useShopContext();
+  const { currency, _id: shopId } = useShopContext();
 
   return (
     <Card className="py-2 px-2 border-0 shadow-none flex flex-col ">
@@ -47,7 +48,7 @@ export const ProductsCard = ({ product }: IProps) => {
         )}
       </Carousel>
 
-      <div className="flex-grow">
+      <Link href={`/${shopId}/products/${product._id}`} className="flex-grow">
         <p
           className={cn(
             "font-bold",
@@ -66,7 +67,7 @@ export const ProductsCard = ({ product }: IProps) => {
         <p className="text-muted-foreground text-sm mt-1 line-clamp-2">
           {product.name[locale]}
         </p>
-      </div>
+      </Link>
 
       <Button className="w-full">
         <ShoppingCartIcon className="size-4" /> {t("add_to_cart")}
