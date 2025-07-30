@@ -103,7 +103,7 @@ const NoProductsFound = () => {
   const t = useTranslations("product");
 
   return (
-    <div className="flex flex-col items-center justify-center h-[calc(100vh-10rem)]">
+    <div className="flex flex-col items-center justify-center h-[calc(100vh-13rem)]">
       <NoResultIcon className="w-20 h-20 opacity-50" />
       <p className="text-sm text-gray-500 mt-3">{t("no-products-found")}</p>
     </div>

@@ -27,10 +27,6 @@ api.interceptors.response.use(
       window.location.href = "/login";
     }
 
-    if (message === ErrorMessages.TokenExpired) {
-      window.location.href = "/logout";
-    }
-
     return Promise.reject(error);
   }
 );
