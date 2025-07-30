@@ -34,8 +34,6 @@ export const ProductsGrid = ({
     );
   }
 
-  console.log(infiniteData);
-
   if (infiniteData) {
     if (infiniteData.pages.length === 0) return null;
     return (
