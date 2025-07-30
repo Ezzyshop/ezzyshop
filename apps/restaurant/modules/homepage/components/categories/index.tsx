@@ -6,6 +6,7 @@ import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { ICategoryParams } from "@repo/api/services/category/category.interface";
 import Link from "next/link";
+import { Button } from "@repo/ui/components/ui/button";
 
 interface IProps {
   shopId: string;
@@ -28,9 +29,11 @@ export const Categories = ({ shopId }: IProps) => {
     <div className="mt-14 px-4">
       <div className="flex items-center justify-between">
         <h2 className="font-semibold text-xl">{t("title")}</h2>
-        <Link href={`/${shopId}/categories`} locale={language}>
-          <span className="text-sm text-primary">{t("viewAll")}</span>
-        </Link>
+        <Button variant="link">
+          <Link href={`/${shopId}/categories`} locale={language}>
+            {t("viewAll")}
+          </Link>
+        </Button>
       </div>
       <div className="grid grid-cols-4 place-content-center gap-2 mt-3 ">
         {data?.data.slice(0, 8).map((category) => (

@@ -27,3 +27,9 @@ export interface IProductResponse {
   __v: number;
   views: number;
 }
+
+export interface IProductParams {
+  page?: number;
+  limit?: number;
+  search?: string;
+}

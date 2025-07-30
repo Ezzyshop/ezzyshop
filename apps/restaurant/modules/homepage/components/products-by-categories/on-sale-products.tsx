@@ -17,6 +17,7 @@ export const OnSaleProducts = ({ shopId }: ICommonParams) => {
       data={data.data}
       isLoading={isLoading}
       type="on-sale"
+      shopId={shopId}
     />
   );
 };

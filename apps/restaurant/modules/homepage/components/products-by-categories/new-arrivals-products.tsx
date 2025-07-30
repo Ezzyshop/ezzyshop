@@ -17,6 +17,7 @@ export const NewArrivalsProducts = ({ shopId }: ICommonParams) => {
       data={data.data}
       isLoading={isLoading}
       type="new-arrivals"
+      shopId={shopId}
     />
   );
 };
