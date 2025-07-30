@@ -1,4 +1,5 @@
 "use client";
+import { PageHeader } from "@/components/page-header/page-header";
 import { ProductsGrid } from "@/components/products-group/products-grid";
 import { SearchInput } from "@/components/search-input";
 import { useDebounce } from "@/hooks/use-debounce";
@@ -34,8 +35,8 @@ export const OnSaleProductsPage = ({ shopId }: ICommonParams) => {
     });
 
   return (
-    <div className="p-4 space-y-3">
-      <h2 className="text-2xl font-bold">{t("on-sale")}</h2>
+    <div className="px-4 py-3 space-y-3">
+      <PageHeader title={t("on-sale")} />
       <SearchInput value={search} onChange={(e) => setSearch(e.target.value)} />
       <ProductsGrid
         infiniteData={data}

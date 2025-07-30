@@ -12,6 +12,7 @@ import { useState } from "react";
 import { useDebounce } from "@/hooks";
 import { InView } from "react-intersection-observer";
 import { Loader2 } from "@repo/ui/components/icons/index";
+import { PageHeader } from "@/components/page-header/page-header";
 
 export const CategoriesPage = ({ shopId }: ICommonParams) => {
   const t = useTranslations("categories");
@@ -85,8 +86,9 @@ export const CategoriesPage = ({ shopId }: ICommonParams) => {
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold">{t("title")}</h1>
+    <div className="px-4 py-3">
+      <PageHeader title={t("title")} />
+
       <SearchInput
         value={search}
         onChange={(e) => setSearch(e.target.value)}

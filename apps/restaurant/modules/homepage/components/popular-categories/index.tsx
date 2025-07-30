@@ -12,6 +12,7 @@ import {
 } from "@repo/ui/components/ui/carousel";
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
+import Link from "next/link";
 
 export const PopularCategories = ({ shopId }: ICommonParams) => {
   const t = useTranslations("homepage.popular_categories");
@@ -42,13 +43,15 @@ export const PopularCategories = ({ shopId }: ICommonParams) => {
         <CarouselContent>
           {categories?.data.map((category) => (
             <CarouselItem key={category._id}>
-              <Image
-                src={category?.image || ""}
-                alt={category.name}
-                width={425}
-                height={160}
-                className="object-cover w-[425px] h-auto rounded-lg"
-              />
+              <Link href={`/${shopId}/categories/${category._id}`}>
+                <Image
+                  src={category?.image || ""}
+                  alt={category.name}
+                  width={425}
+                  height={160}
+                  className="object-cover w-[425px] h-auto rounded-lg"
+                />
+              </Link>
             </CarouselItem>
           ))}
         </CarouselContent>
