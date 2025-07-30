@@ -6,9 +6,10 @@ import { useRouter } from "next/navigation";
 interface IProps {
   title?: string;
   description?: string;
+  isLoadingTitle?: boolean;
 }
 
-export const PageHeader = ({ title, description }: IProps) => {
+export const PageHeader = ({ title, description, isLoadingTitle }: IProps) => {
   const router = useRouter();
   return (
     <div className="flex flex-col justify-center gap-2 px-4 py-3 relative">
@@ -21,10 +22,10 @@ export const PageHeader = ({ title, description }: IProps) => {
         <ArrowLeftIcon className="w-4 h-4" />
       </Button>
       <div className="flex items-center justify-center">
-        {title ? (
-          <h1 className="text-lg font-medium text-center h-7">{title}</h1>
-        ) : (
+        {isLoadingTitle ? (
           <Skeleton className="h-7 w-1/2 rounded-2xl" />
+        ) : (
+          <h1 className="text-lg font-medium text-center h-7">{title}</h1>
         )}
         {description && (
           <p className="text-sm text-center text-gray-500">{description}</p>

@@ -48,7 +48,7 @@ export const CategoryPage = ({ shopId, categoryId }: ICommonParams) => {
 
   return (
     <div className="px-4 py-3 space-y-3">
-      <PageHeader title={pageTitle} />
+      <PageHeader title={pageTitle} isLoadingTitle={isLoading} />
       <SearchInput value={search} onChange={(e) => setSearch(e.target.value)} />
 
       <ProductsGrid

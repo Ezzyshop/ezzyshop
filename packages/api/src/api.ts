@@ -14,12 +14,6 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     const message = error.response?.data?.message as ErrorMessages;
-    const status = error.response?.status;
-    const method = error.config?.method;
-
-    if (status === 500 && method === "get") {
-      window.location.href = "/server-error";
-    }
 
     toast.error(errorMessagesMap[message]);
 

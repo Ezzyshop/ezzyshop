@@ -8,6 +8,7 @@ import * as React from "react";
 
 import { Button } from "@repo/ui/components/ui/button";
 import { cn } from "@repo/ui/lib/utils";
+import Image from "next/image";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -212,6 +213,43 @@ function CarouselDots({
   );
 }
 
+function CarouselImages({
+  className,
+  images,
+  ...props
+}: React.ComponentProps<"div"> & { images: string[] }) {
+  const { selectedIndex, scrollTo, api } = useCarousel();
+
+  return (
+    <div
+      role="tablist"
+      className={cn(
+        "absolute bottom-0 w-full flex items-center justify-start gap-2 ",
+        className
+      )}
+      {...props}
+    >
+      {api?.scrollSnapList().map((_, index) => (
+        <div
+          key={index}
+          className={cn(
+            "relative aspect-square h-[65px] w-[65px] rounded-lg cursor-pointer",
+            index === selectedIndex ? "border-2 border-primary" : ""
+          )}
+          onClick={() => scrollTo(index)}
+        >
+          <Image
+            src={images[index]}
+            alt={images[index]}
+            fill
+            className="rounded-lg object-cover"
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
   const { orientation } = useCarousel();
 
@@ -297,5 +335,6 @@ export {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  CarouselImages,
   type CarouselApi,
 };

@@ -8,10 +8,7 @@ export interface IProductResponse {
   price: number;
   compare_at_price: number | null;
   images: string[];
-  categories: {
-    _id: string;
-    name: ILocale;
-  }[];
+  categories: string[];
   variants: {
     sku: string;
     attributes: Record<string, string>;
