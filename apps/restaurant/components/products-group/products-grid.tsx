@@ -2,11 +2,12 @@
 import { IProductResponse } from "@repo/api/services/products/product.interface";
 import { ProductsCard } from "../products-card/products-card";
 import { InView } from "react-intersection-observer";
-import { Loader2 } from "@repo/ui/components/icons/index";
+import { Loader2, NoResultIcon } from "@repo/ui/components/icons/index";
 import { ProductCardSkeleton } from "../products-card/product-card-skeleton";
 import { InfiniteData } from "@tanstack/react-query";
-import { IData, IPaginatedData } from "@repo/api/utils/interfaces";
+import { IPaginatedData } from "@repo/api/utils/interfaces";
 import { ICategoryResponse } from "@repo/api/services/category/category.interface";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   data?: IProductResponse[];
@@ -38,7 +39,10 @@ export const ProductsGrid = ({
   }
 
   if (categoryInfiniteData) {
-    if (categoryInfiniteData.pages.length === 0) return null;
+    if (categoryInfiniteData.pages[0]?.products.length === 0) {
+      return <NoProductsFound />;
+    }
+
     return (
       <div className="grid grid-cols-2 gap-3">
         {categoryInfiniteData.pages.map((page) =>
@@ -47,27 +51,20 @@ export const ProductsGrid = ({
           ))
         )}
 
-        {hasNextPage && (
-          <InView
-            as="div"
-            onChange={(inView) => {
-              if (inView && hasNextPage && !isFetchingNextPage)
-                fetchNextPage?.();
-            }}
-          />
-        )}
-
-        {isFetchingNextPage && (
-          <div className="flex justify-center items-center col-span-2">
-            <Loader2 className="animate-spin" />
-          </div>
-        )}
+        <FetchNextPage
+          hasNextPage={hasNextPage}
+          isFetchingNextPage={isFetchingNextPage}
+          fetchNextPage={fetchNextPage}
+        />
       </div>
     );
   }
 
   if (infiniteData) {
-    if (infiniteData.pages.length === 0) return null;
+    if (infiniteData.pages[0]?.data.length === 0) {
+      return <NoProductsFound />;
+    }
+
     return (
       <div className="grid grid-cols-2 gap-3">
         {infiniteData.pages.map((page) =>
@@ -76,27 +73,20 @@ export const ProductsGrid = ({
           ))
         )}
 
-        {hasNextPage && (
-          <InView
-            as="div"
-            onChange={(inView) => {
-              if (inView && hasNextPage && !isFetchingNextPage)
-                fetchNextPage?.();
-            }}
-          />
-        )}
-
-        {isFetchingNextPage && (
-          <div className="flex justify-center items-center col-span-2">
-            <Loader2 className="animate-spin" />
-          </div>
-        )}
+        <FetchNextPage
+          hasNextPage={hasNextPage}
+          isFetchingNextPage={isFetchingNextPage}
+          fetchNextPage={fetchNextPage}
+        />
       </div>
     );
   }
 
   if (data) {
-    if (data.length === 0) return null;
+    if (data.length === 0) {
+      return <NoProductsFound />;
+    }
+
     return (
       <div className="grid grid-cols-2 gap-3">
         {data?.map((product) => (
@@ -107,4 +97,44 @@ export const ProductsGrid = ({
   }
 
   return null;
+};
+
+const NoProductsFound = () => {
+  const t = useTranslations("product");
+
+  return (
+    <div className="flex flex-col items-center justify-center h-[calc(100vh-10rem)]">
+      <NoResultIcon className="w-20 h-20 opacity-50" />
+      <p className="text-sm text-gray-500 mt-3">{t("no-products-found")}</p>
+    </div>
+  );
+};
+
+const FetchNextPage = ({
+  hasNextPage,
+  isFetchingNextPage,
+  fetchNextPage,
+}: {
+  hasNextPage?: boolean;
+  isFetchingNextPage?: boolean;
+  fetchNextPage?: () => void;
+}) => {
+  return (
+    <>
+      {hasNextPage && (
+        <InView
+          as="div"
+          onChange={(inView) => {
+            if (inView && hasNextPage && !isFetchingNextPage) fetchNextPage?.();
+          }}
+        />
+      )}
+
+      {isFetchingNextPage && (
+        <div className="flex justify-center items-center col-span-2">
+          <Loader2 className="animate-spin" />
+        </div>
+      )}
+    </>
+  );
 };
