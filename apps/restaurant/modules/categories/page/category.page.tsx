@@ -19,7 +19,7 @@ export const CategoryPage = ({ shopId, categoryId }: ICommonParams) => {
   const params: ICategoryParams = {
     search: debouncedSearch,
   };
-  
+
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
       queryKey: ["category", categoryId, params],
@@ -37,7 +37,7 @@ export const CategoryPage = ({ shopId, categoryId }: ICommonParams) => {
       },
     });
 
-  pageTitle = data?.pages[0]?.data?.name[locale];
+  pageTitle = pageTitle ?? data?.pages[0]?.data?.name[locale];
 
   return (
     <div className="p-4 space-y-3">
