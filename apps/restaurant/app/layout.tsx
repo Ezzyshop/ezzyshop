@@ -4,6 +4,7 @@ import { getLocale } from "next-intl/server";
 import "./globals.css";
 import { QueryClientProvider } from "@repo/contexts/react-query.context";
 import { ShopProvider } from "@/contexts/shop.context";
+import NextTopLoader from "nextjs-toploader";
 
 export const metadata: Metadata = {
   title: "Restaurant",
@@ -23,6 +24,12 @@ export default async function RootLayout({
         <QueryClientProvider>
           <ShopProvider>{children}</ShopProvider>
         </QueryClientProvider>
+        <NextTopLoader
+          color="var(--primary)"
+          height={3}
+          showSpinner={false}
+          crawlSpeed={200}
+        />
       </body>
     </html>
   );
