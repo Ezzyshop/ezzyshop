@@ -37,8 +37,9 @@ export const Categories = ({ shopId }: IProps) => {
       </div>
       <div className="grid grid-cols-4 place-content-center gap-2 mt-3 ">
         {data?.data.slice(0, 8).map((category) => (
-          <div
+          <Link
             key={category._id}
+            href={`/${shopId}/categories/${category._id}`}
             className="flex flex-col items-center cursor-pointer"
           >
             <Image
@@ -51,7 +52,7 @@ export const Categories = ({ shopId }: IProps) => {
             <p className="text-center text-sm mt-2 font-medium line-clamp-2">
               {category.name[language]}
             </p>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

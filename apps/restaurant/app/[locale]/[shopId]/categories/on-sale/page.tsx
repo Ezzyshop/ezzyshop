@@ -1,4 +1,4 @@
-import { OnSaleProductsPage } from "@/modules/categories/page/on-sale.page";
+import { OnSaleProductsPage } from "@/modules/categories/page";
 import { ICommonParamsAsync } from "@/utils/interfaces";
 import { ProductService } from "@repo/api/services";
 import {

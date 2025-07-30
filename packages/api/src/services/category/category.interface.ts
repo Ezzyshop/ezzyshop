@@ -1,4 +1,6 @@
 import { ILocale } from "@/src/utils/interfaces/base.interface";
+import { IPaginatedData } from "@/src/utils/interfaces/base.interface";
+import { IProductResponse } from "../products/product.interface";
 
 export interface ICategoriesResponse {
   name: ILocale;
@@ -20,4 +22,8 @@ export interface ICategoryParams {
   limit?: number;
   search?: string;
   is_popular?: boolean;
+}
+
+export interface ICategoryResponse extends IPaginatedData<IProductResponse> {
+  products: IProductResponse[];
 }

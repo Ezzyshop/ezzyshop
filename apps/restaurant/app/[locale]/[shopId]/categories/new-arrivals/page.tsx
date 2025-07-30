@@ -1,4 +1,4 @@
-import { NewArrivalsProductsPage } from "@/modules/categories/page/new-arrivals.page";
+import { NewArrivalsProductsPage } from "@/modules/categories/page";
 import { ICommonParamsAsync } from "@/utils/interfaces";
 import { ProductService } from "@repo/api/services";
 import {

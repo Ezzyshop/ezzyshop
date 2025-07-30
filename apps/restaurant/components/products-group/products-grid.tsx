@@ -5,7 +5,8 @@ import { InView } from "react-intersection-observer";
 import { Loader2 } from "@repo/ui/components/icons/index";
 import { ProductCardSkeleton } from "../products-card/product-card-skeleton";
 import { InfiniteData } from "@tanstack/react-query";
-import { IPaginatedData } from "@repo/api/utils/interfaces";
+import { IData, IPaginatedData } from "@repo/api/utils/interfaces";
+import { ICategoryResponse } from "@repo/api/services/category/category.interface";
 
 interface IProps {
   data?: IProductResponse[];
@@ -14,6 +15,7 @@ interface IProps {
   isFetchingNextPage?: boolean;
   fetchNextPage?: () => void;
   infiniteData?: InfiniteData<IPaginatedData<IProductResponse>>;
+  categoryInfiniteData?: InfiniteData<ICategoryResponse>;
 }
 
 export const ProductsGrid = ({
@@ -23,6 +25,7 @@ export const ProductsGrid = ({
   isFetchingNextPage,
   fetchNextPage,
   infiniteData,
+  categoryInfiniteData,
 }: IProps) => {
   if (isLoading) {
     return (
@@ -30,6 +33,35 @@ export const ProductsGrid = ({
         {Array.from({ length: 10 }).map((_, index) => (
           <ProductCardSkeleton key={index} />
         ))}
+      </div>
+    );
+  }
+
+  if (categoryInfiniteData) {
+    if (categoryInfiniteData.pages.length === 0) return null;
+    return (
+      <div className="grid grid-cols-2 gap-3">
+        {categoryInfiniteData.pages.map((page) =>
+          page.products.map((product) => (
+            <ProductsCard key={product._id} product={product} />
+          ))
+        )}
+
+        {hasNextPage && (
+          <InView
+            as="div"
+            onChange={(inView) => {
+              if (inView && hasNextPage && !isFetchingNextPage)
+                fetchNextPage?.();
+            }}
+          />
+        )}
+
+        {isFetchingNextPage && (
+          <div className="flex justify-center items-center col-span-2">
+            <Loader2 className="animate-spin" />
+          </div>
+        )}
       </div>
     );
   }
