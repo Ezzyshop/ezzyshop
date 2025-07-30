@@ -55,4 +55,5 @@ export interface IShopResponse {
     twitter?: string;
     youtube?: string;
   };
+  brand_color?: string;
 }
