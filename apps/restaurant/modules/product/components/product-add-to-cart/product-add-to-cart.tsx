@@ -8,12 +8,22 @@ interface IProps {
   product: IProductResponse;
   selectedVariant?: IProductResponse["variants"][number];
   onVariantSelect: (variant: IProductResponse["variants"][number]) => void;
+  currentQuantity?: number;
+  onAddToCart: () => void;
+  onIncrement?: () => void;
+  onDecrement?: () => void;
+  isAddingToCart?: boolean;
 }
 
 export const ProductAddToCart = ({
   product,
   selectedVariant,
   onVariantSelect,
+  currentQuantity = 0,
+  onAddToCart,
+  onIncrement,
+  onDecrement,
+  isAddingToCart = false,
 }: IProps) => {
   return (
     <Card className="shadow-none border-0 p-3 gap-3">
@@ -23,7 +33,15 @@ export const ProductAddToCart = ({
         selectedVariant={selectedVariant}
         onVariantSelect={onVariantSelect}
       />
-      <AddToCartButton />
+      <AddToCartButton
+        product={product}
+        selectedVariant={selectedVariant}
+        currentQuantity={currentQuantity}
+        onAddToCart={onAddToCart}
+        onIncrement={onIncrement}
+        onDecrement={onDecrement}
+        isLoading={isAddingToCart}
+      />
     </Card>
   );
 };

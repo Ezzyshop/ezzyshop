@@ -1,3 +1,4 @@
+"use client";
 import { IProductResponse } from "@repo/api/services/products/index";
 import React, {
   createContext,
@@ -13,7 +14,7 @@ import {
   calculateTotals,
   generateCartItemId,
   calculateItemPrice,
-} from "@repo/contexts/cart-context/utils";
+} from "./utils";
 
 const initialState: ICartState = {
   items: [],

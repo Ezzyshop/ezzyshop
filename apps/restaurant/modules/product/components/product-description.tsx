@@ -17,7 +17,7 @@ export const ProductDescription = ({ product }: IProps) => {
   const locale = useLocale() as keyof ILocale;
   const t = useTranslations("product");
 
-  if (!product.description[locale]) return null;
+  if (!product.description[locale].trim()) return null;
 
   return (
     <Card className="shadow-none border-0 p-3 gap-2">
