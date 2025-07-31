@@ -164,6 +164,9 @@ importers:
         specifier: ^2.0.6
         version: 2.0.6(react-dom@19.1.1)(react@19.1.1)
     devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
