@@ -18,12 +18,13 @@ export const ProductsCarousel = ({ products, title }: IProps) => {
       <Carousel
         opts={{
           align: "start",
+          dragFree: true,
         }}
         className="w-full max-w-sm"
       >
         <CarouselContent>
           {products.map((product, index) => (
-            <CarouselItem key={index} className="basis-1/3">
+            <CarouselItem key={index} className="basis-[36%]">
               <ProductCardSmall product={product} />
             </CarouselItem>
           ))}

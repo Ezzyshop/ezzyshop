@@ -33,7 +33,13 @@
     "title": "Savatcha",
     "items": "Mahsulotlar",
     "checkout": "Rasmiylashtirish",
-    "viewed_products": "Ko'rilgan mahsulotlar"
+    "viewed_products": "Ko'rilgan mahsulotlar",
+    "most-popular": "Mashhur mahsulotlar",
+    "empty": {
+      "title": "Savatingiz hozircha bo'sh",
+      "description": "Bosh sahifadan boshlang - kerakli mahsulotlarni qidiruv orqali topishiniz yoki to'plamlarni ko'rishingiz mumkin",
+      "go_to_home": "Bosh sahifaga o'tish"
+    }
   },
   "wishlist": {
     "title": "Istaklarim"
