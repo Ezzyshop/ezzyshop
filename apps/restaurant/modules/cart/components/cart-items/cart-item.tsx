@@ -66,7 +66,7 @@ export const CartItem = ({ item }: IProps) => {
 
   return (
     <Card className="p-4 flex flex-row items-start shadow-none border-0">
-      <div className="relative w-24 h-24">
+      <div className="relative min-w-24 w-24 h-24">
         <Image
           src={item.variant?.image || item.product.images[0] || ""}
           alt={item.product.name[locale]}
