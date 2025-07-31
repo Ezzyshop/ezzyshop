@@ -1,6 +1,6 @@
 import { IData } from "@repo/api/utils/interfaces";
-import { api } from "@repo/api/api";
 import { IShopResponse } from "./shop.interface";
+import { api } from "../../api";
 
 export class ShopService {
   static async getShop(shopId: string): Promise<IData<IShopResponse>> {

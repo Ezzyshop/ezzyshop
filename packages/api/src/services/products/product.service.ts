@@ -1,10 +1,7 @@
-import { api } from "@repo/api/api";
-import { IPaginatedData, IData } from "@repo/api/utils/interfaces";
-import {
-  IProductParams,
-  IProductResponse,
-  ProductByCategoryType,
-} from "@repo/api/services/products";
+import { IData, IPaginatedData } from "@repo/api/utils/interfaces";
+import { api } from "../../api";
+import { IProductParams, IProductResponse } from "./product.interface";
+import { ProductByCategoryType } from "./product.type";
 
 export class ProductService {
   static async getProductsByCategory(

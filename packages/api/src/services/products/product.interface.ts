@@ -1,4 +1,4 @@
-import { ILocale } from "@repo/api/utils/interfaces/base.interface";
+import { ILocale } from "@repo/api/utils/interfaces";
 import { ProductStatus } from "./product.enum";
 
 export interface IProductResponse {
