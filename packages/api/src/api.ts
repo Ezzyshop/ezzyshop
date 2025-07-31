@@ -3,7 +3,7 @@ import { toast } from "sonner";
 import { ErrorMessages, errorMessagesMap } from "./utils/enums/api.enum";
 
 export const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:",
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:9100",
   headers: {
     "Content-Type": "application/json",
   },

@@ -173,6 +173,9 @@ importers:
       '@types/node':
         specifier: ^22.15.3
         version: 22.17.0
+      eslint:
+        specifier: ^9.30.0
+        version: 9.32.0
       typescript:
         specifier: 5.8.2
         version: 5.8.2
@@ -210,6 +213,9 @@ importers:
       '@types/react-dom':
         specifier: 19.1.1
         version: 19.1.1(@types/react@19.1.0)
+      eslint:
+        specifier: ^9.30.0
+        version: 9.32.0
       typescript:
         specifier: 5.8.2
         version: 5.8.2
