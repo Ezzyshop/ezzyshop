@@ -1,10 +1,18 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { getLocale } from "next-intl/server";
 
 import "./globals.css";
 import { QueryClientProvider } from "@repo/contexts/react-query.context";
 import { ShopProvider } from "@/contexts/shop.context";
 import NextTopLoader from "nextjs-toploader";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   title: "Restaurant",
