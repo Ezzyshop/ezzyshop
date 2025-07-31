@@ -1,4 +1,4 @@
-import { IProductResponse } from "@repo/api/services";
+import { IProductResponse } from "@repo/api/services/products/index";
 import { Button } from "@repo/ui/components/ui/button";
 import { cn } from "@repo/ui/lib/utils";
 

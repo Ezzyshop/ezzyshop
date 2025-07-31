@@ -1,6 +1,6 @@
 "use client";
 
-import { ProductService } from "@repo/api/services";
+import { ProductService } from "@repo/api/services/products/index";
 import { useQuery } from "@tanstack/react-query";
 import { Product } from "../components/product";
 

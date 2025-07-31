@@ -1,6 +1,7 @@
 import { HomepagePage } from "@/modules/homepage/pages";
 import { ICommonParamsAsync } from "@/utils/interfaces";
-import { CategoriesService, ProductService } from "@repo/api/services";
+import { CategoriesService } from "@repo/api/services/category/index";
+import { ProductService } from "@repo/api/services/products/index";
 import {
   HydrationBoundary,
   dehydrate,

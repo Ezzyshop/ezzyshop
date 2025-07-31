@@ -1,7 +1,7 @@
 "use client";
 
 import { ICommonParams } from "@/utils/interfaces";
-import { CategoriesService } from "@repo/api/services";
+import { CategoriesService, ICategoriesResponse } from "@repo/api/services/category/index";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import {
@@ -41,7 +41,7 @@ export const PopularCategories = ({ shopId }: ICommonParams) => {
         plugins={[Autoplay({ delay: 6000 })]}
       >
         <CarouselContent>
-          {categories?.data.map((category) => (
+          {categories?.data.map((category: ICategoriesResponse) => (
             <CarouselItem key={category._id}>
               <Link href={`/${shopId}/categories/${category._id}`}>
                 <Image

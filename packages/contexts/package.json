@@ -1,7 +1,6 @@
 {
   "name": "@repo/contexts",
   "version": "0.0.1",
-  "type": "module",
   "private": true,
   "exports": {
     "./*": "./src/*.tsx"
@@ -21,6 +20,7 @@
     "@types/react-dom": "19.1.1"
   },
   "dependencies": {
+    "@repo/api": "workspace:*",
     "@tanstack/react-query": "^5.83.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"

@@ -1,10 +1,10 @@
-import { PlanType } from "../plan/plan.enum";
 import {
   BusinessType,
   ShopPlatform,
   ShopStatus,
   LanguageType,
-} from "./shop.enum";
+} from "@repo/api/services/shop/shop.enum";
+import { PlanType } from "@repo/api/services/plan/plan.enum";
 
 export interface IShopResponse {
   _id: string;

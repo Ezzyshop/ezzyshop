@@ -176,6 +176,9 @@ importers:
 
   packages/contexts:
     dependencies:
+      '@repo/api':
+        specifier: workspace:*
+        version: link:../api
       '@tanstack/react-query':
         specifier: ^5.83.0
         version: 5.83.0(react@19.1.1)

@@ -4,7 +4,7 @@ import { ProductsGrid } from "@/components/products-group/products-grid";
 import { SearchInput } from "@/components/search-input";
 import { useDebounce } from "@/hooks/use-debounce";
 import { ICommonParams } from "@/utils/interfaces";
-import { ProductService } from "@repo/api/services";
+import { ProductService } from "@repo/api/services/products/index";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { useState } from "react";

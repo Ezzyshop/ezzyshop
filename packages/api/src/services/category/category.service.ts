@@ -4,8 +4,7 @@ import {
   ICategoryParams,
   ICategoryResponse,
 } from "./category.interface";
-import { IPaginatedData } from "../../utils/interfaces/index";
-import { IData } from "@/src/utils/interfaces/base.interface.js";
+import { IPaginatedData, IData } from "@repo/api/utils/interfaces";
 
 export class CategoriesService {
   static async getPublicCategories(

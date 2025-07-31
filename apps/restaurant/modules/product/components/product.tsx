@@ -3,7 +3,7 @@ import { ProductBasicInformation } from "./product-basic-information/product-bas
 import { ProductAddToCart } from "./product-add-to-cart/product-add-to-cart";
 import { ProductDescription } from "./product-description";
 import { SimilarProducts } from "./similar-products";
-import { IProductResponse } from "@repo/api/services";
+import { IProductResponse } from "@repo/api/services/products/index";
 import { useState, useEffect } from "react";
 
 interface IProps {

@@ -1,6 +1,5 @@
-import { ILocale } from "@/src/utils/interfaces/base.interface";
-import { IPaginatedData } from "@/src/utils/interfaces/base.interface";
-import { IProductResponse } from "../products/product.interface";
+import { ILocale, IPaginatedData } from "@repo/api/utils/interfaces";
+import { IProductResponse } from "@repo/api/services/products/product.interface";
 
 export interface ICategoriesResponse {
   name: ILocale;

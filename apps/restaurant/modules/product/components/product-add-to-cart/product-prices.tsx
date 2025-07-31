@@ -1,5 +1,5 @@
 import { useShopContext } from "@/contexts/shop.context";
-import { IProductResponse } from "@repo/api/services";
+import { IProductResponse } from "@repo/api/services/products/index";
 import { cn } from "@repo/ui/lib/utils";
 
 interface IProps {

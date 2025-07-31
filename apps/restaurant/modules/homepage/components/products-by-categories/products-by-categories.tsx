@@ -1,8 +1,10 @@
 "use client";
 
 import { ProductsGrid } from "@/components/products-group/products-grid";
-import { IProductResponse } from "@repo/api/services/products/product.interface";
-import { ProductByCategoryType } from "@repo/api/services/products/product.type";
+import {
+  IProductResponse,
+  ProductByCategoryType,
+} from "@repo/api/services/products/index";
 import { Button } from "@repo/ui/components/ui/button";
 import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";

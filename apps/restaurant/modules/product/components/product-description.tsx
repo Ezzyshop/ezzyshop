@@ -1,4 +1,5 @@
 import { IProductResponse } from "@repo/api/services/products/index";
+import { ILocale } from "@repo/api/utils/interfaces/index";
 import {
   Accordion,
   AccordionContent,
@@ -13,7 +14,7 @@ interface IProps {
 }
 
 export const ProductDescription = ({ product }: IProps) => {
-  const locale = useLocale();
+  const locale = useLocale() as keyof ILocale;
   const t = useTranslations("product");
 
   if (!product.description[locale]) return null;

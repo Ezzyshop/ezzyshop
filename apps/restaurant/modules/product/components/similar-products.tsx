@@ -1,5 +1,5 @@
 import { ProductsGrid } from "@/components/products-group/products-grid";
-import { CategoriesService } from "@repo/api/services";
+import { CategoriesService } from "@repo/api/services/category/index";
 import { IProductResponse } from "@repo/api/services/products/index";
 import { Card } from "@repo/ui/components/ui/card";
 import { useQuery } from "@tanstack/react-query";

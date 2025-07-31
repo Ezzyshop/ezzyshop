@@ -1,6 +1,6 @@
 import { ProductPage } from "@/modules/product/pages/product.page";
 import { ICommonParamsAsync } from "@/utils/interfaces";
-import { ProductService } from "@repo/api/services";
+import { ProductService } from "@repo/api/services/products/index";
 import {
   dehydrate,
   HydrationBoundary,

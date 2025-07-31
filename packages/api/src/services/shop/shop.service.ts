@@ -1,5 +1,5 @@
-import { IData } from "../../utils/interfaces/base.interface";
-import { api } from "../../api";
+import { IData } from "@repo/api/utils/interfaces";
+import { api } from "@repo/api/api";
 import { IShopResponse } from "./shop.interface";
 
 export class ShopService {

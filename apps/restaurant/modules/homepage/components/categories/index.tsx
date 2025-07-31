@@ -1,10 +1,13 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { CategoriesService } from "@repo/api/services";
+import {
+  CategoriesService,
+  ICategoriesResponse,
+  ICategoryParams,
+} from "@repo/api/services/category/index";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
-import { ICategoryParams } from "@repo/api/services/category/category.interface";
 import Link from "next/link";
 import { Button } from "@repo/ui/components/ui/button";
 
@@ -36,7 +39,7 @@ export const Categories = ({ shopId }: IProps) => {
         </Button>
       </div>
       <div className="grid grid-cols-4 place-content-center gap-2 mt-3 ">
-        {data?.data.slice(0, 8).map((category) => (
+        {data?.data.slice(0, 8).map((category: ICategoriesResponse) => (
           <Link
             key={category._id}
             href={`/${shopId}/categories/${category._id}`}

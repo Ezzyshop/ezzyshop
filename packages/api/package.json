@@ -2,12 +2,10 @@
   "name": "@repo/api",
   "version": "0.0.1",
   "private": true,
-  "type": "module",
   "exports": {
     ".": "./src/*.ts",
-    "./services": "./src/services/index.ts",
     "./services/*": "./src/services/*.ts",
-    "./utils/interfaces": "./src/utils/interfaces/index.ts"
+    "./utils/*": "./src/utils/*.ts"
   },
   "dependencies": {
     "axios": "^1.7.9",

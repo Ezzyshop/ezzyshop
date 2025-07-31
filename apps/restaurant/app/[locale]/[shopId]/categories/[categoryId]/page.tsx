@@ -1,6 +1,6 @@
 import { CategoryPage } from "@/modules/categories/page";
 import { ICommonParamsAsync } from "@/utils/interfaces";
-import { CategoriesService } from "@repo/api/services";
+import { CategoriesService } from "@repo/api/services/category/index";
 import {
   dehydrate,
   HydrationBoundary,

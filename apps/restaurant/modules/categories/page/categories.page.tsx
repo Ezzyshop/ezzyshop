@@ -1,17 +1,20 @@
 "use client";
+import {
+  ICategoryParams,
+  CategoriesService,
+  ICategoriesResponse,
+} from "@repo/api/services/category/index";
+import { Loader2 } from "@repo/ui/components/icons/index";
 
 import { ICommonParams } from "@/utils/interfaces";
-import { CategoriesService } from "@repo/api/services";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { CategoryCard } from "../components/category-card";
-import { ICategoryParams } from "@repo/api/services/category/category.interface";
 import { CategoryCardSkeleton } from "../components/category-card-skeleton";
 import { SearchInput } from "@/components/search-input";
 import { useState } from "react";
 import { useDebounce } from "@/hooks";
 import { InView } from "react-intersection-observer";
-import { Loader2 } from "@repo/ui/components/icons/index";
 import { PageHeader } from "@/components/page-header/page-header";
 
 export const CategoriesPage = ({ shopId }: ICommonParams) => {
@@ -59,7 +62,7 @@ export const CategoriesPage = ({ shopId }: ICommonParams) => {
     return (
       <>
         {data.pages.map((page) =>
-          page.data.map((category) => (
+          page.data.map((category: ICategoriesResponse) => (
             <CategoryCard
               key={category._id}
               category={category}

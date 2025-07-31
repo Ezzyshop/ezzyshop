@@ -1,11 +1,12 @@
 {
   "extends": "@repo/typescript-config/base.json",
   "compilerOptions": {
-    "jsx": "preserve",
+    "jsx": "react-jsx",
+    "module": "NodeNext",
     "paths": {
       "@repo/contexts/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }

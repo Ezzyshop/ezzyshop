@@ -2,13 +2,14 @@ import { IProductResponse } from "@repo/api/services/products/index";
 import { Card } from "@repo/ui/components/ui/card";
 import { ProductImages } from "./product-images";
 import { useLocale } from "next-intl";
+import { ILocale } from "@repo/api/utils/interfaces/base.interface";
 
 interface IProps {
   product: IProductResponse;
 }
 
 export const ProductBasicInformation = ({ product }: IProps) => {
-  const locale = useLocale();
+  const locale = useLocale() as keyof ILocale;
   return (
     <Card className="shadow-none border-0 p-3 gap-2">
       <ProductImages images={product.images} />
