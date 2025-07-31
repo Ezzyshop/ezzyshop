@@ -1,13 +1,21 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import { ProductService } from "@repo/api/services/products/index";
+import {
+  IProductParams,
+  ProductService,
+} from "@repo/api/services/products/index";
 import { ICommonParams } from "@/utils/interfaces";
 import { ProductsByCategories } from "./products-by-categories";
 
 export const OnSaleProducts = ({ shopId }: ICommonParams) => {
+  const params: IProductParams = {
+    limit: 6,
+  };
+
   const { data, isLoading } = useQuery({
-    queryKey: ["on-sale-products", shopId],
-    queryFn: () => ProductService.getProductsByCategory(shopId, "on-sale"),
+    queryKey: ["on-sale-products", shopId, params],
+    queryFn: () =>
+      ProductService.getProductsByCategory(shopId, "on-sale", params),
   });
 
   if (!data) return null;

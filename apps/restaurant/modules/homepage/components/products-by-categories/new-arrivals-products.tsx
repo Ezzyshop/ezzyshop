@@ -1,13 +1,21 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import { ProductService } from "@repo/api/services/products/index";
+import {
+  IProductParams,
+  ProductService,
+} from "@repo/api/services/products/index";
 import { ICommonParams } from "@/utils/interfaces";
 import { ProductsByCategories } from "./products-by-categories";
 
 export const NewArrivalsProducts = ({ shopId }: ICommonParams) => {
+  const params: IProductParams = {
+    limit: 6,
+  };
+
   const { data, isLoading } = useQuery({
-    queryKey: ["new-arrivals-products", shopId],
-    queryFn: () => ProductService.getProductsByCategory(shopId, "new-arrivals"),
+    queryKey: ["new-arrivals-products", shopId, params],
+    queryFn: () =>
+      ProductService.getProductsByCategory(shopId, "new-arrivals", params),
   });
 
   if (!data) return null;
