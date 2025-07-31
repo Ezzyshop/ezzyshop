@@ -6,7 +6,7 @@ export const CartDock = () => {
 
   return (
     <div className="relative">
-      <ShoppingBagIcon className="w-6 h-6" />
+      <ShoppingBagIcon />
       {totalItems > 0 && (
         <div className="absolute -top-2 -right-2 bg-primary text-white rounded-full w-4 h-4 flex items-center justify-center">
           <span className="text-xs">{totalItems}</span>

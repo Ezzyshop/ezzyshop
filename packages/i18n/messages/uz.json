@@ -33,5 +33,8 @@
     "title": "Savatcha",
     "items": "Mahsulotlar",
     "checkout": "Rasmiylashtirish"
+  },
+  "wishlist": {
+    "title": "Istaklarim"
   }
 }

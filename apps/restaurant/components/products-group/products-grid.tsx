@@ -1,6 +1,6 @@
 "use client";
 import { IProductResponse } from "@repo/api/services/products/product.interface";
-import { ProductsCard } from "../products-card/products-card";
+import { ProductsCard } from "../products-card/product-card";
 import { InView } from "react-intersection-observer";
 import { Loader2, NoResultIcon } from "@repo/ui/components/icons/index";
 import { ProductCardSkeleton } from "../products-card/product-card-skeleton";

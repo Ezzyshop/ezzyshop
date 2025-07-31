@@ -3,7 +3,6 @@ import {
   HeartIcon,
   HomeIcon,
   SearchIcon,
-  ShoppingBagIcon,
   UserIcon,
 } from "@repo/ui/components/icons/index";
 import { useLocale } from "next-intl";
@@ -36,8 +35,8 @@ export const Dock = () => {
     },
     {
       icon: <HeartIcon />,
-      href: `/${locale}/${shopId}/favorites`,
-      label: "Favorites",
+      href: `/${locale}/${shopId}/wishlist`,
+      label: "Wishlist",
     },
     {
       icon: <UserIcon />,
