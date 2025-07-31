@@ -21,7 +21,10 @@
     "add_to_cart": "Savatga qo'shish",
     "no-products-found": "Mahsulot topilmadi",
     "description": "Tavsif",
-    "similar_products": "O'xshash mahsulotlar"
+    "similar_products": "O'xshash mahsulotlar",
+    "no_options_available": "Sotuvda yo'q",
+    "out_of_stock": "Sotuvda yo'q",
+    "adding": "Qo'shilmoqda..."
   },
   "categories": {
     "title": "Kategoriyalar"

@@ -5,6 +5,7 @@ import {
 } from "@repo/ui/components/icons/index";
 import { Button } from "@repo/ui/components/ui/button";
 import { IProductResponse } from "@repo/api/services/products/index";
+import { useTranslations } from "next-intl";
 
 interface IProps {
   product: IProductResponse;
@@ -27,6 +28,7 @@ export const AddToCartButton = ({
   disabled = false,
   isLoading = false,
 }: IProps) => {
+  const t = useTranslations("product");
   const availableStock =
     selectedVariant?.quantity ?? product.variants?.[0]?.quantity ?? 0;
   const isOutOfStock = availableStock <= 0;
@@ -68,13 +70,13 @@ export const AddToCartButton = ({
   }
 
   const getButtonText = () => {
-    if (isOutOfStock) return "Out of Stock";
-    return "Add to Cart";
+    if (isOutOfStock) return t("out_of_stock");
+    return t("add_to_cart");
   };
 
   return (
     <Button
-      className="w-full h-12"
+      className="w-full"
       size="lg"
       onClick={onAddToCart}
       disabled={disabled || isLoading || isOutOfStock}
@@ -82,7 +84,7 @@ export const AddToCartButton = ({
       {isLoading ? (
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-          Adding...
+          {t("adding")}
         </div>
       ) : (
         <>

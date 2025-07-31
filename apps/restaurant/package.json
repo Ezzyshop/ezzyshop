@@ -12,6 +12,7 @@
   "dependencies": {
     "@repo/api": "workspace:*",
     "@repo/contexts": "workspace:*",
+    "@repo/hooks": "workspace:*",
     "@repo/i18n": "workspace:*",
     "@repo/ui": "workspace:*",
     "@tanstack/react-query": "^5.83.0",
