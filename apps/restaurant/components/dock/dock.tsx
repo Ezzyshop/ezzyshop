@@ -11,6 +11,7 @@ import { useParams, usePathname } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@repo/ui/lib/utils";
 import { ICommonParams } from "@/utils/interfaces";
+import { CartDock } from "./cart-dock";
 
 export const Dock = () => {
   const locale = useLocale();
@@ -29,7 +30,7 @@ export const Dock = () => {
       label: "Search",
     },
     {
-      icon: <ShoppingBagIcon />,
+      icon: <CartDock />,
       href: `/${locale}/${shopId}/cart`,
       label: "Cart",
     },

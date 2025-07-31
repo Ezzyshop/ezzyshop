@@ -16,6 +16,7 @@ interface IProps {
   onDecrement?: () => void;
   disabled?: boolean;
   isLoading?: boolean;
+  size?: "sm" | "default" | "lg";
 }
 
 export const AddToCartButton = ({
@@ -27,6 +28,7 @@ export const AddToCartButton = ({
   onDecrement,
   disabled = false,
   isLoading = false,
+  size = "lg",
 }: IProps) => {
   const t = useTranslations("product");
   const availableStock =
@@ -41,14 +43,14 @@ export const AddToCartButton = ({
         <Button
           variant="outline"
           size="icon"
-          className="h-12 w-12 rounded-lg"
+          className="h-10 w-10 rounded-lg"
           onClick={onDecrement}
           disabled={disabled || isLoading}
         >
           <MinusIcon className="w-4 h-4" />
         </Button>
 
-        <div className="flex-1 h-12 rounded-lg border border-input bg-background flex items-center justify-center font-medium">
+        <div className="flex-1 h-10 rounded-lg border border-input bg-background flex items-center justify-center font-medium">
           {isLoading ? (
             <div className="w-4 h-4 border-2 border-muted-foreground border-t-transparent rounded-full animate-spin" />
           ) : (
@@ -59,7 +61,7 @@ export const AddToCartButton = ({
         <Button
           variant="outline"
           size="icon"
-          className="h-12 w-12 rounded-lg"
+          className="h-10 w-10 rounded-lg"
           onClick={onIncrement}
           disabled={disabled || isLoading || isAtMaxQuantity}
         >
@@ -77,7 +79,7 @@ export const AddToCartButton = ({
   return (
     <Button
       className="w-full"
-      size="lg"
+      size={size}
       onClick={onAddToCart}
       disabled={disabled || isLoading || isOutOfStock}
     >

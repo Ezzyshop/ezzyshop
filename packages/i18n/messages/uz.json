@@ -28,5 +28,10 @@
   },
   "categories": {
     "title": "Kategoriyalar"
+  },
+  "cart": {
+    "title": "Savatcha",
+    "items": "Mahsulotlar",
+    "checkout": "Rasmiylashtirish"
   }
 }

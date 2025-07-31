@@ -1,0 +1,17 @@
+import { ShoppingBagIcon } from "@repo/ui/components/icons/index";
+import { useCart } from "@repo/contexts/cart-context/cart.context";
+
+export const CartDock = () => {
+  const { items } = useCart();
+
+  return (
+    <div className="relative">
+      <ShoppingBagIcon className="w-6 h-6" />
+      {items.length > 0 && (
+        <div className="absolute -top-2 -right-2 bg-primary text-white rounded-full w-4 h-4 flex items-center justify-center">
+          <span className="text-xs">{items.length}</span>
+        </div>
+      )}
+    </div>
+  );
+};
