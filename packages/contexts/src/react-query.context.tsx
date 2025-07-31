@@ -8,7 +8,19 @@ import {
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 export const QueryClientProvider = ({ children }: PropsWithChildren) => {
-  const [queryClient] = useState(() => new QueryClient());
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            refetchOnWindowFocus: false,
+            refetchOnMount: false,
+            refetchOnReconnect: false,
+            retry: false,
+          },
+        },
+      })
+  );
   return (
     <TanstackQueryClientProvider client={queryClient}>
       {children}
