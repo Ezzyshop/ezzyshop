@@ -162,7 +162,7 @@ export const useCart = (): ICartContext => {
 export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
-  const shopId = window.location.pathname.split("/")[1] ?? "mock-shop-id";
+  const shopId = "mock-shop-id";
 
   // Load cart from localStorage on mount
   useEffect(() => {
