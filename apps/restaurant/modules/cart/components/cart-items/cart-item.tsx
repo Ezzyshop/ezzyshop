@@ -7,6 +7,7 @@ import { AddToCartButton } from "@/components/add-to-cart-button/add-to-cart-but
 import { useCart } from "@repo/contexts/cart-context/cart.context";
 import { useShopContext } from "@/contexts/shop.context";
 import { useState } from "react";
+import Link from "next/link";
 
 interface IProps {
   item: ICartItem;
@@ -15,7 +16,7 @@ interface IProps {
 export const CartItem = ({ item }: IProps) => {
   const locale = useLocale() as keyof ILocale;
   const { updateQuantity, removeItem, addItem } = useCart();
-  const { currency } = useShopContext();
+  const { currency, _id: shopId } = useShopContext();
   const [isLoading, setIsLoading] = useState(false);
 
   const availableStock = item.variant?.quantity ?? Infinity;
@@ -74,15 +75,21 @@ export const CartItem = ({ item }: IProps) => {
           className="rounded-lg object-cover"
         />
       </div>
-      <div className="space-y-1 flex-grow">
-        <p className="font-medium line-clamp-1">{item.product.name[locale]}</p>
-        {item.variant && (
-          <p className="text-xs text-gray-600">{getVariantDisplayText()}</p>
-        )}
-        <p className="text-sm font-medium">
-          {(item.variant?.price || item.product.price).toLocaleString()}{" "}
-          {currency.symbol}
-        </p>
+
+      <div className="flex-grow">
+        <Link href={`/${locale}/${shopId}/products/${item.product._id}`} className="block mb-1">
+          <p className="font-medium line-clamp-1">
+            {item.product.name[locale]}
+          </p>
+          {item.variant && (
+            <p className="text-xs text-gray-600">{getVariantDisplayText()}</p>
+          )}
+          <p className="text-sm font-medium">
+            {(item.variant?.price || item.product.price).toLocaleString()}{" "}
+            {currency.symbol}
+          </p>
+        </Link>
+
         <AddToCartButton
           size="sm"
           onAddToCart={handleAddToCart}

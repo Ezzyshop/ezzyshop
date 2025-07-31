@@ -35,16 +35,21 @@ export const OnSaleProductsPage = ({ shopId }: ICommonParams) => {
     });
 
   return (
-    <div className="px-4 py-3 space-y-3">
+    <div className="space-y-3">
       <PageHeader title={t("on-sale")} />
-      <SearchInput value={search} onChange={(e) => setSearch(e.target.value)} />
-      <ProductsGrid
-        infiniteData={data}
-        isLoading={isLoading}
-        hasNextPage={hasNextPage}
-        isFetchingNextPage={isFetchingNextPage}
-        fetchNextPage={fetchNextPage}
-      />
+      <div className="px-4 pb-3 space-y-3">
+        <SearchInput
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <ProductsGrid
+          infiniteData={data}
+          isLoading={isLoading}
+          hasNextPage={hasNextPage}
+          isFetchingNextPage={isFetchingNextPage}
+          fetchNextPage={fetchNextPage}
+        />
+      </div>
     </div>
   );
 };

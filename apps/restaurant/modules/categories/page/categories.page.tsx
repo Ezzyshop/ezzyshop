@@ -89,15 +89,15 @@ export const CategoriesPage = ({ shopId }: ICommonParams) => {
   };
 
   return (
-    <div className="px-4 py-3">
+    <div className="space-y-3">
       <PageHeader title={t("title")} />
-
-      <SearchInput
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="mt-4"
-      />
-      <div className="grid grid-cols-2 gap-4 mt-4">{getCategories()}</div>
+      <div className="px-4 pb-3 space-y-3">
+        <SearchInput
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <div className="grid grid-cols-2 gap-">{getCategories()}</div>
+      </div>
     </div>
   );
 };

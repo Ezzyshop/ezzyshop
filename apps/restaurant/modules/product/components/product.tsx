@@ -30,21 +30,23 @@ export const Product = ({ product, shopId }: IProps) => {
   }, [initializeDefaultVariant]);
 
   return (
-    <div className="px-4 py-3 space-y-3">
+    <div className="space-y-3">
       <PageHeader />
-      <ProductBasicInformation product={product} />
-      <ProductAddToCart
-        product={product}
-        selectedVariant={selectedVariant}
-        onVariantSelect={setSelectedVariant}
-        currentQuantity={currentQuantity}
-        onAddToCart={handleAddToCart}
-        onIncrement={handleIncrement}
-        onDecrement={handleDecrement}
-        isAddingToCart={isLoading}
-      />
-      <ProductDescription product={product} />
-      <SimilarProducts product={product} shopId={shopId} />
+      <div className="px-4 pb-3 space-y-3">
+        <ProductBasicInformation product={product} />
+        <ProductAddToCart
+          product={product}
+          selectedVariant={selectedVariant}
+          onVariantSelect={setSelectedVariant}
+          currentQuantity={currentQuantity}
+          onAddToCart={handleAddToCart}
+          onIncrement={handleIncrement}
+          onDecrement={handleDecrement}
+          isAddingToCart={isLoading}
+        />
+        <ProductDescription product={product} />
+        <SimilarProducts product={product} shopId={shopId} />
+      </div>
     </div>
   );
 };

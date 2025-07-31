@@ -50,17 +50,22 @@ export const CategoryPage = ({ shopId, categoryId }: ICommonParams) => {
   }, []);
 
   return (
-    <div className="px-4 py-3 space-y-3">
+    <div className="space-y-3">
       <PageHeader title={pageTitle} isLoadingTitle={isLoading} />
-      <SearchInput value={search} onChange={(e) => setSearch(e.target.value)} />
+      <div className="px-4 pb-3 space-y-3">
+        <SearchInput
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
 
-      <ProductsGrid
-        categoryInfiniteData={data}
-        isLoading={isLoading}
-        fetchNextPage={fetchNextPage}
-        hasNextPage={hasNextPage}
-        isFetchingNextPage={isFetchingNextPage}
-      />
+        <ProductsGrid
+          categoryInfiniteData={data}
+          isLoading={isLoading}
+          fetchNextPage={fetchNextPage}
+          hasNextPage={hasNextPage}
+          isFetchingNextPage={isFetchingNextPage}
+        />
+      </div>
     </div>
   );
 };

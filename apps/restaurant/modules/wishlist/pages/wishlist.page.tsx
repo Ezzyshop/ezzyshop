@@ -9,9 +9,11 @@ export const WishlistPage = () => {
   const t = useTranslations("wishlist");
 
   return (
-    <div className="px-4 py-3 space-y-3">
+    <div className="space-y-3">
       <PageHeader title={t("title")} />
-      <ProductsGrid data={items.map((d) => d.product)} isLoading={false} />
+      <div className="px-4">
+        <ProductsGrid data={items.map((d) => d.product)} isLoading={false} />
+      </div>
     </div>
   );
 };
