@@ -1,4 +1,4 @@
-import { IProductResponse } from "@repo/api/services";
+import { IProductResponse } from "@repo/api/services/products/index";
 
 export interface ICartItem {
   id: string; // Unique identifier for cart item (productId + variantId if exists)

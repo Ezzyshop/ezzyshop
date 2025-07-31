@@ -8,7 +8,6 @@ import * as React from "react";
 
 import { Button } from "@repo/ui/components/ui/button";
 import { cn } from "@repo/ui/lib/utils";
-import Image from "next/image";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -86,6 +85,7 @@ function Carousel({
     (index: number) => {
       if (index === api?.selectedScrollSnap()) return;
       const autoplay = api?.plugins()?.autoplay;
+      // @ts-ignore
       autoplay?.reset();
       api?.scrollTo(index);
     },
@@ -217,7 +217,9 @@ function CarouselImages({
   className,
   images,
   ...props
-}: React.ComponentProps<"div"> & { images: string[] }) {
+}: React.ComponentProps<"div"> & {
+  images: string[];
+}) {
   const { selectedIndex, scrollTo, api } = useCarousel();
 
   return (
@@ -238,10 +240,9 @@ function CarouselImages({
           )}
           onClick={() => scrollTo(index)}
         >
-          <Image
+          <img
             src={images[index]}
             alt={images[index]}
-            fill
             className="rounded-lg object-cover"
           />
         </div>

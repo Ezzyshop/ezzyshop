@@ -1,9 +1,12 @@
 "use client";
 
 import { ICommonParams } from "@/utils/interfaces";
-import { CategoriesService, ICategoriesResponse } from "@repo/api/services/category/index";
+import {
+  CategoriesService,
+  ICategoriesResponse,
+} from "@repo/api/services/category/index";
 import { useQuery } from "@tanstack/react-query";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import {
   Carousel,
   CarouselContent,
@@ -13,10 +16,11 @@ import {
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
+import { ILocale } from "@repo/api/utils/interfaces/index";
 
 export const PopularCategories = ({ shopId }: ICommonParams) => {
   const t = useTranslations("homepage.popular_categories");
-
+  const language = useLocale() as keyof ILocale;
   const params = {
     is_popular: true,
   };
@@ -46,7 +50,7 @@ export const PopularCategories = ({ shopId }: ICommonParams) => {
               <Link href={`/${shopId}/categories/${category._id}`}>
                 <Image
                   src={category?.image || ""}
-                  alt={category.name}
+                  alt={category.name[language]}
                   width={425}
                   height={160}
                   className="object-cover w-[425px] h-auto rounded-lg"

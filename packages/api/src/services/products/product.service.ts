@@ -1,4 +1,4 @@
-import { IData, IPaginatedData } from "@repo/api/utils/interfaces";
+import { IData, IPaginatedData } from "../../utils/interfaces";
 import { api } from "../../api";
 import { IProductParams, IProductResponse } from "./product.interface";
 import { ProductByCategoryType } from "./product.type";

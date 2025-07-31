@@ -19,13 +19,14 @@ import { AddToCartButton } from "../add-to-cart-button/add-to-cart-button";
 import { ProductVariantDrawer } from "../product-variant-drawer/product-variant-drawer";
 import { useState, useEffect } from "react";
 import { useProductCart } from "@repo/hooks/index";
+import { ILocale } from "@repo/api/utils/interfaces/base.interface";
 
 interface IProps {
   product: IProductResponse;
 }
 
 export const ProductsCard = ({ product }: IProps) => {
-  const locale = useLocale();
+  const locale = useLocale() as keyof ILocale;
   const t = useTranslations("product");
   const { currency, _id: shopId } = useShopContext();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);

@@ -1,4 +1,4 @@
-import { IData } from "@repo/api/utils/interfaces";
+import { IData } from "../../utils/interfaces";
 import { IShopResponse } from "./shop.interface";
 import { api } from "../../api";
 

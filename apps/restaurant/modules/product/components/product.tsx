@@ -6,7 +6,7 @@ import { ProductDescription } from "./product-description";
 import { SimilarProducts } from "./similar-products";
 import { IProductResponse } from "@repo/api/services/products/index";
 import { useEffect } from "react";
-import { useProductCart } from "@/hooks/use-product-cart";
+import { useProductCart } from "@repo/hooks/index";
 
 interface IProps {
   product: IProductResponse;

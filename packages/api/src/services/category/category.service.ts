@@ -4,7 +4,7 @@ import {
   ICategoryParams,
   ICategoryResponse,
 } from "./category.interface";
-import { IPaginatedData, IData } from "@repo/api/utils/interfaces";
+import { IPaginatedData, IData } from "../../utils/interfaces";
 
 export class CategoriesService {
   static async getPublicCategories(
@@ -31,7 +31,7 @@ export class CategoriesService {
     shopId: string,
     categoryId: string,
     params?: Record<string, string | number | boolean>
-  ): Promise<IData<ICategoryResponse>> {
+  ): Promise<ICategoryResponse> {
     const response = await api.get(`/categories/${shopId}/${categoryId}`, {
       params,
     });

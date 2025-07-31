@@ -1,5 +1,5 @@
-import { ILocale, IPaginatedData } from "@repo/api/utils/interfaces";
-import { IProductResponse } from "@repo/api/services/products/product.interface";
+import { ILocale, IPaginationInfo } from "../../utils/interfaces";
+import { IProductResponse } from "../products/product.interface";
 
 export interface ICategoriesResponse {
   name: ILocale;
@@ -23,6 +23,8 @@ export interface ICategoryParams {
   is_popular?: boolean;
 }
 
-export interface ICategoryResponse extends IPaginatedData<IProductResponse> {
+export interface ICategoryResponse {
+  data: IProductResponse;
   products: IProductResponse[];
+  paginationInfo: IPaginationInfo;
 }

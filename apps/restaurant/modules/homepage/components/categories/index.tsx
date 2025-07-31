@@ -10,13 +10,14 @@ import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@repo/ui/components/ui/button";
+import { ILocale } from "@repo/api/utils/interfaces/index";
 
 interface IProps {
   shopId: string;
 }
 
 export const Categories = ({ shopId }: IProps) => {
-  const language = useLocale();
+  const language = useLocale() as keyof ILocale;
   const t = useTranslations("homepage.categories");
 
   const filter: ICategoryParams = {

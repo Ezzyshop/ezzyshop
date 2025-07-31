@@ -9,14 +9,15 @@ import {
   CategoriesService,
   ICategoryParams,
 } from "@repo/api/services/category/index";
+import { ILocale } from "@repo/api/utils/interfaces/base.interface";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useParams } from "next/navigation";
+import { useLocale } from "next-intl";
 import { useEffect, useState } from "react";
 
 let pageTitle: string | undefined;
 
 export const CategoryPage = ({ shopId, categoryId }: ICommonParams) => {
-  const { locale } = useParams();
+  const locale = useLocale() as keyof ILocale;
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
   const params: ICategoryParams = {

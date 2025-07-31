@@ -29,7 +29,10 @@ export const ProductImages = ({ images }: IProps) => {
         ))}
       </CarouselContent>
       {images.length > 1 && (
-        <CarouselImages images={images} className="-bottom-20" />
+        <CarouselImages
+          images={images}
+          className="-bottom-20"
+        />
       )}
     </Carousel>
   );

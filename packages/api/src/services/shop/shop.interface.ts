@@ -3,8 +3,8 @@ import {
   ShopPlatform,
   ShopStatus,
   LanguageType,
-} from "@repo/api/services/shop/shop.enum";
-import { PlanType } from "@repo/api/services/plan/plan.enum";
+} from "./shop.enum";
+import { PlanType } from "../plan/plan.enum";
 
 export interface IShopResponse {
   _id: string;

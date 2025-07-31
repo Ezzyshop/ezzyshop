@@ -1,4 +1,5 @@
 import { ICategoriesResponse } from "@repo/api/services/category/category.interface";
+import { ILocale } from "@repo/api/utils/interfaces/base.interface";
 import { useLocale } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,7 +10,7 @@ interface IProps {
 }
 
 export const CategoryCard = ({ category, shopId }: IProps) => {
-  const locale = useLocale();
+  const locale = useLocale() as keyof ILocale;
   return (
     <Link href={`/${shopId}/categories/${category._id}`}>
       <div className="relative w-full h-40 rounded-lg overflow-hidden">

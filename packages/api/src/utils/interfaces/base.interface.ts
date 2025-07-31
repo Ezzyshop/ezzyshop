@@ -6,16 +6,18 @@ export interface ILocale {
 
 export interface IPaginatedData<T> {
   data: T[];
-  paginationInfo: {
-    currentPage: number;
-    totalPages: number;
-    totalItems: number;
-    hasNextPage: boolean;
-    hasPrevPage: boolean;
-    limit: number;
-  };
+  paginationInfo: IPaginationInfo;
 }
 
 export interface IData<T> {
   data: T;
+}
+
+export interface IPaginationInfo {
+  currentPage: number;
+  totalPages: number;
+  totalItems: number;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+  limit: number;
 }
