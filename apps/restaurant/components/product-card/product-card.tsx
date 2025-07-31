@@ -127,7 +127,7 @@ export const ProductsCard = ({ product }: IProps) => {
               product.compare_at_price && "text-primary"
             )}
           >
-            {product.price.toLocaleString(locale)}
+            {product.price.toLocaleString(locale)} {" "}
             {currency.symbol}
           </p>
           {product.compare_at_price && (

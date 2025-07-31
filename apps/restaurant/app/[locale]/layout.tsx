@@ -6,6 +6,7 @@ import { Locale } from "@repo/i18n/types";
 import { Dock } from "@/components/dock/dock";
 import { CartProvider } from "@repo/contexts/cart-context/cart.context";
 import { WishlistProvider } from "@repo/contexts/wishlist-context/wishlist.context";
+import { ViewedProductsProvider } from "@repo/contexts/viewed-products-context/viewed-products.context";
 
 interface IProps {
   children: React.ReactNode;
@@ -30,8 +31,10 @@ export default async function LocaleLayout({ children, params }: IProps) {
       <NextIntlClientProvider messages={messages}>
         <CartProvider>
           <WishlistProvider>
-            <div className="flex-1 flex flex-col">{children}</div>
-            <Dock />
+            <ViewedProductsProvider>
+              <div className="flex-1 flex flex-col">{children}</div>
+              <Dock />
+            </ViewedProductsProvider>
           </WishlistProvider>
         </CartProvider>
       </NextIntlClientProvider>

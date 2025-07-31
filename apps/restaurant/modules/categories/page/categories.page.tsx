@@ -96,7 +96,7 @@ export const CategoriesPage = ({ shopId }: ICommonParams) => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <div className="grid grid-cols-2 gap-">{getCategories()}</div>
+        <div className="grid grid-cols-2 gap-4">{getCategories()}</div>
       </div>
     </div>
   );

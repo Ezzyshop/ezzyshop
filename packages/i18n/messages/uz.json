@@ -32,7 +32,8 @@
   "cart": {
     "title": "Savatcha",
     "items": "Mahsulotlar",
-    "checkout": "Rasmiylashtirish"
+    "checkout": "Rasmiylashtirish",
+    "viewed_products": "Ko'rilgan mahsulotlar"
   },
   "wishlist": {
     "title": "Istaklarim"

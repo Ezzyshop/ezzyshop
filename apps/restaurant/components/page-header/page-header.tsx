@@ -1,3 +1,4 @@
+"use client";
 import { ArrowLeftIcon } from "@repo/ui/components/icons/index";
 import { Button } from "@repo/ui/components/ui/button";
 import { Skeleton } from "@repo/ui/components/ui/skeleton";
@@ -17,7 +18,7 @@ export const PageHeader = ({ title, description, isLoadingTitle }: IProps) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
+      setIsScrolled(window.scrollY > 40);
     };
     window.addEventListener("scroll", handleScroll);
   }, []);

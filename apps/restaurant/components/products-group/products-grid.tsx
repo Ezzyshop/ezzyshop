@@ -1,9 +1,9 @@
 "use client";
 import { IProductResponse } from "@repo/api/services/products/product.interface";
-import { ProductsCard } from "../products-card/product-card";
+import { ProductsCard } from "../product-card/product-card";
 import { InView } from "react-intersection-observer";
 import { Loader2, NoResultIcon } from "@repo/ui/components/icons/index";
-import { ProductCardSkeleton } from "../products-card/product-card-skeleton";
+import { ProductCardSkeleton } from "../product-card/product-card-skeleton";
 import { InfiniteData } from "@tanstack/react-query";
 import { IPaginatedData } from "@repo/api/utils/interfaces/index";
 import { ICategoryResponse } from "@repo/api/services/category/category.interface";
