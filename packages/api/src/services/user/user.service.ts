@@ -2,6 +2,7 @@ import { IData } from "../../utils/interfaces";
 import { api } from "../../api";
 import {
   ICheckUserExistsResponse,
+  ICreateUserRequest,
   ILoginRequest,
   ILoginResponse,
   IUserResponse,
@@ -34,5 +35,12 @@ export class UserService {
 
   static async logoutUser(): Promise<void> {
     await api.post(`/auth/logout`);
+  }
+
+  static async createUser(
+    data: ICreateUserRequest
+  ): Promise<IData<IUserResponse>> {
+    const response = await api.post(`/auth/register`, data);
+    return response;
   }
 }

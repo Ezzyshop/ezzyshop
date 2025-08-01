@@ -50,3 +50,10 @@ export const loginUserValidator = Joi.object({
   phone: userFields.phone,
   password: userFields.password,
 });
+
+export const createUserValidator = Joi.object({
+  phone: userFields.phone,
+  password: userFields.password,
+  full_name: userFields.full_name,
+  confirm_password: userFields.confirm_password,
+});

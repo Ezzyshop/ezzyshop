@@ -26,3 +26,10 @@ export interface ILoginResponse {
   token: string;
   user: IUserResponse;
 }
+
+export interface ICreateUserRequest {
+  phone: string;
+  password: string;
+  full_name: string;
+  confirm_password: string;
+}

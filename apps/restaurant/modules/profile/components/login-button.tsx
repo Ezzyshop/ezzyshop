@@ -34,7 +34,13 @@ export const LoginButton = () => {
       case "check-user":
         return <CheckUser setSteps={setSteps} setPhone={setPhone} />;
       case "create-user":
-        return <CreateUser setSteps={setSteps} phone={phone!} />;
+        return (
+          <CreateUser
+            setSteps={setSteps}
+            phone={phone!}
+            setIsOpen={setIsOpen}
+          />
+        );
       case "login":
         return (
           <LoginUser phone={phone!} setSteps={setSteps} setIsOpen={setIsOpen} />

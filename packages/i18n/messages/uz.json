@@ -59,6 +59,8 @@
     "password": "Parolingizni kiriting",
     "logout_confirmation": "Siz tizimdan chiqmoqchimisiz?",
     "cancel": "Bekor qilish",
-    "invalid_password": "Parol noto'g'ri"
+    "invalid_password": "Parol noto'g'ri",
+    "full_name": "Ismingizni kiriting",
+    "confirm_password": "Parolingizni takrorlang"
   }
 }
