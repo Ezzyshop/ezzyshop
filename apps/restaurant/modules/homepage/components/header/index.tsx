@@ -16,7 +16,7 @@ export const Header = () => {
   const { logo } = useShopContext();
 
   const localeIcons = {
-    uz: "/images/uz.png",
+    uz: "/images/uzb.png",
     ru: "/images/ru.png",
     en: "/images/en.png",
   };
