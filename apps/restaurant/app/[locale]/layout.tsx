@@ -7,6 +7,8 @@ import { Dock } from "@/components/dock/dock";
 import { CartProvider } from "@repo/contexts/cart-context/cart.context";
 import { WishlistProvider } from "@repo/contexts/wishlist-context/wishlist.context";
 import { ViewedProductsProvider } from "@repo/contexts/viewed-products-context/viewed-products.context";
+import { UserProvider } from "@repo/contexts/user-context/user.context";
+import { Toaster } from "@repo/ui/components/ui/sonner";
 
 interface IProps {
   children: React.ReactNode;
@@ -29,14 +31,17 @@ export default async function LocaleLayout({ children, params }: IProps) {
   return (
     <div className="max-w-[425px] mx-auto min-h-screen bg-background flex flex-col">
       <NextIntlClientProvider messages={messages}>
-        <CartProvider>
-          <WishlistProvider>
-            <ViewedProductsProvider>
-              <div className="flex-1 flex flex-col">{children}</div>
-              <Dock />
-            </ViewedProductsProvider>
-          </WishlistProvider>
-        </CartProvider>
+        <UserProvider>
+          <CartProvider>
+            <WishlistProvider>
+              <ViewedProductsProvider>
+                <div className="flex-1 flex flex-col">{children}</div>
+                <Dock />
+                <Toaster richColors position="top-center" />
+              </ViewedProductsProvider>
+            </WishlistProvider>
+          </CartProvider>
+        </UserProvider>
       </NextIntlClientProvider>
     </div>
   );

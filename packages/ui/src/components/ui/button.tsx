@@ -18,13 +18,16 @@ const buttonVariants = cva(
         secondary:
           "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
         ghost:
-          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
+          "bg-card hover:bg-primary/10 hover:text-card-foreground dark:hover:bg-card/50",
         link: "text-primary ",
+        destructiveGhost:
+          "bg-card border-destructive text-destructive shadow-xs hover:bg-destructive/10 dark:border-destructive/30 dark:hover:bg-destructive/10",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
         sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
+        xl: "h-12 rounded-md px-8 has-[>svg]:px-6",
         icon: "size-9",
       },
     },

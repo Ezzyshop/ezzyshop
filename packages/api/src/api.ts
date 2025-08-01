@@ -17,10 +17,6 @@ api.interceptors.response.use(
 
     toast.error(errorMessagesMap[message]);
 
-    if (message === ErrorMessages.UnauthorizedError) {
-      window.location.href = "/login";
-    }
-
     return Promise.reject(error);
   }
 );

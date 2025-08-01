@@ -5,16 +5,19 @@ export const localeConfigs: LocaleConfig[] = [
     code: "en",
     name: "English",
     flag: "🇺🇸",
+    icon: "/images/en.png",
   },
   {
     code: "ru",
     name: "Русский",
     flag: "🇷🇺",
+    icon: "/images/ru.png",
   },
   {
     code: "uz",
     name: "O'zbekcha",
     flag: "🇺🇿",
+    icon: "/images/uz.png",
   },
 ];
 

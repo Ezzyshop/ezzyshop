@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^1.7.9",
+    "joi": "^17.13.3",
     "sonner": "^2.0.6"
   },
   "scripts": {
@@ -19,7 +20,7 @@
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "^22.15.3",
-    "typescript": "5.8.2",
-    "eslint": "^9.30.0"
+    "eslint": "^9.30.0",
+    "typescript": "5.8.2"
   }
 }

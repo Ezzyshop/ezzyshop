@@ -5,6 +5,7 @@ export interface LocaleConfig {
   name: string;
   flag: string;
   rtl?: boolean;
+  icon: string;
 }
 
 export interface TranslationKeys {

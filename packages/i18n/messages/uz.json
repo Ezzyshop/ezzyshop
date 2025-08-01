@@ -43,5 +43,22 @@
   },
   "wishlist": {
     "title": "Istaklarim"
+  },
+  "profile": {
+    "title": "Profil",
+    "profile": "Foydalanuvchi ma'lumotlarim",
+    "orders": "Buyurtmalarim",
+    "addresses": "Manzillarim",
+    "language": "Platforma tilini o'zgartirish",
+    "logout": "Chiqish",
+    "login": "Kirish",
+    "logout_state_message": "Tizimga kiring va xarid qilishni boshlang",
+    "select_language": "Tilni tanlang",
+    "login_to_shop": "{name}'ga kirish",
+    "continue": "Davom etish",
+    "password": "Parolingizni kiriting",
+    "logout_confirmation": "Siz tizimdan chiqmoqchimisiz?",
+    "cancel": "Bekor qilish",
+    "invalid_password": "Parol noto'g'ri"
   }
 }
