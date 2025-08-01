@@ -1,8 +1,9 @@
 export { useTranslations, useLocale, useFormatter } from "next-intl";
-import { useRouter, usePathname } from "next/navigation.js";
+import { usePathname } from "next/navigation.js";
 import { useLocale } from "next-intl";
 import { type Locale } from "../types/index.js";
 import { routing } from "@repo/i18n/routing";
+import { useRouter } from "nextjs-toploader/app";
 
 export function useI18nRouter() {
   const router = useRouter();

@@ -1,6 +1,6 @@
 "use client";
 import { useShopContext } from "@/contexts/shop.context";
-import { useClientLocale } from "@repo/i18n/hooks";
+import { useI18nRouter } from "@repo/i18n/hooks";
 import { ChevronDown } from "@repo/ui/components/icons/index";
 import {
   DropdownMenu,
@@ -12,7 +12,7 @@ import {
 import Image from "next/image";
 
 export const Header = () => {
-  const { locale, locales, switchLocale } = useClientLocale();
+  const { locale, locales, switchLocale } = useI18nRouter();
   const { logo } = useShopContext();
 
   const localeIcons = {

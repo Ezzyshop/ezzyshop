@@ -304,6 +304,9 @@ importers:
       next-intl:
         specifier: ^3.25.0
         version: 3.26.5(next@15.4.4)(react@19.1.1)
+      nextjs-toploader:
+        specifier: ^3.8.16
+        version: 3.8.16(next@15.4.4)(react-dom@19.1.1)(react@19.1.1)
       react:
         specifier: ^19.1.0
         version: 19.1.1
