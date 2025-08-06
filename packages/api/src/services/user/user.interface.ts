@@ -33,3 +33,9 @@ export interface ICreateUserRequest {
   full_name: string;
   confirm_password: string;
 }
+
+export interface IUpdateUserRequest {
+  full_name: string;
+  phone: string;
+  email: string;
+}

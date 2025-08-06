@@ -1,3 +1,5 @@
+import { useShopContext } from "@/contexts/shop.context";
+import { useUserContext } from "@repo/contexts/user-context/user.context";
 import { ChevronRightIcon } from "@repo/ui/components/icons/index";
 import { Button } from "@repo/ui/components/ui/button";
 import { cn } from "@repo/ui/lib/utils";
@@ -18,6 +20,8 @@ export const ProfileLinkButton = ({
   href,
   hidden = false,
 }: IProps) => {
+  const { _id: shopId } = useShopContext();
+
   if (hidden) return null;
 
   const LinkComponent = href ? Link : "div";
@@ -29,7 +33,7 @@ export const ProfileLinkButton = ({
       size="xl"
       asChild
     >
-      <LinkComponent href={href!}>
+      <LinkComponent href={`/${shopId}/profile/${href}`}>
         <div
           className={cn(
             "w-8 h-8 rounded-full flex items-center justify-center",

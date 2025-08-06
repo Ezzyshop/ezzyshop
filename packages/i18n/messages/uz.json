@@ -61,6 +61,11 @@
     "cancel": "Bekor qilish",
     "invalid_password": "Parol noto'g'ri",
     "full_name": "Ismingizni kiriting",
-    "confirm_password": "Parolingizni takrorlang"
+    "confirm_password": "Parolingizni takrorlang",
+    "edit_profile": "Profilni tahrirlash",
+    "phone": "Telefon raqamingizni kiriting",
+    "email": "Emailingizni kiriting",
+    "saving": "Saqlanmoqda...",
+    "save": "Saqlash"
   }
 }

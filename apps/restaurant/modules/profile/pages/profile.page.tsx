@@ -27,19 +27,19 @@ export const ProfilePage = () => {
         <ProfileLinkButton
           icon={<User2Icon className="text-white" />}
           title={t("profile")}
-          href="/profile"
+          href="/edit"
           hidden={!user}
         />
         <ProfileLinkButton
           icon={<ShoppingBagIcon className="text-white" />}
           title={t("orders")}
-          href="/profile/orders"
+          href="/orders"
           hidden={!user}
         />
         <ProfileLinkButton
           icon={<MapPinIcon className="text-white" />}
           title={t("addresses")}
-          href="/profile/addresses"
+          href="/addresses"
           hidden={!user}
         />
         <ChangeLanguageButton />

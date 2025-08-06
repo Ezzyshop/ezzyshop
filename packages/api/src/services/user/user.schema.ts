@@ -40,6 +40,14 @@ export const userFields = {
   shops: Joi.array().items(Joi.string().hex().length(24)).messages({
     "array.includes": "Invalid shop",
   }),
+  email: Joi.string()
+    .email({ tlds: { allow: false } })
+    .max(255)
+    .optional()
+    .allow("")
+    .messages({
+      "string.max": "Email must be at most 255 characters long",
+    }),
 };
 
 export const checkUserExistsValidator = Joi.object({
@@ -56,4 +64,10 @@ export const createUserValidator = Joi.object({
   password: userFields.password,
   full_name: userFields.full_name,
   confirm_password: userFields.confirm_password,
+});
+
+export const updateUserValidator = Joi.object({
+  full_name: userFields.full_name,
+  phone: userFields.phone,
+  email: userFields.email,
 });

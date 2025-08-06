@@ -5,6 +5,7 @@ import {
   ICreateUserRequest,
   ILoginRequest,
   ILoginResponse,
+  IUpdateUserRequest,
   IUserResponse,
 } from "./user.interface";
 
@@ -41,6 +42,11 @@ export class UserService {
     data: ICreateUserRequest
   ): Promise<IData<IUserResponse>> {
     const response = await api.post(`/auth/register`, data);
+    return response;
+  } 
+
+  static async updateUser(data: IUpdateUserRequest): Promise<IData<IUserResponse>> {
+    const response = await api.put(`/users/me/profile`, data);
     return response;
   }
 }
