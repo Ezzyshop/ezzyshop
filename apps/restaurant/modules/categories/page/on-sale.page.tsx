@@ -22,8 +22,11 @@ export const OnSaleProductsPage = ({ shopId }: ICommonParams) => {
   const { data, isLoading, hasNextPage, isFetchingNextPage, fetchNextPage } =
     useInfiniteQuery({
       queryKey: ["on-sale-products", filterQuery],
-      queryFn: () =>
-        ProductService.getProductsByCategory(shopId, "on-sale", filterQuery),
+      queryFn: ({ pageParam = 1 }) =>
+        ProductService.getProductsByCategory(shopId, "on-sale", {
+          ...filterQuery,
+          page: pageParam,
+        }),
       initialPageParam: 1,
       getNextPageParam: (lastPage) => {
         if (lastPage.paginationInfo.hasNextPage) {

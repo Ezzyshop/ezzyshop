@@ -22,12 +22,11 @@ export const NewArrivalsProductsPage = ({ shopId }: ICommonParams) => {
   const { data, isLoading, hasNextPage, isFetchingNextPage, fetchNextPage } =
     useInfiniteQuery({
       queryKey: ["new-arrivals-products", filterQuery],
-      queryFn: () =>
-        ProductService.getProductsByCategory(
-          shopId,
-          "new-arrivals",
-          filterQuery
-        ),
+      queryFn: ({ pageParam = 1 }) =>
+        ProductService.getProductsByCategory(shopId, "new-arrivals", {
+          ...filterQuery,
+          page: pageParam,
+        }),
       initialPageParam: 1,
       getNextPageParam: (lastPage) => {
         if (lastPage.paginationInfo.hasNextPage) {

@@ -22,12 +22,11 @@ export const MostPopularProductsPage = ({ shopId }: ICommonParams) => {
   const { data, isLoading, hasNextPage, isFetchingNextPage, fetchNextPage } =
     useInfiniteQuery({
       queryKey: ["most-popular-products", filterQuery],
-      queryFn: () =>
-        ProductService.getProductsByCategory(
-          shopId,
-          "most-popular",
-          filterQuery
-        ),
+      queryFn: ({ pageParam = 1 }) =>
+        ProductService.getProductsByCategory(shopId, "most-popular", {
+          ...filterQuery,
+          page: pageParam,
+        }),
       initialPageParam: 1,
       getNextPageParam: (lastPage) => {
         if (lastPage.paginationInfo.hasNextPage) {
