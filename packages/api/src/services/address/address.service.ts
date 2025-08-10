@@ -8,8 +8,20 @@ export class AddressService {
     return response.data;
   }
 
-  static async createAddress(data: IAddressRequest): Promise<IData<IAddressResponse>> {
-    const response = await api.post<IData<IAddressResponse>>("/addresses", data);
+  static async createAddress(
+    data: IAddressRequest
+  ): Promise<IData<IAddressResponse>> {
+    const response = await api.post<IData<IAddressResponse>>(
+      "/addresses",
+      data
+    );
+    return response.data;
+  }
+
+  static async deleteAddress(id: string): Promise<IData<IAddressResponse>> {
+    const response = await api.delete<IData<IAddressResponse>>(
+      `/addresses/${id}`
+    );
     return response.data;
   }
 }

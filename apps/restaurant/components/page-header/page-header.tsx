@@ -10,9 +10,15 @@ interface IProps {
   title?: string;
   description?: string;
   isLoadingTitle?: boolean;
+  rightElement?: React.ReactNode;
 }
 
-export const PageHeader = ({ title, description, isLoadingTitle }: IProps) => {
+export const PageHeader = ({
+  title,
+  description,
+  isLoadingTitle,
+  rightElement,
+}: IProps) => {
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -46,6 +52,11 @@ export const PageHeader = ({ title, description, isLoadingTitle }: IProps) => {
             <p className="text-sm text-center text-gray-500">{description}</p>
           )}
         </div>
+        {rightElement && (
+          <div className="absolute top-1/2 -translate-y-1/2 right-4">
+            {rightElement}
+          </div>
+        )}
       </div>
     </div>
   );

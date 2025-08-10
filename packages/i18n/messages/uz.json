@@ -83,7 +83,10 @@
       "enter-entrance": "Kirish yo'lagini kiriting",
       "enter-floor": "Qavatni kiriting",
       "enter-room": "Xonani kiriting",
-      "enter-note": "Qo'shimcha ma'lumotni kiriting"
+      "enter-note": "Qo'shimcha ma'lumotni kiriting",
+      "delete-address": "Manzilni o'chirishni xohlaysizmi?",
+      "delete": "O'chirish",
+      "cancel": "Bekor qilish"
     }
   }
 }

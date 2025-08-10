@@ -10,7 +10,11 @@ import { useUserContext } from "@repo/contexts/user-context/user.context";
 import Link from "next/link";
 import { useShopContext } from "@/contexts/shop.context";
 
-export const AddressSelect = () => {
+interface IProps {
+  isEditMode?: boolean;
+}
+
+export const AddressSelect = ({ isEditMode = false }: IProps) => {
   const t = useTranslations("profile.address");
   const { user } = useUserContext();
   const { _id: shopId } = useShopContext();
@@ -33,7 +37,11 @@ export const AddressSelect = () => {
     return (
       <RadioGroup defaultValue={data?.data[0]?._id}>
         {data?.data.map((address) => (
-          <AddressCard key={address._id} address={address} />
+          <AddressCard
+            key={address._id}
+            address={address}
+            isEditMode={isEditMode}
+          />
         ))}
       </RadioGroup>
     );
