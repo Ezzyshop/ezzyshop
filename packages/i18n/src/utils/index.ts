@@ -17,7 +17,7 @@ export const localeConfigs: LocaleConfig[] = [
     code: "uz",
     name: "O'zbekcha",
     flag: "🇺🇿",
-    icon: "/images/uz.png",
+    icon: "/images/uzb.png",
   },
 ];
 
