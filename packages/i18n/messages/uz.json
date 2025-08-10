@@ -88,5 +88,16 @@
       "delete": "O'chirish",
       "cancel": "Bekor qilish"
     }
+  },
+  "search": {
+    "title": "Qidirish",
+    "price": "Narx, baho",
+    "apply": "Qo'llash",
+    "from": "dan",
+    "to": "gacha",
+    "sort": "Saralash",
+    "cheapest": "Arzonroq",
+    "most-expensive": "Qimmatroq",
+    "first_shown": "Avval ko'rsatiladi"
   }
 }

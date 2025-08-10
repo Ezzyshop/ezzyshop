@@ -66,19 +66,21 @@ export const ProductsGrid = ({
     }
 
     return (
-      <div className="grid grid-cols-2 gap-3">
-        {infiniteData.pages.map((page) =>
-          page.data.map((product) => (
-            <ProductsCard key={product._id} product={product} />
-          ))
-        )}
+      <>
+        <div className="grid grid-cols-2 gap-3">
+          {infiniteData.pages.map((page) =>
+            page.data.map((product) => (
+              <ProductsCard key={product._id} product={product} />
+            ))
+          )}
 
-        <FetchNextPage
-          hasNextPage={hasNextPage}
-          isFetchingNextPage={isFetchingNextPage}
-          fetchNextPage={fetchNextPage}
-        />
-      </div>
+          <FetchNextPage
+            hasNextPage={hasNextPage}
+            isFetchingNextPage={isFetchingNextPage}
+            fetchNextPage={fetchNextPage}
+          />
+        </div>
+      </>
     );
   }
 

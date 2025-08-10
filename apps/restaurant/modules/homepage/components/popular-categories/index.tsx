@@ -6,7 +6,7 @@ import {
   ICategoriesResponse,
 } from "@repo/api/services/category/index";
 import { useQuery } from "@tanstack/react-query";
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import {
   Carousel,
   CarouselContent,
@@ -19,7 +19,6 @@ import Link from "next/link";
 import { ILocale } from "@repo/api/utils/interfaces/index";
 
 export const PopularCategories = ({ shopId }: ICommonParams) => {
-  const t = useTranslations("homepage.popular_categories");
   const language = useLocale() as keyof ILocale;
   const params = {
     is_popular: true,
@@ -34,8 +33,6 @@ export const PopularCategories = ({ shopId }: ICommonParams) => {
 
   return (
     <div className="px-4 space-y-3">
-      <h2 className="font-semibold text-xl">{t("title")}</h2>
-
       <Carousel
         className="h-[198px] rounded-xl"
         opts={{

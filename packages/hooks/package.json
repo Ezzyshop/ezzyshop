@@ -11,18 +11,23 @@
     "check-types": "tsc --noEmit"
   },
   "devDependencies": {
+    "@repo/contexts": "workspace:*",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@repo/contexts": "workspace:*",
-    "typescript": "5.8.2",
     "@types/node": "^22.15.3",
+    "@types/qs": "^6.14.0",
     "@types/react": "19.1.0",
+    "@types/react-dom": "19.1.1",
     "eslint": "^9.30.0",
-    "@types/react-dom": "19.1.1"
+    "typescript": "5.8.2"
   },
   "dependencies": {
     "@repo/api": "workspace:*",
+    "qs": "^6.14.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
+  },
+  "peerDependencies": {
+    "next": ">=13.4.0"
   }
 }

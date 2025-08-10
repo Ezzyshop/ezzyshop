@@ -22,4 +22,12 @@ export class ProductService {
     const response = await api.get(`/products/${shopId}/${productId}`);
     return response.data;
   }
+
+  static async getPublicProducts(
+    shopId: string,
+    params: IProductParams
+  ): Promise<IPaginatedData<IProductResponse>> {
+    const response = await api.get(`/products/${shopId}`, { params });
+    return response.data;
+  }
 }
