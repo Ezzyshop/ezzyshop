@@ -5,12 +5,16 @@ import { AddressCard } from "./address-card";
 import { AddressCardLoader } from "./address-card-loader";
 import { RadioGroup } from "@repo/ui/components/ui/radio-group";
 import { Button } from "@repo/ui/components/ui/button";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useUserContext } from "@repo/contexts/user-context/user.context";
+import Link from "next/link";
+import { useShopContext } from "@/contexts/shop.context";
 
 export const AddressSelect = () => {
   const t = useTranslations("profile.address");
   const { user } = useUserContext();
+  const { _id: shopId } = useShopContext();
+  const locale = useLocale();
   const { data, isLoading } = useQuery({
     queryKey: ["addresses", user?._id],
     queryFn: () => AddressService.getAddresses(),
@@ -38,11 +42,15 @@ export const AddressSelect = () => {
   return (
     <div className="space-y-4">
       {renderContent()}
+
       <Button
+        asChild
         variant="outline"
         className="w-full bg-primary/10 border-dashed border-primary"
       >
-        {t("add-new-address")}
+        <Link href={`/${locale}/${shopId}/profile/addresses/add-address`}>
+          {t("add-new-address")}
+        </Link>
       </Button>
     </div>
   );

@@ -15,3 +15,14 @@ export interface IAddressResponse {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface IAddressRequest {
+  name: string;
+  address: string;
+  lat: number;
+  lng: number;
+  entrance?: string;
+  floor?: string;
+  room?: string;
+  note?: string;
+}

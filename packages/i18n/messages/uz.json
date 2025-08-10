@@ -69,7 +69,21 @@
     "save": "Saqlash",
     "address": {
       "add-new-address": "Yangi manzil qo'shish",
-      "addresses": "Manzillarim"
+      "addresses": "Manzillarim",
+      "add-address": "Manzil qo'shish",
+      "address-name": "Manzil nomi",
+      "address": "Manzil",
+      "entrance": "Kirish yo'lagi",
+      "floor": "Qavat",
+      "room": "Xona",
+      "note": "Qo'shimcha ma'lumot",
+      "save": "Saqlash",
+      "enter-address-name": "Manzil nomini kiriting",
+      "enter-address": "Manzilni kiriting",
+      "enter-entrance": "Kirish yo'lagini kiriting",
+      "enter-floor": "Qavatni kiriting",
+      "enter-room": "Xonani kiriting",
+      "enter-note": "Qo'shimcha ma'lumotni kiriting"
     }
   }
 }
