@@ -6,12 +6,15 @@ import { AddressCardLoader } from "./address-card-loader";
 import { RadioGroup } from "@repo/ui/components/ui/radio-group";
 import { Button } from "@repo/ui/components/ui/button";
 import { useTranslations } from "next-intl";
+import { useUserContext } from "@repo/contexts/user-context/user.context";
 
 export const AddressSelect = () => {
   const t = useTranslations("profile.address");
+  const { user } = useUserContext();
   const { data, isLoading } = useQuery({
-    queryKey: ["addresses"],
-    queryFn: AddressService.getAddresses,
+    queryKey: ["addresses", user?._id],
+    queryFn: () => AddressService.getAddresses(),
+    enabled: !!user,
   });
 
   const renderContent = () => {
@@ -33,7 +36,7 @@ export const AddressSelect = () => {
   };
 
   return (
-    <div className="p-4 space-y-4">
+    <div className="space-y-4">
       {renderContent()}
       <Button
         variant="outline"

@@ -68,7 +68,8 @@
     "saving": "Saqlanmoqda...",
     "save": "Saqlash",
     "address": {
-      "add-new-address": "Yangi manzil qo'shish"
+      "add-new-address": "Yangi manzil qo'shish",
+      "addresses": "Manzillarim"
     }
   }
 }
