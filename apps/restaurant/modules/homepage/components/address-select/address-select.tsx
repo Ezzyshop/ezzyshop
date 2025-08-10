@@ -6,6 +6,7 @@ import {
   DrawerTrigger,
 } from "@repo/ui/components/ui/drawer";
 import { LocationEdit } from "@repo/ui/icons";
+import { AddressSelect as SharedAddressSelect } from "@/components/address-select/address-select";
 
 export const AddressSelect = () => {
   return (
@@ -14,7 +15,9 @@ export const AddressSelect = () => {
         <LocationEdit className="w-4 h-4" /> <span>AddressSelect</span>
       </DrawerTrigger>
       <DrawerContent>
-        <DrawerTitle>AddressSelect</DrawerTitle>
+        <DrawerTitle>
+          <SharedAddressSelect />
+        </DrawerTitle>
       </DrawerContent>
     </Drawer>
   );

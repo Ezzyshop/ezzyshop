@@ -66,6 +66,9 @@
     "phone": "Telefon raqamingizni kiriting",
     "email": "Emailingizni kiriting",
     "saving": "Saqlanmoqda...",
-    "save": "Saqlash"
+    "save": "Saqlash",
+    "address": {
+      "add-new-address": "Yangi manzil qo'shish"
+    }
   }
 }

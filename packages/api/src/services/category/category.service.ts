@@ -4,7 +4,7 @@ import {
   ICategoryParams,
   ICategoryResponse,
 } from "./category.interface";
-import { IPaginatedData, IData } from "../../utils/interfaces";
+import { IPaginatedData } from "../../utils/interfaces";
 
 export class CategoriesService {
   static async getPublicCategories(
