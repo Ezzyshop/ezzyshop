@@ -24,7 +24,7 @@ export const CartItems = ({ shopId }: IProps) => {
           {t("description")}
         </p>
         <Button className="mt-4">
-          <Link href={`/${locale}/${shopId}`}>{t("go_to_home")}</Link>
+          <Link href={`/${locale}/${shopId}/home`}>{t("go_to_home")}</Link>
         </Button>
       </div>
     );
