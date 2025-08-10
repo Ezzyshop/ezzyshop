@@ -73,6 +73,12 @@ export const AddAddressForm = ({ onSubmit, isLoading }: IProps) => {
       note: data.note,
     };
 
+    for (const key in dataToSubmit) {
+      if (dataToSubmit[key as keyof typeof dataToSubmit] === "") {
+        delete dataToSubmit[key as keyof typeof dataToSubmit];
+      }
+    }
+
     onSubmit(dataToSubmit);
   };
 

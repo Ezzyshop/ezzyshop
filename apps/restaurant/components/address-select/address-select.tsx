@@ -1,6 +1,6 @@
 "use client";
 import { AddressService } from "@repo/api/services/address/index";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { AddressCard } from "./address-card";
 import { AddressCardLoader } from "./address-card-loader";
 import { RadioGroup } from "@repo/ui/components/ui/radio-group";
@@ -9,6 +9,8 @@ import { useLocale, useTranslations } from "next-intl";
 import { useUserContext } from "@repo/contexts/user-context/user.context";
 import Link from "next/link";
 import { useShopContext } from "@/contexts/shop.context";
+import { UserService } from "@repo/api/services/user/user.service";
+import { Loader2Icon } from "@repo/ui/components/icons/index";
 
 interface IProps {
   isEditMode?: boolean;
@@ -19,10 +21,18 @@ export const AddressSelect = ({ isEditMode = false }: IProps) => {
   const { user } = useUserContext();
   const { _id: shopId } = useShopContext();
   const locale = useLocale();
+  const queryClient = useQueryClient();
   const { data, isLoading } = useQuery({
     queryKey: ["addresses", user?._id],
     queryFn: () => AddressService.getAddresses(),
     enabled: !!user,
+  });
+
+  const { mutate: updateUserAddress, isPending: isUpdating } = useMutation({
+    mutationFn: UserService.updateUserAddress,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["current-user"] });
+    },
   });
 
   const renderContent = () => {
@@ -35,7 +45,10 @@ export const AddressSelect = ({ isEditMode = false }: IProps) => {
     }
 
     return (
-      <RadioGroup defaultValue={data?.data[0]?._id}>
+      <RadioGroup
+        defaultValue={user?.address?._id ?? data?.data[0]?._id}
+        onValueChange={(value) => updateUserAddress({ address: value })}
+      >
         {data?.data.map((address) => (
           <AddressCard
             key={address._id}
@@ -43,6 +56,11 @@ export const AddressSelect = ({ isEditMode = false }: IProps) => {
             isEditMode={isEditMode}
           />
         ))}
+        {isUpdating && (
+          <div className="absolute top-0 left-0 w-full h-full bg-white/50 z-10 flex items-center justify-center">
+            <Loader2Icon className="size-6 text-primary animate-spin" />
+          </div>
+        )}
       </RadioGroup>
     );
   };

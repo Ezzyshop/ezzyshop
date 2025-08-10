@@ -11,6 +11,10 @@ export interface IUserResponse {
   shops: string[];
   createdAt: string;
   updatedAt: string;
+  address?: {
+    _id: string;
+    address: string;
+  };
 }
 
 export interface ICheckUserExistsResponse {
@@ -38,4 +42,8 @@ export interface IUpdateUserRequest {
   full_name: string;
   phone: string;
   email: string;
+}
+
+export interface IUpdateUserAddressRequest {
+  address: string;
 }
