@@ -20,9 +20,15 @@ type LoginUserProps = {
   phone: string;
   setSteps: (steps: Steps) => void;
   setIsOpen: (isOpen: boolean) => void;
+  onSuccess?: () => void;
 };
 
-export const LoginUser = ({ phone, setSteps, setIsOpen }: LoginUserProps) => {
+export const LoginUser = ({
+  phone,
+  setSteps,
+  setIsOpen,
+  onSuccess,
+}: LoginUserProps) => {
   const t = useTranslations("profile");
   const queryClient = useQueryClient();
   const form = useForm({
@@ -39,6 +45,7 @@ export const LoginUser = ({ phone, setSteps, setIsOpen }: LoginUserProps) => {
       await queryClient.invalidateQueries({ queryKey: ["current-user"] });
       setIsOpen(false);
       setSteps("check-user");
+      onSuccess?.();
     },
     onError: () => {
       form.resetField("password");

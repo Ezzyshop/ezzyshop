@@ -20,9 +20,15 @@ type CreateUserProps = {
   setSteps: (steps: Steps) => void;
   phone: string;
   setIsOpen: (isOpen: boolean) => void;
+  onSuccess?: () => void;
 };
 
-export const CreateUser = ({ setSteps, phone, setIsOpen }: CreateUserProps) => {
+export const CreateUser = ({
+  setSteps,
+  phone,
+  setIsOpen,
+  onSuccess,
+}: CreateUserProps) => {
   const t = useTranslations("profile");
   const queryClient = useQueryClient();
   const { mutate: createUser, isPending } = useMutation({
@@ -31,6 +37,7 @@ export const CreateUser = ({ setSteps, phone, setIsOpen }: CreateUserProps) => {
       await queryClient.invalidateQueries({ queryKey: ["current-user"] });
       setSteps("check-user");
       setIsOpen(false);
+      onSuccess?.();
     },
   });
 

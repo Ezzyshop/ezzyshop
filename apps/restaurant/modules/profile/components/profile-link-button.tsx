@@ -26,9 +26,9 @@ export const ProfileLinkButton = ({
   const LinkComponent = href ? Link : "div";
 
   return (
-    <LinkComponent href={`/${shopId}/profile/${href}`}>
+    <LinkComponent href={`/${shopId}/profile/${href}`} className="block">
       <Button
-        className="flex items-center gap-3 rounded-lg w-full has-[>svg]:px-3"
+        className="flex items-center gap-3 rounded-lg w-full has-[>svg]:px-3 "
         variant={variant}
         size="xl"
       >

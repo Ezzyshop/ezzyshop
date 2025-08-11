@@ -22,7 +22,12 @@ export const LoginDrawer = ({
   children,
   className,
   asChild,
-}: PropsWithChildren & { className?: string; asChild?: boolean }) => {
+  onSuccess,
+}: PropsWithChildren & {
+  className?: string;
+  asChild?: boolean;
+  onSuccess?: () => void;
+}) => {
   const { name, logo } = useShopContext();
   const t = useTranslations("profile");
   const [isOpen, setIsOpen] = useState(false);
@@ -39,11 +44,17 @@ export const LoginDrawer = ({
             setSteps={setSteps}
             phone={phone!}
             setIsOpen={setIsOpen}
+            onSuccess={onSuccess}
           />
         );
       case "login":
         return (
-          <LoginUser phone={phone!} setSteps={setSteps} setIsOpen={setIsOpen} />
+          <LoginUser
+            phone={phone!}
+            setSteps={setSteps}
+            setIsOpen={setIsOpen}
+            onSuccess={onSuccess}
+          />
         );
     }
   }, [steps, phone]);
