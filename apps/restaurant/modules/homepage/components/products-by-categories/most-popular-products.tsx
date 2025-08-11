@@ -25,7 +25,6 @@ export const MostPopularProducts = ({ shopId }: ICommonParams) => {
       data={data.data}
       isLoading={isLoading}
       type="most-popular"
-      shopId={shopId}
     />
   );
 };

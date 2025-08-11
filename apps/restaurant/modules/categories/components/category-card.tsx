@@ -1,18 +1,17 @@
+import { CustomLink } from "@/components/custom-link";
 import { ICategoriesResponse } from "@repo/api/services/category/category.interface";
 import { ILocale } from "@repo/api/utils/interfaces/base.interface";
 import { useLocale } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
 
 interface IProps {
   category: ICategoriesResponse;
-  shopId: string;
 }
 
-export const CategoryCard = ({ category, shopId }: IProps) => {
+export const CategoryCard = ({ category }: IProps) => {
   const locale = useLocale() as keyof ILocale;
   return (
-    <Link href={`/${shopId}/categories/${category._id}`}>
+    <CustomLink href={`/categories/${category._id}`}>
       <div className="relative w-full h-40 rounded-lg overflow-hidden">
         <Image
           src={category.image || ""}
@@ -22,6 +21,6 @@ export const CategoryCard = ({ category, shopId }: IProps) => {
         />
       </div>
       <h2 className="font-medium">{category.name[locale]}</h2>
-    </Link>
+    </CustomLink>
   );
 };

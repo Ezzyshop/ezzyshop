@@ -1,5 +1,6 @@
 "use client";
 
+import { CustomLink } from "@/components/custom-link";
 import { ProductsGrid } from "@/components/products-group/products-grid";
 import {
   IProductResponse,
@@ -7,21 +8,14 @@ import {
 } from "@repo/api/services/products/index";
 import { Button } from "@repo/ui/components/ui/button";
 import { useLocale, useTranslations } from "next-intl";
-import Link from "next/link";
 
 interface IProps {
   data: IProductResponse[];
   isLoading: boolean;
   type: ProductByCategoryType;
-  shopId: string;
 }
 
-export const ProductsByCategories = ({
-  data,
-  isLoading,
-  type,
-  shopId,
-}: IProps) => {
+export const ProductsByCategories = ({ data, isLoading, type }: IProps) => {
   const language = useLocale();
   const t = useTranslations("homepage.products");
 
@@ -31,9 +25,9 @@ export const ProductsByCategories = ({
         <h2 className="font-semibold text-xl">{t(type)}</h2>
 
         <Button variant="link">
-          <Link href={`/${shopId}/categories/${type}`} locale={language}>
+          <CustomLink href={`/categories/${type}`} locale={language}>
             {t("view-all")}
-          </Link>
+          </CustomLink>
         </Button>
       </div>
 

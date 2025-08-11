@@ -14,12 +14,12 @@ import { useShopContext } from "@/contexts/shop.context";
 import { Button } from "@repo/ui/components/ui/button";
 import { ShoppingCartIcon } from "@repo/ui/components/icons/index";
 import { ProductBadges } from "./product-badges";
-import Link from "next/link";
 import { AddToCartButton } from "../add-to-cart-button/add-to-cart-button";
 import { ProductVariantDrawer } from "../product-variant-drawer/product-variant-drawer";
 import { useState, useEffect } from "react";
 import { useProductCart } from "@repo/hooks/index";
 import { ILocale } from "@repo/api/utils/interfaces/base.interface";
+import { CustomLink } from "../custom-link";
 
 interface IProps {
   product: IProductResponse;
@@ -28,7 +28,7 @@ interface IProps {
 export const ProductsCard = ({ product }: IProps) => {
   const locale = useLocale() as keyof ILocale;
   const t = useTranslations("product");
-  const { currency, _id: shopId } = useShopContext();
+  const { currency } = useShopContext();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const {
@@ -120,15 +120,14 @@ export const ProductsCard = ({ product }: IProps) => {
           )}
         </Carousel>
 
-        <Link href={`/${shopId}/products/${product._id}`} className="flex-grow">
+        <CustomLink href={`/products/${product._id}`} className="flex-grow">
           <p
             className={cn(
               "font-bold",
               product.compare_at_price && "text-primary"
             )}
           >
-            {product.price.toLocaleString(locale)} {" "}
-            {currency.symbol}
+            {product.price.toLocaleString(locale)} {currency.symbol}
           </p>
           {product.compare_at_price && (
             <p className="text-muted-foreground line-through text-xs">
@@ -139,7 +138,7 @@ export const ProductsCard = ({ product }: IProps) => {
           <p className="text-muted-foreground text-sm mt-1 line-clamp-2">
             {product.name[locale]}
           </p>
-        </Link>
+        </CustomLink>
 
         {hasNoVariants ? (
           <Button disabled className="w-full" size="lg">

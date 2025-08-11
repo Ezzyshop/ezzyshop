@@ -5,12 +5,11 @@ import { AddressCard } from "./address-card";
 import { AddressCardLoader } from "./address-card-loader";
 import { RadioGroup } from "@repo/ui/components/ui/radio-group";
 import { Button } from "@repo/ui/components/ui/button";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useUserContext } from "@repo/contexts/user-context/user.context";
-import Link from "next/link";
-import { useShopContext } from "@/contexts/shop.context";
 import { UserService } from "@repo/api/services/user/user.service";
 import { Loader2Icon } from "@repo/ui/components/icons/index";
+import { CustomLink } from "../custom-link";
 
 interface IProps {
   isEditMode?: boolean;
@@ -19,8 +18,6 @@ interface IProps {
 export const AddressSelect = ({ isEditMode = false }: IProps) => {
   const t = useTranslations("profile.address");
   const { user } = useUserContext();
-  const { _id: shopId } = useShopContext();
-  const locale = useLocale();
   const queryClient = useQueryClient();
   const { data, isLoading } = useQuery({
     queryKey: ["addresses", user?._id],
@@ -74,9 +71,9 @@ export const AddressSelect = ({ isEditMode = false }: IProps) => {
         variant="outline"
         className="w-full bg-primary/10 border-dashed border-primary"
       >
-        <Link href={`/${locale}/${shopId}/profile/addresses/add-address`}>
+        <CustomLink href="/profile/addresses/add-address">
           {t("add-new-address")}
-        </Link>
+        </CustomLink>
       </Button>
     </div>
   );

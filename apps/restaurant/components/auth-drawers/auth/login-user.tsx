@@ -1,12 +1,10 @@
 import { useForm } from "react-hook-form";
-import { Steps } from "../login-button";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@repo/ui/components/ui/form";
 import { Button } from "@repo/ui/components/ui/button";
 import { loginUserValidator } from "@repo/api/services/user/user.schema";
@@ -16,6 +14,7 @@ import { UserService } from "@repo/api/services/user/user.service";
 import { ILoginRequest } from "@repo/api/services/user/user.interface";
 import { useTranslations } from "next-intl";
 import { Input } from "@repo/ui/components/ui/input";
+import { Steps } from "../login-drawer";
 
 type LoginUserProps = {
   phone: string;
@@ -46,8 +45,6 @@ export const LoginUser = ({ phone, setSteps, setIsOpen }: LoginUserProps) => {
       form.setError("password", { message: t("invalid_password") });
     },
   });
-
-
 
   const onSubmit = (data: ILoginRequest) => {
     loginUser(data);

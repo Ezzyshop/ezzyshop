@@ -13,9 +13,9 @@ import {
   UserService,
 } from "@repo/api/services/user/index";
 import { joiResolver } from "@hookform/resolvers/joi";
-import { Steps } from "../login-button";
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "@repo/ui/components/ui/button";
+import { Steps } from "../login-drawer";
 
 type CheckUserProps = {
   setSteps: (steps: Steps) => void;

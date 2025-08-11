@@ -7,10 +7,10 @@ import {
 } from "@repo/ui/components/icons/index";
 import { useLocale } from "next-intl";
 import { useParams, usePathname } from "next/navigation";
-import Link from "next/link";
 import { cn } from "@repo/ui/lib/utils";
 import { ICommonParams } from "@/utils/interfaces";
 import { CartDock } from "./cart-dock";
+import { CustomLink } from "../custom-link";
 
 export const Dock = () => {
   const locale = useLocale();
@@ -49,13 +49,13 @@ export const Dock = () => {
       {dockElements.map((element) => {
         const isActive = pathname.includes(element.href);
         return (
-          <Link
+          <CustomLink
             key={element.label}
             href={element.href}
             className={cn(isActive && "text-primary")}
           >
             {element.icon}
-          </Link>
+          </CustomLink>
         );
       })}
     </div>

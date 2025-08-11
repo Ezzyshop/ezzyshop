@@ -33,7 +33,7 @@ export const CartPage = ({ shopId }: IProps) => {
       <PageHeader title={t("title")} />
       <div className="flex flex-col flex-grow px-4 pb-3">
         <div className="flex-grow space-y-3">
-          <CartItems shopId={shopId} />
+          <CartItems />
           {items.length > 0 && (
             <ProductsCarousel
               products={items.map((item) => item.product)}

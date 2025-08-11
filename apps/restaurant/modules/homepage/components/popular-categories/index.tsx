@@ -15,8 +15,8 @@ import {
 } from "@repo/ui/components/ui/carousel";
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
-import Link from "next/link";
 import { ILocale } from "@repo/api/utils/interfaces/index";
+import { CustomLink } from "@/components/custom-link";
 
 export const PopularCategories = ({ shopId }: ICommonParams) => {
   const language = useLocale() as keyof ILocale;
@@ -44,7 +44,7 @@ export const PopularCategories = ({ shopId }: ICommonParams) => {
         <CarouselContent>
           {categories?.data.map((category: ICategoriesResponse) => (
             <CarouselItem key={category._id}>
-              <Link href={`/${shopId}/categories/${category._id}`}>
+              <CustomLink href={`/categories/${category._id}`}>
                 <Image
                   src={category?.image || ""}
                   alt={category.name[language]}
@@ -52,7 +52,7 @@ export const PopularCategories = ({ shopId }: ICommonParams) => {
                   height={160}
                   className="object-cover w-[425px] h-auto rounded-lg"
                 />
-              </Link>
+              </CustomLink>
             </CarouselItem>
           ))}
         </CarouselContent>

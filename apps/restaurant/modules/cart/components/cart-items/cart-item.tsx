@@ -7,8 +7,8 @@ import { AddToCartButton } from "@/components/add-to-cart-button/add-to-cart-but
 import { useCart } from "@repo/contexts/cart-context/cart.context";
 import { useShopContext } from "@/contexts/shop.context";
 import { useState } from "react";
-import Link from "next/link";
 import { cn } from "@repo/ui/lib/utils";
+import { CustomLink } from "@/components/custom-link";
 
 interface IProps {
   item: ICartItem;
@@ -17,7 +17,7 @@ interface IProps {
 export const CartItem = ({ item }: IProps) => {
   const locale = useLocale() as keyof ILocale;
   const { updateQuantity, removeItem, addItem } = useCart();
-  const { currency, _id: shopId } = useShopContext();
+  const { currency } = useShopContext();
   const [isLoading, setIsLoading] = useState(false);
 
   const availableStock = item.variant?.quantity ?? Infinity;
@@ -80,8 +80,8 @@ export const CartItem = ({ item }: IProps) => {
       </div>
 
       <div className="flex-grow">
-        <Link
-          href={`/${locale}/${shopId}/products/${item.product._id}`}
+        <CustomLink
+          href={`/products/${item.product._id}`}
           className="block mb-1"
         >
           <p className="font-medium line-clamp-1">
@@ -105,7 +105,7 @@ export const CartItem = ({ item }: IProps) => {
               {compareAtPrice.toLocaleString()} {currency.symbol}
             </p>
           )}
-        </Link>
+        </CustomLink>
 
         <AddToCartButton
           size="sm"

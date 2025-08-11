@@ -63,11 +63,7 @@ export const CategoriesPage = ({ shopId }: ICommonParams) => {
       <>
         {data.pages.map((page) =>
           page.data.map((category: ICategoriesResponse) => (
-            <CategoryCard
-              key={category._id}
-              category={category}
-              shopId={shopId}
-            />
+            <CategoryCard key={category._id} category={category} />
           ))
         )}
         {hasNextPage && (

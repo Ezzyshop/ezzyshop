@@ -3,15 +3,9 @@ import { CartItem } from "./cart-item";
 import { useTranslations } from "next-intl";
 import { Package } from "@repo/ui/components/icons/index";
 import { Button } from "@repo/ui/components/ui/button";
-import { useLocale } from "next-intl";
-import Link from "next/link";
+import { CustomLink } from "@/components/custom-link";
 
-interface IProps {
-  shopId: string;
-}
-
-export const CartItems = ({ shopId }: IProps) => {
-  const locale = useLocale();
+export const CartItems = () => {
   const { items } = useCart();
   const t = useTranslations("cart.empty");
 
@@ -24,7 +18,7 @@ export const CartItems = ({ shopId }: IProps) => {
           {t("description")}
         </p>
         <Button className="mt-4">
-          <Link href={`/${locale}/${shopId}/home`}>{t("go_to_home")}</Link>
+          <CustomLink href={`/home`}>{t("go_to_home")}</CustomLink>
         </Button>
       </div>
     );

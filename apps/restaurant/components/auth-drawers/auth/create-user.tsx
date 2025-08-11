@@ -5,7 +5,7 @@ import {
   FormItem,
   FormField,
 } from "@repo/ui/components/ui/form";
-import { Steps } from "../login-button";
+import { Steps } from "../login-drawer";
 import { Button } from "@repo/ui/components/ui/button";
 import { Input } from "@repo/ui/components/ui/input";
 import { useForm } from "react-hook-form";

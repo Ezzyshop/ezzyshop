@@ -6,8 +6,8 @@ import { Card } from "@repo/ui/components/ui/card";
 import { cn } from "@repo/ui/lib/utils";
 import { useLocale } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
 import { ProductCardSmallBadges } from "./product-card-small-badges";
+import { CustomLink } from "../custom-link";
 
 interface IProps {
   product: IProductResponse;
@@ -16,13 +16,9 @@ interface IProps {
 export const ProductCardSmall = ({ product }: IProps) => {
   const locale = useLocale() as keyof ILocale;
   const { currency } = useShopContext();
-  const { _id: shopId } = useShopContext()
 
   return (
-    <Link
-      href={`/${locale}/${shopId}/products/${product._id}`}
-      className="block w-full"
-    >
+    <CustomLink href={`/products/${product._id}`} className="block w-full">
       <Card className="gap-1 p-2 shadow-none border-none max-w-[130px] w-full h-full">
         <div className="relative">
           <Image
@@ -46,6 +42,6 @@ export const ProductCardSmall = ({ product }: IProps) => {
           <p className="text-xs line-clamp-2 mt-1">{product.name[locale]}</p>
         </div>
       </Card>
-    </Link>
+    </CustomLink>
   );
 };
