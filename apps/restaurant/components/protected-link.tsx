@@ -6,12 +6,13 @@ import { CustomLink } from "./custom-link";
 
 export const ProtectedLink = ({
   children,
+  asChild,
   ...props
-}: LinkProps & PropsWithChildren) => {
+}: LinkProps & PropsWithChildren & { asChild?: boolean }) => {
   const { user } = useUserContext();
 
   if (!user) {
-    return <LoginDrawer>{children}</LoginDrawer>;
+    return <LoginDrawer asChild={asChild}>{children}</LoginDrawer>;
   }
 
   return <CustomLink {...props}>{children}</CustomLink>;

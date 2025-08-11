@@ -21,7 +21,8 @@ export type Steps = "check-user" | "create-user" | "login";
 export const LoginDrawer = ({
   children,
   className,
-}: PropsWithChildren & { className?: string }) => {
+  asChild,
+}: PropsWithChildren & { className?: string; asChild?: boolean }) => {
   const { name, logo } = useShopContext();
   const t = useTranslations("profile");
   const [isOpen, setIsOpen] = useState(false);
@@ -49,7 +50,9 @@ export const LoginDrawer = ({
 
   return (
     <Drawer open={isOpen} onOpenChange={setIsOpen}>
-      <DrawerTrigger className={className}>{children}</DrawerTrigger>
+      <DrawerTrigger className={className} asChild={asChild}>
+        {children}
+      </DrawerTrigger>
       <DrawerContent className="h-[80vh]">
         <DrawerTitle className="text-center hidden">{t("login")}</DrawerTitle>
         <div className="flex flex-col gap-3 pt-16 pb-5 px-3 h-full items-center justify-start">

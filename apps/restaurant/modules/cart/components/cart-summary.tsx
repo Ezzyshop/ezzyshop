@@ -15,12 +15,13 @@ export const CartSummary = () => {
         <p className="text-primary font-medium">
           {totalPrice.toLocaleString()} {currency.symbol}
         </p>
+
         <p className="text-muted-foreground text-sm">
           {totalItems} {t("items")}
         </p>
       </div>
 
-      <ProtectedLink href="/checkout">
+      <ProtectedLink href="/checkout" asChild>
         <Button size="lg">{t("checkout")}</Button>
       </ProtectedLink>
     </div>

@@ -26,13 +26,12 @@ export const ProfileLinkButton = ({
   const LinkComponent = href ? Link : "div";
 
   return (
-    <Button
-      className="flex items-center gap-3 rounded-lg w-full has-[>svg]:px-3"
-      variant={variant}
-      size="xl"
-      asChild
-    >
-      <LinkComponent href={`/${shopId}/profile/${href}`}>
+    <LinkComponent href={`/${shopId}/profile/${href}`}>
+      <Button
+        className="flex items-center gap-3 rounded-lg w-full has-[>svg]:px-3"
+        variant={variant}
+        size="xl"
+      >
         <div
           className={cn(
             "w-8 h-8 rounded-full flex items-center justify-center",
@@ -45,7 +44,7 @@ export const ProfileLinkButton = ({
           {title}
         </span>
         <ChevronRightIcon className="w-6 h-6" />
-      </LinkComponent>
-    </Button>
+      </Button>
+    </LinkComponent>
   );
 };

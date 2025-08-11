@@ -14,4 +14,6 @@ export interface ICartState {
   isLoading: boolean;
   totalItems: number;
   totalPrice: number;
+  totalDiscount: number;
+  totalPriceWithoutDiscount: number;
 }

@@ -21,6 +21,8 @@ const initialState: ICartState = {
   isLoading: true,
   totalItems: 0,
   totalPrice: 0,
+  totalDiscount: 0,
+  totalPriceWithoutDiscount: 0,
 };
 
 const CART_STORAGE_KEY = (shopId: string) => `${shopId}-cart`;
@@ -28,12 +30,19 @@ const CART_STORAGE_KEY = (shopId: string) => `${shopId}-cart`;
 const cartReducer = (state: ICartState, action: CartAction): ICartState => {
   switch (action.type) {
     case "LOAD_CART": {
-      const { totalItems, totalPrice } = calculateTotals(action.payload);
+      const {
+        totalItems,
+        totalPrice,
+        totalDiscount,
+        totalPriceWithoutDiscount,
+      } = calculateTotals(action.payload);
       return {
         ...state,
         items: action.payload,
         totalItems,
         totalPrice,
+        totalDiscount,
+        totalPriceWithoutDiscount,
         isLoading: false,
       };
     }
@@ -75,13 +84,20 @@ const cartReducer = (state: ICartState, action: CartAction): ICartState => {
         newItems = [...state.items, newItem];
       }
 
-      const { totalItems, totalPrice } = calculateTotals(newItems);
+      const {
+        totalItems,
+        totalPrice,
+        totalDiscount,
+        totalPriceWithoutDiscount,
+      } = calculateTotals(newItems);
 
       return {
         ...state,
         items: newItems,
         totalItems,
         totalPrice,
+        totalDiscount,
+        totalPriceWithoutDiscount,
       };
     }
 
@@ -89,13 +105,20 @@ const cartReducer = (state: ICartState, action: CartAction): ICartState => {
       const newItems = state.items.filter(
         (item) => item.id !== action.payload.id
       );
-      const { totalItems, totalPrice } = calculateTotals(newItems);
+      const {
+        totalItems,
+        totalPrice,
+        totalDiscount,
+        totalPriceWithoutDiscount,
+      } = calculateTotals(newItems);
 
       return {
         ...state,
         items: newItems,
         totalItems,
         totalPrice,
+        totalDiscount,
+        totalPriceWithoutDiscount,
       };
     }
 
@@ -111,13 +134,20 @@ const cartReducer = (state: ICartState, action: CartAction): ICartState => {
         item.id === id ? { ...item, quantity } : item
       );
 
-      const { totalItems, totalPrice } = calculateTotals(newItems);
+      const {
+        totalItems,
+        totalPrice,
+        totalDiscount,
+        totalPriceWithoutDiscount,
+      } = calculateTotals(newItems);
 
       return {
         ...state,
         items: newItems,
         totalItems,
         totalPrice,
+        totalDiscount,
+        totalPriceWithoutDiscount,
       };
     }
 
@@ -127,6 +157,8 @@ const cartReducer = (state: ICartState, action: CartAction): ICartState => {
         items: [],
         totalItems: 0,
         totalPrice: 0,
+        totalDiscount: 0,
+        totalPriceWithoutDiscount: 0,
       };
     }
 
