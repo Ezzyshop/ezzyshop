@@ -5,42 +5,38 @@ import {
   SearchIcon,
   UserIcon,
 } from "@repo/ui/components/icons/index";
-import { useLocale } from "next-intl";
-import { useParams, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { cn } from "@repo/ui/lib/utils";
-import { ICommonParams } from "@/utils/interfaces";
 import { CartDock } from "./cart-dock";
 import { CustomLink } from "../custom-link";
 
 export const Dock = () => {
-  const locale = useLocale();
   const pathname = usePathname();
-  const { shopId } = useParams<ICommonParams>();
 
   const dockElements = [
     {
       icon: <HomeIcon />,
-      href: `/${locale}/${shopId}/home`,
+      href: `/home`,
       label: "Home",
     },
     {
       icon: <SearchIcon />,
-      href: `/${locale}/${shopId}/categories`,
+      href: `/categories`,
       label: "Search",
     },
     {
       icon: <CartDock />,
-      href: `/${locale}/${shopId}/cart`,
+      href: `/cart`,
       label: "Cart",
     },
     {
       icon: <HeartIcon />,
-      href: `/${locale}/${shopId}/wishlist`,
+      href: `/wishlist`,
       label: "Wishlist",
     },
     {
       icon: <UserIcon />,
-      href: `/${locale}/${shopId}/profile`,
+      href: `/profile`,
       label: "Profile",
     },
   ];
