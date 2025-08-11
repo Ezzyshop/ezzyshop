@@ -8,6 +8,7 @@ import { useCart } from "@repo/contexts/cart-context/cart.context";
 import { useShopContext } from "@/contexts/shop.context";
 import { useState } from "react";
 import Link from "next/link";
+import { cn } from "@repo/ui/lib/utils";
 
 interface IProps {
   item: ICartItem;
@@ -65,6 +66,8 @@ export const CartItem = ({ item }: IProps) => {
       .join(", ");
   };
 
+  const compareAtPrice = item.product.compare_at_price;
+
   return (
     <Card className="p-4 flex flex-row items-start shadow-none border-0">
       <div className="relative min-w-24 w-24 h-24">
@@ -77,17 +80,31 @@ export const CartItem = ({ item }: IProps) => {
       </div>
 
       <div className="flex-grow">
-        <Link href={`/${locale}/${shopId}/products/${item.product._id}`} className="block mb-1">
+        <Link
+          href={`/${locale}/${shopId}/products/${item.product._id}`}
+          className="block mb-1"
+        >
           <p className="font-medium line-clamp-1">
             {item.product.name[locale]}
           </p>
           {item.variant && (
             <p className="text-xs text-gray-600">{getVariantDisplayText()}</p>
           )}
-          <p className="text-sm font-medium">
+          <p
+            className={cn(
+              "text-sm font-medium",
+              compareAtPrice && "text-red-500"
+            )}
+          >
             {(item.variant?.price || item.product.price).toLocaleString()}{" "}
             {currency.symbol}
           </p>
+
+          {compareAtPrice && (
+            <p className="text-xs text-gray-600 line-through">
+              {compareAtPrice.toLocaleString()} {currency.symbol}
+            </p>
+          )}
         </Link>
 
         <AddToCartButton
