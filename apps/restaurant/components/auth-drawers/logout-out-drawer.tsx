@@ -4,16 +4,17 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@repo/ui/components/ui/drawer";
-import { ProfileLinkButton } from "../profile-link-button";
 import { Button } from "@repo/ui/components/ui/button";
-import { useState } from "react";
+import { PropsWithChildren, useState } from "react";
 import { useTranslations } from "next-intl";
-import { LogOut } from "@repo/ui/components/icons/index";
 import { useUserContext } from "@repo/contexts/user-context/user.context";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { UserService } from "@repo/api/services/user/user.service";
 
-export const LogoutUser = () => {
+export const LogoutUser = ({
+  children,
+  className,
+}: PropsWithChildren & { className?: string }) => {
   const [isOpen, setIsOpen] = useState(false);
   const t = useTranslations("profile");
   const { user } = useUserContext();
@@ -31,14 +32,7 @@ export const LogoutUser = () => {
 
   return (
     <Drawer open={isOpen} onOpenChange={setIsOpen}>
-      <DrawerTrigger className="w-full">
-        <ProfileLinkButton
-          icon={<LogOut className="text-white" />}
-          title={t("logout")}
-          variant="destructiveGhost"
-          hidden={!user}
-        />
-      </DrawerTrigger>
+      <DrawerTrigger className={className}>{children}</DrawerTrigger>
       <DrawerContent>
         <div className="flex flex-col gap-3 py-5 px-3">
           <DrawerTitle className="text-center">

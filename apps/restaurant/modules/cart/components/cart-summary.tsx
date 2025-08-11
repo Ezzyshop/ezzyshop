@@ -1,3 +1,4 @@
+import { ProtectedLink } from "@/components/protected-link";
 import { useShopContext } from "@/contexts/shop.context";
 import { useCart } from "@repo/contexts/cart-context/cart.context";
 import { Button } from "@repo/ui/components/ui/button";
@@ -18,7 +19,10 @@ export const CartSummary = () => {
           {totalItems} {t("items")}
         </p>
       </div>
-      <Button size="lg">{t("checkout")}</Button>
+
+      <ProtectedLink href="/checkout">
+        <Button size="lg">{t("checkout")}</Button>
+      </ProtectedLink>
     </div>
   );
 };

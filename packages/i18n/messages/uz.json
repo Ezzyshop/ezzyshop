@@ -99,5 +99,8 @@
     "cheapest": "Arzonroq",
     "most-expensive": "Qimmatroq",
     "first_shown": "Avval ko'rsatiladi"
+  },
+  "checkout": {
+    "title": "Buyurtma rasmiylashtirish"
   }
 }

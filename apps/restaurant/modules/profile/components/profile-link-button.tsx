@@ -1,5 +1,4 @@
 import { useShopContext } from "@/contexts/shop.context";
-import { useUserContext } from "@repo/contexts/user-context/user.context";
 import { ChevronRightIcon } from "@repo/ui/components/icons/index";
 import { Button } from "@repo/ui/components/ui/button";
 import { cn } from "@repo/ui/lib/utils";

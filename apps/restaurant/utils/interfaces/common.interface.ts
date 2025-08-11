@@ -8,4 +8,5 @@ export interface ICommonParams extends Params {
   shopId: string;
   categoryId?: string;
   productId?: string;
+  locale?: string;
 }

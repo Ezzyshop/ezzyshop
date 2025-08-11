@@ -12,7 +12,7 @@ import { UserProfileCard } from "../components/user-profile-card";
 import { LogoutStateMessage } from "../components/logout-state-message";
 import { LoginButton } from "../components/login-button";
 import { ChangeLanguageButton } from "../components/change-language-button";
-import { LogoutUser } from "../components/auth/logout-user";
+import { LogoutButton } from "../components/logout-button";
 
 export const ProfilePage = () => {
   const t = useTranslations("profile");
@@ -43,7 +43,7 @@ export const ProfilePage = () => {
           hidden={!user}
         />
         <ChangeLanguageButton />
-        <LogoutUser />
+        <LogoutButton />
         <LoginButton />
       </div>
     </div>
