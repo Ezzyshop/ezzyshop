@@ -1,4 +1,4 @@
-import { IData } from "@repo/api/utils/interfaces";
+import { IData } from "../../utils/interfaces";
 import { api } from "../../api";
 import {
   IDeliveryMethodParams,
