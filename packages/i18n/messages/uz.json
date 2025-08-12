@@ -101,6 +101,13 @@
     "first_shown": "Avval ko'rsatiladi"
   },
   "checkout": {
-    "title": "Buyurtma rasmiylashtirish"
+    "title": "Buyurtma rasmiylashtirish",
+    "shipping": {
+      "pickup": "Olib ketish",
+      "delivery": "Yetkazib berish",
+      "no-branches-found": "Olib ketish punktlari mavjud emas ",
+      "no-delivery-methods-found": "Yetkazib berish usullari mavjud emas",
+      "delivery-options": "Qabul qilish usuli"
+    }
   }
 }
