@@ -113,6 +113,15 @@
       "title": "To'lov usuli",
       "no-payment-methods-found": "To'lov usullari mavjud emas",
       "payment-method-select": "To'lov usulini tanlang"
+    },
+    "user": {
+      "title": "Qabul qilib oluvchi",
+      "description": "Qabul qilib oluvchi ma'lumotlaringizni kiriting",
+      "name": "Ismingiz",
+      "enter_name": "Ismingizni kiriting",
+      "phone": "Telefon raqamingiz",
+      "enter_phone": "Telefon raqamingizni kiriting",
+      "save": "Saqlash"
     }
   }
 }
