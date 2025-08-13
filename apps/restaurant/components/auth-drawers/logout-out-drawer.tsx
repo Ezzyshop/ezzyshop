@@ -32,7 +32,9 @@ export const LogoutUser = ({
 
   return (
     <Drawer open={isOpen} onOpenChange={setIsOpen}>
-      <DrawerTrigger className={className}>{children}</DrawerTrigger>
+      <DrawerTrigger className={className} asChild>
+        <div className="w-full">{children}</div>
+      </DrawerTrigger>
       <DrawerContent>
         <div className="flex flex-col gap-3 py-5 px-3">
           <DrawerTitle className="text-center">

@@ -1,8 +1,11 @@
-import { useShopContext } from "@/contexts/shop.context";
+"use client";
+
+import { ICommonParams } from "@/utils/interfaces";
 import { ChevronRightIcon } from "@repo/ui/components/icons/index";
 import { Button } from "@repo/ui/components/ui/button";
 import { cn } from "@repo/ui/lib/utils";
-import Link from "next/link";
+import { useParams } from "next/navigation";
+import { useRouter } from "nextjs-toploader/app";
 import { ReactNode } from "react";
 
 interface IProps {
@@ -19,32 +22,34 @@ export const ProfileLinkButton = ({
   href,
   hidden = false,
 }: IProps) => {
-  const { _id: shopId } = useShopContext();
+  const { shopId, locale } = useParams<ICommonParams>();
+  const router = useRouter();
 
   if (hidden) return null;
 
-  const LinkComponent = href ? Link : "div";
+  const handleClick = () => {
+    if (href) {
+      router.push(`/${locale}/${shopId}/profile/${href}`);
+    }
+  };
 
   return (
-    <LinkComponent href={`/${shopId}/profile/${href}`} className="block">
-      <Button
-        className="flex items-center gap-3 rounded-lg w-full has-[>svg]:px-3 "
-        variant={variant}
-        size="xl"
+    <Button
+      onClick={handleClick}
+      className="flex items-center gap-3 rounded-lg w-full has-[>svg]:px-3 "
+      variant={variant}
+      size="xl"
+    >
+      <div
+        className={cn(
+          "w-8 h-8 rounded-full flex items-center justify-center",
+          variant === "destructiveGhost" ? "bg-destructive" : "bg-primary "
+        )}
       >
-        <div
-          className={cn(
-            "w-8 h-8 rounded-full flex items-center justify-center",
-            variant === "destructiveGhost" ? "bg-destructive" : "bg-primary "
-          )}
-        >
-          {icon}
-        </div>
-        <span className="text-sm font-medium flex-grow text-start">
-          {title}
-        </span>
-        <ChevronRightIcon className="w-6 h-6" />
-      </Button>
-    </LinkComponent>
+        {icon}
+      </div>
+      <span className="text-sm font-medium flex-grow text-start">{title}</span>
+      <ChevronRightIcon className="w-6 h-6" />
+    </Button>
   );
 };

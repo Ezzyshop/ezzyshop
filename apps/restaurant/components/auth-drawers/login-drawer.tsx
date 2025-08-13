@@ -62,7 +62,7 @@ export const LoginDrawer = ({
   return (
     <Drawer open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger className={className} asChild={asChild}>
-        {children}
+        <div className="w-full">{children}</div>
       </DrawerTrigger>
       <DrawerContent className="h-[80vh]">
         <DrawerTitle className="text-center hidden">{t("login")}</DrawerTitle>

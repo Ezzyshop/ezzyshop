@@ -18,11 +18,13 @@ export const ChangeLanguageButton = () => {
 
   return (
     <Drawer>
-      <DrawerTrigger className="w-full">
-        <ProfileLinkButton
-          icon={<SettingsIcon className="text-white" />}
-          title={t("language")}
-        />
+      <DrawerTrigger className="w-full" asChild>
+        <div className="w-full">
+          <ProfileLinkButton
+            icon={<SettingsIcon className="text-white" />}
+            title={t("language")}
+          />
+        </div>
       </DrawerTrigger>
       <DrawerContent className="">
         <div className="flex flex-col gap-3 py-5 px-3">

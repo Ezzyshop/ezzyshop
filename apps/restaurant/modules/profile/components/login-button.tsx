@@ -8,7 +8,7 @@ export const LoginButton = () => {
   const { user } = useUserContext();
   const t = useTranslations("profile");
   return (
-    <LoginDrawer className="w-full">
+    <LoginDrawer className="w-full" asChild>
       <ProfileLinkButton
         icon={<LogIn className="text-white" />}
         title={t("login")}
