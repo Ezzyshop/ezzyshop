@@ -11,10 +11,20 @@ export class DeliveryMethodService {
     filter?: IDeliveryMethodParams
   ): Promise<IDeliveryMethodResponse[]> {
     const response = await api.get<IData<IDeliveryMethodResponse[]>>(
-      `/delivery-methods/${shopId}`,
+      `/delivery-methods/public/${shopId}`,
       {
         params: filter,
       }
+    );
+    return response.data.data;
+  }
+
+  static async getDeliveryMethod(
+    shopId: string,
+    deliveryMethodId: string
+  ): Promise<IDeliveryMethodResponse> {
+    const response = await api.get<IData<IDeliveryMethodResponse>>(
+      `/delivery-methods/${shopId}/${deliveryMethodId}`
     );
     return response.data.data;
   }

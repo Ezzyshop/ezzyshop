@@ -117,7 +117,8 @@
     "payment": {
       "title": "To'lov usuli",
       "no-payment-methods-found": "To'lov usullari mavjud emas",
-      "payment-method-select": "To'lov usulini tanlang"
+      "payment-method-select": "To'lov usulini tanlang",
+      "loading": "To'lov usullari yuklanmoqda..."
     },
     "user": {
       "title": "Qabul qilib oluvchi",
@@ -127,6 +128,19 @@
       "phone": "Telefon raqamingiz",
       "enter_phone": "Telefon raqamingizni kiriting",
       "save": "Saqlash"
-    }
+    },
+    "productsSummary": {
+      "total-items": "Mahsulotlar soni",
+      "total-price": "Mahsulotlar narxi",
+      "total-price-without-discount": "Chegirmadan oldin narx",
+      "delivery-fee": "Yetkazib berish narxi",
+      "total-discount": "Chegirmalar",
+      "final-price": "Umumiy narx"
+    },
+    "note": {
+      "title": "Kuryer uchun izoh",
+      "placeholder": "Kuryer uchun izohni kiriting"
+    },
+    "submit": "Buyurtma berish"
   }
 }

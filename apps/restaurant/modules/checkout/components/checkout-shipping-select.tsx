@@ -11,15 +11,22 @@ import {
   TabsList,
   TabsTrigger,
 } from "@repo/ui/components/ui/tabs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RadioGroup, RadioGroupItem } from "@repo/ui/components/ui/radio-group";
 import { Card } from "@repo/ui/components/ui/card";
 import { Label } from "@repo/ui/components/ui/label";
 import { useShopContext } from "@/contexts/shop.context";
 import { useTranslations } from "next-intl";
 import { CheckoutAddressSelect } from "./checkout-address-select";
+import { UseFormReturn } from "react-hook-form";
+import { ICheckoutForm } from "../utils/checkout.interface";
+import { FormField } from "@repo/ui/components/ui/form";
 
-export const CheckoutShippingSelect = () => {
+interface IProps {
+  form: UseFormReturn<ICheckoutForm>;
+}
+
+export const CheckoutShippingSelect = ({ form }: IProps) => {
   const { shopId } = useParams<ICommonParams>();
   const { currency } = useShopContext();
   const t = useTranslations("checkout.shipping");
@@ -49,22 +56,32 @@ export const CheckoutShippingSelect = () => {
     }
 
     return (
-      <RadioGroup>
-        {branches?.map((branch) => (
-          <Card
-            key={branch._id}
-            className="p-3 flex-row items-center gap-2 shadow-none border-none"
+      <FormField
+        control={form.control}
+        name="branch"
+        render={({ field }) => (
+          <RadioGroup
+            {...field}
+            value={field.value}
+            onValueChange={field.onChange}
           >
-            <Label htmlFor={branch._id} className="flex-grow block">
-              <h3 className="font-medium text-base">{branch.name.uz}</h3>
-              <p className="text-sm text-muted-foreground line-clamp-2">
-                {branch.address.address}
-              </p>
-            </Label>
-            <RadioGroupItem value={branch._id} id={branch._id} />
-          </Card>
-        ))}
-      </RadioGroup>
+            {branches?.map((branch) => (
+              <Card
+                key={branch._id}
+                className="p-3 flex-row items-center gap-2 shadow-none border-none"
+              >
+                <Label htmlFor={branch._id} className="flex-grow block">
+                  <h3 className="font-medium text-base">{branch.name.uz}</h3>
+                  <p className="text-sm text-muted-foreground line-clamp-2">
+                    {branch.address.address}
+                  </p>
+                </Label>
+                <RadioGroupItem value={branch._id} id={branch._id} />
+              </Card>
+            ))}
+          </RadioGroup>
+        )}
+      />
     );
   };
 
@@ -79,33 +96,54 @@ export const CheckoutShippingSelect = () => {
 
     return (
       <div className="space-y-4">
-        <RadioGroup>
-          {deliveryMethods?.map((deliveryMethod) => (
-            <Card
-              key={deliveryMethod._id}
-              className="p-3 flex-row items-center gap-2 shadow-none border-none"
-            >
-              <Label htmlFor={deliveryMethod._id} className="flex-grow block">
-                <h3 className="font-medium text-base">
-                  {deliveryMethod.name.uz}
-                </h3>
-                {deliveryMethod.price ? (
-                  <p className="text-sm text-muted-foreground line-clamp-2">
-                    {deliveryMethod?.price?.toLocaleString()} {currency.symbol}
-                  </p>
-                ) : null}
-              </Label>
-              <RadioGroupItem
-                value={deliveryMethod._id}
-                id={deliveryMethod._id}
-              />
-            </Card>
-          ))}
-        </RadioGroup>
+        <FormField
+          control={form.control}
+          name="delivery_method"
+          render={({ field }) => (
+            <>
+              <RadioGroup
+                {...field}
+                value={field.value}
+                onValueChange={field.onChange}
+              >
+                {deliveryMethods?.map((deliveryMethod) => (
+                  <Card
+                    key={deliveryMethod._id}
+                    className="p-3 flex-row items-center gap-2 shadow-none border-none"
+                  >
+                    <Label
+                      htmlFor={deliveryMethod._id}
+                      className="flex-grow block"
+                    >
+                      <h3 className="font-medium text-base">
+                        {deliveryMethod.name.uz}
+                      </h3>
+                      {deliveryMethod.price ? (
+                        <p className="text-sm text-muted-foreground line-clamp-2">
+                          {deliveryMethod?.price?.toLocaleString()}{" "}
+                          {currency.symbol}
+                        </p>
+                      ) : null}
+                    </Label>
+                    <RadioGroupItem
+                      value={deliveryMethod._id}
+                      id={deliveryMethod._id}
+                    />
+                  </Card>
+                ))}
+              </RadioGroup>
+            </>
+          )}
+        />
         <CheckoutAddressSelect />
       </div>
     );
   };
+
+  useEffect(() => {
+    form.resetField("branch");
+    form.resetField("delivery_method");
+  }, [selectedTab, form]);
 
   return (
     <div className="border-t pt-4">
