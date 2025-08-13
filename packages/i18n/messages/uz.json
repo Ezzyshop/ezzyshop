@@ -107,7 +107,12 @@
       "delivery": "Yetkazib berish",
       "no-branches-found": "Olib ketish punktlari mavjud emas ",
       "no-delivery-methods-found": "Yetkazib berish usullari mavjud emas",
-      "delivery-options": "Qabul qilish usuli"
+      "delivery-options": "Qabul qilish usuli",
+      "address": {
+        "address-select": "Yetkazib berish manzilini",
+        "change-address": "Manzilni o'zgartirish",
+        "no-address-selected": "Manzil tanlanmagan"
+      }
     },
     "payment": {
       "title": "To'lov usuli",

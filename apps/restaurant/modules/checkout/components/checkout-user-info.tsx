@@ -19,15 +19,15 @@ export const CheckoutUserInfo = () => {
     <Drawer>
       <DrawerTrigger className="flex items-center gap-2 w-full">
         <div className="flex items-start gap-2 flex-grow">
-          <div className="rounded-full p-2 border">
+          <div className="rounded-full p-2 bg-primary/20">
             <UserIcon className="w-4 h-4 text-primary" />
           </div>
-          <div className="flex-grow space-y-px">
+          <div className="flex-grow">
             <p className="text-sm text-muted-foreground text-left">
               {t("title")}
             </p>
-            <p className="font-medium leading-4 text-left">Ulugbek Asadov</p>
-            <p className="text-sm text-muted-foreground leading-4 text-left">
+            <p className="font-medium text-left leading-5">Ulugbek Asadov</p>
+            <p className="text-sm text-muted-foreground text-left">
               +998 99 123 45 67
             </p>
           </div>

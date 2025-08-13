@@ -82,7 +82,7 @@ export const CheckoutPaymentSelect = () => {
   };
 
   return (
-    <div>
+    <div className="border-t pt-4">
       <h2 className="text-lg font-medium mb-1">{t("payment-method-select")}</h2>
       {renderContent()}
     </div>

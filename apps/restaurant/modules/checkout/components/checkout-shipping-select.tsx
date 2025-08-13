@@ -17,6 +17,7 @@ import { Card } from "@repo/ui/components/ui/card";
 import { Label } from "@repo/ui/components/ui/label";
 import { useShopContext } from "@/contexts/shop.context";
 import { useTranslations } from "next-intl";
+import { CheckoutAddressSelect } from "./checkout-address-select";
 
 export const CheckoutShippingSelect = () => {
   const { shopId } = useParams<ICommonParams>();
@@ -77,34 +78,37 @@ export const CheckoutShippingSelect = () => {
     }
 
     return (
-      <RadioGroup>
-        {deliveryMethods?.map((deliveryMethod) => (
-          <Card
-            key={deliveryMethod._id}
-            className="p-3 flex-row items-center gap-2 shadow-none border-none"
-          >
-            <Label htmlFor={deliveryMethod._id} className="flex-grow block">
-              <h3 className="font-medium text-base">
-                {deliveryMethod.name.uz}
-              </h3>
-              {deliveryMethod.price ? (
-                <p className="text-sm text-muted-foreground line-clamp-2">
-                  {deliveryMethod?.price?.toLocaleString()} {currency.symbol}
-                </p>
-              ) : null}
-            </Label>
-            <RadioGroupItem
-              value={deliveryMethod._id}
-              id={deliveryMethod._id}
-            />
-          </Card>
-        ))}
-      </RadioGroup>
+      <div className="space-y-4">
+        <RadioGroup>
+          {deliveryMethods?.map((deliveryMethod) => (
+            <Card
+              key={deliveryMethod._id}
+              className="p-3 flex-row items-center gap-2 shadow-none border-none"
+            >
+              <Label htmlFor={deliveryMethod._id} className="flex-grow block">
+                <h3 className="font-medium text-base">
+                  {deliveryMethod.name.uz}
+                </h3>
+                {deliveryMethod.price ? (
+                  <p className="text-sm text-muted-foreground line-clamp-2">
+                    {deliveryMethod?.price?.toLocaleString()} {currency.symbol}
+                  </p>
+                ) : null}
+              </Label>
+              <RadioGroupItem
+                value={deliveryMethod._id}
+                id={deliveryMethod._id}
+              />
+            </Card>
+          ))}
+        </RadioGroup>
+        <CheckoutAddressSelect />
+      </div>
     );
   };
 
   return (
-    <div>
+    <div className="border-t pt-4">
       <Tabs
         value={selectedTab}
         onValueChange={(value) =>
