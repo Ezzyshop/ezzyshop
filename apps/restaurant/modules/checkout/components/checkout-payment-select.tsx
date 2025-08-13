@@ -40,7 +40,7 @@ export const CheckoutPaymentSelect = () => {
     }
 
     return (
-      <RadioGroup>
+      <RadioGroup className="gap-2">
         {paymentMethods?.map((paymentMethod) => {
           const name =
             paymentMethod.name[locale as keyof typeof paymentMethod.name];
@@ -83,7 +83,7 @@ export const CheckoutPaymentSelect = () => {
 
   return (
     <div>
-      <h2 className="text-lg font-medium mb-4">{t("payment-method-select")}</h2>
+      <h2 className="text-lg font-medium mb-1">{t("payment-method-select")}</h2>
       {renderContent()}
     </div>
   );
