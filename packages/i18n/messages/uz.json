@@ -39,7 +39,9 @@
       "title": "Savatingiz hozircha bo'sh",
       "description": "Bosh sahifadan boshlang - kerakli mahsulotlarni qidiruv orqali topishiniz yoki to'plamlarni ko'rishingiz mumkin",
       "go_to_home": "Bosh sahifaga o'tish"
-    }
+    },
+    "remove": "Savatdan olib tashlash",
+    "out_of_stock": "Mahsulot sotuvda mavjud emas"
   },
   "wishlist": {
     "title": "Istaklarim"
@@ -141,6 +143,12 @@
       "title": "Kuryer uchun izoh",
       "placeholder": "Kuryer uchun izohni kiriting"
     },
-    "submit": "Buyurtma berish"
+    "submit": "Buyurtma berish",
+    "loading": "Buyurtma yuborilmoqda...",
+    "errors": {
+      "delivery-address-required": "Yetkazib berish manzilini tanlang",
+      "payment-method-required": "To'lov usuli tanlang",
+      "delivery-method-required": "Yetkazib berish usuli yoki olib ketish manzilini tanlang"
+    }
   }
 }

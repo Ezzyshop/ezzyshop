@@ -14,6 +14,7 @@ import {
   calculateTotals,
   generateCartItemId,
   calculateItemPrice,
+  IOutOfStockItem,
 } from "./utils";
 
 const initialState: ICartState = {
@@ -80,6 +81,7 @@ const cartReducer = (state: ICartState, action: CartAction): ICartState => {
           variant,
           quantity,
           addedAt: Date.now(),
+          isOutOfStock: false,
         };
         newItems = [...state.items, newItem];
       }
@@ -162,6 +164,33 @@ const cartReducer = (state: ICartState, action: CartAction): ICartState => {
       };
     }
 
+    case "SET_OUT_OF_STOCK_ITEMS": {
+      const newItems = state.items.map((item) =>
+        action.payload.some(
+          (outOfStockItem) =>
+            outOfStockItem.productId === item.product._id &&
+            outOfStockItem.variantId === item.variant?._id
+        )
+          ? { ...item, isOutOfStock: true }
+          : item
+      );
+
+      const {
+        totalItems,
+        totalPrice,
+        totalDiscount,
+        totalPriceWithoutDiscount,
+      } = calculateTotals(newItems);
+
+      return {
+        ...state,
+        items: newItems,
+        totalItems,
+        totalPrice,
+        totalDiscount,
+        totalPriceWithoutDiscount,
+      };
+    }
     default:
       return state;
   }
@@ -179,6 +208,7 @@ export interface ICartContext extends ICartState {
   getItemQuantity: (productId: string, variantId?: string) => number;
   isItemInCart: (productId: string, variantId?: string) => boolean;
   getCartItemPrice: (item: ICartItem) => number;
+  setOutOfStockItems: (items: IOutOfStockItem[]) => void;
 }
 
 const CartContext = createContext<ICartContext | undefined>(undefined);
@@ -265,6 +295,10 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
     return calculateItemPrice(item);
   };
 
+  const setOutOfStockItems = (items: IOutOfStockItem[]) => {
+    dispatch({ type: "SET_OUT_OF_STOCK_ITEMS", payload: items });
+  };
+
   const contextValue: ICartContext = {
     ...state,
     addItem,
@@ -274,6 +308,7 @@ export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
     getItemQuantity,
     isItemInCart,
     getCartItemPrice,
+    setOutOfStockItems,
   };
 
   return (

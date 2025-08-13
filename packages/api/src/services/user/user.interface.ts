@@ -14,6 +14,8 @@ export interface IUserResponse {
   address?: {
     _id: string;
     address: string;
+    lat: number;
+    lng: number;
   };
 }
 

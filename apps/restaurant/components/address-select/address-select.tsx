@@ -10,12 +10,19 @@ import { useUserContext } from "@repo/contexts/user-context/user.context";
 import { UserService } from "@repo/api/services/user/user.service";
 import { Loader2Icon } from "@repo/ui/components/icons/index";
 import { CustomLink } from "../custom-link";
+import { IUserResponse } from "@repo/api/services/user/user.interface";
 
 interface IProps {
   isEditMode?: boolean;
+  onAddressChange?: (address: IUserResponse["address"]) => void;
+  selectedAddress?: IUserResponse["address"];
 }
 
-export const AddressSelect = ({ isEditMode = false }: IProps) => {
+export const AddressSelect = ({
+  isEditMode = false,
+  onAddressChange,
+  selectedAddress,
+}: IProps) => {
   const t = useTranslations("profile.address");
   const { user } = useUserContext();
   const queryClient = useQueryClient();
@@ -32,6 +39,16 @@ export const AddressSelect = ({ isEditMode = false }: IProps) => {
     },
   });
 
+  const handleAddressChange = (addressId: string) => {
+    const address = data?.data.find((address) => address._id === addressId);
+
+    onAddressChange?.(address);
+
+    if (!onAddressChange) {
+      updateUserAddress({ address: addressId });
+    }
+  };
+
   const renderContent = () => {
     if (isLoading) {
       return <AddressCardLoader />;
@@ -41,10 +58,14 @@ export const AddressSelect = ({ isEditMode = false }: IProps) => {
       return null;
     }
 
+    const value = onAddressChange
+      ? selectedAddress?._id
+      : (user?.address?._id ?? data?.data[0]?._id);
+
     return (
       <RadioGroup
-        defaultValue={user?.address?._id ?? data?.data[0]?._id}
-        onValueChange={(value) => updateUserAddress({ address: value })}
+        defaultValue={value}
+        onValueChange={(value) => handleAddressChange(value)}
       >
         {data?.data.map((address) => (
           <AddressCard

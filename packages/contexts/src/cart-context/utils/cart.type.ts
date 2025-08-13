@@ -1,5 +1,5 @@
 import { IProductResponse } from "@repo/api/services/products/index";
-import { ICartItem } from "./cart.interface";
+import { ICartItem, IOutOfStockItem } from "./cart.interface";
 
 export type CartAction =
   | {
@@ -14,4 +14,8 @@ export type CartAction =
   | { type: "UPDATE_QUANTITY"; payload: { id: string; quantity: number } }
   | { type: "CLEAR_CART" }
   | { type: "LOAD_CART"; payload: ICartItem[] }
-  | { type: "SET_LOADING"; payload: boolean };
+  | { type: "SET_LOADING"; payload: boolean }
+  | {
+      type: "SET_OUT_OF_STOCK_ITEMS";
+      payload: IOutOfStockItem[];
+    };

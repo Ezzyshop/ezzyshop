@@ -17,7 +17,7 @@ export const CheckoutNote = ({ form }: IProps) => {
       <Label className="text-lg font-medium mb-1">{t("title")}</Label>
       <FormField
         control={form.control}
-        name="note"
+        name="notes"
         render={({ field }) => (
           <Textarea
             placeholder={t("placeholder")}

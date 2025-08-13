@@ -39,6 +39,13 @@ export enum ErrorMessages {
   TelegramBotNotFound = "TELEGRAM_BOT_NOT_FOUND",
   OrderNotFound = "ORDER_NOT_FOUND",
   YouHaveReachedTheLimitOfProducts = "YOU_HAVE_REACHED_THE_LIMIT_OF_PRODUCTS",
+
+  AddressNotFound = "ADDRESS_NOT_FOUND",
+  YouAreNotAuthorizedToUpdateThisAddress = "YOU_ARE_NOT_AUTHORIZED_TO_UPDATE_THIS_ADDRESS",
+
+  BranchNotFound = "BRANCH_NOT_FOUND",
+  PickupAddressNotFound = "PICKUP_ADDRESS_NOT_FOUND",
+  ProductOutOfStock = "PRODUCT_OUT_OF_STOCK",
 }
 
 export const errorMessagesMap: Record<ErrorMessages, string> = {
@@ -87,4 +94,10 @@ export const errorMessagesMap: Record<ErrorMessages, string> = {
   [ErrorMessages.OrderNotFound]: "Buyurtma topilmadi",
   [ErrorMessages.YouHaveReachedTheLimitOfProducts]:
     "Mahsulotlar limitiga erishdingiz",
+  [ErrorMessages.AddressNotFound]: "Manzil topilmadi",
+  [ErrorMessages.YouAreNotAuthorizedToUpdateThisAddress]:
+    "Siz bu manzilni yangilash huquqiga ega emassiz",
+  [ErrorMessages.BranchNotFound]: "Filial topilmadi",
+  [ErrorMessages.PickupAddressNotFound]: "Olib ketish manzili topilmadi",
+  [ErrorMessages.ProductOutOfStock]: "Mahsulot mavjud emas",
 };

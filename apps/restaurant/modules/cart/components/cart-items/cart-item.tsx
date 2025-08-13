@@ -1,7 +1,7 @@
 import { ICartItem } from "@repo/contexts/cart-context";
 import { Card } from "@repo/ui/components/ui/card";
 import Image from "next/image";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { ILocale } from "@repo/api/utils/interfaces/base.interface";
 import { AddToCartButton } from "@/components/add-to-cart-button/add-to-cart-button";
 import { useCart } from "@repo/contexts/cart-context/cart.context";
@@ -9,12 +9,15 @@ import { useShopContext } from "@/contexts/shop.context";
 import { useState } from "react";
 import { cn } from "@repo/ui/lib/utils";
 import { CustomLink } from "@/components/custom-link";
+import { Button } from "@repo/ui/components/ui/button";
+import { CircleSlash2 } from "@repo/ui/components/icons/index";
 
 interface IProps {
   item: ICartItem;
 }
 
 export const CartItem = ({ item }: IProps) => {
+  const t = useTranslations("cart");
   const locale = useLocale() as keyof ILocale;
   const { updateQuantity, removeItem, addItem } = useCart();
   const { currency } = useShopContext();
@@ -77,6 +80,11 @@ export const CartItem = ({ item }: IProps) => {
           fill
           className="rounded-lg object-cover"
         />
+        {item.isOutOfStock && (
+          <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-md">
+            <CircleSlash2 className="text-white" />
+          </div>
+        )}
       </div>
 
       <div className="flex-grow">
@@ -107,16 +115,30 @@ export const CartItem = ({ item }: IProps) => {
           )}
         </CustomLink>
 
-        <AddToCartButton
-          size="sm"
-          onAddToCart={handleAddToCart}
-          currentQuantity={item.quantity}
-          selectedVariant={item.variant}
-          product={item.product}
-          onIncrement={handleIncrement}
-          onDecrement={handleDecrement}
-          disabled={isLoading}
-        />
+        {item.isOutOfStock ? (
+          <>
+            <p className="text-sm text-destructive">{t("out_of_stock")}</p>
+            <Button
+              onClick={() => removeItem(item.id)}
+              variant="destructive"
+              size="sm"
+              className="w-full mt-1"
+            >
+              {t("remove")}
+            </Button>
+          </>
+        ) : (
+          <AddToCartButton
+            size="sm"
+            onAddToCart={handleAddToCart}
+            currentQuantity={item.quantity}
+            selectedVariant={item.variant}
+            product={item.product}
+            onIncrement={handleIncrement}
+            onDecrement={handleDecrement}
+            disabled={isLoading}
+          />
+        )}
       </div>
     </Card>
   );

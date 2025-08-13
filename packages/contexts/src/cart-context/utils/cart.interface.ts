@@ -6,6 +6,7 @@ export interface ICartItem {
   variant?: IProductResponse["variants"][number];
   quantity: number;
   addedAt: number; // timestamp
+  isOutOfStock: boolean;
 }
 
 // Cart state interface
@@ -16,4 +17,9 @@ export interface ICartState {
   totalPrice: number;
   totalDiscount: number;
   totalPriceWithoutDiscount: number;
+}
+
+export interface IOutOfStockItem {
+  productId: string;
+  variantId?: string;
 }

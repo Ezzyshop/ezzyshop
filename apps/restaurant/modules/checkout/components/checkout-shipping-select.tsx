@@ -20,7 +20,7 @@ import { useTranslations } from "next-intl";
 import { CheckoutAddressSelect } from "./checkout-address-select";
 import { UseFormReturn } from "react-hook-form";
 import { ICheckoutForm } from "../utils/checkout.interface";
-import { FormField } from "@repo/ui/components/ui/form";
+import { FormField, FormItem, FormMessage } from "@repo/ui/components/ui/form";
 
 interface IProps {
   form: UseFormReturn<ICheckoutForm>;
@@ -29,7 +29,7 @@ interface IProps {
 export const CheckoutShippingSelect = ({ form }: IProps) => {
   const { shopId } = useParams<ICommonParams>();
   const { currency } = useShopContext();
-  const t = useTranslations("checkout.shipping");
+  const t = useTranslations();
   const [selectedTab, setSelectedTab] = useState<"pickup" | "delivery">(
     "delivery"
   );
@@ -50,7 +50,7 @@ export const CheckoutShippingSelect = ({ form }: IProps) => {
     if (!branches?.length) {
       return (
         <Card className="p-3 flex-row items-center gap-2 shadow-none border-none">
-          {t("no-branches-found")}
+          {t("checkout.shipping.no-branches-found")}
         </Card>
       );
     }
@@ -58,28 +58,41 @@ export const CheckoutShippingSelect = ({ form }: IProps) => {
     return (
       <FormField
         control={form.control}
-        name="branch"
+        name="pickup_address"
         render={({ field }) => (
-          <RadioGroup
-            {...field}
-            value={field.value}
-            onValueChange={field.onChange}
-          >
-            {branches?.map((branch) => (
-              <Card
-                key={branch._id}
-                className="p-3 flex-row items-center gap-2 shadow-none border-none"
-              >
-                <Label htmlFor={branch._id} className="flex-grow block">
-                  <h3 className="font-medium text-base">{branch.name.uz}</h3>
-                  <p className="text-sm text-muted-foreground line-clamp-2">
-                    {branch.address.address}
-                  </p>
-                </Label>
-                <RadioGroupItem value={branch._id} id={branch._id} />
-              </Card>
-            ))}
-          </RadioGroup>
+          <FormItem>
+            <RadioGroup
+              {...field}
+              value={field.value}
+              onValueChange={(e) => {
+                field.onChange(e);
+                form.clearErrors("pickup_location_and_delivery_method");
+              }}
+            >
+              {branches?.map((branch) => (
+                <Card
+                  key={branch._id}
+                  className="p-3 flex-row items-center gap-2 shadow-none border-none"
+                >
+                  <Label htmlFor={branch._id} className="flex-grow block">
+                    <h3 className="font-medium text-base">{branch.name.uz}</h3>
+                    <p className="text-sm text-muted-foreground line-clamp-2">
+                      {branch.address.address}
+                    </p>
+                  </Label>
+                  <RadioGroupItem value={branch._id} id={branch._id} />
+                </Card>
+              ))}
+            </RadioGroup>
+            {form.formState.errors.pickup_location_and_delivery_method && (
+              <FormMessage>
+                {t(
+                  form.formState.errors.pickup_location_and_delivery_method
+                    ?.message
+                )}
+              </FormMessage>
+            )}
+          </FormItem>
         )}
       />
     );
@@ -89,7 +102,7 @@ export const CheckoutShippingSelect = ({ form }: IProps) => {
     if (!deliveryMethods?.length) {
       return (
         <Card className="p-3 flex-row items-center gap-2 shadow-none border-none">
-          {t("no-delivery-methods-found")}
+          {t("checkout.shipping.no-delivery-methods-found")}
         </Card>
       );
     }
@@ -100,11 +113,14 @@ export const CheckoutShippingSelect = ({ form }: IProps) => {
           control={form.control}
           name="delivery_method"
           render={({ field }) => (
-            <>
+            <FormItem>
               <RadioGroup
                 {...field}
                 value={field.value}
-                onValueChange={field.onChange}
+                onValueChange={(e) => {
+                  field.onChange(e);
+                  form.clearErrors("pickup_location_and_delivery_method");
+                }}
               >
                 {deliveryMethods?.map((deliveryMethod) => (
                   <Card
@@ -132,17 +148,26 @@ export const CheckoutShippingSelect = ({ form }: IProps) => {
                   </Card>
                 ))}
               </RadioGroup>
-            </>
+              {form.formState.errors.pickup_location_and_delivery_method && (
+                <FormMessage>
+                  {t(
+                    form.formState.errors.pickup_location_and_delivery_method
+                      ?.message
+                  )}
+                </FormMessage>
+              )}
+            </FormItem>
           )}
         />
-        <CheckoutAddressSelect />
+        <CheckoutAddressSelect form={form} />
       </div>
     );
   };
 
   useEffect(() => {
-    form.resetField("branch");
+    form.resetField("pickup_address");
     form.resetField("delivery_method");
+    form.resetField("delivery_address");
   }, [selectedTab, form]);
 
   return (
@@ -155,11 +180,17 @@ export const CheckoutShippingSelect = ({ form }: IProps) => {
       >
         {branches?.length && deliveryMethods?.length ? (
           <TabsList className="w-full">
-            <TabsTrigger value="delivery">{t("delivery")}</TabsTrigger>
-            <TabsTrigger value="pickup">{t("pickup")}</TabsTrigger>
+            <TabsTrigger value="delivery">
+              {t("checkout.shipping.delivery")}
+            </TabsTrigger>
+            <TabsTrigger value="pickup">
+              {t("checkout.shipping.pickup")}
+            </TabsTrigger>
           </TabsList>
         ) : (
-          <p className="text-lg font-medium">{t("delivery-options")}</p>
+          <p className="text-lg font-medium">
+            {t("checkout.shipping.delivery-options")}
+          </p>
         )}
 
         <TabsContent value="pickup">{getBranchesContent()}</TabsContent>
