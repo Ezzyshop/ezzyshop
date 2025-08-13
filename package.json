@@ -6,6 +6,7 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "restaurant": "turbo run dev --filter=restaurant",
+    "restaurant:build": "turbo run build --filter=restaurant",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"
   },
