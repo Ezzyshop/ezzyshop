@@ -22,7 +22,9 @@ export const CartSummary = () => {
       </div>
 
       <ProtectedLink href="/checkout" asChild>
-        <Button size="lg">{t("checkout")}</Button>
+        <Button size="lg" className="w-fit">
+          {t("checkout")}
+        </Button>
       </ProtectedLink>
     </div>
   );

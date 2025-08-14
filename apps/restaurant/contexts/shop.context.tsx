@@ -26,7 +26,7 @@ export const ShopProvider = ({ children }: PropsWithChildren) => {
   });
 
   useEffect(() => {
-    if (data && data.data.brand_color) {
+    if (data && data.data?.brand_color) {
       const primaryVariables = [
         "--primary",
         "--accent-foreground",
@@ -37,7 +37,7 @@ export const ShopProvider = ({ children }: PropsWithChildren) => {
       primaryVariables.forEach((variable) => {
         document.documentElement.style.setProperty(
           variable,
-          data.data.brand_color ?? "oklch(0.71 0.19 48.2)"
+          data.data?.brand_color ?? "oklch(0.71 0.19 48.2)"
         );
       });
     }
