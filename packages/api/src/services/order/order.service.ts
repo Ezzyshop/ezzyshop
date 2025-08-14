@@ -1,4 +1,4 @@
-import { IPaginatedData } from "@repo/api/utils/interfaces";
+import { IPaginatedData } from "../../utils/interfaces";
 import { api } from "../../api";
 import {
   IOrderCreateRequest,

@@ -54,7 +54,7 @@ export const OrdersPage = () => {
       ));
     }
 
-    if (data?.pages[0].data.length === 0) {
+    if (data?.pages[0]?.data.length === 0) {
       return (
         <div className="text-center flex-grow text-muted-foreground text-xl flex items-center justify-center">
           {t("no_orders_found")}

@@ -58,9 +58,7 @@ export const AddressSelect = ({
       return null;
     }
 
-    const value = onAddressChange
-      ? selectedAddress?._id
-      : (user?.address?._id ?? data?.data[0]?._id);
+    const value = onAddressChange ? selectedAddress?._id : user?.address?._id;
 
     return (
       <RadioGroup
