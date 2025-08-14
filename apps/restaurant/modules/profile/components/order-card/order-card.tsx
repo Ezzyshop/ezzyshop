@@ -5,6 +5,9 @@ import { Card } from "@repo/ui/components/ui/card";
 import { useTranslations } from "next-intl";
 import dayjs from "dayjs";
 import { useShopContext } from "@/contexts/shop.context";
+import { OrderProducts } from "./order-products";
+import { Separator } from "@repo/ui/components/ui/separator";
+import { CustomLink } from "@/components/custom-link";
 
 interface IProps {
   order: IOrderResponse;
@@ -49,14 +52,24 @@ export const OrderCard = ({ order }: IProps) => {
         <div>
           <p className="font-medium text-sm">{t("address")}:</p>
           <p className="text-sm">{order.delivery_address?.address}</p>
-          <p className="text-sm text-primary">{t("address-details")}</p>
+          <CustomLink
+            href={`/map?lat=${order.delivery_address.lat}&lng=${order.delivery_address.lng}`}
+            className="text-sm text-primary"
+          >
+            {t("address-details")}
+          </CustomLink>
         </div>
       )}
       {order.pickup_address && (
         <div>
           <p className="font-medium text-sm">{t("pickup-address")}:</p>
           <p className="text-sm">{order.pickup_address?.address}</p>
-          <p className="text-sm text-primary">{t("address-details")}</p>
+          <CustomLink
+            href={`/map?lat=${order.pickup_address.lat}&lng=${order.pickup_address.lng}`}
+            className="text-sm text-primary"
+          >
+            {t("address-details")}
+          </CustomLink>
         </div>
       )}
       <div>
@@ -70,7 +83,6 @@ export const OrderCard = ({ order }: IProps) => {
         <p className="text-sm">{order.customer_info.name}</p>
         <p className="text-sm">{order.customer_info.phone}</p>
       </div>
-
       <div>
         <div className="flex items-center justify-between">
           <p className="text-sm">
@@ -99,6 +111,8 @@ export const OrderCard = ({ order }: IProps) => {
           </p>
         </div>
       </div>
+      <Separator className="my-2" />
+      <OrderProducts products={order.products} />
     </Card>
   );
 };

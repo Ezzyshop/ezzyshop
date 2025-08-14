@@ -12,6 +12,7 @@ import { Tabs, TabsList, TabsTrigger } from "@repo/ui/components/ui/tabs";
 import { useState } from "react";
 import { OrderStatus } from "@repo/api/services/order/order.enum";
 import { IOrderParams } from "@repo/api/services/order/order.interface";
+import { OrderCardSkeleton } from "../../components/order-card/order-card-skeleton";
 
 export const OrdersPage = () => {
   const { shopId } = useParams<ICommonParams>();
@@ -42,15 +43,23 @@ export const OrdersPage = () => {
         return undefined;
       },
       initialPageParam: 1,
+      staleTime: 0,
+      gcTime: 0,
     });
 
   const renderOrders = () => {
     if (isLoading) {
-      return <div>loading</div>;
+      return Array.from({ length: 2 }).map((_, index) => (
+        <OrderCardSkeleton key={index} />
+      ));
     }
 
     if (data?.pages[0].data.length === 0) {
-      return <div>no orders found</div>;
+      return (
+        <div className="text-center flex-grow text-muted-foreground text-xl flex items-center justify-center">
+          {t("no_orders_found")}
+        </div>
+      );
     }
 
     return (
@@ -71,12 +80,13 @@ export const OrdersPage = () => {
   };
 
   return (
-    <div>
+    <div className="flex-grow flex flex-col">
       <PageHeader title={t("orders")} />
 
-      <div className="px-4 pb-4">
+      <div className="px-4 pb-4 flex-grow flex flex-col">
         <Tabs
           value={activeTab}
+          className=" h-full flex-grow flex flex-col"
           onValueChange={(e) => setActiveTab(e as "active" | "completed")}
         >
           <TabsList className="w-full">

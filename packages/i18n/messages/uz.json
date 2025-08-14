@@ -158,7 +158,7 @@
     "order_number": "Buyurtma raqami",
     "status": {
       "new": "Yangi",
-      "processing": "Jarayonda",
+      "processing": "Tayyorlanmoqda",
       "delivering": "Yetkazib berilmoqda",
       "completed": "Xaridorga berildi",
       "cancelled": "Bekor qilingan"
@@ -170,6 +170,12 @@
     "total-price": "Umumiy narxi",
     "address": "Yetkazib berish manzili",
     "address-details": "Xaridata ko'rish",
-    "pickup-address": "Olib ketish manzili"
+    "pickup-address": "Olib ketish manzili",
+    "products": "Mahsulotlar",
+    "quantity": "{count} dona",
+    "no_orders_found": "Buyurtmalar topilmadi"
+  },
+  "map": {
+    "title": "Xarita"
   }
 }

@@ -47,7 +47,35 @@ export interface IOrderResponse {
     lng: number;
     _id: string;
   };
+  products: IOrderProduct[];
 }
+
+export interface IOrderProduct {
+  _id: string;
+  price: number;
+  compare_at_price?: number;
+  product: {
+    _id: string;
+    name: {
+      uz: string;
+      ru: string;
+      en: string;
+    };
+    images: string[];
+  };
+  quantity: number;
+  total_price: number;
+  variant?: {
+    attributes: Record<string, string>;
+    name: {
+      uz: string;
+      ru: string;
+      en: string;
+    };
+    _id: string;
+  };
+}
+
 export interface IOrderParams {
   page?: number;
   limit?: number;
