@@ -19,7 +19,7 @@ import {
   FormLabel,
 } from "@repo/ui/components/ui/form";
 import { Input } from "@repo/ui/components/ui/input";
-import { YandexMap } from "@repo/ui/components/ui/yandex-map";
+import { YandexMap } from "@repo/ui/components/ui/yandex-map/yandex-map";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";

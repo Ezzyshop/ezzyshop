@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { Map, Placemark } from "@pbe/react-yandex-maps";
 import { YMapsApi } from "@pbe/react-yandex-maps/typings/util/typing";
-import { YMaps } from "@pbe/react-yandex-maps";
+import { YandexMapProvider } from "./yandex-map-provider";
 
 type Coordinates = [number, number];
 
@@ -92,14 +92,7 @@ export const YandexMap = ({
   };
 
   return (
-    <YMaps
-      query={{
-        apikey: "8b56a857-f05f-4dc6-a91b-bc58f302ff21",
-        lang: "ru_RU",
-        ns: "use-load-option",
-        load: "Map,Placemark,map.addon.balloon",
-      }}
-    >
+    <YandexMapProvider>
       <div className={className}>
         <Map
           defaultState={{
@@ -130,6 +123,6 @@ export const YandexMap = ({
           )}
         </Map>
       </div>
-    </YMaps>
+    </YandexMapProvider>
   );
 };

@@ -1,7 +1,7 @@
 "use client";
 import { PageHeader } from "@/components/page-header/page-header";
 import { useQueryParams } from "@repo/hooks/use-query-params";
-import { YandexMap } from "@repo/ui/components/ui/yandex-map";
+import { YandexMap } from "@repo/ui/components/ui/yandex-map/yandex-map";
 import { useTranslations } from "next-intl";
 
 export const MapPage = () => {
