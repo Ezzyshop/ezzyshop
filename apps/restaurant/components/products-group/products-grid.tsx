@@ -112,7 +112,7 @@ const NoProductsFound = () => {
   );
 };
 
-const FetchNextPage = ({
+export const FetchNextPage = ({
   hasNextPage,
   isFetchingNextPage,
   fetchNextPage,

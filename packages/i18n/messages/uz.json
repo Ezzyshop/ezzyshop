@@ -150,5 +150,26 @@
       "payment-method-required": "To'lov usuli tanlang",
       "delivery-method-required": "Yetkazib berish usuli yoki olib ketish manzilini tanlang"
     }
+  },
+  "orders": {
+    "active": "Faollar",
+    "completed": "Tugallangan",
+    "orders": "Buyurtmalarim",
+    "order_number": "Buyurtma raqami",
+    "status": {
+      "new": "Yangi",
+      "processing": "Jarayonda",
+      "delivering": "Yetkazib berilmoqda",
+      "completed": "Xaridorga berildi",
+      "cancelled": "Bekor qilingan"
+    },
+    "date": "Buyurtma sanasi",
+    "recipient": "Qabul qilib oluvchi",
+    "products-quantity": "{count} ta mahsulot",
+    "delivery-method": "Yetkazib berish narxi",
+    "total-price": "Umumiy narxi",
+    "address": "Yetkazib berish manzili",
+    "address-details": "Xaridata ko'rish",
+    "pickup-address": "Olib ketish manzili"
   }
 }

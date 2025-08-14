@@ -1,3 +1,5 @@
+import { OrderStatus } from "./order.enum";
+
 export interface IOrderCreateRequest {
   product: {
     product: string;
@@ -17,4 +19,37 @@ export interface IOrderCreateRequest {
     phone: string;
   };
   notes?: string;
+}
+
+export interface IOrderResponse {
+  _id: string;
+  status: OrderStatus;
+  createdAt: string;
+  customer_info: {
+    name: string;
+    phone: string;
+  };
+  total_quantity: number;
+  total_price: number;
+  delivery_method?: {
+    _id: string;
+    price: number;
+  };
+  delivery_address?: {
+    address: string;
+    lat: number;
+    lng: number;
+    _id: string;
+  };
+  pickup_address?: {
+    address: string;
+    lat: number;
+    lng: number;
+    _id: string;
+  };
+}
+export interface IOrderParams {
+  page?: number;
+  limit?: number;
+  status?: OrderStatus;
 }
