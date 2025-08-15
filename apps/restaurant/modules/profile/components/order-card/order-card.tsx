@@ -12,6 +12,7 @@ import { CustomLink } from "@/components/custom-link";
 import { PaymentMethodType } from "@repo/api/services/payment-method/payment-method.enum";
 
 import { OrderCheques } from "./order-cheque/order-cheques";
+import { CopyableText } from "@repo/ui/components/ui/copyable-text";
 
 interface IProps {
   order: IOrderResponse;
@@ -88,7 +89,8 @@ export const OrderCard = ({ order, transaction }: IProps) => {
   return (
     <Card className="p-4 gap-1 border-none shadow-none">
       <p className="font-medium">
-        {t("order_number")} {order._id}
+        {t("order_number")}{" "}
+        <CopyableText text={order._id}>{order._id}</CopyableText>
       </p>
       <Badge className={orderStatusWithText[order.status].color}>
         {t(orderStatusWithText[order.status].text)}
