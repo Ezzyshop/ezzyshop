@@ -173,7 +173,31 @@
     "pickup-address": "Olib ketish manzili",
     "products": "Mahsulotlar",
     "quantity": "{count} dona",
-    "no_orders_found": "Buyurtmalar topilmadi"
+    "no_orders_found": "Buyurtmalar topilmadi",
+    "cheque_upload": "Chekni yuborish",
+    "payment-method": {
+      "title": "To'lov usuli",
+      "click": "Click",
+      "card-transfer": "Karta orqali",
+      "cash": "Naqd pul"
+    },
+    "payment-status": {
+      "title": "To'lov holati",
+      "pending": "To'lanmagan",
+      "success": "To'langan",
+      "refunded": "Qaytarilgan",
+      "cancelled": "Bekor qilingan"
+    },
+    "cheque_upload_pending": "Chek sotuvchi tomondan tekshirilmoqda",
+    "cheque_upload_verified": "Chek tasdiqlandi",
+    "cheque_upload_rejected": "Chek rad etildi",
+    "cheque_upload_pending_description": "Chek tez orada sotuvchi tomonidan tekshiriladi",
+    "cheque_upload_verified_description": "Siz yuborgan chekni sotuvchi tomonidan tasdiqlangan",
+    "cheque_upload_rejected_description": "Siz yuborgan chekni sotuvchi tomonidan rad etildi",
+    "cheque_upload_pending_button": "Chek tekshrilmoqda",
+    "cheque_upload_verified_button": "Chek tasdiqlandi",
+    "cheque_upload_rejected_button": "Chek rad etildi",
+    "cheques": "Yuborilgan cheklar"
   },
   "map": {
     "title": "Xarita"

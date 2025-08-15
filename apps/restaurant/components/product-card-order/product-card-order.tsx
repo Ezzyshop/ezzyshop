@@ -31,7 +31,7 @@ export const ProductCardOrder = ({ product }: IProps) => {
 
         {product.variant && (
           <>
-            {Object.entries(product.variant.attributes).map(([key, value]) => (
+            {Object.entries(product.variant?.attributes ?? {}).map(([key, value]) => (
               <p key={key} className="text-muted-foreground">
                 {key}: {value}
               </p>

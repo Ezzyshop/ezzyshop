@@ -13,7 +13,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { UseFormReturn } from "react-hook-form";
 import { ICheckoutForm } from "../utils/checkout.interface";
-import { FormField, FormMessage } from "@repo/ui/components/ui/form";
+import { FormField } from "@repo/ui/components/ui/form";
 
 interface IProps {
   form: UseFormReturn<ICheckoutForm>;
@@ -31,6 +31,7 @@ export const CheckoutPaymentSelect = ({ form }: IProps) => {
   const providerIcons: Record<PaymentMethodType, string> = {
     [PaymentMethodType.Click]: "/icons/payment-providers/click.svg",
     [PaymentMethodType.Cash]: "/images/payment-providers/cash.png",
+    [PaymentMethodType.CardTransfer]: "/icons/payment-providers/card.svg",
   };
 
   const renderContent = () => {

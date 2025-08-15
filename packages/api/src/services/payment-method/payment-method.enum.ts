@@ -1,5 +1,6 @@
 export enum PaymentMethodType {
   Click = "CLICK",
+  CardTransfer = "CARD_TRANSFER",
   Cash = "CASH",
 }
 

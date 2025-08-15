@@ -1,3 +1,8 @@
+import { PaymentMethodType } from "../payment-method";
+import {
+  TransactionChequeImageStatus,
+  TransactionStatus,
+} from "../transaction/transaction.enum";
 import { OrderStatus } from "./order.enum";
 
 export interface IOrderCreateRequest {
@@ -48,6 +53,15 @@ export interface IOrderResponse {
     _id: string;
   };
   products: IOrderProduct[];
+  transaction: {
+    _id: string;
+    status: TransactionStatus;
+    cheque_images: {
+      url: string;
+      status: TransactionChequeImageStatus;
+    }[];
+    provider: PaymentMethodType;
+  };
 }
 
 export interface IOrderProduct {

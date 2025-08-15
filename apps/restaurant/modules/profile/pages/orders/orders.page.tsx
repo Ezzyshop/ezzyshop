@@ -67,7 +67,7 @@ export const OrdersPage = () => {
         {data?.pages
           .flatMap((page) => page.data)
           .map((order) => (
-            <OrderCard order={order} key={order._id} />
+            <OrderCard order={order} key={order._id} transaction={order.transaction} />
           ))}
 
         <FetchNextPage

@@ -1,5 +1,6 @@
 import { OrderStatus } from "@repo/api/services/order/order.enum";
 import { IOrderResponse } from "@repo/api/services/order/order.interface";
+import { TransactionStatus } from "@repo/api/services/transaction/transaction.enum";
 import { Badge } from "@repo/ui/components/ui/badge";
 import { Card } from "@repo/ui/components/ui/card";
 import { useTranslations } from "next-intl";
@@ -8,9 +9,13 @@ import { useShopContext } from "@/contexts/shop.context";
 import { OrderProducts } from "./order-products";
 import { Separator } from "@repo/ui/components/ui/separator";
 import { CustomLink } from "@/components/custom-link";
+import { PaymentMethodType } from "@repo/api/services/payment-method/payment-method.enum";
+
+import { OrderCheques } from "./order-cheque/order-cheques";
 
 interface IProps {
   order: IOrderResponse;
+  transaction: IOrderResponse["transaction"];
 }
 
 const orderStatusWithText = {
@@ -36,7 +41,47 @@ const orderStatusWithText = {
   },
 };
 
-export const OrderCard = ({ order }: IProps) => {
+const transactionStatusWithText: Record<
+  TransactionStatus,
+  { text: string; color: string }
+> = {
+  [TransactionStatus.Pending]: {
+    text: "payment-status.pending",
+    color: "bg-yellow-500",
+  },
+  [TransactionStatus.Success]: {
+    text: "payment-status.success",
+    color: "bg-green-500",
+  },
+  [TransactionStatus.Refunded]: {
+    text: "payment-status.refunded",
+    color: "bg-red-500",
+  },
+  [TransactionStatus.Cancelled]: {
+    text: "payment-status.cancelled",
+    color: "bg-red-500",
+  },
+};
+
+const paymentMethodWithText: Record<
+  PaymentMethodType,
+  { text: string; color: string }
+> = {
+  [PaymentMethodType.Click]: {
+    text: "payment-method.click",
+    color: "bg-primary",
+  },
+  [PaymentMethodType.CardTransfer]: {
+    text: "payment-method.card-transfer",
+    color: "bg-primary",
+  },
+  [PaymentMethodType.Cash]: {
+    text: "payment-method.cash",
+    color: "bg-primary",
+  },
+};
+
+export const OrderCard = ({ order, transaction }: IProps) => {
   const t = useTranslations("orders");
   const { currency } = useShopContext();
 
@@ -83,7 +128,19 @@ export const OrderCard = ({ order }: IProps) => {
         <p className="text-sm">{order.customer_info.name}</p>
         <p className="text-sm">{order.customer_info.phone}</p>
       </div>
-      <div>
+      <div className="mb-2">
+        <div className="flex items-center justify-between">
+          <p className="text-sm">{t("payment-method.title")}:</p>
+          <p className="text-sm">
+            {t(paymentMethodWithText[transaction.provider].text)}
+          </p>
+        </div>
+        <div className="flex items-center justify-between">
+          <p className="text-sm">{t("payment-status.title")}:</p>
+          <p className="text-sm">
+            {t(transactionStatusWithText[transaction.status].text)}
+          </p>
+        </div>
         <div className="flex items-center justify-between">
           <p className="text-sm">
             {t("products-quantity", { count: order.total_quantity })}:
@@ -111,6 +168,11 @@ export const OrderCard = ({ order }: IProps) => {
           </p>
         </div>
       </div>
+
+      {transaction.provider === PaymentMethodType.CardTransfer &&
+        transaction.status === TransactionStatus.Pending && (
+          <OrderCheques transaction={transaction} />
+        )}
       <Separator className="my-2" />
       <OrderProducts products={order.products} />
     </Card>

@@ -11,7 +11,7 @@ export interface IProductResponse {
   categories: string[];
   variants: {
     sku: string;
-    attributes: Record<string, string>;
+    attributes?: Record<string, string>;
     price: number;
     quantity: number;
     image: string;
