@@ -35,7 +35,7 @@ export const OrderCheques = ({ transaction }: IProps) => {
               {transaction.cheque_images.map((cheque, index) => (
                 <AccordionContent
                   key={`${transaction._id}-${index}`}
-                  className="first:mt-2"
+                  className="first:mt-2 p-0"
                 >
                   <OrderChequeDetailButton cheque={cheque} />
                 </AccordionContent>

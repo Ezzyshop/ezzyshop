@@ -88,10 +88,10 @@ export const OrderCard = ({ order, transaction }: IProps) => {
 
   return (
     <Card className="p-4 gap-1 border-none shadow-none">
-      <p className="font-medium">
-        {t("order_number")}{" "}
+      <div className="font-medium flex items-center gap-x-2 flex-wrap">
+        <span>{t("order_number")} </span>
         <CopyableText text={order._id}>{order._id}</CopyableText>
-      </p>
+      </div>
       <Badge className={orderStatusWithText[order.status].color}>
         {t(orderStatusWithText[order.status].text)}
       </Badge>
@@ -171,10 +171,9 @@ export const OrderCard = ({ order, transaction }: IProps) => {
         </div>
       </div>
 
-      {transaction.provider === PaymentMethodType.CardTransfer &&
-        transaction.status === TransactionStatus.Pending && (
-          <OrderCheques transaction={transaction} />
-        )}
+      {transaction.provider === PaymentMethodType.CardTransfer && (
+        <OrderCheques transaction={transaction} />
+      )}
       <Separator className="my-2" />
       <OrderProducts products={order.products} />
     </Card>

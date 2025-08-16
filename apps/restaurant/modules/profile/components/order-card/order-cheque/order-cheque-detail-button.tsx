@@ -28,7 +28,7 @@ export const OrderChequeDetailButton = ({ cheque }: IProps) => {
     }
     if (cheque.status === TransactionChequeImageStatus.Verified) {
       return (
-        <Button variant="default" className="w-full bg-green-500">
+        <Button variant="default" className="w-full bg-green-600 hover:bg-green-700">
           {t("cheque_upload_verified")}
         </Button>
       );
