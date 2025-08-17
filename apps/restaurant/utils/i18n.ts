@@ -1,3 +1,3 @@
-import config from '@repo/i18n/config';
+import config from "@repo/i18n/config";
 
-export default config; 
+export default config;

@@ -10,12 +10,11 @@
       "@/*": ["./*"]
     }
   },
-
   "include": [
     "**/*.ts",
     "**/*.tsx",
     "next-env.d.ts",
-    "next.config.ts",
+    "next.config.js",
     ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
