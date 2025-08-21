@@ -149,6 +149,12 @@
       "delivery-address-required": "Yetkazib berish manzilini tanlang",
       "payment-method-required": "To'lov usuli tanlang",
       "delivery-method-required": "Yetkazib berish usuli yoki olib ketish manzilini tanlang"
+    },
+    "success": {
+      "title": "Xaridingiz uchun raxmat!",
+      "description": "Buyurtmangiz muvaffaqiyatli amalga oshirildi va tez orada sizga yuboriladi.",
+      "go_to_home": "Bosh sahifaga o'tish",
+      "go_to_orders": "Buyurtmalarimga o'tish"
     }
   },
   "orders": {

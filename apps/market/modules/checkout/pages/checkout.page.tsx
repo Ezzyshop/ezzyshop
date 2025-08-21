@@ -37,6 +37,7 @@ export const CheckoutPage = () => {
       OrderService.createOrder(shopId, order),
     onSuccess: () => {
       clearCart();
+      router.push(`/${locale}/${shopId}/checkout/success`);
     },
     onError: (error: {
       response: { data: { message: ErrorMessages; data: IOutOfStockItem[] } };

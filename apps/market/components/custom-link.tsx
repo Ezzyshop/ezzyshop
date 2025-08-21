@@ -1,3 +1,4 @@
+"use client";
 import { ICommonParams } from "@/utils/interfaces";
 import Link, { LinkProps } from "next/link";
 import { useParams } from "next/navigation";
