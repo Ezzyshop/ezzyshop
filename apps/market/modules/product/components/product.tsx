@@ -7,6 +7,7 @@ import { SimilarProducts } from "./similar-products";
 import { IProductResponse } from "@repo/api/services/products/index";
 import { useEffect } from "react";
 import { useProductCart } from "@repo/hooks/index";
+import { useLocale } from "next-intl";
 
 interface IProps {
   product: IProductResponse;
@@ -14,6 +15,7 @@ interface IProps {
 }
 
 export const Product = ({ product, shopId }: IProps) => {
+  const lang = useLocale();
   const {
     selectedVariant,
     setSelectedVariant,
@@ -31,7 +33,10 @@ export const Product = ({ product, shopId }: IProps) => {
 
   return (
     <div className="space-y-3">
-      <PageHeader />
+      <PageHeader
+        title={product.name[lang as keyof typeof product.name]}
+        titleClassName="pl-8"
+      />
       <div className="px-4 pb-3 space-y-3">
         <ProductBasicInformation product={product} />
         <ProductAddToCart

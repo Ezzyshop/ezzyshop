@@ -11,6 +11,7 @@ interface IProps {
   description?: string;
   isLoadingTitle?: boolean;
   rightElement?: React.ReactNode;
+  titleClassName?: string;
 }
 
 export const PageHeader = ({
@@ -18,6 +19,7 @@ export const PageHeader = ({
   description,
   isLoadingTitle,
   rightElement,
+  titleClassName,
 }: IProps) => {
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -46,7 +48,11 @@ export const PageHeader = ({
           {isLoadingTitle ? (
             <Skeleton className="h-7 w-1/2 rounded-2xl" />
           ) : (
-            <h1 className="text-lg font-medium text-center h-7">{title}</h1>
+            <h1
+              className={cn("text-lg font-medium text-center h-7 line-clamp-1", titleClassName)}
+            >
+              {title}
+            </h1>
           )}
           {description && (
             <p className="text-sm text-center text-gray-500">{description}</p>
