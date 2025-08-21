@@ -22,7 +22,7 @@ export const Header = () => {
   };
 
   return (
-    <div className="px-4 flex items-center justify-between">
+    <div className="px-4 flex items-center justify-between mt-4">
       <Image
         src={logo ?? "/icons/logo.svg"}
         alt="logo"

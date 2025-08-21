@@ -13,6 +13,10 @@ import { useUserContext } from "@repo/contexts/user-context/user.context";
 export const AddressSelect = () => {
   const t = useTranslations("profile.address");
   const { user } = useUserContext();
+  if (!user) {
+    return null;
+  }
+
   return (
     <Drawer>
       <DrawerTrigger className="bg-primary/10 px-4 w-full text-primary py-2 border-y border-primary/20 text-sm font-medium flex items-center justify-center gap-2 cursor-pointer">
