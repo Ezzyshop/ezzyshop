@@ -1,4 +1,4 @@
-import { IPaymentMethodResponse, PaymentMethodType } from "../payment-method";
+import { IPaymentMethodResponse } from "../payment-method";
 import {
   TransactionChequeImageStatus,
   TransactionStatus,
@@ -24,6 +24,7 @@ export interface IOrderCreateRequest {
     phone: string;
   };
   notes?: string;
+  telegram_chat_id?: string;
 }
 
 export interface IOrderResponse {

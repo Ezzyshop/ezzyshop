@@ -59,6 +59,9 @@ export const orderFields: Record<keyof IOrderCreateRequest, Joi.Schema> = {
   notes: Joi.string().max(500).optional().allow("").messages({
     "string.max": "Notes must be less than 500 characters",
   }),
+  telegram_chat_id: Joi.string().optional().allow("").messages({
+    "string.max": "Telegram chat ID must be less than 500 characters",
+  }),
 };
 
 export const createOrderValidator = Joi.object(orderFields)

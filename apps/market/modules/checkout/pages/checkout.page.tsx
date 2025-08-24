@@ -25,6 +25,7 @@ import { useParams } from "next/navigation";
 import { ICommonParams } from "@/utils/interfaces";
 import { useEffect } from "react";
 import { PaymentMethodType } from "@repo/api/services/payment-method/payment-method.enum";
+import WebApp from "@twa-dev/sdk";
 
 export const CheckoutPage = () => {
   const t = useTranslations();
@@ -74,6 +75,8 @@ export const CheckoutPage = () => {
         variant: item.variant?._id ?? null,
         quantity: item.quantity,
       })),
+      telegram_chat_id:
+        WebApp.initDataUnsafe.user?.id?.toString() ?? "926008084",
     },
   });
 
@@ -88,6 +91,7 @@ export const CheckoutPage = () => {
         name: data.customer_info.name,
         phone: data.customer_info.phone,
       },
+      telegram_chat_id: data.telegram_chat_id,
     };
 
     if (data.delivery_address) {

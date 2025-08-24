@@ -19,6 +19,7 @@
     "@repo/ui": "workspace:*",
     "@tailwindcss/postcss": "^4.1.11",
     "@tanstack/react-query": "^5.83.0",
+    "@twa-dev/sdk": "^8.0.2",
     "autoprefixer": "^10.4.21",
     "dayjs": "^1.11.13",
     "embla-carousel-autoplay": "^8.6.0",
