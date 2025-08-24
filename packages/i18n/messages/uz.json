@@ -114,7 +114,8 @@
         "address-select": "Yetkazib berish manzilini",
         "change-address": "Manzilni o'zgartirish",
         "no-address-selected": "Manzil tanlanmagan"
-      }
+      },
+      "min-order-price": "Minimal buyurtma narxi"
     },
     "payment": {
       "title": "To'lov usuli",

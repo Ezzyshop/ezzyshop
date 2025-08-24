@@ -21,6 +21,8 @@ import { CheckoutAddressSelect } from "./checkout-address-select";
 import { UseFormReturn } from "react-hook-form";
 import { ICheckoutForm } from "../utils/checkout.interface";
 import { FormField, FormItem, FormMessage } from "@repo/ui/components/ui/form";
+import { useCart } from "@repo/contexts/cart-context";
+import { cn } from "@repo/ui/lib/utils";
 
 interface IProps {
   form: UseFormReturn<ICheckoutForm>;
@@ -33,6 +35,8 @@ export const CheckoutShippingSelect = ({ form }: IProps) => {
   const [selectedTab, setSelectedTab] = useState<"pickup" | "delivery">(
     "delivery"
   );
+
+  const { totalPrice } = useCart();
 
   const { data: deliveryMethods } = useQuery({
     queryKey: ["delivery-methods", shopId],
@@ -122,31 +126,46 @@ export const CheckoutShippingSelect = ({ form }: IProps) => {
                   form.clearErrors("pickup_location_and_delivery_method");
                 }}
               >
-                {deliveryMethods?.map((deliveryMethod) => (
-                  <Card
-                    key={deliveryMethod._id}
-                    className="p-3 flex-row items-center gap-2 shadow-none border-none"
-                  >
-                    <Label
-                      htmlFor={deliveryMethod._id}
-                      className="flex-grow block"
+                {deliveryMethods?.map((deliveryMethod) => {
+                  const isDisabled =
+                    !!deliveryMethod.min_order_price &&
+                    deliveryMethod.min_order_price > totalPrice;
+                  return (
+                    <Card
+                      key={deliveryMethod._id}
+                      className={cn(
+                        "p-3 flex-row items-center gap-2 shadow-none border-none",
+                        isDisabled && "opacity-50"
+                      )}
                     >
-                      <h3 className="font-medium text-base">
-                        {deliveryMethod.name.uz}
-                      </h3>
-                      {deliveryMethod.price ? (
-                        <p className="text-sm text-muted-foreground line-clamp-2">
-                          {deliveryMethod?.price?.toLocaleString()}{" "}
-                          {currency.symbol}
-                        </p>
-                      ) : null}
-                    </Label>
-                    <RadioGroupItem
-                      value={deliveryMethod._id}
-                      id={deliveryMethod._id}
-                    />
-                  </Card>
-                ))}
+                      <Label
+                        htmlFor={deliveryMethod._id}
+                        className="flex-grow block"
+                      >
+                        <h3 className="font-medium text-base">
+                          {deliveryMethod.name.uz}
+                        </h3>
+                        {deliveryMethod.price ? (
+                          <p className="text-sm text-muted-foreground line-clamp-2">
+                            {deliveryMethod?.price?.toLocaleString()}{" "}
+                            {currency.symbol}
+                          </p>
+                        ) : null}
+                        {isDisabled && (
+                          <p className="text-sm text-red-500 line-clamp-2">
+                            {t("checkout.shipping.min-order-price")}{" "}
+                            {deliveryMethod.min_order_price?.toLocaleString()} {currency.symbol}
+                          </p>
+                        )}
+                      </Label>
+                      <RadioGroupItem
+                        value={deliveryMethod._id}
+                        id={deliveryMethod._id}
+                        disabled={isDisabled}
+                      />
+                    </Card>
+                  );
+                })}
               </RadioGroup>
               {form.formState.errors.pickup_location_and_delivery_method && (
                 <FormMessage>
