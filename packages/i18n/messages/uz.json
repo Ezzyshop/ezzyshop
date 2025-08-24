@@ -24,7 +24,8 @@
     "similar_products": "O'xshash mahsulotlar",
     "no_options_available": "Sotuvda yo'q",
     "out_of_stock": "Sotuvda yo'q",
-    "adding": "Qo'shilmoqda..."
+    "adding": "Qo'shilmoqda...",
+    "delivery_time": "Yetkazib berish {day} kun ichida"
   },
   "categories": {
     "title": "Kategoriyalar"

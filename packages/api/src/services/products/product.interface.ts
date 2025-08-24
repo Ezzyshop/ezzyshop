@@ -23,6 +23,7 @@ export interface IProductResponse {
   updatedAt: string;
   __v: number;
   views: number;
+  delivery_time?: number;
 }
 
 export interface IProductParams {

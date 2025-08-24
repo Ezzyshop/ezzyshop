@@ -8,6 +8,7 @@ import { IProductResponse } from "@repo/api/services/products/index";
 import { useEffect } from "react";
 import { useProductCart } from "@repo/hooks/index";
 import { useLocale } from "next-intl";
+import { ProductDeliveryTime } from "./product-delivery-time/product-delivery-time";
 
 interface IProps {
   product: IProductResponse;
@@ -49,6 +50,9 @@ export const Product = ({ product, shopId }: IProps) => {
           onDecrement={handleDecrement}
           isAddingToCart={isLoading}
         />
+        {product.delivery_time && (
+          <ProductDeliveryTime deliveryTime={product.delivery_time} />
+        )}
         <ProductDescription product={product} />
         <SimilarProducts product={product} shopId={shopId} />
       </div>
