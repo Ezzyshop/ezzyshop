@@ -24,6 +24,7 @@ import { useRouter } from "nextjs-toploader/app";
 import { useParams } from "next/navigation";
 import { ICommonParams } from "@/utils/interfaces";
 import { useEffect } from "react";
+import { PaymentMethodType } from "@repo/api/services/payment-method/payment-method.enum";
 
 export const CheckoutPage = () => {
   const t = useTranslations();
@@ -35,9 +36,18 @@ export const CheckoutPage = () => {
   const { mutate: createOrder, isPending } = useMutation({
     mutationFn: (order: IOrderCreateRequest) =>
       OrderService.createOrder(shopId, order),
-    onSuccess: () => {
+    onSuccess: (data) => {
       clearCart();
-      router.push(`/${locale}/${shopId}/checkout/success`);
+      const isCardTransfer =
+        data.data.transaction.provider.type === PaymentMethodType.CardTransfer;
+
+      if (isCardTransfer) {
+        router.push(
+          `/${locale}/${shopId}/profile/orders/${data.data._id}/confirm-card-transfer`
+        );
+      } else {
+        router.push(`/${locale}/${shopId}/checkout/success`);
+      }
     },
     onError: (error: {
       response: { data: { message: ErrorMessages; data: IOutOfStockItem[] } };

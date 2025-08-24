@@ -1,4 +1,4 @@
-import { PaymentMethodType } from "../payment-method";
+import { IPaymentMethodResponse, PaymentMethodType } from "../payment-method";
 import {
   TransactionChequeImageStatus,
   TransactionStatus,
@@ -60,7 +60,7 @@ export interface IOrderResponse {
       url: string;
       status: TransactionChequeImageStatus;
     }[];
-    provider: PaymentMethodType;
+    provider: IPaymentMethodResponse;
   };
 }
 

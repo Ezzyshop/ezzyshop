@@ -9,4 +9,5 @@ export interface ICommonParams extends Params {
   categoryId?: string;
   productId?: string;
   locale?: string;
+  orderId?: string;
 }

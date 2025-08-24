@@ -134,7 +134,7 @@ export const OrderCard = ({ order, transaction }: IProps) => {
         <div className="flex items-center justify-between">
           <p className="text-sm">{t("payment-method.title")}:</p>
           <p className="text-sm">
-            {t(paymentMethodWithText[transaction.provider].text)}
+            {t(paymentMethodWithText[transaction.provider.type].text)}
           </p>
         </div>
         <div className="flex items-center justify-between">
@@ -171,7 +171,7 @@ export const OrderCard = ({ order, transaction }: IProps) => {
         </div>
       </div>
 
-      {transaction.provider === PaymentMethodType.CardTransfer && (
+      {transaction.provider.type === PaymentMethodType.CardTransfer && (
         <OrderCheques transaction={transaction} />
       )}
       <Separator className="my-2" />

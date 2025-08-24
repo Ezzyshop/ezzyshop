@@ -157,6 +157,28 @@
       "description": "Buyurtmangiz muvaffaqiyatli amalga oshirildi va tez orada sizga yuboriladi.",
       "go_to_home": "Bosh sahifaga o'tish",
       "go_to_orders": "Buyurtmalarimga o'tish"
+    },
+    "confirm-card-transfer": {
+      "title": "To'lov chekini yuborish",
+      "description": "Buyurtmanizni to'lov chekini yuborish orqali tasdiqlang",
+      "important-information": {
+        "title": "Muhim ma'lumotlar",
+        "1": "• To'lov chekni yuborishdan oldin, to'lov summasini tekshirib ko'ring",
+        "2": "• Chek sotuvchi tomonidan tekshiriladi va tasdiqlanganligi haqida xabar yuboriladi"
+      },
+      "payment-verification": {
+        "title": "To'lov tasdiqlanishi",
+        "description": "Toʻlov kvitansiyasining aniq suratini yoki skrinshotini yuklang",
+        "button": "To'lov tasdiqlash",
+        "upload": "To'lov kvitansiyasini yuklash",
+        "upload-info": "Kvitansiyani yuklash uchun bosing",
+        "remove": "Yuklangan faylni olib tashlash",
+        "accepted-formats": "JPG, PNG, PDF (max 10MB)",
+        "uploading": "Yuklanmoqda...",
+        "success": "To'lov tasdiqlangan",
+        "success-description": "Sizning to'lovingiz tasdiqlangan. Buyurtmangiz tez orada sizga yuboriladi.",
+        "go-to-home": "Bosh sahifaga o'tish"
+      }
     }
   },
   "orders": {
