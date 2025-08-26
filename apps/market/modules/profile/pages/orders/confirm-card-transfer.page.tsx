@@ -1,7 +1,7 @@
 "use client";
 import { ICommonParams } from "@/utils/interfaces";
 import { OrderService } from "@repo/api/services/order/order.service";
-import { CheckCircle2, FileText } from "@repo/ui/components/icons/index";
+import { CheckCircle2, FileText, TimerIcon } from "@repo/ui/components/icons/index";
 import {
   Card,
   CardContent,
@@ -47,6 +47,32 @@ export const ConfirmCardTransferPage = () => {
   const isCardTransferVerified = order.data.transaction.cheque_images.some(
     (cheque) => cheque.status === TransactionChequeImageStatus.Verified
   );
+
+  const isCardTransferPending = order.data.transaction.cheque_images.some(
+    (cheque) => cheque.status === TransactionChequeImageStatus.Pending
+  );
+
+  if (isCardTransferPending) {
+    return (
+      <div className="px-4 space-y-2 flex-grow flex flex-col items-center justify-center">
+        <TimerIcon className="size-16 text-primary mx-auto" />
+        <h2 className="text-2xl text-center font-bold">
+          {t("checkout.confirm-card-transfer.payment-verification.waiting")}
+        </h2>
+        <p className="text-center  text-muted-foreground max-w-sm">
+          {t(
+            "checkout.confirm-card-transfer.payment-verification.waiting-description"
+          )}
+        </p>
+        <Button
+          className="w-full"
+          onClick={() => router.push(`/${locale}/${shopId}/home`)}
+        >
+          {t("checkout.confirm-card-transfer.payment-verification.go-to-home")}
+        </Button>
+      </div>
+    );
+  }
 
   if (isCardTransferVerified) {
     return (

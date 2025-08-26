@@ -177,6 +177,8 @@
         "uploading": "Yuklanmoqda...",
         "success": "To'lov tasdiqlangan",
         "success-description": "Sizning to'lovingiz tasdiqlangan. Buyurtmangiz tez orada sizga yuboriladi.",
+        "waiting": "To'lov tasdiqlanishi kutilmoqda",
+        "waiting-description": "Sizning to'lovingiz yuborilgan. Tez orada sotuvchi tomonidan ko'rib chiqiladi.",
         "go-to-home": "Bosh sahifaga o'tish"
       }
     }
