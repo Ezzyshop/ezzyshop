@@ -27,7 +27,7 @@ export class OrderService {
     shopId: string,
     orderId: string
   ): Promise<IData<IOrderResponse>> {
-    const response = await api.get(`/orders/${shopId}/${orderId}`);
+    const response = await api.get(`/orders/${shopId}/user/${orderId}`);
     return response.data;
   }
 }
