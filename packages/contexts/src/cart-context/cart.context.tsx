@@ -16,7 +16,6 @@ import {
   calculateItemPrice,
   IOutOfStockItem,
 } from "./utils";
-import { useParams } from "next/navigation";
 
 const initialState: ICartState = {
   items: [],
