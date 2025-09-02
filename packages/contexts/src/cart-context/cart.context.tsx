@@ -222,10 +222,11 @@ export const useCart = (): ICartContext => {
   return context;
 };
 
-export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
+export const CartProvider: React.FC<PropsWithChildren & { shopId: string }> = ({
+  children,
+  shopId,
+}) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
-
-  const { shopId } = useParams();
 
   useEffect(() => {
     const loadCartFromStorage = () => {

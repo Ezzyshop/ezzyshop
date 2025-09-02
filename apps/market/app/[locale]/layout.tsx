@@ -9,10 +9,11 @@ import { WishlistProvider } from "@repo/contexts/wishlist-context/wishlist.conte
 import { ViewedProductsProvider } from "@repo/contexts/viewed-products-context/viewed-products.context";
 import { UserProvider } from "@repo/contexts/user-context/user.context";
 import { Toaster } from "@repo/ui/components/ui/sonner";
+import { ICommonParams } from "@/utils/interfaces";
 
 interface IProps {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: Promise<ICommonParams>;
 }
 
 export function generateStaticParams() {
@@ -20,7 +21,7 @@ export function generateStaticParams() {
 }
 
 export default async function LocaleLayout({ children, params }: IProps) {
-  const { locale } = await params;
+  const { locale, shopId } = await params;
   if (!routing.locales.includes(locale as Locale)) {
     notFound();
   }
@@ -31,7 +32,7 @@ export default async function LocaleLayout({ children, params }: IProps) {
     <div className="max-w-[425px] mx-auto min-h-screen bg-background flex flex-col">
       <NextIntlClientProvider messages={messages}>
         <UserProvider>
-          <CartProvider>
+          <CartProvider shopId={shopId}>
             <WishlistProvider>
               <ViewedProductsProvider>
                 <div className="flex-1 flex flex-col">{children}</div>
