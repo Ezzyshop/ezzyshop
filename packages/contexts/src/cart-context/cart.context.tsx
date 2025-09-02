@@ -16,6 +16,7 @@ import {
   calculateItemPrice,
   IOutOfStockItem,
 } from "./utils";
+import { useParams } from "next/navigation";
 
 const initialState: ICartState = {
   items: [],
@@ -224,9 +225,8 @@ export const useCart = (): ICartContext => {
 export const CartProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
-  const shopId = "mock-shop-id";
+  const { shopId } = useParams();
 
-  // Load cart from localStorage on mount
   useEffect(() => {
     const loadCartFromStorage = () => {
       try {
