@@ -50,9 +50,9 @@ export const Product = ({ product, shopId }: IProps) => {
           onDecrement={handleDecrement}
           isAddingToCart={isLoading}
         />
-        {product.delivery_time && (
+        {product.delivery_time ? (
           <ProductDeliveryTime deliveryTime={product.delivery_time} />
-        )}
+        ) : null}
         <ProductDescription product={product} />
         <SimilarProducts product={product} shopId={shopId} />
       </div>
