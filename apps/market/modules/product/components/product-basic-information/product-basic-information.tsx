@@ -10,9 +10,11 @@ interface IProps {
 
 export const ProductBasicInformation = ({ product }: IProps) => {
   const locale = useLocale() as keyof ILocale;
+  const allImages = product.variants.flatMap((variant) => variant.images);
+
   return (
     <Card className="shadow-none border-0 p-3 gap-2">
-      <ProductImages images={product.images} />
+      <ProductImages images={allImages} />
 
       <p className="text-xl text-gray-500 mt-20">{product.name[locale]}</p>
     </Card>

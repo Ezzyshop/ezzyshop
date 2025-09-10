@@ -27,7 +27,7 @@ export const ProductAddToCart = ({
 }: IProps) => {
   return (
     <Card className="shadow-none border-0 p-3 gap-3">
-      <ProductPrices product={product} selectedVariant={selectedVariant} />
+      <ProductPrices selectedVariant={selectedVariant} />
       <ProductVariants
         product={product}
         selectedVariant={selectedVariant}

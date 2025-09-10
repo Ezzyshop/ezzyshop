@@ -7,9 +7,10 @@ import { cn } from "@repo/ui/lib/utils";
 
 interface IProps {
   product: IProductResponse;
+  variant: IProductResponse["variants"][number];
 }
 
-export const ProductBadges = ({ product }: IProps) => {
+export const ProductBadges = ({ product, variant }: IProps) => {
   const { isItemInWishlist, toggleItem } = useWishlist();
 
   const isProductNew =
@@ -17,10 +18,10 @@ export const ProductBadges = ({ product }: IProps) => {
     new Date(Date.now() - 1000 * 60 * 60 * 24 * 7); // 7 days
 
   const getSalePercentage = () => {
-    if (!product.compare_at_price) return 0;
+    if (!variant.compare_at_price) return 0;
 
     return (
-      ((product.compare_at_price - product.price) / product.compare_at_price) *
+      ((variant.compare_at_price - variant.price) / variant.compare_at_price) *
       100
     );
   };

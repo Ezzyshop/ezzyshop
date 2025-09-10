@@ -5,16 +5,15 @@ export interface IProductResponse {
   name: ILocale;
   description: ILocale;
   _id: string;
-  price: number;
-  compare_at_price: number | null;
-  images: string[];
+  main_image: string;
   categories: string[];
   variants: {
     sku: string;
     attributes: Record<string, string>;
     price: number;
+    compare_at_price: number | null;
     quantity: number;
-    image: string;
+    images: string[];
     _id: string;
   }[];
   shop: string;

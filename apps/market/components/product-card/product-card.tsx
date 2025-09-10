@@ -96,12 +96,20 @@ export const ProductsCard = ({ product }: IProps) => {
     };
   };
 
+  const allImages = product.variants.flatMap((variant) => variant.images);
+  const firstAvailableVariant =
+    product.variants.find(
+      (variant) => variant.compare_at_price != null && variant.quantity > 0
+    ) ??
+    product.variants.find((variant) => variant.quantity > 0) ??
+    product.variants[0]!;
+
   return (
     <>
       <Card className="py-2 px-2 border-0 shadow-none flex flex-col ">
         <Carousel>
           <CarouselContent>
-            {product.images.map((image) => (
+            {allImages.map((image) => (
               <CarouselItem key={image}>
                 <div className="relative aspect-[3/4] h-[194px] w-full rounded-lg ">
                   <Image
@@ -109,29 +117,38 @@ export const ProductsCard = ({ product }: IProps) => {
                     alt={product.name.en}
                     fill
                     className="rounded-lg object-fit"
+                    sizes="full"
                   />
-                  <ProductBadges product={product} />
+                  <ProductBadges
+                    product={product}
+                    variant={firstAvailableVariant}
+                  />
                 </div>
               </CarouselItem>
             ))}
           </CarouselContent>
-          {product.images.length > 1 && (
+          {allImages.length > 1 && (
             <CarouselDots dotClassName="size-2" className="-bottom-4" />
           )}
         </Carousel>
 
-        <CustomLink href={`/products/${product._id}`} className="flex-grow">
+        <CustomLink
+          href={`/products/${product._id}?variant=${firstAvailableVariant._id}`}
+          className="flex-grow"
+        >
           <p
             className={cn(
               "font-bold",
-              product.compare_at_price && "text-primary"
+              firstAvailableVariant.compare_at_price && "text-primary"
             )}
           >
-            {product.price.toLocaleString(locale)} {currency.symbol}
+            {firstAvailableVariant.price.toLocaleString(locale)}{" "}
+            {currency.symbol}
           </p>
-          {product.compare_at_price && (
+          {firstAvailableVariant.compare_at_price && (
             <p className="text-muted-foreground line-through text-xs">
-              {product.compare_at_price.toLocaleString()} {currency.symbol}
+              {firstAvailableVariant.compare_at_price.toLocaleString()}{" "}
+              {currency.symbol}
             </p>
           )}
 

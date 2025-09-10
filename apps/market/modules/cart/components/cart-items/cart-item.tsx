@@ -69,16 +69,17 @@ export const CartItem = ({ item }: IProps) => {
       .join(", ");
   };
 
-  const compareAtPrice = item.product.compare_at_price;
+  const compareAtPrice = item.variant?.compare_at_price;
 
   return (
     <Card className="p-4 flex flex-row items-start shadow-none border-0">
       <div className="relative min-w-24 w-24 h-24">
         <Image
-          src={item.variant?.image || item.product.images[0] || ""}
+          src={item.variant?.images[0] ?? item.product.main_image ?? ""}
           alt={item.product.name[locale]}
           fill
           className="rounded-lg object-cover"
+          sizes="full"
         />
         {item.isOutOfStock && (
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-md">
@@ -104,8 +105,7 @@ export const CartItem = ({ item }: IProps) => {
               compareAtPrice && "text-red-500"
             )}
           >
-            {(item.variant?.price || item.product.price).toLocaleString()}{" "}
-            {currency.symbol}
+            {item.variant?.price.toLocaleString()} {currency.symbol}
           </p>
 
           {compareAtPrice && (

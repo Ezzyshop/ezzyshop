@@ -8,7 +8,7 @@ import {
 import Image from "next/image";
 
 interface IProps {
-  images: IProductResponse["images"];
+  images: IProductResponse["variants"][number]["images"];
 }
 
 export const ProductImages = ({ images }: IProps) => {

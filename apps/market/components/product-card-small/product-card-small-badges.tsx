@@ -3,17 +3,22 @@ import { Badge } from "@repo/ui/components/ui/badge";
 
 interface IProps {
   product: IProductResponse;
+  firstAvailableVariant: IProductResponse["variants"][number];
 }
-export const ProductCardSmallBadges = ({ product }: IProps) => {
+export const ProductCardSmallBadges = ({
+  product,
+  firstAvailableVariant,
+}: IProps) => {
   const isProductNew =
     new Date(product.createdAt) >
     new Date(Date.now() - 1000 * 60 * 60 * 24 * 7); // 7 days
 
   const getSalePercentage = () => {
-    if (!product.compare_at_price) return 0;
+    if (!firstAvailableVariant.compare_at_price) return 0;
 
     return (
-      ((product.compare_at_price - product.price) / product.compare_at_price) *
+      ((firstAvailableVariant.compare_at_price - firstAvailableVariant.price) /
+        firstAvailableVariant.compare_at_price) *
       100
     );
   };

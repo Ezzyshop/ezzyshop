@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { IProductResponse } from "@repo/api/services/products/index";
 import { useCart } from "@repo/contexts/cart-context/cart.context";
+import { useSearchParams } from "next/navigation";
 
 export const useProductCart = (product: IProductResponse) => {
   const [selectedVariant, setSelectedVariant] =
     useState<IProductResponse["variants"][number]>();
   const [isLoading, setIsLoading] = useState(false);
+  const variantId = useSearchParams()?.get("variant");
 
   const { addItem, getItemQuantity, updateQuantity, removeItem } = useCart();
 
@@ -22,7 +24,11 @@ export const useProductCart = (product: IProductResponse) => {
   // Initialize default variant (first available variant)
   const initializeDefaultVariant = () => {
     if (product.variants && product.variants.length > 0 && !selectedVariant) {
-      setSelectedVariant(product.variants[0]);
+      const variant = product.variants.find(
+        (variant) => variant._id === variantId
+      );
+
+      setSelectedVariant(variant ?? product.variants[0]);
     }
   };
 
