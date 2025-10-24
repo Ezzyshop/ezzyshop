@@ -76,12 +76,13 @@ export interface IOrderProduct {
       ru: string;
       en: string;
     };
-    images: string[];
+    main_image: string;
   };
   quantity: number;
   total_price: number;
   variant?: {
     attributes: Record<string, string>;
+    images: string[];
     name: {
       uz: string;
       ru: string;

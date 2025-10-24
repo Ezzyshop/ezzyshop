@@ -35,7 +35,10 @@ export const ProductCardSmall = ({ product }: IProps) => {
             height={100}
             className="rounded-lg object-fit"
           />
-          <ProductCardSmallBadges product={product} firstAvailableVariant={firstAvailableVariant} />
+          <ProductCardSmallBadges
+            product={product}
+            firstAvailableVariant={firstAvailableVariant}
+          />
         </div>
         <div>
           <p className={cn("font-medium text-xs")}>

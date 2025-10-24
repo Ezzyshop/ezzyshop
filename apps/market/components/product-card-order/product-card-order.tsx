@@ -18,7 +18,7 @@ export const ProductCardOrder = ({ product }: IProps) => {
       className="flex items-center gap-4"
     >
       <Image
-        src={product.product.images[0] ?? ""}
+        src={product.variant?.images[0] ?? product.product.main_image ?? ""}
         alt={product.product.name[locale as keyof typeof product.product.name]}
         width={96}
         height={96}
@@ -31,11 +31,13 @@ export const ProductCardOrder = ({ product }: IProps) => {
 
         {product.variant && (
           <>
-            {Object.entries(product.variant?.attributes ?? {}).map(([key, value]) => (
-              <p key={key} className="text-muted-foreground">
-                {key}: {value}
-              </p>
-            ))}
+            {Object.entries(product.variant?.attributes ?? {}).map(
+              ([key, value]) => (
+                <p key={key} className="text-muted-foreground">
+                  {key}: {value}
+                </p>
+              )
+            )}
           </>
         )}
         <div className="flex items-center justify-between ">
