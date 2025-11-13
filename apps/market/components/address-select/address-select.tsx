@@ -28,7 +28,7 @@ export const AddressSelect = ({
   const queryClient = useQueryClient();
   const { data, isLoading } = useQuery({
     queryKey: ["addresses", user?._id],
-    queryFn: () => AddressService.getAddresses(),
+    queryFn: AddressService.getAddresses,
     enabled: !!user,
   });
 

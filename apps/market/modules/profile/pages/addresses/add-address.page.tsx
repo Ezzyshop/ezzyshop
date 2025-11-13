@@ -6,19 +6,18 @@ import { AddressService } from "@repo/api/services/address/address.service";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "nextjs-toploader/app";
 import { useParams } from "next/navigation";
-import { useUserContext } from "@repo/contexts/user-context/user.context";
 
 export const AddAddressPage = () => {
   const t = useTranslations("profile.address");
   const queryClient = useQueryClient();
   const router = useRouter();
   const { locale, shopId } = useParams();
-  const { user } = useUserContext();
   const { mutate: addAddress, isPending: isLoading } = useMutation({
     mutationFn: AddressService.createAddress,
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ["addresses", user?._id],
+      await queryClient.resetQueries({
+        queryKey: ["addresses"],
+        type: "all",
       });
       router.push(`/${locale}/${shopId}/profile/addresses`);
     },
