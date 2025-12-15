@@ -16,7 +16,7 @@
     "@repo/ui": "workspace:*",
     "@repo/api": "workspace:*",
     "@tanstack/react-query": "^5.83.0",
-    "next": "^15.3.6",
+    "next": "15.4.10",
     "next-intl": "^3.25.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
