@@ -21,6 +21,13 @@ interface IProps {
   order: IOrderResponse;
 }
 
+const allowedImageTypes = [
+  "image/jpeg",
+  "image/png",
+  "image/jpg",
+  "application/pdf",
+];
+
 export const ConfirmCardTransferUploadImage = ({ order }: IProps) => {
   const [file, setFile] = useState<File | null>(null);
   const { shopId, locale } = useParams<ICommonParams>();
@@ -50,13 +57,7 @@ export const ConfirmCardTransferUploadImage = ({ order }: IProps) => {
         return;
       }
 
-      const allowedTypes = [
-        "image/jpeg",
-        "image/png",
-        "image/jpg",
-        "application/pdf",
-      ];
-      if (!allowedTypes.includes(selectedFile.type)) {
+      if (!allowedImageTypes.includes(selectedFile.type)) {
         return;
       }
 
@@ -122,7 +123,7 @@ export const ConfirmCardTransferUploadImage = ({ order }: IProps) => {
           <Input
             id="receipt"
             type="file"
-            accept="image/*,.pdf"
+            accept={allowedImageTypes.join(",")}
             onChange={handleFileChange}
             className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
             ref={inputRef}
