@@ -73,20 +73,28 @@ export const CheckoutShippingSelect = ({ form }: IProps) => {
                 form.clearErrors("pickup_location_and_delivery_method");
               }}
             >
-              {branches?.map((branch) => (
-                <Card
-                  key={branch._id}
-                  className="p-3 flex-row items-center gap-2 shadow-none border-none"
-                >
-                  <Label htmlFor={branch._id} className="flex-grow block">
-                    <h3 className="font-medium text-base">{branch.name.uz}</h3>
-                    <p className="text-sm text-muted-foreground line-clamp-2">
-                      {branch.address.address}
-                    </p>
-                  </Label>
-                  <RadioGroupItem value={branch._id} id={branch._id} />
-                </Card>
-              ))}
+              {branches?.map((branch) => {
+                if (!branch.pickup_enabled) {
+                  return;
+                }
+
+                return (
+                  <Card
+                    key={branch._id}
+                    className="p-3 flex-row items-center gap-2 shadow-none border-none"
+                  >
+                    <Label htmlFor={branch._id} className="flex-grow block">
+                      <h3 className="font-medium text-base">
+                        {branch.name.uz}
+                      </h3>
+                      <p className="text-sm text-muted-foreground line-clamp-2">
+                        {branch.address.address}
+                      </p>
+                    </Label>
+                    <RadioGroupItem value={branch._id} id={branch._id} />
+                  </Card>
+                );
+              })}
             </RadioGroup>
             {form.formState.errors.pickup_location_and_delivery_method && (
               <FormMessage>
@@ -154,7 +162,8 @@ export const CheckoutShippingSelect = ({ form }: IProps) => {
                         {isDisabled && (
                           <p className="text-sm text-red-500 line-clamp-2">
                             {t("checkout.shipping.min-order-price")}{" "}
-                            {deliveryMethod.min_order_price?.toLocaleString()} {currency.symbol}
+                            {deliveryMethod.min_order_price?.toLocaleString()}{" "}
+                            {currency.symbol}
                           </p>
                         )}
                       </Label>

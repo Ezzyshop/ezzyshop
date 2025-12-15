@@ -18,7 +18,7 @@ export const MostPopularProducts = ({ shopId }: ICommonParams) => {
       ProductService.getProductsByCategory(shopId, "most-popular", params),
   });
 
-  if (!data) return null;
+  if (!data || data.data.length === 0) return null;
 
   return (
     <ProductsByCategories

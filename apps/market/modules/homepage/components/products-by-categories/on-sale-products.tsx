@@ -18,7 +18,7 @@ export const OnSaleProducts = ({ shopId }: ICommonParams) => {
       ProductService.getProductsByCategory(shopId, "on-sale", params),
   });
 
-  if (!data) return null;
+  if (!data || data.data.length === 0) return null;
 
   return (
     <ProductsByCategories
