@@ -14,7 +14,9 @@ export const ProductBasicInformation = ({ product }: IProps) => {
 
   return (
     <Card className="shadow-none border-0 p-3 gap-2">
-      <ProductImages images={allImages} />
+      <ProductImages
+        images={allImages.length > 0 ? allImages : [product.main_image]}
+      />
 
       <p className="text-xl text-gray-500 mt-20">{product.name[locale]}</p>
     </Card>

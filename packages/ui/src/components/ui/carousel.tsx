@@ -244,6 +244,9 @@ function CarouselImages({
             src={images[index]}
             alt={images[index]}
             className="rounded-lg object-cover"
+            width="65"
+            height="65"
+            fetchPriority="high"
           />
         </div>
       ))}

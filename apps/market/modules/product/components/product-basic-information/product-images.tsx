@@ -23,16 +23,15 @@ export const ProductImages = ({ images }: IProps) => {
                 alt={image}
                 fill
                 className="rounded-lg object-cover"
+                sizes="full"
+                fetchPriority="high"
               />
             </div>
           </CarouselItem>
         ))}
       </CarouselContent>
       {images.length > 1 && (
-        <CarouselImages
-          images={images}
-          className="-bottom-20"
-        />
+        <CarouselImages images={images} className="-bottom-20" />
       )}
     </Carousel>
   );

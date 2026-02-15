@@ -109,14 +109,33 @@ export const ProductsCard = ({ product }: IProps) => {
       <Card className="py-2 px-2 border-0 shadow-none flex flex-col ">
         <Carousel>
           <CarouselContent>
-            {allImages.map((image) => (
-              <CarouselItem key={image}>
+            {allImages.length > 0 ? (
+              allImages.map((image) => (
+                <CarouselItem key={image}>
+                  <div className="relative aspect-[3/4] h-[194px] w-full rounded-lg ">
+                    <Image
+                      src={image}
+                      alt={product.name[locale]}
+                      fill
+                      className="rounded-lg object-cover"
+                      sizes="full"
+                      fetchPriority="high"
+                    />
+                    <ProductBadges
+                      product={product}
+                      variant={firstAvailableVariant}
+                    />
+                  </div>
+                </CarouselItem>
+              ))
+            ) : (
+              <CarouselItem>
                 <div className="relative aspect-[3/4] h-[194px] w-full rounded-lg ">
                   <Image
-                    src={image}
-                    alt={product.name.en}
+                    src={product.main_image}
+                    alt={product.name[locale]}
                     fill
-                    className="rounded-lg object-fit"
+                    className="rounded-lg object-cover"
                     sizes="full"
                   />
                   <ProductBadges
@@ -125,7 +144,7 @@ export const ProductsCard = ({ product }: IProps) => {
                   />
                 </div>
               </CarouselItem>
-            ))}
+            )}
           </CarouselContent>
           {allImages.length > 1 && (
             <CarouselDots dotClassName="size-2" className="-bottom-4" />
