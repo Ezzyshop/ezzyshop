@@ -22,7 +22,7 @@ export const LogoutStateMessage = () => {
         <Image
           src={logo}
           alt="logo"
-          className="rounded-xl object-cover max-w-full w-fit aspect-square"
+          className="rounded-xl object-fill max-w-full w-fit"
           height={96}
           width={96}
           fetchPriority="high"
@@ -34,3 +34,5 @@ export const LogoutStateMessage = () => {
     </Card>
   );
 };
+
+//#ffa647
