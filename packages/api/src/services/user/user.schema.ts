@@ -71,3 +71,9 @@ export const updateUserValidator = Joi.object({
   phone: userFields.phone,
   email: userFields.email,
 });
+
+export const verifyOtpValidator = Joi.object({
+  otp: Joi.string().required().messages({
+    "any.required": "OTP is required",
+  }),
+});

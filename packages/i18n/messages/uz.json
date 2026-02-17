@@ -90,7 +90,8 @@
       "delete-address": "Manzilni o'chirishni xohlaysizmi?",
       "delete": "O'chirish",
       "cancel": "Bekor qilish"
-    }
+    },
+    "otp": "OTP kodini kiriting"
   },
   "search": {
     "title": "Qidirish",

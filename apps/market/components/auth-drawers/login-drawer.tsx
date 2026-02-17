@@ -15,8 +15,9 @@ import {
   AvatarImage,
 } from "@repo/ui/components/ui/avatar";
 import { useShopContext } from "@/contexts/shop.context";
+import { VerifyOtp } from "./auth/verify-otp";
 
-export type Steps = "check-user" | "create-user" | "login";
+export type Steps = "check-user" | "create-user" | "login" | "verify-otp";
 
 export const LoginDrawer = ({
   children,
@@ -31,11 +32,13 @@ export const LoginDrawer = ({
   const { name, logo } = useShopContext();
   const t = useTranslations("profile");
   const [isOpen, setIsOpen] = useState(false);
-  const [steps, setSteps] = useState<Steps>("check-user");
+  const [steps, setSteps] = useState<Steps>("verify-otp");
   const [phone, setPhone] = useState<string | undefined>(undefined);
 
   const currentStep = useMemo(() => {
     switch (steps) {
+      case "verify-otp":
+        return <VerifyOtp setIsOpen={setIsOpen} onSuccess={onSuccess} />;
       case "check-user":
         return <CheckUser setSteps={setSteps} setPhone={setPhone} />;
       case "create-user":

@@ -49,3 +49,7 @@ export interface IUpdateUserRequest {
 export interface IUpdateUserAddressRequest {
   address: string;
 }
+
+export interface IVerifyOtpRequest {
+  otp: string;
+}
