@@ -34,5 +34,3 @@ export const LogoutStateMessage = () => {
     </Card>
   );
 };
-
-//#ffa647
