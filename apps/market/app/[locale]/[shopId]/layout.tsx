@@ -21,7 +21,7 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export default async function LocaleLayout({ children, params }: IProps) {
+export default async function Layout({ children, params }: IProps) {
   const { locale, shopId } = await params;
   if (!routing.locales.includes(locale as Locale)) {
     notFound();
