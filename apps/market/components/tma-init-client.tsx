@@ -1,5 +1,5 @@
-\"use client\";
-import { useTMAInit } from \"@/hooks\";
+"use client";
+import { useTMAInit } from "@/hooks";
 
 function TMAInitClient() {
   useTMAInit();
@@ -7,4 +7,3 @@ function TMAInitClient() {
 }
 
 export default TMAInitClient;
-
