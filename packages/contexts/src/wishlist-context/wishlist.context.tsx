@@ -120,10 +120,10 @@ export const useWishlist = (): IWishlistContext => {
   return context;
 };
 
-export const WishlistProvider: React.FC<PropsWithChildren> = ({ children }) => {
+export const WishlistProvider: React.FC<
+  PropsWithChildren & { shopId: string }
+> = ({ children, shopId }) => {
   const [state, dispatch] = useReducer(wishlistReducer, initialState);
-
-  const shopId = "mock-shop-id"; // This should be dynamic based on actual shop
 
   // Load wishlist from localStorage on mount
   useEffect(() => {

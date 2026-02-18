@@ -103,12 +103,11 @@ export const useViewedProducts = (): IViewedProductsContext => {
   return context;
 };
 
-export const ViewedProductsProvider: React.FC<PropsWithChildren> = ({
+export const ViewedProductsProvider: React.FC<PropsWithChildren & { shopId: string }> = ({
   children,
+  shopId,
 }) => {
   const [state, dispatch] = useReducer(viewedProductsReducer, initialState);
-
-  const shopId = "mock-shop-id"; // This should be dynamic based on actual shop
 
   // Load viewed products from localStorage on mount
   useEffect(() => {

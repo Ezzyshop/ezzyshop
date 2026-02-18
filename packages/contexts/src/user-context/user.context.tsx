@@ -30,7 +30,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
     [user]
   );
 
-  if(isLoading) return null
+  if (isLoading) return null;
 
   return <UserContext.Provider value={values}>{children}</UserContext.Provider>;
 };
