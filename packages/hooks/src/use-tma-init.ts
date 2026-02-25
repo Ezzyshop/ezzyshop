@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 import { useParams, usePathname, useRouter } from "next/navigation";
 import WebApp from "@twa-dev/sdk";
-import { useShopContext } from "@/contexts/shop.context";
+import { useShopContext } from "@repo/contexts/shop-context/shop.context";
 
 export const useTMAInit = () => {
   const pathname = usePathname();

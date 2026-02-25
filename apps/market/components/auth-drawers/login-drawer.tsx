@@ -14,7 +14,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@repo/ui/components/ui/avatar";
-import { useShopContext } from "@/contexts/shop.context";
+import { useShopContext } from "@repo/contexts/shop-context/shop.context";
 import { VerifyOtp } from "./auth/verify-otp";
 
 export type Steps = "check-user" | "create-user" | "login" | "verify-otp";

@@ -1,5 +1,5 @@
 "use client";
-import { useShopContext } from "@/contexts/shop.context";
+import { useShopContext } from "@repo/contexts/shop-context/shop.context";
 import { IProductResponse } from "@repo/api/services/products/product.interface";
 import { ILocale } from "@repo/api/utils/interfaces/base.interface";
 import { Card } from "@repo/ui/components/ui/card";

@@ -9,7 +9,7 @@ import { TObject } from "@repo/hooks/use-query-params";
 import { Input } from "@repo/ui/components/ui/input";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { useShopContext } from "@/contexts/shop.context";
+import { useShopContext } from "@repo/contexts/shop-context/shop.context";
 import { XIcon } from "@repo/ui/components/icons/index";
 
 interface IProps {

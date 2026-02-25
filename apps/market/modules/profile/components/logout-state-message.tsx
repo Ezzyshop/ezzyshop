@@ -1,4 +1,4 @@
-import { useShopContext } from "@/contexts/shop.context";
+import { useShopContext } from "@repo/contexts/shop-context/shop.context";
 import { useUserContext } from "@repo/contexts/user-context/user.context";
 import { Avatar, AvatarFallback } from "@repo/ui/components/ui/avatar";
 import { Card } from "@repo/ui/components/ui/card";

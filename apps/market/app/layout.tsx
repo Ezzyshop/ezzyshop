@@ -3,7 +3,7 @@ import { getLocale } from "next-intl/server";
 
 import "./globals.css";
 import { QueryClientProvider } from "@repo/contexts/react-query.context";
-import { ShopProvider } from "@/contexts/shop.context";
+import { ShopProvider } from "@repo/contexts/shop-context/shop.context";
 import NextTopLoader from "nextjs-toploader";
 
 export const viewport: Viewport = {

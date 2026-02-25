@@ -1,2 +1,3 @@
 export * from "./use-product-cart";
 export * from "./use-query-params";
+export * from "./use-tma-init";

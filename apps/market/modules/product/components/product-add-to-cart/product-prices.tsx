@@ -1,4 +1,4 @@
-import { useShopContext } from "@/contexts/shop.context";
+import { useShopContext } from "@repo/contexts/shop-context/shop.context";
 import { IProductResponse } from "@repo/api/services/products/index";
 import { cn } from "@repo/ui/lib/utils";
 

@@ -1,5 +1,5 @@
 import { ProtectedLink } from "@/components/protected-link";
-import { useShopContext } from "@/contexts/shop.context";
+import { useShopContext } from "@repo/contexts/shop-context/shop.context";
 import { useCart } from "@repo/contexts/cart-context/cart.context";
 import { Button } from "@repo/ui/components/ui/button";
 import { useTranslations } from "next-intl";
