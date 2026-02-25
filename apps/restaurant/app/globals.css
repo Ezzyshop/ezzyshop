@@ -115,5 +115,25 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-rubik), sans-serif;
   }
+}
+
+.scrollbar-hide {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
 }

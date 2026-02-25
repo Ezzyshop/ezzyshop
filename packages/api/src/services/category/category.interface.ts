@@ -18,7 +18,7 @@ export interface ICategoriesResponse {
 
 export interface ICategoryParams {
   page?: number;
-  limit?: number;
+  limit?: number | "all";
   search?: string;
   is_popular?: boolean;
 }

@@ -234,5 +234,8 @@
   },
   "map": {
     "title": "Xarita"
+  },
+  "price": {
+    "from": "{price} dan"
   }
 }
