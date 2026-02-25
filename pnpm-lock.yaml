@@ -123,6 +123,9 @@ importers:
       '@repo/contexts':
         specifier: workspace:*
         version: link:../../packages/contexts
+      '@repo/hooks':
+        specifier: workspace:*
+        version: link:../../packages/hooks
       '@repo/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
@@ -138,6 +141,9 @@ importers:
       next-intl:
         specifier: ^3.25.0
         version: 3.26.5(next@15.4.10(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react@19.1.1)
+      nextjs-toploader:
+        specifier: ^3.8.16
+        version: 3.8.16(next@15.4.10(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       react:
         specifier: ^19.1.0
         version: 19.1.1
@@ -215,6 +221,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.83.0
         version: 5.83.0(react@19.1.1)
+      next:
+        specifier: '>=13.4.0'
+        version: 15.4.10(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       react:
         specifier: ^19.1.0
         version: 19.1.1
@@ -288,6 +297,9 @@ importers:
       '@repo/api':
         specifier: workspace:*
         version: link:../api
+      '@twa-dev/sdk':
+        specifier: ^8.0.2
+        version: 8.0.2(react@19.1.1)
       next:
         specifier: '>=13.4.0'
         version: 15.4.4(react-dom@19.1.1(react@19.1.1))(react@19.1.1)

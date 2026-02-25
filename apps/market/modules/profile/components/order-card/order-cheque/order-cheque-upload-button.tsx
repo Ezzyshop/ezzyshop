@@ -2,7 +2,7 @@ import { Button } from "@repo/ui/components/ui/button";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { TransactionService } from "@repo/api/services/transaction/index";
-import { useShopContext } from "@/contexts/shop.context";
+import { useShopContext } from "@repo/contexts/shop-context/shop.context";
 import { useRef } from "react";
 import { UploadService } from "@repo/api/services/upload/index";
 

@@ -5,7 +5,7 @@ import { Badge } from "@repo/ui/components/ui/badge";
 import { Card } from "@repo/ui/components/ui/card";
 import { useTranslations } from "next-intl";
 import dayjs from "dayjs";
-import { useShopContext } from "@/contexts/shop.context";
+import { useShopContext } from "@repo/contexts/shop-context/shop.context";
 import { OrderProducts } from "./order-products";
 import { Separator } from "@repo/ui/components/ui/separator";
 import { CustomLink } from "@/components/custom-link";

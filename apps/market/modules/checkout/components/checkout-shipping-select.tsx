@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import { RadioGroup, RadioGroupItem } from "@repo/ui/components/ui/radio-group";
 import { Card } from "@repo/ui/components/ui/card";
 import { Label } from "@repo/ui/components/ui/label";
-import { useShopContext } from "@/contexts/shop.context";
+import { useShopContext } from "@repo/contexts/shop-context/shop.context";
 import { useTranslations } from "next-intl";
 import { CheckoutAddressSelect } from "./checkout-address-select";
 import { UseFormReturn } from "react-hook-form";

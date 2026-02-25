@@ -7,6 +7,8 @@
     "lint": "turbo run lint",
     "market": "turbo run dev --filter=market",
     "market:build": "turbo run build --filter=market",
+    "restaurant": "turbo run dev --filter=restaurant",
+    "restaurant:build": "turbo run build --filter=restaurant",
     "pages:build": "npx @cloudflare/next-on-pages",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"

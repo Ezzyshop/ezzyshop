@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { ILocale } from "@repo/api/utils/interfaces/base.interface";
 import { AddToCartButton } from "@/components/add-to-cart-button/add-to-cart-button";
 import { useCart } from "@repo/contexts/cart-context/cart.context";
-import { useShopContext } from "@/contexts/shop.context";
+import { useShopContext } from "@repo/contexts/shop-context/shop.context";
 import { useState } from "react";
 import { cn } from "@repo/ui/lib/utils";
 import { CustomLink } from "@/components/custom-link";

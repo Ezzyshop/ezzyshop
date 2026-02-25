@@ -10,7 +10,7 @@ import Image from "next/image";
 import { Card } from "@repo/ui/components/ui/card";
 import { cn } from "@repo/ui/lib/utils";
 import { useLocale, useTranslations } from "next-intl";
-import { useShopContext } from "@/contexts/shop.context";
+import { useShopContext } from "@repo/contexts/shop-context/shop.context";
 import { Button } from "@repo/ui/components/ui/button";
 import { ShoppingCartIcon } from "@repo/ui/components/icons/index";
 import { ProductBadges } from "./product-badges";

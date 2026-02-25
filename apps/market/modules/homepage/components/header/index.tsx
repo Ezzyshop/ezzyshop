@@ -1,5 +1,5 @@
 "use client";
-import { useShopContext } from "@/contexts/shop.context";
+import { useShopContext } from "@repo/contexts/shop-context/shop.context";
 import { useI18nRouter } from "@repo/i18n/hooks";
 import { ChevronDown } from "@repo/ui/components/icons/index";
 import {

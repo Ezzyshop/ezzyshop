@@ -3,6 +3,11 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "module": "NodeNext",
+    "typeRoots": [
+      "./src/types",
+      "./node_modules/@types",
+      "../../node_modules/@types"
+    ],
     "paths": {
       "@repo/contexts/*": ["./src/*"]
     }

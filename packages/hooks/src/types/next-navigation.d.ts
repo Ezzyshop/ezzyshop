@@ -8,4 +8,5 @@ declare module "next/navigation" {
   };
   // Using a broad type to avoid importing Next.js specific types
   export function useSearchParams(): URLSearchParams | null;
+  export function useParams<T extends string>(): Record<T, string>;
 }

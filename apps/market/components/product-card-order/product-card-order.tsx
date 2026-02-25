@@ -1,4 +1,4 @@
-import { useShopContext } from "@/contexts/shop.context";
+import { useShopContext } from "@repo/contexts/shop-context/shop.context";
 import { IOrderProduct } from "@repo/api/services/order/order.interface";
 import { useLocale } from "next-intl";
 import Image from "next/image";
