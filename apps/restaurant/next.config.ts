@@ -14,6 +14,14 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["@repo/ui"],
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https" as const,
+        hostname: "assets.ezzyshop.uz",
+      },
+    ],
+  },
 };
 
 export default withNextIntl(nextConfig);

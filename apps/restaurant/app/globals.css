@@ -117,3 +117,22 @@
     @apply bg-background text-foreground;
   }
 }
+
+.scrollbar-hide {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}

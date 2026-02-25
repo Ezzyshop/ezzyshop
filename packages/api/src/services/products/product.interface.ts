@@ -27,6 +27,6 @@ export interface IProductResponse {
 
 export interface IProductParams {
   page?: number;
-  limit?: number;
+  limit?: number | "all";
   search?: string;
 }
