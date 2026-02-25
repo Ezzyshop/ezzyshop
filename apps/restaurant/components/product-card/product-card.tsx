@@ -40,7 +40,10 @@ export const ProductCard = ({ product, setSelectedProduct }: IProps) => {
   };
 
   return (
-    <Card className="shadow-none border-0 p-0">
+    <Card
+      className="shadow-none border-0 p-0"
+      onClick={() => setSelectedProduct(product)}
+    >
       <CardContent className="p-0">
         <div className="relative">
           <Image

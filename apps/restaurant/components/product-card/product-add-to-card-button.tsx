@@ -29,7 +29,8 @@ export const ProductAddToCardButton = ({
     }
   }, [hasSingleVariant, initializeDefaultVariant]);
 
-  const handleAddToCartButton = () => {
+  const handleAddToCartButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     if (currentQuantity > 0) {
       handleIncrement();
     } else if (!hasSingleVariant) {
@@ -37,6 +38,11 @@ export const ProductAddToCardButton = ({
     } else {
       handleAddToCart();
     }
+  };
+
+  const handleDecrementButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    handleDecrement();
   };
 
   return (
@@ -60,7 +66,7 @@ export const ProductAddToCardButton = ({
         variant="outline"
         size="icon"
         className="rounded-full size-6 p-1  border-none"
-        onClick={handleDecrement}
+        onClick={handleDecrementButton}
       >
         <MinusIcon className="size-full" />
       </Button>

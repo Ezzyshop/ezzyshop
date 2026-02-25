@@ -67,7 +67,12 @@ export default function HomePage() {
         setSelectedProduct={setSelectedProduct}
         mergedCategoriesAndProducts={mergedProductsAndCategories ?? []}
       />
-      {selectedProduct && <ProductDrawer product={selectedProduct} />}
+      {selectedProduct && (
+        <ProductDrawer
+          product={selectedProduct}
+          setSelectedProduct={setSelectedProduct}
+        />
+      )}
     </div>
   );
 }
