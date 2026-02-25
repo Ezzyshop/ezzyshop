@@ -10,6 +10,7 @@ import { MergedCategoriesAndProducts } from "./components/merged-categories-and-
 import { TMergedProductAndCategory } from "../utils/types";
 import { IProductResponse } from "@repo/api/services/products/product.interface";
 import { ProductDrawer } from "@/components/product-drawer/product-drawer";
+import { PopularCategories } from "./components/hot-categories";
 
 export default function HomePage() {
   const { shopId } = useParams<ICommonParams>();
@@ -60,6 +61,7 @@ export default function HomePage() {
 
   return (
     <div>
+      <PopularCategories />
       <Categories categories={mergedProductsAndCategories ?? []} />
       <MergedCategoriesAndProducts
         setSelectedProduct={setSelectedProduct}

@@ -40,7 +40,7 @@ export const ProductCard = ({ product, setSelectedProduct }: IProps) => {
   };
 
   return (
-    <Card className="shadow-none border-0">
+    <Card className="shadow-none border-0 p-0">
       <CardContent className="p-0">
         <div className="relative">
           <Image
