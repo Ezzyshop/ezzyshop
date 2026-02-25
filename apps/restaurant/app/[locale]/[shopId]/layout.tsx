@@ -30,7 +30,7 @@ export default async function Layout({ children, params }: IProps) {
         <ShopProvider>
           <TMAInitClient />
           <UserProvider>
-            <CartProvider shopId={shopId}>
+            <CartProvider shopId={`${shopId}-restaurant`}>
               <div className="flex-1 flex flex-col">{children}</div>
               <Toaster richColors position="top-center" />
             </CartProvider>

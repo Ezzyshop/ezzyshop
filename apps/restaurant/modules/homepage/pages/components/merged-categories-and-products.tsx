@@ -5,13 +5,16 @@ import { useLocale } from "next-intl";
 import { useEffect } from "react";
 import { TMergedProductAndCategory } from "../../utils/types";
 import { ProductCard } from "@/components/product-card/product-card";
+import { IProductResponse } from "@repo/api/services/products/product.interface";
 
 interface IProps {
   mergedCategoriesAndProducts: TMergedProductAndCategory[];
+  setSelectedProduct: (product: IProductResponse | null) => void;
 }
 
 export const MergedCategoriesAndProducts = ({
   mergedCategoriesAndProducts,
+  setSelectedProduct,
 }: IProps) => {
   const language = useLocale() as keyof ILocale;
 
@@ -79,11 +82,19 @@ export const MergedCategoriesAndProducts = ({
   return (
     <div className="px-4 space-y-4">
       {mergedCategoriesAndProducts.map((item) => (
-        <div key={item._id} id={`category-${item._id}`} className="scroll-mt-12">
+        <div
+          key={item._id}
+          id={`category-${item._id}`}
+          className="scroll-mt-12"
+        >
           <span className="font-bold text-lg">{item.name[language]}</span>
           <div className="grid grid-cols-2 gap-4 mt-4">
             {item.products.map((product) => (
-              <ProductCard product={product} key={product._id} />
+              <ProductCard
+                product={product}
+                key={product._id}
+                setSelectedProduct={setSelectedProduct}
+              />
             ))}
           </div>
         </div>

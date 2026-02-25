@@ -4,13 +4,17 @@ import { CategoriesService } from "@repo/api/services/category/category.service"
 import { ProductService } from "@repo/api/services/products/product.service";
 import { useQueries } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Categories } from "./components/categories";
 import { MergedCategoriesAndProducts } from "./components/merged-categories-and-products";
 import { TMergedProductAndCategory } from "../utils/types";
+import { IProductResponse } from "@repo/api/services/products/product.interface";
+import { ProductDrawer } from "@/components/product-drawer/product-drawer";
 
 export default function HomePage() {
   const { shopId } = useParams<ICommonParams>();
+  const [selectedProduct, setSelectedProduct] =
+    useState<IProductResponse | null>(null);
   const [categoriesQuery, productsQuery] = useQueries({
     queries: [
       {
@@ -50,8 +54,6 @@ export default function HomePage() {
         .filter((item) => Boolean(item.products.length));
     }, [categories, products]);
 
-  console.log({ mergedProductsAndCategories });
-
   if (!isHomePageReady) {
     return <div>Loading...</div>;
   }
@@ -60,8 +62,10 @@ export default function HomePage() {
     <div>
       <Categories categories={mergedProductsAndCategories ?? []} />
       <MergedCategoriesAndProducts
+        setSelectedProduct={setSelectedProduct}
         mergedCategoriesAndProducts={mergedProductsAndCategories ?? []}
       />
+      {selectedProduct && <ProductDrawer product={selectedProduct} />}
     </div>
   );
 }
