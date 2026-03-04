@@ -2,6 +2,7 @@ import { IData, IPaginatedData } from "../../utils/interfaces";
 import { api } from "../../api";
 import { IProductParams, IProductResponse } from "./product.interface";
 import { ProductByCategoryType } from "./product.type";
+import { ProductStatus } from "./product.enum";
 
 export class ProductService {
   static async getProductsByCategory(
@@ -27,7 +28,12 @@ export class ProductService {
     shopId: string,
     params: IProductParams
   ): Promise<IPaginatedData<IProductResponse>> {
-    const response = await api.get(`/products/${shopId}`, { params });
+    const response = await api.get(`/products/${shopId}`, {
+      params: {
+        ...params,
+        status: ProductStatus.ACTIVE,
+      },
+    });
     return response.data;
   }
 }

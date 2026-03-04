@@ -55,6 +55,7 @@ export const ProductCard = ({ product, setSelectedProduct }: IProps) => {
             quality={100}
             fetchPriority="high"
             loading="lazy"
+            sizes="full"
           />
           <ProductAddToCardButton
             product={product}

@@ -44,6 +44,7 @@ export const ProductDrawer = ({ product, setSelectedProduct }: IProps) => {
           className="object-cover w-full rounded-xl bg-muted"
           fetchPriority="high"
           loading="lazy"
+          sizes="full"
         />
         <div className="p-4 bg-background rounded-xl">
           <h2 className="text-2xl font-bold">{product.name[language]}</h2>
