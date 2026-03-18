@@ -11,6 +11,7 @@ import { TMergedProductAndCategory } from "../utils/types";
 import { IProductResponse } from "@repo/api/services/products/product.interface";
 import { ProductDrawer } from "@/components/product-drawer/product-drawer";
 import { PopularCategories } from "./components/hot-categories";
+import { HomepageSkeleton } from "./components/homepage-skeleton";
 
 export default function HomePage() {
   const { shopId } = useParams<ICommonParams>();
@@ -35,9 +36,7 @@ export default function HomePage() {
     ],
   });
 
-  const isHomePageReady = !(
-    categoriesQuery.isLoading && productsQuery.isLoading
-  );
+  const isHomePageLoading = categoriesQuery.isLoading || productsQuery.isLoading;
 
   const categories = categoriesQuery.data?.data;
   const products = productsQuery.data?.data;
@@ -55,8 +54,8 @@ export default function HomePage() {
         .filter((item) => Boolean(item.products.length));
     }, [categories, products]);
 
-  if (!isHomePageReady) {
-    return <div>Loading...</div>;
+  if (isHomePageLoading) {
+    return <HomepageSkeleton />;
   }
 
   return (
