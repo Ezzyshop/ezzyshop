@@ -1,6 +1,6 @@
 "use client";
-import { SearchInput } from "@/components/search-input";
 import { ICommonParams } from "@/utils/interfaces";
+import { SearchInput } from "@repo/shared-modules/components/search-input";
 import { useParams } from "next/navigation";
 import { useRouter } from "nextjs-toploader/app";
 

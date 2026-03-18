@@ -6,11 +6,11 @@ import {
   ICategoriesResponse,
   ICategoryParams,
 } from "@repo/api/services/category/index";
+import { CustomLink } from "@repo/shared-modules/components/custom-link";
 import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import { Button } from "@repo/ui/components/ui/button";
 import { ILocale } from "@repo/api/utils/interfaces/index";
-import { CustomLink } from "@/components/custom-link";
 
 interface IProps {
   shopId: string;

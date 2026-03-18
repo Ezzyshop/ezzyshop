@@ -15,6 +15,7 @@
     "@repo/contexts": "workspace:*",
     "@repo/hooks": "workspace:*",
     "@repo/i18n": "workspace:*",
+    "@repo/shared-modules": "workspace:*",
     "@repo/ui": "workspace:*",
     "@tanstack/react-query": "^5.83.0",
     "embla-carousel-autoplay": "^8.6.0",

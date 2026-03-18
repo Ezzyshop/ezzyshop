@@ -4,7 +4,14 @@ const withNextIntl = createNextIntlPlugin("./utils/i18n.ts");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ["@repo/ui", "@repo/i18n", "@repo/contexts", "@repo/api", "@repo/hooks"],
+  transpilePackages: [
+    "@repo/ui",
+    "@repo/i18n",
+    "@repo/contexts",
+    "@repo/api",
+    "@repo/hooks",
+    "@repo/shared-modules",
+  ],
   experimental: {
     optimizePackageImports: ["@repo/ui"],
   },

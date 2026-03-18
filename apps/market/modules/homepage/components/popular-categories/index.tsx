@@ -5,6 +5,7 @@ import {
   CategoriesService,
   ICategoriesResponse,
 } from "@repo/api/services/category/index";
+import { CustomLink } from "@repo/shared-modules/components/custom-link";
 import { useQuery } from "@tanstack/react-query";
 import { useLocale } from "next-intl";
 import {
@@ -16,7 +17,6 @@ import {
 import Image from "next/image";
 import Autoplay from "embla-carousel-autoplay";
 import { ILocale } from "@repo/api/utils/interfaces/index";
-import { CustomLink } from "@/components/custom-link";
 
 export const PopularCategories = ({ shopId }: ICommonParams) => {
   const language = useLocale() as keyof ILocale;

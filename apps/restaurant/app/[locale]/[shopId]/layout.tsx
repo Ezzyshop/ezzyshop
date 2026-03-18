@@ -5,6 +5,9 @@ import { routing } from "@repo/i18n/routing";
 import { Locale } from "@repo/i18n/types";
 import { CartProvider } from "@repo/contexts/cart-context/cart.context";
 import { UserProvider } from "@repo/contexts/user-context/user.context";
+import { WishlistProvider } from "@repo/contexts/wishlist-context/wishlist.context";
+import { ViewedProductsProvider } from "@repo/contexts/viewed-products-context/viewed-products.context";
+import { Dock } from "@repo/shared-modules/components/dock/dock";
 import { Toaster } from "@repo/ui/components/ui/sonner";
 import { ICommonParams } from "@/utils/interfaces";
 import TMAInitClient from "@/components/tma-init-client";
@@ -31,8 +34,13 @@ export default async function Layout({ children, params }: IProps) {
           <TMAInitClient />
           <UserProvider>
             <CartProvider shopId={`${shopId}-restaurant`}>
-              <div className="flex-1 flex flex-col">{children}</div>
-              <Toaster richColors position="top-center" />
+              <WishlistProvider shopId={`${shopId}-restaurant`}>
+                <ViewedProductsProvider shopId={`${shopId}-restaurant`}>
+                  <div className="flex-1 flex flex-col">{children}</div>
+                  <Dock />
+                  <Toaster richColors position="top-center" />
+                </ViewedProductsProvider>
+              </WishlistProvider>
             </CartProvider>
           </UserProvider>
         </ShopProvider>

@@ -5,8 +5,8 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@repo/ui/components/ui/drawer";
+import { AddressSelect as SharedAddressSelect } from "@repo/shared-modules/components/address-select/address-select";
 import { LocationIcon } from "@repo/ui/icons";
-import { AddressSelect as SharedAddressSelect } from "@/components/address-select/address-select";
 import { useTranslations } from "next-intl";
 import { useUserContext } from "@repo/contexts/user-context/user.context";
 

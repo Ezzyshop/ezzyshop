@@ -10,6 +10,7 @@ const nextConfig = {
     "@repo/contexts",
     "@repo/api",
     "@repo/hooks",
+    "@repo/shared-modules",
   ],
   experimental: {
     optimizePackageImports: ["@repo/ui"],

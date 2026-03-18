@@ -1,5 +1,7 @@
 @import "@repo/ui/globals.css";
 
+@source "../../../packages/shared-modules/src";
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

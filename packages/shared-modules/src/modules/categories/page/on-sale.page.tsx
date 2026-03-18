@@ -1,0 +1,58 @@
+"use client";
+import { PageHeader } from "@repo/shared-modules/components/page-header/page-header";
+import { ProductsGrid } from "@repo/shared-modules/components/products-group/products-grid";
+import { SearchInput } from "@repo/shared-modules/components/search-input";
+import { useDebounce } from "@repo/shared-modules/hooks/use-debounce";
+import { ICommonParams } from "@repo/shared-modules/utils/interfaces";
+import { ProductService } from "@repo/api/services/products/index";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { useTranslations } from "next-intl";
+import { useState } from "react";
+
+export const OnSaleProductsPage = ({ shopId }: ICommonParams) => {
+  const t = useTranslations("homepage.products");
+  const [search, setSearch] = useState("");
+
+  const debouncedSearch = useDebounce(search, 500);
+
+  const filterQuery = {
+    search: debouncedSearch,
+  };
+
+  const { data, isLoading, hasNextPage, isFetchingNextPage, fetchNextPage } =
+    useInfiniteQuery({
+      queryKey: ["on-sale-products", filterQuery],
+      queryFn: ({ pageParam = 1 }) =>
+        ProductService.getProductsByCategory(shopId, "on-sale", {
+          ...filterQuery,
+          page: pageParam,
+        }),
+      initialPageParam: 1,
+      getNextPageParam: (lastPage) => {
+        if (lastPage.paginationInfo.hasNextPage) {
+          return lastPage.paginationInfo.currentPage + 1;
+        }
+
+        return undefined;
+      },
+    });
+
+  return (
+    <div className="space-y-3">
+      <PageHeader title={t("on-sale")} />
+      <div className="px-4 pb-3 space-y-3">
+        <SearchInput
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <ProductsGrid
+          infiniteData={data}
+          isLoading={isLoading}
+          hasNextPage={hasNextPage}
+          isFetchingNextPage={isFetchingNextPage}
+          fetchNextPage={fetchNextPage}
+        />
+      </div>
+    </div>
+  );
+};

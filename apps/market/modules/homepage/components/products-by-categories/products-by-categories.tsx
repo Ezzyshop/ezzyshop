@@ -1,11 +1,11 @@
 "use client";
 
-import { CustomLink } from "@/components/custom-link";
-import { ProductsGrid } from "@/components/products-group/products-grid";
 import {
   IProductResponse,
   ProductByCategoryType,
 } from "@repo/api/services/products/index";
+import { CustomLink } from "@repo/shared-modules/components/custom-link";
+import { ProductsGrid } from "@repo/shared-modules/components/products-group/products-grid";
 import { Button } from "@repo/ui/components/ui/button";
 import { useLocale, useTranslations } from "next-intl";
 
