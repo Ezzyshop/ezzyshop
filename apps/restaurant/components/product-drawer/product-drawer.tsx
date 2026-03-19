@@ -34,18 +34,19 @@ export const ProductDrawer = ({ product, setSelectedProduct }: IProps) => {
 
   return (
     <Drawer open={!!product} onOpenChange={() => setSelectedProduct(null)}>
-      <DrawerContent className="!max-h-[90vh] h-[90vh]  bg-muted space-y-4  ">
+      <DrawerContent className="max-h-[90vh]! h-[90vh] overflow-y-auto bg-muted space-y-4">
         <DialogTitle className="hidden" />
-        <Image
-          src={product.main_image}
-          alt={product.name[language]}
-          width={100}
-          height={100}
-          className="object-cover w-full rounded-xl bg-muted"
-          fetchPriority="high"
-          loading="lazy"
-          sizes="full"
-        />
+        <div className="relative w-full max-h-[60vh] aspect-9/16 rounded-xl bg-background">
+          <Image
+            src={product.main_image}
+            alt={product.name[language]}
+            fill
+            className="object-contain w-full rounded-xl"
+            fetchPriority="high"
+            loading="lazy"
+            sizes="100vw"
+          />
+        </div>
         <div className="p-4 bg-background rounded-xl">
           <h2 className="text-2xl font-bold">{product.name[language]}</h2>
           <p>
