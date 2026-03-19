@@ -34,7 +34,10 @@ export const ProductDrawer = ({ product, setSelectedProduct }: IProps) => {
 
   return (
     <Drawer open={!!product} onOpenChange={() => setSelectedProduct(null)}>
-      <DrawerContent className="max-h-[90vh]! h-[90vh] overflow-y-auto bg-muted space-y-4">
+      <DrawerContent
+        data-vaul-custom-container="true"
+        className="max-h-[90vh]! h-[90vh] overflow-y-auto bg-muted space-y-4"
+      >
         <DialogTitle className="hidden" />
         <div className="relative w-full max-h-[60vh] aspect-9/16 rounded-xl bg-background">
           <Image
