@@ -7,31 +7,25 @@ export enum ErrorMessages {
   ForbiddenError = "FORBIDDEN_ERROR",
   BadRequestError = "BAD_REQUEST_ERROR",
   UnprocessableEntityError = "UNPROCESSABLE_ENTITY_ERROR",
-
   EmailOrPhoneAlreadyExists = "EMAIL_OR_PHONE_ALREADY_EXISTS",
   UserNotFound = "USER_NOT_FOUND",
   InvalidPassword = "INVALID_PASSWORD",
   EmailAlreadyExists = "EMAIL_ALREADY_EXISTS",
   PhoneAlreadyExists = "PHONE_ALREADY_EXISTS",
-
   UserNotFoundWhileCreatingShop = "USER_NOT_FOUND_WHILE_CREATING_SHOP",
   PlanNotFoundWhileCreatingShop = "PLAN_NOT_FOUND_WHILE_CREATING_SHOP",
   CurrencyNotFoundWhileCreatingShop = "CURRENCY_NOT_FOUND_WHILE_CREATING_SHOP",
   PlanNotFoundOrDeleted = "PLAN_NOT_FOUND_OR_DELETED",
   CurrencyNotFoundOrDeleted = "CURRENCY_NOT_FOUND_OR_DELETED",
-
   ShopNotFound = "SHOP_NOT_FOUND",
   YouAreNotAuthorizedToUpdateThisShop = "YOU_ARE_NOT_AUTHORIZED_TO_UPDATE_THIS_SHOP",
-
   InvalidTokenFormat = "INVALID_TOKEN_FORMAT",
   InvalidToken = "INVALID_TOKEN",
   FailedToChangeMenuTextAndUrl = "FAILED_TO_CHANGE_MENU_TEXT_AND_URL",
   FailedToGetMenuTextAndUrl = "FAILED_TO_GET_MENU_TEXT_AND_URL",
   TokenExpired = "TOKEN_EXPIRED",
-
   CategoryLimitReached = "CATEGORY_LIMIT_REACHED",
   CategoryNotFound = "CATEGORY_NOT_FOUND",
-
   ProductNotFound = "PRODUCT_NOT_FOUND",
   DeliveryMethodNotFound = "DELIVERY_METHOD_NOT_FOUND",
   PaymentMethodNotFound = "PAYMENT_METHOD_NOT_FOUND",
@@ -39,13 +33,15 @@ export enum ErrorMessages {
   TelegramBotNotFound = "TELEGRAM_BOT_NOT_FOUND",
   OrderNotFound = "ORDER_NOT_FOUND",
   YouHaveReachedTheLimitOfProducts = "YOU_HAVE_REACHED_THE_LIMIT_OF_PRODUCTS",
-
   AddressNotFound = "ADDRESS_NOT_FOUND",
   YouAreNotAuthorizedToUpdateThisAddress = "YOU_ARE_NOT_AUTHORIZED_TO_UPDATE_THIS_ADDRESS",
-
   BranchNotFound = "BRANCH_NOT_FOUND",
   PickupAddressNotFound = "PICKUP_ADDRESS_NOT_FOUND",
   ProductOutOfStock = "PRODUCT_OUT_OF_STOCK",
+  TransactionNotFound = "TRANSACTION_NOT_FOUND",
+  TransactionAlreadyHasPendingChequeImage = "TRANSACTION_ALREADY_HAS_PENDING_CHEQUE_IMAGE",
+  OtpNotFoundOrExpired = "OTP_NOT_FOUND_OR_EXPIRED",
+  UserAlreadyStaff = "USER_ALREADY_STAFF",
 }
 
 export const errorMessagesMap: Record<ErrorMessages, string> = {
@@ -100,4 +96,9 @@ export const errorMessagesMap: Record<ErrorMessages, string> = {
   [ErrorMessages.BranchNotFound]: "Filial topilmadi",
   [ErrorMessages.PickupAddressNotFound]: "Olib ketish manzili topilmadi",
   [ErrorMessages.ProductOutOfStock]: "Mahsulot mavjud emas",
+  [ErrorMessages.TransactionNotFound]: "Hisobot topilmadi",
+  [ErrorMessages.TransactionAlreadyHasPendingChequeImage]:
+    "Hisobotda turib ketgan hisobot rasmi mavjud",
+  [ErrorMessages.OtpNotFoundOrExpired]: "OTP topilmadi yoki amal qilish muddati tugagan",
+  [ErrorMessages.UserAlreadyStaff]: "Foydalanuvchi allaqachon staff bo'ldi",
 };
