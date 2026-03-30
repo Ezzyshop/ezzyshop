@@ -237,5 +237,6 @@
   },
   "price": {
     "from": "от {price}"
-  }
+  },
+  "powered_by": "Разработано {company}"
 }

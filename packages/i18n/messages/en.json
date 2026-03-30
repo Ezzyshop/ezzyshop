@@ -237,5 +237,6 @@
   },
   "price": {
     "from": "from {price}"
-  }
+  },
+  "powered_by": "Powered by {company}"
 }

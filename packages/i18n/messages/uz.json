@@ -237,5 +237,6 @@
   },
   "price": {
     "from": "{price} dan"
-  }
+  },
+  "powered_by": "{company} tomonidan yaratilgan"
 }

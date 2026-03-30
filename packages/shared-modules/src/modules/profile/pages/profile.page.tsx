@@ -46,6 +46,9 @@ export const ProfilePage = () => {
         <LogoutButton />
         <LoginButton />
       </div>
+      <p className="text-muted-foreground text-center text-sm">
+        {useTranslations()("powered_by", { company: "Ezzyshop" })}
+      </p>
     </div>
   );
 };
