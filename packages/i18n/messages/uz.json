@@ -233,7 +233,9 @@
     "cheques": "Yuborilgan cheklar"
   },
   "map": {
-    "title": "Xarita"
+    "title": "Xarita",
+    "my_location": "Men qayerdaman?",
+    "confirm": "Tasdiqlash"
   },
   "price": {
     "from": "{price} dan"

@@ -233,7 +233,9 @@
     "cheques": "Submitted receipts"
   },
   "map": {
-    "title": "Map"
+    "title": "Map",
+    "my_location": "Where am I?",
+    "confirm": "Confirm"
   },
   "price": {
     "from": "from {price}"

@@ -233,7 +233,9 @@
     "cheques": "Отправленные чеки"
   },
   "map": {
-    "title": "Карта"
+    "title": "Карта",
+    "my_location": "Где я?",
+    "confirm": "Подтвердить"
   },
   "price": {
     "from": "от {price}"

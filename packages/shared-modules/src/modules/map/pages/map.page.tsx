@@ -19,6 +19,7 @@ export const MapPage = () => {
       <PageHeader title={t("title")} />
       <YandexMap
         initialCoordinates={initialCoordinates}
+        myLocationLabel={t("my_location")}
         onLocationSelect={() => {}}
         height="calc(100vh - 60px)"
       />

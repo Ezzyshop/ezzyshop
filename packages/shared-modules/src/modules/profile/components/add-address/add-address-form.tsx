@@ -45,6 +45,7 @@ interface IProps {
 export const AddAddressForm = ({ onSubmit, isLoading }: IProps) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const t = useTranslations("profile.address");
+  const mapT = useTranslations("map");
   const form = useForm<IAddAddressForm>({
     resolver: joiResolver(addressSchema),
     defaultValues: {
@@ -93,6 +94,16 @@ export const AddAddressForm = ({ onSubmit, isLoading }: IProps) => {
               Number(field.value.lat),
               Number(field.value.lng),
             ]}
+            myLocationLabel={mapT("my_location")}
+            confirmLabel={mapT("confirm")}
+            onLocationChange={({ coordinates, address }) => {
+              field.onChange({
+                ...field.value,
+                lat: coordinates[0],
+                lng: coordinates[1],
+                address,
+              });
+            }}
             onLocationSelect={({ coordinates, address }) => {
               field.onChange({
                 ...field.value,
