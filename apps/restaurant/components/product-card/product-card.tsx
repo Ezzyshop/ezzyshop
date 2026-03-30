@@ -2,7 +2,11 @@
 import { IProductResponse } from "@repo/api/services/products/product.interface";
 import { ILocale } from "@repo/api/utils/interfaces/base.interface";
 import { useShopContext } from "@repo/contexts/shop-context/shop.context";
+import { useWishlist } from "@repo/contexts/wishlist-context/wishlist.context";
+import { HeartIcon } from "@repo/ui/components/icons/index";
+import { Button } from "@repo/ui/components/ui/button";
 import { Card, CardContent } from "@repo/ui/components/ui/card";
+import { cn } from "@repo/ui/lib/utils";
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import { useMemo } from "react";
@@ -16,7 +20,9 @@ interface IProps {
 export const ProductCard = ({ product, setSelectedProduct }: IProps) => {
   const locale = useLocale() as keyof ILocale;
   const { currency } = useShopContext();
+  const { isItemInWishlist, toggleItem } = useWishlist();
   const t = useTranslations("price");
+  const isInWishlist = isItemInWishlist(product._id);
 
   const mostCheapPrice = useMemo(
     () =>
@@ -39,6 +45,11 @@ export const ProductCard = ({ product, setSelectedProduct }: IProps) => {
     return priceText;
   };
 
+  const handleWishlistToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    toggleItem(product);
+  };
+
   return (
     <Card
       className="shadow-none border-0 p-0"
@@ -46,6 +57,19 @@ export const ProductCard = ({ product, setSelectedProduct }: IProps) => {
     >
       <CardContent className="p-0">
         <div className="relative">
+          <Button
+            variant="outline"
+            size="icon"
+            className="absolute top-2 right-2 z-10 size-8 rounded-full border-0 bg-background/80 shadow-none backdrop-blur-sm"
+            onClick={handleWishlistToggle}
+          >
+            <HeartIcon
+              className={cn(
+                "size-4",
+                isInWishlist && "fill-primary stroke-primary"
+              )}
+            />
+          </Button>
           <Image
             src={product.main_image}
             alt={product.name[locale]}
