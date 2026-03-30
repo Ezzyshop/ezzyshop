@@ -2,6 +2,240 @@
   "homepage": {
     "search": {
       "placeholder": "Search"
+    },
+    "popular_categories": {
+      "title": "Popular categories"
+    },
+    "categories": {
+      "title": "Categories",
+      "viewAll": "All categories"
+    },
+    "products": {
+      "most-popular": "Popular products",
+      "new-arrivals": "New arrivals",
+      "on-sale": "On sale",
+      "view-all": "All products"
     }
+  },
+  "product": {
+    "add_to_cart": "Add to cart",
+    "no-products-found": "No products found",
+    "description": "Description",
+    "similar_products": "Similar products",
+    "no_options_available": "Out of stock",
+    "out_of_stock": "Out of stock",
+    "adding": "Adding...",
+    "delivery_time": "Delivery within {day} days"
+  },
+  "categories": {
+    "title": "Categories"
+  },
+  "cart": {
+    "title": "Cart",
+    "items": "Products",
+    "checkout": "Checkout",
+    "viewed_products": "Viewed products",
+    "most-popular": "Popular products",
+    "empty": {
+      "title": "Your cart is empty for now",
+      "description": "Start from the home page - you can find the products you need through search or browse collections",
+      "go_to_home": "Go to home page"
+    },
+    "remove": "Remove from cart",
+    "out_of_stock": "Product is not available for sale"
+  },
+  "wishlist": {
+    "title": "My wishlist"
+  },
+  "profile": {
+    "title": "Profile",
+    "profile": "My profile information",
+    "orders": "My orders",
+    "addresses": "My addresses",
+    "language": "Change platform language",
+    "logout": "Log out",
+    "login": "Log in",
+    "logout_state_message": "Log in and start shopping",
+    "select_language": "Select language",
+    "login_to_shop": "Log in to {name}",
+    "continue": "Continue",
+    "password": "Enter your password",
+    "logout_confirmation": "Do you want to log out?",
+    "cancel": "Cancel",
+    "invalid_password": "Invalid password",
+    "full_name": "Enter your name",
+    "confirm_password": "Repeat your password",
+    "edit_profile": "Edit profile",
+    "phone": "Enter your phone number",
+    "email": "Enter your email",
+    "saving": "Saving...",
+    "save": "Save",
+    "address": {
+      "add-new-address": "Add new address",
+      "addresses": "My addresses",
+      "add-address": "Add address",
+      "address-name": "Address name",
+      "address": "Address",
+      "entrance": "Entrance",
+      "floor": "Floor",
+      "room": "Room",
+      "note": "Additional information",
+      "save": "Save",
+      "enter-address-name": "Enter address name",
+      "enter-address": "Enter address",
+      "enter-entrance": "Enter entrance",
+      "enter-floor": "Enter floor",
+      "enter-room": "Enter room",
+      "enter-note": "Enter additional information",
+      "delete-address": "Do you want to delete the address?",
+      "delete": "Delete",
+      "cancel": "Cancel"
+    },
+    "otp": "Enter OTP code"
+  },
+  "search": {
+    "title": "Search",
+    "price": "Price",
+    "apply": "Apply",
+    "from": "from",
+    "to": "to",
+    "sort": "Sort",
+    "cheapest": "Cheapest",
+    "most-expensive": "Most expensive",
+    "first_shown": "Shown first"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "shipping": {
+      "pickup": "Pickup",
+      "delivery": "Delivery",
+      "no-branches-found": "No pickup points available",
+      "no-delivery-methods-found": "No delivery methods available",
+      "delivery-options": "Receiving method",
+      "address": {
+        "address-select": "Delivery address",
+        "change-address": "Change address",
+        "no-address-selected": "No address selected"
+      },
+      "min-order-price": "Minimum order amount"
+    },
+    "payment": {
+      "title": "Payment method",
+      "no-payment-methods-found": "No payment methods available",
+      "payment-method-select": "Select a payment method",
+      "loading": "Loading payment methods..."
+    },
+    "user": {
+      "title": "Recipient",
+      "description": "Enter the recipient information",
+      "name": "Your name",
+      "enter_name": "Enter your name",
+      "phone": "Your phone number",
+      "enter_phone": "Enter your phone number",
+      "save": "Save"
+    },
+    "productsSummary": {
+      "total-items": "Number of products",
+      "total-price": "Products price",
+      "total-price-without-discount": "Price before discount",
+      "delivery-fee": "Delivery fee",
+      "total-discount": "Discounts",
+      "final-price": "Total price"
+    },
+    "note": {
+      "title": "Note for the courier",
+      "placeholder": "Enter a note for the courier"
+    },
+    "submit": "Place order",
+    "loading": "Submitting order...",
+    "errors": {
+      "delivery-address-required": "Select a delivery address",
+      "payment-method-required": "Select a payment method",
+      "delivery-method-required": "Select a delivery method or pickup location"
+    },
+    "success": {
+      "title": "Thank you for your purchase!",
+      "description": "Your order has been placed successfully and will be sent to you soon.",
+      "go_to_home": "Go to home page",
+      "go_to_orders": "Go to my orders"
+    },
+    "confirm-card-transfer": {
+      "title": "Send payment receipt",
+      "description": "Confirm your order by sending the payment receipt",
+      "important-information": {
+        "title": "Important information",
+        "1": "• Before sending the payment receipt, please verify the payment amount",
+        "2": "• The receipt will be checked by the seller and you will be notified once it is confirmed"
+      },
+      "payment-verification": {
+        "title": "Payment verification",
+        "description": "Upload a clear photo or screenshot of the payment receipt",
+        "button": "Confirm payment",
+        "upload": "Upload payment receipt",
+        "upload-info": "Click to upload the receipt",
+        "remove": "Remove uploaded file",
+        "accepted-formats": "JPG, PNG, PDF (max 10MB)",
+        "uploading": "Uploading...",
+        "success": "Payment confirmed",
+        "success-description": "Your payment has been confirmed. Your order will be sent to you soon.",
+        "waiting": "Waiting for payment verification",
+        "waiting-description": "Your payment has been submitted. It will be reviewed by the seller soon.",
+        "go-to-home": "Go to home page"
+      }
+    }
+  },
+  "orders": {
+    "active": "Active",
+    "completed": "Completed",
+    "orders": "My orders",
+    "order_number": "Order number",
+    "status": {
+      "new": "New",
+      "processing": "Processing",
+      "delivering": "Out for delivery",
+      "completed": "Delivered to customer",
+      "cancelled": "Cancelled"
+    },
+    "date": "Order date",
+    "recipient": "Recipient",
+    "products-quantity": "{count} products",
+    "delivery-method": "Delivery fee",
+    "total-price": "Total price",
+    "address": "Delivery address",
+    "address-details": "View on map",
+    "pickup-address": "Pickup address",
+    "products": "Products",
+    "quantity": "{count} pcs",
+    "no_orders_found": "No orders found",
+    "cheque_upload": "Send receipt",
+    "payment-method": {
+      "title": "Payment method",
+      "click": "Click",
+      "card-transfer": "Bank card transfer",
+      "cash": "Cash"
+    },
+    "payment-status": {
+      "title": "Payment status",
+      "pending": "Unpaid",
+      "success": "Paid",
+      "refunded": "Refunded",
+      "cancelled": "Cancelled"
+    },
+    "cheque_upload_pending": "Receipt is being reviewed by the seller",
+    "cheque_upload_verified": "Receipt confirmed",
+    "cheque_upload_rejected": "Receipt rejected",
+    "cheque_upload_pending_description": "The receipt will be reviewed by the seller soon",
+    "cheque_upload_verified_description": "The receipt you sent has been confirmed by the seller",
+    "cheque_upload_rejected_description": "The receipt you sent was rejected by the seller",
+    "cheque_upload_pending_button": "Receipt is being reviewed",
+    "cheque_upload_verified_button": "Receipt confirmed",
+    "cheque_upload_rejected_button": "Receipt rejected",
+    "cheques": "Submitted receipts"
+  },
+  "map": {
+    "title": "Map"
+  },
+  "price": {
+    "from": "from {price}"
   }
 }

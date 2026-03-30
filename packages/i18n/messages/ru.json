@@ -1,7 +1,241 @@
 {
   "homepage": {
     "search": {
-      "placeholder": "Search"
+      "placeholder": "Поиск"
+    },
+    "popular_categories": {
+      "title": "Популярные категории"
+    },
+    "categories": {
+      "title": "Категории",
+      "viewAll": "Все категории"
+    },
+    "products": {
+      "most-popular": "Популярные товары",
+      "new-arrivals": "Новинки",
+      "on-sale": "Скидки",
+      "view-all": "Все товары"
     }
+  },
+  "product": {
+    "add_to_cart": "Добавить в корзину",
+    "no-products-found": "Товары не найдены",
+    "description": "Описание",
+    "similar_products": "Похожие товары",
+    "no_options_available": "Нет в наличии",
+    "out_of_stock": "Нет в наличии",
+    "adding": "Добавление...",
+    "delivery_time": "Доставка в течение {day} дней"
+  },
+  "categories": {
+    "title": "Категории"
+  },
+  "cart": {
+    "title": "Корзина",
+    "items": "Товары",
+    "checkout": "Оформить заказ",
+    "viewed_products": "Просмотренные товары",
+    "most-popular": "Популярные товары",
+    "empty": {
+      "title": "Ваша корзина пока пуста",
+      "description": "Начните с главной страницы - вы можете найти нужные товары через поиск или просмотреть подборки",
+      "go_to_home": "Перейти на главную"
+    },
+    "remove": "Удалить из корзины",
+    "out_of_stock": "Товар недоступен для продажи"
+  },
+  "wishlist": {
+    "title": "Мои желания"
+  },
+  "profile": {
+    "title": "Профиль",
+    "profile": "Мои данные",
+    "orders": "Мои заказы",
+    "addresses": "Мои адреса",
+    "language": "Изменить язык платформы",
+    "logout": "Выйти",
+    "login": "Войти",
+    "logout_state_message": "Войдите в систему и начните покупки",
+    "select_language": "Выберите язык",
+    "login_to_shop": "Войти в {name}",
+    "continue": "Продолжить",
+    "password": "Введите пароль",
+    "logout_confirmation": "Вы хотите выйти из системы?",
+    "cancel": "Отмена",
+    "invalid_password": "Неверный пароль",
+    "full_name": "Введите ваше имя",
+    "confirm_password": "Повторите пароль",
+    "edit_profile": "Редактировать профиль",
+    "phone": "Введите номер телефона",
+    "email": "Введите email",
+    "saving": "Сохранение...",
+    "save": "Сохранить",
+    "address": {
+      "add-new-address": "Добавить новый адрес",
+      "addresses": "Мои адреса",
+      "add-address": "Добавить адрес",
+      "address-name": "Название адреса",
+      "address": "Адрес",
+      "entrance": "Подъезд",
+      "floor": "Этаж",
+      "room": "Квартира",
+      "note": "Дополнительная информация",
+      "save": "Сохранить",
+      "enter-address-name": "Введите название адреса",
+      "enter-address": "Введите адрес",
+      "enter-entrance": "Введите подъезд",
+      "enter-floor": "Введите этаж",
+      "enter-room": "Введите квартиру",
+      "enter-note": "Введите дополнительную информацию",
+      "delete-address": "Вы хотите удалить адрес?",
+      "delete": "Удалить",
+      "cancel": "Отмена"
+    },
+    "otp": "Введите OTP-код"
+  },
+  "search": {
+    "title": "Поиск",
+    "price": "Цена",
+    "apply": "Применить",
+    "from": "от",
+    "to": "до",
+    "sort": "Сортировка",
+    "cheapest": "Сначала дешевле",
+    "most-expensive": "Сначала дороже",
+    "first_shown": "Показывать сначала"
+  },
+  "checkout": {
+    "title": "Оформление заказа",
+    "shipping": {
+      "pickup": "Самовывоз",
+      "delivery": "Доставка",
+      "no-branches-found": "Пункты самовывоза недоступны",
+      "no-delivery-methods-found": "Способы доставки недоступны",
+      "delivery-options": "Способ получения",
+      "address": {
+        "address-select": "Адрес доставки",
+        "change-address": "Изменить адрес",
+        "no-address-selected": "Адрес не выбран"
+      },
+      "min-order-price": "Минимальная сумма заказа"
+    },
+    "payment": {
+      "title": "Способ оплаты",
+      "no-payment-methods-found": "Способы оплаты недоступны",
+      "payment-method-select": "Выберите способ оплаты",
+      "loading": "Загрузка способов оплаты..."
+    },
+    "user": {
+      "title": "Получатель",
+      "description": "Введите данные получателя",
+      "name": "Ваше имя",
+      "enter_name": "Введите ваше имя",
+      "phone": "Ваш номер телефона",
+      "enter_phone": "Введите номер телефона",
+      "save": "Сохранить"
+    },
+    "productsSummary": {
+      "total-items": "Количество товаров",
+      "total-price": "Стоимость товаров",
+      "total-price-without-discount": "Цена до скидки",
+      "delivery-fee": "Стоимость доставки",
+      "total-discount": "Скидки",
+      "final-price": "Итоговая сумма"
+    },
+    "note": {
+      "title": "Комментарий для курьера",
+      "placeholder": "Введите комментарий для курьера"
+    },
+    "submit": "Оформить заказ",
+    "loading": "Отправка заказа...",
+    "errors": {
+      "delivery-address-required": "Выберите адрес доставки",
+      "payment-method-required": "Выберите способ оплаты",
+      "delivery-method-required": "Выберите способ доставки или пункт самовывоза"
+    },
+    "success": {
+      "title": "Спасибо за покупку!",
+      "description": "Ваш заказ успешно оформлен и скоро будет отправлен вам.",
+      "go_to_home": "Перейти на главную",
+      "go_to_orders": "Перейти к моим заказам"
+    },
+    "confirm-card-transfer": {
+      "title": "Отправить чек об оплате",
+      "description": "Подтвердите заказ, отправив чек об оплате",
+      "important-information": {
+        "title": "Важная информация",
+        "1": "• Перед отправкой чека об оплате проверьте сумму платежа",
+        "2": "• Чек будет проверен продавцом, и вы получите уведомление после подтверждения"
+      },
+      "payment-verification": {
+        "title": "Подтверждение оплаты",
+        "description": "Загрузите четкое фото или скриншот платежной квитанции",
+        "button": "Подтвердить оплату",
+        "upload": "Загрузить чек об оплате",
+        "upload-info": "Нажмите, чтобы загрузить квитанцию",
+        "remove": "Удалить загруженный файл",
+        "accepted-formats": "JPG, PNG, PDF (макс. 10MB)",
+        "uploading": "Загрузка...",
+        "success": "Оплата подтверждена",
+        "success-description": "Ваш платеж подтвержден. Ваш заказ скоро будет отправлен вам.",
+        "waiting": "Ожидается подтверждение оплаты",
+        "waiting-description": "Ваш платеж отправлен. Скоро он будет проверен продавцом.",
+        "go-to-home": "Перейти на главную"
+      }
+    }
+  },
+  "orders": {
+    "active": "Активные",
+    "completed": "Завершенные",
+    "orders": "Мои заказы",
+    "order_number": "Номер заказа",
+    "status": {
+      "new": "Новый",
+      "processing": "Готовится",
+      "delivering": "Доставляется",
+      "completed": "Передан покупателю",
+      "cancelled": "Отменен"
+    },
+    "date": "Дата заказа",
+    "recipient": "Получатель",
+    "products-quantity": "{count} товаров",
+    "delivery-method": "Стоимость доставки",
+    "total-price": "Общая стоимость",
+    "address": "Адрес доставки",
+    "address-details": "Посмотреть на карте",
+    "pickup-address": "Адрес самовывоза",
+    "products": "Товары",
+    "quantity": "{count} шт.",
+    "no_orders_found": "Заказы не найдены",
+    "cheque_upload": "Отправить чек",
+    "payment-method": {
+      "title": "Способ оплаты",
+      "click": "Click",
+      "card-transfer": "Перевод на карту",
+      "cash": "Наличные"
+    },
+    "payment-status": {
+      "title": "Статус оплаты",
+      "pending": "Не оплачено",
+      "success": "Оплачено",
+      "refunded": "Возвращено",
+      "cancelled": "Отменено"
+    },
+    "cheque_upload_pending": "Чек проверяется продавцом",
+    "cheque_upload_verified": "Чек подтвержден",
+    "cheque_upload_rejected": "Чек отклонен",
+    "cheque_upload_pending_description": "Чек скоро будет проверен продавцом",
+    "cheque_upload_verified_description": "Отправленный вами чек подтвержден продавцом",
+    "cheque_upload_rejected_description": "Отправленный вами чек был отклонен продавцом",
+    "cheque_upload_pending_button": "Чек проверяется",
+    "cheque_upload_verified_button": "Чек подтвержден",
+    "cheque_upload_rejected_button": "Чек отклонен",
+    "cheques": "Отправленные чеки"
+  },
+  "map": {
+    "title": "Карта"
+  },
+  "price": {
+    "from": "от {price}"
   }
 }
