@@ -14,6 +14,9 @@ import Image from "next/image";
 import { UseFormReturn } from "react-hook-form";
 import { ICheckoutForm } from "../utils/checkout.interface";
 import { FormField } from "@repo/ui/components/ui/form";
+import clickIcon from "../../../assets/icons/payment-providers/click.svg";
+import cashIcon from "../../../assets/images/payment-providers/cash.png";
+import cardTransferIcon from "../../../assets/icons/payment-providers/card.svg";
 
 interface IProps {
   form: UseFormReturn<ICheckoutForm>;
@@ -29,9 +32,9 @@ export const CheckoutPaymentSelect = ({ form }: IProps) => {
   });
 
   const providerIcons: Record<PaymentMethodType, string> = {
-    [PaymentMethodType.Click]: "/icons/payment-providers/click.svg",
-    [PaymentMethodType.Cash]: "/images/payment-providers/cash.png",
-    [PaymentMethodType.CardTransfer]: "/icons/payment-providers/card.svg",
+    [PaymentMethodType.Click]: clickIcon,
+    [PaymentMethodType.Cash]: cashIcon,
+    [PaymentMethodType.CardTransfer]: cardTransferIcon,
   };
 
   const renderContent = () => {
@@ -75,8 +78,10 @@ export const CheckoutPaymentSelect = ({ form }: IProps) => {
                         <Image
                           src={providerIcons[paymentMethod.type]}
                           alt={name}
-                          width={32}
-                          height={32}
+                          width={56}
+                          height={24}
+                          className="h-8  w-9 shrink-0"
+                          unoptimized
                         />
                         <div className="flex-grow">
                           <h3 className="font-medium text-base">{name}</h3>
