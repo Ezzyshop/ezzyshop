@@ -10,7 +10,7 @@ import { RadioGroup, RadioGroupItem } from "@repo/ui/components/ui/radio-group";
 import { Card } from "@repo/ui/components/ui/card";
 import { Label } from "@repo/ui/components/ui/label";
 import { useTranslations } from "next-intl";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { UseFormReturn } from "react-hook-form";
 import { ICheckoutForm } from "../utils/checkout.interface";
 import { FormField } from "@repo/ui/components/ui/form";
@@ -31,7 +31,7 @@ export const CheckoutPaymentSelect = ({ form }: IProps) => {
     queryFn: () => PaymentMethodService.getPublicPaymentMethods(shopId),
   });
 
-  const providerIcons: Record<PaymentMethodType, string> = {
+  const providerIcons: Record<PaymentMethodType, string | StaticImageData> = {
     [PaymentMethodType.Click]: clickIcon,
     [PaymentMethodType.Cash]: cashIcon,
     [PaymentMethodType.CardTransfer]: cardTransferIcon,
