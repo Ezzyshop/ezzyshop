@@ -1,11 +1,15 @@
 export type Locale = "en" | "ru" | "uz";
 
+export interface LocaleIconAsset {
+  src: string;
+}
+
 export interface LocaleConfig {
   code: Locale;
   name: string;
   flag: string;
   rtl?: boolean;
-  icon: string;
+  icon: string | LocaleIconAsset;
 }
 
 export interface TranslationKeys {

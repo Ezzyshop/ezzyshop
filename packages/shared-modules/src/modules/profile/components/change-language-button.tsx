@@ -41,7 +41,7 @@ export const ChangeLanguageButton = () => {
                 className="flex items-center gap-2"
               >
                 <Image
-                  src={l.icon}
+                  src={l.icon as string}
                   alt={l.code}
                   width={20}
                   height={20}
