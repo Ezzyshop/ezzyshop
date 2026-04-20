@@ -26,7 +26,7 @@ export function useI18nRouter() {
     // Remove current locale from pathname
     const pathWithoutLocale = pathname.replace(`/${locale}`, "") || "/";
     const newPath = `/${newLocale}${pathWithoutLocale}`;
-    router.push(newPath);
+    router.replace(newPath);
   };
 
   return {
@@ -48,7 +48,7 @@ export function useClientLocale() {
   const locales = routing.locales;
 
   const switchLocale = (newLocale: Locale) => {
-    router.push(`/${newLocale}${pathname.replace(`/${locale}`, "") || "/"}`);
+    router.replace(`/${newLocale}${pathname.replace(`/${locale}`, "") || "/"}`);
   };
 
   return {

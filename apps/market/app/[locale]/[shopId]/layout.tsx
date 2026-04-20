@@ -26,7 +26,10 @@ export default async function Layout({ children, params }: IProps) {
   const messages = await getMessages();
 
   return (
-    <div className="max-w-[425px] mx-auto min-h-screen bg-background flex flex-col">
+    <div
+      className="max-w-[425px] mx-auto min-h-screen bg-background flex flex-col"
+      style={{ paddingTop: 'calc(var(--tg-safe-area-inset-top, 0px) + var(--tg-content-safe-area-inset-top, 0px))' }}
+    >
       <NextIntlClientProvider messages={messages}>
         <TMAInitClient />
         <UserProvider>

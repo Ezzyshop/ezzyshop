@@ -38,7 +38,10 @@ export default async function RootLayout({
         suppressHydrationWarning
         className={`${rubik.variable} bg-secondary`}
       >
-        <div className="max-w-[425px] mx-auto min-h-screen bg-background flex flex-col">
+        <div
+          className="max-w-[425px] mx-auto min-h-screen bg-background flex flex-col"
+          style={{ paddingTop: 'calc(var(--tg-safe-area-inset-top, 0px) + var(--tg-content-safe-area-inset-top, 0px))' }}
+        >
           {children}
           <NextTopLoader
             color="var(--primary)"

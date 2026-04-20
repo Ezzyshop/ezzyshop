@@ -26,6 +26,8 @@ export const useTMAInit = () => {
   }, [brand_color]);
 
   useEffect(() => {
+    WebApp.expand();
+    WebApp.requestFullscreen();
     WebApp.enableClosingConfirmation();
     WebApp.disableVerticalSwipes();
   }, []);
