@@ -1,23 +1,26 @@
 import { type Locale, type LocaleConfig } from "@repo/i18n/types";
+import englishFlag from "../images/en.png";
+import russianFlag from "../images/ru.png";
+import uzbekFlag from "../images/uz.png";
 
 export const localeConfigs: LocaleConfig[] = [
   {
     code: "en",
     name: "English",
     flag: "🇺🇸",
-    icon: "/images/en.png",
+    icon: englishFlag,
   },
   {
     code: "ru",
     name: "Русский",
     flag: "🇷🇺",
-    icon: "/images/ru.png",
+    icon: russianFlag,
   },
   {
     code: "uz",
     name: "O'zbekcha",
     flag: "🇺🇿",
-    icon: "/images/uzb.png",
+    icon: uzbekFlag,
   },
 ];
 
