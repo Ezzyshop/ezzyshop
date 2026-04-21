@@ -25,6 +25,7 @@ export interface IOrderCreateRequest {
   };
   notes?: string;
   telegram_chat_id?: string;
+  coupon_code?: string;
 }
 
 export interface IOrderResponse {
@@ -37,6 +38,8 @@ export interface IOrderResponse {
   };
   total_quantity: number;
   total_price: number;
+  coupon_discount?: number;
+  coupon_code?: string;
   delivery_method?: {
     _id: string;
     price: number;

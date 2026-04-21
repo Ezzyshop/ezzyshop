@@ -20,4 +20,5 @@ export interface ICheckoutForm {
   pickup_location_and_delivery_method?: string;
   notes?: string;
   telegram_chat_id?: string;
+  coupon_code?: string;
 }

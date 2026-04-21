@@ -10,9 +10,10 @@ import { DeliveryMethodService } from "@repo/api/services/delivery-method/delive
 
 interface IProps {
   form: UseFormReturn<ICheckoutForm>;
+  couponDiscount?: number;
 }
 
-export const CheckoutProductsSummary = ({ form }: IProps) => {
+export const CheckoutProductsSummary = ({ form, couponDiscount = 0 }: IProps) => {
   const t = useTranslations();
   const deliveryMethodId = form.watch("delivery_method");
   const { currency, _id: shopId } = useShopContext();
@@ -27,7 +28,8 @@ export const CheckoutProductsSummary = ({ form }: IProps) => {
   });
 
   const deliveryPrice = deliveryMethod?.price ?? 0;
-  const finalPrice = totalPrice + deliveryPrice;
+  const appliedCouponCode = form.watch("coupon_code");
+  const finalPrice = totalPrice + deliveryPrice - (couponDiscount ?? 0);
 
   return (
     <div className="border-t pt-4">
@@ -76,6 +78,16 @@ export const CheckoutProductsSummary = ({ form }: IProps) => {
             </p>
             <p className="font-medium">
               +{deliveryPrice.toLocaleString()} {currency.symbol}
+            </p>
+          </div>
+        )}
+        {couponDiscount > 0 && (
+          <div className="py-1 px-2 flex flex-row items-center justify-between shadow-none border-none">
+            <p className="text-muted-foreground">
+              {t("checkout.coupon.discount")} ({appliedCouponCode})
+            </p>
+            <p className="font-medium text-green-600">
+              -{couponDiscount.toLocaleString()} {currency.symbol}
             </p>
           </div>
         )}

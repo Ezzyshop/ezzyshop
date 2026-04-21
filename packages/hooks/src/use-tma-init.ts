@@ -27,7 +27,7 @@ export const useTMAInit = () => {
 
   useEffect(() => {
     WebApp.expand();
-    WebApp.requestFullscreen();
+    // WebApp.requestFullscreen();
     WebApp.enableClosingConfirmation();
     WebApp.disableVerticalSwipes();
   }, []);

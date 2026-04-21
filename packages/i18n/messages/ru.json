@@ -146,6 +146,13 @@
       "title": "Комментарий для курьера",
       "placeholder": "Введите комментарий для курьера"
     },
+    "coupon": {
+      "placeholder": "Промокод",
+      "apply": "Применить",
+      "applied": "Код применён",
+      "discount": "Скидка",
+      "remove": "Удалить"
+    },
     "submit": "Оформить заказ",
     "loading": "Отправка заказа...",
     "errors": {
@@ -200,6 +207,7 @@
     "recipient": "Получатель",
     "products-quantity": "{count} товаров",
     "delivery-method": "Стоимость доставки",
+    "coupon-discount": "Скидка купона",
     "total-price": "Общая стоимость",
     "address": "Адрес доставки",
     "address-details": "Посмотреть на карте",

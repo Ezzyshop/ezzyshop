@@ -149,11 +149,25 @@ export const OrderCard = ({ order, transaction }: IProps) => {
           </p>
           <p className="text-sm">
             {(
-              order.total_price - (order.delivery_method?.price || 0)
+              order.total_price +
+              (order.coupon_discount || 0) -
+              (order.delivery_method?.price || 0)
             ).toLocaleString()}{" "}
             {currency.symbol}
           </p>
         </div>
+
+        {order.coupon_discount ? (
+          <div className="flex items-center justify-between">
+            <p className="text-sm text-green-600">
+              {t("coupon-discount")}
+              {order.coupon_code ? ` (${order.coupon_code})` : ""}:
+            </p>
+            <p className="text-sm text-green-600">
+              -{order.coupon_discount.toLocaleString()} {currency.symbol}
+            </p>
+          </div>
+        ) : null}
 
         {order.delivery_method && (
           <div className="flex items-center justify-between">

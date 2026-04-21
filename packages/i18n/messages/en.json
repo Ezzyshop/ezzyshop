@@ -146,6 +146,13 @@
       "title": "Note for the courier",
       "placeholder": "Enter a note for the courier"
     },
+    "coupon": {
+      "placeholder": "Promo code",
+      "apply": "Apply",
+      "applied": "Code applied",
+      "discount": "Discount",
+      "remove": "Remove"
+    },
     "submit": "Place order",
     "loading": "Submitting order...",
     "errors": {
@@ -200,6 +207,7 @@
     "recipient": "Recipient",
     "products-quantity": "{count} products",
     "delivery-method": "Delivery fee",
+    "coupon-discount": "Coupon discount",
     "total-price": "Total price",
     "address": "Delivery address",
     "address-details": "View on map",

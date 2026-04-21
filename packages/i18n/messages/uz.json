@@ -146,6 +146,13 @@
       "title": "Kuryer uchun izoh",
       "placeholder": "Kuryer uchun izohni kiriting"
     },
+    "coupon": {
+      "placeholder": "Promo-kod",
+      "apply": "Qo'llash",
+      "applied": "Kod qo'llandi",
+      "discount": "Chegirma",
+      "remove": "O'chirish"
+    },
     "submit": "Buyurtma berish",
     "loading": "Buyurtma yuborilmoqda...",
     "errors": {
@@ -200,6 +207,7 @@
     "recipient": "Qabul qilib oluvchi",
     "products-quantity": "{count} ta mahsulot",
     "delivery-method": "Yetkazib berish narxi",
+    "coupon-discount": "Kupon chegirmasi",
     "total-price": "Umumiy narxi",
     "address": "Yetkazib berish manzili",
     "address-details": "Xaridata ko'rish",

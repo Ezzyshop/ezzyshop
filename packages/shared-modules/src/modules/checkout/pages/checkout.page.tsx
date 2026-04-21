@@ -9,6 +9,7 @@ import { Button } from "@repo/ui/components/ui/button";
 import { Form } from "@repo/ui/components/ui/form";
 import { useForm } from "react-hook-form";
 import { CheckoutNote } from "../components/checkout-note";
+import { CheckoutCoupon } from "../components/checkout-coupon";
 import { ICheckoutForm } from "../utils/checkout.interface";
 import { useUserContext } from "@repo/contexts/user-context/user.context";
 import { useMutation } from "@tanstack/react-query";
@@ -23,14 +24,15 @@ import { ErrorMessages } from "@repo/api/utils/enums/api.enum";
 import { useRouter } from "nextjs-toploader/app";
 import { useParams } from "next/navigation";
 import { ICommonParams } from "@repo/shared-modules/utils/interfaces";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { PaymentMethodType } from "@repo/api/services/payment-method/payment-method.enum";
 import WebApp from "@twa-dev/sdk";
 
 export const CheckoutPage = () => {
   const t = useTranslations();
   const { user } = useUserContext();
-  const { items, clearCart, setOutOfStockItems } = useCart();
+  const { items, clearCart, setOutOfStockItems, totalPrice } = useCart();
+  const [couponDiscount, setCouponDiscount] = useState(0);
   const router = useRouter();
   const { locale, shopId } = useParams<ICommonParams>();
 
@@ -80,6 +82,8 @@ export const CheckoutPage = () => {
     },
   });
 
+  console.log(form.formState.errors);
+
   const onSubmit = (data: ICheckoutForm) => {
     const payload: IOrderCreateRequest = {
       product: data.product,
@@ -92,6 +96,7 @@ export const CheckoutPage = () => {
         phone: data.customer_info.phone,
       },
       telegram_chat_id: data.telegram_chat_id,
+      coupon_code: data.coupon_code,
     };
 
     if (data.delivery_address) {
@@ -129,8 +134,17 @@ export const CheckoutPage = () => {
           <CheckoutUserInfo form={form} />
           <CheckoutShippingSelect form={form} />
           <CheckoutPaymentSelect form={form} />
+          <CheckoutCoupon
+            form={form}
+            cartSubtotal={totalPrice}
+            onCouponApplied={(amount) => setCouponDiscount(amount)}
+            onCouponRemoved={() => setCouponDiscount(0)}
+          />
           <CheckoutNote form={form} />
-          <CheckoutProductsSummary form={form} />
+          <CheckoutProductsSummary
+            form={form}
+            couponDiscount={couponDiscount}
+          />
           <Button className="w-full" size="lg" disabled={isPending}>
             {isPending ? t("checkout.loading") : t("checkout.submit")}
           </Button>
