@@ -186,7 +186,7 @@ export const OrderCard = ({ order, transaction }: IProps) => {
       </div>
 
       {transaction.provider.type === PaymentMethodType.CardTransfer && (
-        <OrderCheques transaction={transaction} />
+        <OrderCheques transaction={transaction} orderStatus={order.status} />
       )}
       <Separator className="my-2" />
       <OrderProducts products={order.products} />

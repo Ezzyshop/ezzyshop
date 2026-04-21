@@ -21,6 +21,10 @@ const nextConfig = {
         protocol: "https" as const,
         hostname: "dev-assets.ezzyshop.uz",
       },
+      {
+        protocol: "https" as const,
+        hostname: "assets.ezzyshop.uz",
+      },
     ],
   },
 };

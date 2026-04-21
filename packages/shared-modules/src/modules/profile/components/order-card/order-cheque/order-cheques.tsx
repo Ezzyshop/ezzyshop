@@ -10,18 +10,23 @@ import {
 } from "@repo/ui/components/ui/accordion";
 import { OrderChequeDetailButton } from "./order-cheque-detail-button";
 import { useTranslations } from "next-intl";
+import { OrderStatus } from "@repo/api/services/order/order.enum";
 
 interface IProps {
   transaction: IOrderResponse["transaction"];
+  orderStatus: OrderStatus;
 }
 
-export const OrderCheques = ({ transaction }: IProps) => {
+export const OrderCheques = ({ transaction, orderStatus }: IProps) => {
   const t = useTranslations("orders");
   return (
     <>
       {transaction.cheque_images.every(
         (c) => c.status === TransactionChequeImageStatus.Rejected
-      ) && <OrderChequeUploadButton transactionId={transaction._id} />}
+      ) &&
+        orderStatus !== OrderStatus.Cancelled && (
+          <OrderChequeUploadButton transactionId={transaction._id} />
+        )}
 
       {transaction.cheque_images.length > 0 && (
         <>
