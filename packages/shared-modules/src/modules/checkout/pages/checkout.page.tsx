@@ -82,8 +82,6 @@ export const CheckoutPage = () => {
     },
   });
 
-  console.log(form.formState.errors);
-
   const onSubmit = (data: ICheckoutForm) => {
     const payload: IOrderCreateRequest = {
       product: data.product,

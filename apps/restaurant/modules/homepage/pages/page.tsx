@@ -36,7 +36,8 @@ export default function HomePage() {
     ],
   });
 
-  const isHomePageLoading = categoriesQuery.isLoading || productsQuery.isLoading;
+  const isHomePageLoading =
+    categoriesQuery.isLoading || productsQuery.isLoading;
 
   const categories = categoriesQuery.data?.data;
   const products = productsQuery.data?.data;
@@ -47,8 +48,10 @@ export default function HomePage() {
       return categories
         ?.map((category) => ({
           ...category,
-          products: products?.filter((product) =>
-            product.categories.includes(category._id)
+          products: products?.filter(
+            (product) =>
+              product.categories.includes(category._id) &&
+              product.variants.some((v) => Boolean(v.quantity))
           ),
         }))
         .filter((item) => Boolean(item.products.length));
