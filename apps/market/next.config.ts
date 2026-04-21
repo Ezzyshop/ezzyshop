@@ -19,7 +19,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https" as const,
-        hostname: "assets.ezzyshop.uz",
+        hostname: "dev-assets.ezzyshop.uz",
       },
     ],
   },
