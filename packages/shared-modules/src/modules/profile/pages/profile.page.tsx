@@ -13,6 +13,7 @@ import { LogoutStateMessage } from "../components/logout-state-message";
 import { LoginButton } from "../components/login-button";
 import { ChangeLanguageButton } from "../components/change-language-button";
 import { LogoutButton } from "../components/logout-button";
+import { SocialNetworks } from "../components/social-networks";
 
 export const ProfilePage = () => {
   const t = useTranslations("profile");
@@ -46,8 +47,9 @@ export const ProfilePage = () => {
         <LogoutButton />
         <LoginButton />
       </div>
+      <SocialNetworks />
       <p className="text-muted-foreground text-center text-sm">
-        {useTranslations()("powered_by", { company: "Ezzyshop" })}
+        {useTranslations()("powered_by", { company: "ezzyshop" })}
       </p>
     </div>
   );

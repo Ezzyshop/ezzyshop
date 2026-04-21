@@ -42,6 +42,11 @@ export enum ErrorMessages {
   TransactionAlreadyHasPendingChequeImage = "TRANSACTION_ALREADY_HAS_PENDING_CHEQUE_IMAGE",
   OtpNotFoundOrExpired = "OTP_NOT_FOUND_OR_EXPIRED",
   UserAlreadyStaff = "USER_ALREADY_STAFF",
+  CouponNotFound = "COUPON_NOT_FOUND",
+  CouponExpired = "COUPON_EXPIRED",
+  CouponUsageLimitReached = "COUPON_USAGE_LIMIT_REACHED",
+  CouponMinOrderPriceNotMet = "COUPON_MIN_ORDER_PRICE_NOT_MET",
+  CouponCodeAlreadyExists = "COUPON_CODE_ALREADY_EXISTS",
 }
 
 export const errorMessagesMap: Record<ErrorMessages, string> = {
@@ -101,4 +106,10 @@ export const errorMessagesMap: Record<ErrorMessages, string> = {
     "Hisobotda turib ketgan hisobot rasmi mavjud",
   [ErrorMessages.OtpNotFoundOrExpired]: "OTP topilmadi yoki amal qilish muddati tugagan",
   [ErrorMessages.UserAlreadyStaff]: "Foydalanuvchi allaqachon staff bo'ldi",
+  [ErrorMessages.CouponNotFound]: "Kupon topilmadi",
+  [ErrorMessages.CouponExpired]: "Kuponning amal qilish muddati tugagan",
+  [ErrorMessages.CouponUsageLimitReached]: "Kupondan foydalanish limiti tugagan",
+  [ErrorMessages.CouponMinOrderPriceNotMet]:
+    "Minimal buyurtma narxi talabiga mos kelmadi",
+  [ErrorMessages.CouponCodeAlreadyExists]: "Kupon kodi allaqachon mavjud",
 };

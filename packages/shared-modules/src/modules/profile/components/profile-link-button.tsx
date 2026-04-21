@@ -36,7 +36,7 @@ export const ProfileLinkButton = ({
   return (
     <Button
       onClick={handleClick}
-      className="flex items-center gap-3 rounded-lg w-full has-[>svg]:px-3 "
+      className="flex items-center gap-3 rounded-lg w-full has-[>svg]:px-3 shadow-none"
       variant={variant}
       size="xl"
     >
