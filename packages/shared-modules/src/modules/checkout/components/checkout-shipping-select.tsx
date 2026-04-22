@@ -11,7 +11,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@repo/ui/components/ui/tabs";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { RadioGroup, RadioGroupItem } from "@repo/ui/components/ui/radio-group";
 import { Card } from "@repo/ui/components/ui/card";
 import { Label } from "@repo/ui/components/ui/label";
@@ -49,6 +49,29 @@ export const CheckoutShippingSelect = ({ form }: IProps) => {
     queryFn: () => BranchService.getPublicBranches(shopId),
     enabled: !!shopId,
   });
+
+  const mostOptimalDeliveryMethod = useMemo(() => {
+    if (!deliveryMethods?.length) return undefined;
+
+    return [...deliveryMethods]
+      .filter((method) => {
+        if (method.min_order_price == null) return true;
+
+        return totalPrice >= method.min_order_price;
+      })
+      .sort((a, b) => a.price - b.price)[0];
+  }, [deliveryMethods, totalPrice]);
+
+  useEffect(() => {
+    if (selectedTab !== "delivery") return;
+    if (!mostOptimalDeliveryMethod) return;
+
+    const current = form.getValues("delivery_method");
+
+    if (!current) {
+      form.setValue("delivery_method", mostOptimalDeliveryMethod._id);
+    }
+  }, [selectedTab, mostOptimalDeliveryMethod, form]);
 
   const getBranchesContent = () => {
     if (!branches?.length) {
@@ -139,7 +162,7 @@ export const CheckoutShippingSelect = ({ form }: IProps) => {
                   .map((deliveryMethod) => {
                     const isDisabled =
                       !!deliveryMethod.min_order_price &&
-                      deliveryMethod.min_order_price > totalPrice;
+                      deliveryMethod.min_order_price >= totalPrice;
                     return (
                       <Card
                         key={deliveryMethod._id}
