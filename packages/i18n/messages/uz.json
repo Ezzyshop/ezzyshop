@@ -52,6 +52,7 @@
     "profile": "Foydalanuvchi ma'lumotlarim",
     "orders": "Buyurtmalarim",
     "addresses": "Manzillarim",
+    "contact_seller": "Sotuvchi bilan bog'lanish",
     "language": "Platforma tilini o'zgartirish",
     "logout": "Chiqish",
     "login": "Kirish",
@@ -92,6 +93,23 @@
       "cancel": "Bekor qilish"
     },
     "otp": "OTP kodini kiriting"
+  },
+  "contact_seller": {
+    "title": "Sotuvchi bilan bog'lanish",
+    "new_session": "Yangi sessiya yaratish",
+    "no_sessions": "Siz hali sotuvchi bilan bog'lanmagansiz",
+    "subject": "Mavzu",
+    "subject_hint": "Savdogar savolingiz nima haqida ekanligini bilishi uchun mavzu kiriting.",
+    "subject_placeholder": "Muammoingizni qisqacha yozing",
+    "continue": "Davom etish",
+    "type_message": "Xabar yozing...",
+    "send": "Yuborish",
+    "attach_image": "Rasm biriktirish",
+    "session_resolved": "Ushbu sessiya yopilgan",
+    "start_new_session": "Yangi sessiya boshlash",
+    "resolved": "Yopilgan",
+    "open": "Ochiq",
+    "unread": "o'qilmagan"
   },
   "search": {
     "title": "Qidirish",

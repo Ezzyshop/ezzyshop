@@ -11,6 +11,7 @@ import { loginUserValidator } from "@repo/api/services/user/user.schema";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { UserService } from "@repo/api/services/user/user.service";
+import { reconnectSupportSocket } from "@repo/api/socket";
 import { ILoginRequest } from "@repo/api/services/user/user.interface";
 import { useTranslations } from "next-intl";
 import { Input } from "@repo/ui/components/ui/input";
@@ -41,7 +42,12 @@ export const LoginUser = ({
 
   const { mutate: loginUser, isPending } = useMutation({
     mutationFn: (data: ILoginRequest) => UserService.loginUser(data),
-    onSuccess: async () => {
+    onSuccess: async (res) => {
+      const token = (res as { data?: { token?: string } })?.data?.token;
+      if (token) {
+        localStorage.setItem("st", token);
+        reconnectSupportSocket();
+      }
       await queryClient.invalidateQueries({ queryKey: ["current-user"] });
       setIsOpen(false);
       setSteps("check-user");

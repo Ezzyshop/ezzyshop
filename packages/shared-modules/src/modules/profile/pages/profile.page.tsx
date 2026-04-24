@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { ProfileLinkButton } from "../components/profile-link-button";
 import {
   MapPinIcon,
+  MessageCircleIcon,
   ShoppingBagIcon,
   User2Icon,
 } from "@repo/ui/components/icons/index";
@@ -41,6 +42,12 @@ export const ProfilePage = () => {
           icon={<MapPinIcon className="text-white" />}
           title={t("addresses")}
           href="/addresses"
+          hidden={!user}
+        />
+        <ProfileLinkButton
+          icon={<MessageCircleIcon className="text-white" />}
+          title={t("contact_seller")}
+          href="/contact-seller"
           hidden={!user}
         />
         <ChangeLanguageButton />

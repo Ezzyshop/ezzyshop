@@ -9,6 +9,7 @@ import {
 } from "@repo/ui/components/ui/input-otp";
 import { IVerifyOtpRequest } from "@repo/api/services/user/user.interface";
 import { UserService } from "@repo/api/services/user/user.service";
+import { reconnectSupportSocket } from "@repo/api/socket";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 
@@ -31,9 +32,13 @@ export const VerifyOtp = ({
 
   const { mutate: verifyOtp, isPending } = useMutation({
     mutationFn: (data: IVerifyOtpRequest) => UserService.verifyOtp(data),
-    onSuccess: async () => {
+    onSuccess: async (res) => {
+      const token = (res as { data?: { token?: string } })?.data?.token;
+      if (token) {
+        localStorage.setItem("st", token);
+        reconnectSupportSocket();
+      }
       await queryClient.invalidateQueries({ queryKey: ["current-user"] });
-
       setIsOpen(false);
       onSuccessCallback?.();
     },

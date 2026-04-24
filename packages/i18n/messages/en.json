@@ -52,6 +52,7 @@
     "profile": "My profile information",
     "orders": "My orders",
     "addresses": "My addresses",
+    "contact_seller": "Contact seller",
     "language": "Change platform language",
     "logout": "Log out",
     "login": "Log in",
@@ -92,6 +93,23 @@
       "cancel": "Cancel"
     },
     "otp": "Enter OTP code"
+  },
+  "contact_seller": {
+    "title": "Contact seller",
+    "new_session": "Create new session",
+    "no_sessions": "You haven't contacted the seller yet",
+    "subject": "Subject",
+    "subject_hint": "Enter a subject so the seller knows what your question is about.",
+    "subject_placeholder": "Briefly describe your issue",
+    "continue": "Continue",
+    "type_message": "Type a message...",
+    "send": "Send",
+    "attach_image": "Attach image",
+    "session_resolved": "This session has been marked as resolved",
+    "start_new_session": "Start a new session",
+    "resolved": "Resolved",
+    "open": "Open",
+    "unread": "unread"
   },
   "search": {
     "title": "Search",
