@@ -141,7 +141,9 @@
         "change-address": "Изменить адрес",
         "no-address-selected": "Адрес не выбран"
       },
-      "min-order-price": "Минимальная сумма заказа"
+      "min-order-price": "Минимальная сумма заказа",
+      "zone-not-covered": "К сожалению, мы не доставляем по выбранному адресу",
+      "zone-not-covered-short": "Не доставляем по этому адресу"
     },
     "payment": {
       "title": "Способ оплаты",

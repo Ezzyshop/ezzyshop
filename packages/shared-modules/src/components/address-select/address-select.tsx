@@ -16,12 +16,16 @@ interface IProps {
   isEditMode?: boolean;
   onAddressChange?: (address: IUserResponse["address"]) => void;
   selectedAddress?: IUserResponse["address"];
+  disabledAddressIds?: string[];
+  disabledReason?: string;
 }
 
 export const AddressSelect = ({
   isEditMode = false,
   onAddressChange,
   selectedAddress,
+  disabledAddressIds = [],
+  disabledReason,
 }: IProps) => {
   const t = useTranslations("profile.address");
   const { user } = useUserContext();
@@ -70,6 +74,8 @@ export const AddressSelect = ({
             key={address._id}
             address={address}
             isEditMode={isEditMode}
+            disabled={disabledAddressIds.includes(address._id)}
+            disabledReason={disabledAddressIds.includes(address._id) ? disabledReason : undefined}
           />
         ))}
         {isUpdating && (

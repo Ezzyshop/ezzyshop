@@ -141,7 +141,9 @@
         "change-address": "Manzilni o'zgartirish",
         "no-address-selected": "Manzil tanlanmagan"
       },
-      "min-order-price": "Minimal buyurtma narxi"
+      "min-order-price": "Minimal buyurtma narxi",
+      "zone-not-covered": "Kechirasiz, siz tanlagan manzilga yetkazib berilmaydi",
+      "zone-not-covered-short": "Bu manzilga yetkazib berilmaydi"
     },
     "payment": {
       "title": "To'lov usuli",

@@ -3,6 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { DeliveryMethodService } from "@repo/api/services/delivery-method/index";
 import { BranchService } from "@repo/api/services/branch/index";
+import { DeliveryZoneService } from "@repo/api/services/delivery-zone/index";
 import { ICommonParams } from "@repo/shared-modules/utils/interfaces";
 import { useParams } from "next/navigation";
 import {
@@ -18,7 +19,7 @@ import { Label } from "@repo/ui/components/ui/label";
 import { useShopContext } from "@repo/contexts/shop-context/shop.context";
 import { useTranslations } from "next-intl";
 import { CheckoutAddressSelect } from "./checkout-address-select";
-import { UseFormReturn } from "react-hook-form";
+import { UseFormReturn, useWatch } from "react-hook-form";
 import { ICheckoutForm } from "../utils/checkout.interface";
 import { FormField, FormItem, FormMessage } from "@repo/ui/components/ui/form";
 import { useCart } from "@repo/contexts/cart-context";
@@ -38,6 +39,8 @@ export const CheckoutShippingSelect = ({ form }: IProps) => {
 
   const { totalPrice } = useCart();
 
+  const deliveryAddress = useWatch({ control: form.control, name: "delivery_address" });
+
   const { data: deliveryMethods } = useQuery({
     queryKey: ["delivery-methods", shopId],
     queryFn: () => DeliveryMethodService.getDeliveryMethods(shopId),
@@ -48,6 +51,12 @@ export const CheckoutShippingSelect = ({ form }: IProps) => {
     queryKey: ["branches", shopId],
     queryFn: () => BranchService.getPublicBranches(shopId),
     enabled: !!shopId,
+  });
+
+  const { data: isInZone = true } = useQuery({
+    queryKey: ["delivery-zone-check", shopId, deliveryAddress?.lat, deliveryAddress?.lng],
+    queryFn: () => DeliveryZoneService.checkZone(shopId, deliveryAddress!.lat, deliveryAddress!.lng),
+    enabled: !!shopId && selectedTab === "delivery" && !!deliveryAddress?.lat && !!deliveryAddress?.lng,
   });
 
   const mostOptimalDeliveryMethod = useMemo(() => {
@@ -142,77 +151,88 @@ export const CheckoutShippingSelect = ({ form }: IProps) => {
       );
     }
 
+    const isOutOfZone = !!deliveryAddress?.lat && !!deliveryAddress?.lng && !isInZone;
+
     return (
       <div className="space-y-4">
-        <FormField
-          control={form.control}
-          name="delivery_method"
-          render={({ field }) => (
-            <FormItem>
-              <RadioGroup
-                {...field}
-                value={field.value}
-                onValueChange={(e) => {
-                  field.onChange(e);
-                  form.clearErrors("pickup_location_and_delivery_method");
-                }}
-              >
-                {deliveryMethods
-                  .sort((a, b) => a.price - b.price)
-                  .map((deliveryMethod) => {
-                    const isDisabled =
-                      !!deliveryMethod.min_order_price &&
-                      deliveryMethod.min_order_price >= totalPrice;
-                    return (
-                      <Card
-                        key={deliveryMethod._id}
-                        className={cn(
-                          "p-3 flex-row items-center gap-2 shadow-none border-none",
-                          isDisabled && "opacity-50"
-                        )}
-                      >
-                        <Label
-                          htmlFor={deliveryMethod._id}
-                          className="flex-grow block"
-                        >
-                          <h3 className="font-medium text-base">
-                            {deliveryMethod.name.uz}
-                          </h3>
-                          {deliveryMethod.price ? (
-                            <p className="text-sm text-muted-foreground line-clamp-2">
-                              {deliveryMethod?.price?.toLocaleString()}{" "}
-                              {currency.symbol}
-                            </p>
-                          ) : null}
-                          {isDisabled && (
-                            <p className="text-sm text-red-500 line-clamp-2">
-                              {t("checkout.shipping.min-order-price")}{" "}
-                              {deliveryMethod.min_order_price?.toLocaleString()}{" "}
-                              {currency.symbol}
-                            </p>
+        {isOutOfZone && (
+          <Card className="p-3 shadow-none border border-destructive/40 bg-destructive/5">
+            <p className="text-sm font-medium text-destructive">
+              {t("checkout.shipping.zone-not-covered")}
+            </p>
+          </Card>
+        )}
+        <div className={cn(isOutOfZone && "opacity-50 pointer-events-none select-none")}>
+          <FormField
+            control={form.control}
+            name="delivery_method"
+            render={({ field }) => (
+              <FormItem>
+                <RadioGroup
+                  {...field}
+                  value={field.value}
+                  onValueChange={(e) => {
+                    field.onChange(e);
+                    form.clearErrors("pickup_location_and_delivery_method");
+                  }}
+                >
+                  {deliveryMethods
+                    .sort((a, b) => a.price - b.price)
+                    .map((deliveryMethod) => {
+                      const isDisabled =
+                        !!deliveryMethod.min_order_price &&
+                        deliveryMethod.min_order_price >= totalPrice;
+                      return (
+                        <Card
+                          key={deliveryMethod._id}
+                          className={cn(
+                            "p-3 flex-row items-center gap-2 shadow-none border-none",
+                            isDisabled && "opacity-50"
                           )}
-                        </Label>
-                        <RadioGroupItem
-                          value={deliveryMethod._id}
-                          id={deliveryMethod._id}
-                          disabled={isDisabled}
-                        />
-                      </Card>
-                    );
-                  })}
-              </RadioGroup>
-              {form.formState.errors.pickup_location_and_delivery_method && (
-                <FormMessage>
-                  {t(
-                    form.formState.errors.pickup_location_and_delivery_method
-                      ?.message
-                  )}
-                </FormMessage>
-              )}
-            </FormItem>
-          )}
-        />
-        <CheckoutAddressSelect form={form} />
+                        >
+                          <Label
+                            htmlFor={deliveryMethod._id}
+                            className="flex-grow block"
+                          >
+                            <h3 className="font-medium text-base">
+                              {deliveryMethod.name.uz}
+                            </h3>
+                            {deliveryMethod.price ? (
+                              <p className="text-sm text-muted-foreground line-clamp-2">
+                                {deliveryMethod?.price?.toLocaleString()}{" "}
+                                {currency.symbol}
+                              </p>
+                            ) : null}
+                            {isDisabled && (
+                              <p className="text-sm text-red-500 line-clamp-2">
+                                {t("checkout.shipping.min-order-price")}{" "}
+                                {deliveryMethod.min_order_price?.toLocaleString()}{" "}
+                                {currency.symbol}
+                              </p>
+                            )}
+                          </Label>
+                          <RadioGroupItem
+                            value={deliveryMethod._id}
+                            id={deliveryMethod._id}
+                            disabled={isDisabled}
+                          />
+                        </Card>
+                      );
+                    })}
+                </RadioGroup>
+                {form.formState.errors.pickup_location_and_delivery_method && (
+                  <FormMessage>
+                    {t(
+                      form.formState.errors.pickup_location_and_delivery_method
+                        ?.message
+                    )}
+                  </FormMessage>
+                )}
+              </FormItem>
+            )}
+          />
+        </div>
+        <CheckoutAddressSelect form={form} shopId={shopId} />
       </div>
     );
   };

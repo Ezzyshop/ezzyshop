@@ -1,5 +1,7 @@
 "use client";
 import { AddressSelect } from "@repo/shared-modules/components/address-select/address-select";
+import { AddressService } from "@repo/api/services/address/index";
+import { DeliveryZoneService } from "@repo/api/services/delivery-zone/index";
 import { MapPinIcon } from "@repo/ui/components/icons/index";
 import { Button } from "@repo/ui/components/ui/button";
 import {
@@ -12,12 +14,39 @@ import { FormField, FormItem, FormMessage } from "@repo/ui/components/ui/form";
 import { useTranslations } from "next-intl";
 import { UseFormReturn } from "react-hook-form";
 import { ICheckoutForm } from "../utils/checkout.interface";
+import { useQueries, useQuery } from "@tanstack/react-query";
+import { useUserContext } from "@repo/contexts/user-context/user.context";
 
 interface IProps {
   form: UseFormReturn<ICheckoutForm>;
+  shopId: string;
 }
-export const CheckoutAddressSelect = ({ form }: IProps) => {
+export const CheckoutAddressSelect = ({ form, shopId }: IProps) => {
   const t = useTranslations();
+  const { user } = useUserContext();
+
+  const { data: addressesData } = useQuery({
+    queryKey: ["addresses", user?._id],
+    queryFn: AddressService.getAddresses,
+    enabled: !!user,
+  });
+
+  const addresses = addressesData?.data ?? [];
+
+  const zoneChecks = useQueries({
+    queries: addresses
+      .filter((a) => a.lat && a.lng)
+      .map((address) => ({
+        queryKey: ["delivery-zone-check", shopId, address.lat, address.lng],
+        queryFn: () => DeliveryZoneService.checkZone(shopId, address.lat, address.lng),
+        staleTime: 5 * 60 * 1000,
+      })),
+  });
+
+  const disabledAddressIds = addresses
+    .filter((a) => a.lat && a.lng)
+    .filter((_, i) => zoneChecks[i]?.data === false)
+    .map((a) => a._id);
 
   return (
     <FormField
@@ -48,6 +77,8 @@ export const CheckoutAddressSelect = ({ form }: IProps) => {
                 </DrawerTitle>
                 <AddressSelect
                   selectedAddress={field.value}
+                  disabledAddressIds={disabledAddressIds}
+                  disabledReason={t("checkout.shipping.zone-not-covered-short")}
                   onAddressChange={(address) => {
                     field.onChange({
                       address: address?.address,
