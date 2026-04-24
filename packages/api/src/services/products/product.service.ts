@@ -30,6 +30,8 @@ export class ProductService {
   ): Promise<IPaginatedData<IProductResponse>> {
     const response = await api.get(`/products/${shopId}`, {
       params: {
+        sortBy: "order",
+        sortOrder: "asc",
         ...params,
         status: ProductStatus.ACTIVE,
       },

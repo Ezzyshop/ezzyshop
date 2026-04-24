@@ -12,7 +12,7 @@ export class CategoriesService {
     params?: ICategoryParams
   ): Promise<IPaginatedData<ICategoriesResponse>> {
     const response = await api.get(`/categories/${shopId}/public`, {
-      params,
+      params: { sortBy: "order", sortOrder: "asc", ...params },
     });
     return response.data;
   }
@@ -22,7 +22,7 @@ export class CategoriesService {
     params?: ICategoryParams
   ): Promise<IPaginatedData<ICategoriesResponse>> {
     const response = await api.get(`/categories/${shopId}/with-products`, {
-      params,
+      params: { sortBy: "order", sortOrder: "asc", ...params },
     });
     return response.data;
   }
@@ -33,7 +33,7 @@ export class CategoriesService {
     params?: Record<string, string | number | boolean>
   ): Promise<ICategoryResponse> {
     const response = await api.get(`/categories/${shopId}/${categoryId}`, {
-      params,
+      params: { sortBy: "order", sortOrder: "asc", ...params },
     });
     return response.data;
   }
