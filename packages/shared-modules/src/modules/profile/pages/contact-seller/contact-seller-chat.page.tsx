@@ -27,9 +27,20 @@ import {
   TruckIcon,
   RefreshCwIcon,
   HelpCircleIcon,
+  UtensilsIcon,
+  ClockIcon,
+  TagIcon,
+  AlertCircleIcon,
 } from "@repo/ui/components/icons/index";
 import { cn } from "@repo/ui/lib/utils";
 import { useUserContext } from "@repo/contexts/user-context/user.context";
+
+function resolveProductType(): "market" | "restaurant" {
+  if (typeof window === "undefined") return "market";
+  const { hostname, port } = window.location;
+  if (port === "5001" || hostname.startsWith("restaurant.")) return "restaurant";
+  return "market";
+}
 
 interface IProps {
   sessionId: string;
@@ -193,7 +204,7 @@ export const ContactSellerChatPage = ({ sessionId }: IProps) => {
   const isResolved = session?.status === SupportSessionStatus.Resolved;
   const myId = user?._id;
 
-  const subjectTemplates = [
+  const marketSubjectTemplates = [
     { key: "subject_product", icon: PackageIcon },
     { key: "subject_payment", icon: CreditCardIcon },
     { key: "subject_quality", icon: ShieldCheckIcon },
@@ -201,6 +212,21 @@ export const ContactSellerChatPage = ({ sessionId }: IProps) => {
     { key: "subject_return", icon: RefreshCwIcon },
     { key: "subject_other", icon: HelpCircleIcon },
   ] as const;
+
+  const restaurantSubjectTemplates = [
+    { key: "restaurant_subject_menu", icon: UtensilsIcon },
+    { key: "restaurant_subject_delivery", icon: TruckIcon },
+    { key: "restaurant_subject_order_status", icon: ClockIcon },
+    { key: "restaurant_subject_payment", icon: CreditCardIcon },
+    { key: "restaurant_subject_promotion", icon: TagIcon },
+    { key: "restaurant_subject_complaint", icon: AlertCircleIcon },
+  ] as const;
+
+  const productType = resolveProductType();
+  const subjectTemplates =
+    productType === "restaurant"
+      ? restaurantSubjectTemplates
+      : marketSubjectTemplates;
 
   // ── Subject gate screen ──────────────────────────────────────────────────
   if (showSubjectGate) {
