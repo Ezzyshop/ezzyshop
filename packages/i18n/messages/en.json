@@ -108,7 +108,8 @@
       "apply": "Apply",
       "remove": "Remove",
       "selected": "Applied",
-      "empty": "You have no available coupons"
+      "empty": "You have no available coupons",
+      "used_up": "Used"
     }
   },
   "contact_seller": {

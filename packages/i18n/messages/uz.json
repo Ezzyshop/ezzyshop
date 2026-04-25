@@ -108,7 +108,8 @@
       "apply": "Qo'llash",
       "remove": "Bekor qilish",
       "selected": "Qo'llanilgan",
-      "empty": "Mavjud kuponlar yo'q"
+      "empty": "Mavjud kuponlar yo'q",
+      "used_up": "Foydalanilgan"
     }
   },
   "contact_seller": {

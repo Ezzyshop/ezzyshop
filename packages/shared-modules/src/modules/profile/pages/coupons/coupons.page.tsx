@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -71,6 +72,16 @@ const CouponCard = ({
 }: ICouponCardProps) => {
   const t = useTranslations("profile.coupons");
 
+  const usesLeft =
+    coupon.max_uses !== null ? coupon.max_uses - coupon.used_count : null;
+  const isExhausted = usesLeft !== null && usesLeft <= 0;
+
+  useEffect(() => {
+    if (isSelected && isExhausted) {
+      onDeselect();
+    }
+  }, [isSelected, isExhausted, onDeselect]);
+
   const discountLabel =
     coupon.discount_type === "PERCENTAGE"
       ? `${coupon.discount_value}%`
@@ -84,7 +95,8 @@ const CouponCard = ({
     <div
       className={cn(
         "rounded-xl border bg-card p-4 space-y-3 transition-colors",
-        isSelected && "border-primary bg-primary/5"
+        isSelected && !isExhausted && "border-primary bg-primary/5",
+        isExhausted && "opacity-60"
       )}
     >
       <div className="flex items-start justify-between gap-3">
@@ -93,7 +105,7 @@ const CouponCard = ({
             <span className="font-mono text-base font-bold tracking-widest">
               {coupon.code}
             </span>
-            {isSelected && (
+            {isSelected && !isExhausted && (
               <span className="text-xs text-primary font-medium bg-primary/10 px-2 py-0.5 rounded-full">
                 ✓ {t("selected")}
               </span>
@@ -107,11 +119,12 @@ const CouponCard = ({
         </div>
         <Button
           size="sm"
-          variant={isSelected ? "outline" : "default"}
+          variant={isSelected && !isExhausted ? "outline" : "default"}
           className="flex-shrink-0"
+          disabled={isExhausted}
           onClick={isSelected ? onDeselect : onSelect}
         >
-          {isSelected ? t("remove") : t("apply")}
+          {isExhausted ? t("used_up") : isSelected ? t("remove") : t("apply")}
         </Button>
       </div>
 

@@ -36,11 +36,14 @@ export const CheckoutPage = () => {
   const router = useRouter();
   const { locale, shopId } = useParams<ICommonParams>();
 
+  const queryClient = useQueryClient();
+
   const { mutate: createOrder, isPending } = useMutation({
     mutationFn: (order: IOrderCreateRequest) =>
       OrderService.createOrder(shopId, order),
     onSuccess: (data) => {
       clearCart();
+      queryClient.invalidateQueries({ queryKey: ["my-coupons", shopId] });
       const isCardTransfer =
         data.data.transaction.provider.type === PaymentMethodType.CardTransfer;
 
