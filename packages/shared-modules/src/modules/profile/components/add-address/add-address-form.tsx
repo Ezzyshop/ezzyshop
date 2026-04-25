@@ -118,6 +118,8 @@ export const AddAddressForm = ({ onSubmit, isLoading, shopId }: IProps) => {
             myLocationLabel={mapT("my_location")}
             confirmLabel={mapT("confirm")}
             zones={zones}
+            confirmDisabled={isOutOfZone || isCheckingZone}
+            outsideZoneLabel={isOutOfZone ? t("outside-zone-title") : undefined}
             onLocationChange={({ coordinates, address }) => {
               setCurrentCoords(coordinates);
               field.onChange({

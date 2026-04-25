@@ -29,6 +29,8 @@ interface IProps {
   width?: string;
   myLocationLabel?: string;
   confirmLabel?: string;
+  confirmDisabled?: boolean;
+  outsideZoneLabel?: string;
   zones?: IZone[];
 }
 
@@ -40,7 +42,7 @@ interface YandexMapController {
   setCenter: (
     coordinates: Coordinates,
     zoom?: number,
-    options?: { duration?: number }
+    options?: { duration?: number },
   ) => void;
 }
 
@@ -55,18 +57,24 @@ export const YandexMap = ({
   width = "100%",
   myLocationLabel = "Men qayerdaman?",
   confirmLabel,
+  confirmDisabled = false,
+  outsideZoneLabel,
   zones = [],
 }: IProps) => {
   const [mapInstance, setMapInstance] = useState<YMapsApi | null>(null);
   const [mapRef, setMapRef] = useState<YandexMapController | null>(null);
-  const [selectedLocation, setSelectedLocation] = useState<LocationData | null>(null);
+  const [selectedLocation, setSelectedLocation] = useState<LocationData | null>(
+    null,
+  );
   const [isDetectingLocation, setIsDetectingLocation] = useState(false);
   const [isResolvingAddress, setIsResolvingAddress] = useState(false);
   const [isMoving, setIsMoving] = useState(false);
 
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   // Tracks the current map center so the geocoding effect always has the latest value
-  const currentCenterRef = useRef<Coordinates>(initialCoordinates ?? DEFAULT_COORDINATES);
+  const currentCenterRef = useRef<Coordinates>(
+    initialCoordinates ?? DEFAULT_COORDINATES,
+  );
 
   const getAddress = useCallback(
     async (coordinates: Coordinates) => {
@@ -96,7 +104,7 @@ export const YandexMap = ({
         setIsResolvingAddress(false);
       });
     },
-    [mapInstance, onLatChange, onLngChange, onLocationChange]
+    [mapInstance, onLatChange, onLngChange, onLocationChange],
   );
 
   // Keep a stable ref so debounce callbacks never hold a stale closure
@@ -119,12 +127,15 @@ export const YandexMap = ({
       if (typeof window !== "undefined" && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           ({ coords }) => {
-            const coordinates: Coordinates = [coords.latitude, coords.longitude];
+            const coordinates: Coordinates = [
+              coords.latitude,
+              coords.longitude,
+            ];
             currentCenterRef.current = coordinates;
             mapRef?.setCenter(coordinates, 15, { duration: 300 });
             void getAddressRef.current(coordinates);
           },
-          () => {}
+          () => {},
         );
       }
     }
@@ -164,7 +175,7 @@ export const YandexMap = ({
       () => {
         setIsDetectingLocation(false);
       },
-      { enableHighAccuracy: true }
+      { enableHighAccuracy: true },
     );
   }, [mapRef]);
 
@@ -213,15 +224,22 @@ export const YandexMap = ({
           </Button>
 
           {confirmLabel && (
-            <Button
-              type="button"
-              size="lg"
-              className="absolute bottom-4 left-2 right-2 z-10"
-              onClick={handleConfirmLocation}
-              disabled={!selectedLocation || isResolvingAddress || isMoving}
-            >
-              {confirmLabel}
-            </Button>
+            <div className="absolute bottom-4 left-2 right-2 z-10 flex flex-col gap-2">
+              <Button
+                type="button"
+                size="lg"
+                className="w-full"
+                onClick={handleConfirmLocation}
+                disabled={
+                  !selectedLocation ||
+                  isResolvingAddress ||
+                  isMoving ||
+                  confirmDisabled
+                }
+              >
+                {outsideZoneLabel ?? confirmLabel}
+              </Button>
+            </div>
           )}
 
           <Map
@@ -242,7 +260,7 @@ export const YandexMap = ({
               <Polygon
                 key={zone._id}
                 geometry={zone.polygon.coordinates.map((ring) =>
-                  ring.map(([lng, lat]) => [lat, lng])
+                  ring.map(([lng, lat]) => [lat, lng]),
                 )}
                 options={{
                   fillColor: "#22c55e",

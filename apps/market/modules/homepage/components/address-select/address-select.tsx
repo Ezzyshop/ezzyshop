@@ -9,7 +9,7 @@ import { AddressSelect as SharedAddressSelect } from "@repo/shared-modules/compo
 import { LocationIcon } from "@repo/ui/icons";
 import { useTranslations } from "next-intl";
 import { useUserContext } from "@repo/contexts/user-context/user.context";
-import { useQuery } from "@tanstack/react-query";
+import { useQueries, useQuery } from "@tanstack/react-query";
 import { DeliveryZoneService } from "@repo/api/services/delivery-zone/index";
 import { AddressService } from "@repo/api/services/address/index";
 import { Button } from "@repo/ui/components/ui/button";
@@ -22,6 +22,7 @@ interface IProps {
 
 export const AddressSelect = ({ shopId }: IProps) => {
   const t = useTranslations("profile.address");
+  const tCheckout = useTranslations("checkout.shipping");
   const { user } = useUserContext();
   const [warningOpen, setWarningOpen] = useState(false);
   const hasShownWarning = useRef(false);
@@ -40,7 +41,24 @@ export const AddressSelect = ({ shopId }: IProps) => {
     enabled: !!user,
   });
 
-  const hasAddresses = (addressesData?.data?.length ?? 0) > 0;
+  const addresses = addressesData?.data ?? [];
+
+  const addressZoneChecks = useQueries({
+    queries: addresses
+      .filter((a) => a.lat && a.lng)
+      .map((address) => ({
+        queryKey: ["delivery-zone-check", shopId, address.lat, address.lng],
+        queryFn: () => DeliveryZoneService.checkZone(shopId, address.lat, address.lng),
+        staleTime: 5 * 60 * 1000,
+      })),
+  });
+
+  const disabledAddressIds = addresses
+    .filter((a) => a.lat && a.lng)
+    .filter((_, i) => addressZoneChecks[i]?.data === false)
+    .map((a) => a._id);
+
+  const hasAddresses = addresses.length > 0;
   const noAddressSelected = !!user && !user.address;
   const outsideZone = !!user?.address && inZone === false;
 
@@ -102,7 +120,10 @@ export const AddressSelect = ({ shopId }: IProps) => {
         </DrawerTrigger>
         <DrawerContent className="px-4 pb-4 mt-3 space-y-4">
           <DrawerTitle className="hidden">{t("addresses")}</DrawerTitle>
-          <SharedAddressSelect />
+          <SharedAddressSelect
+            disabledAddressIds={disabledAddressIds}
+            disabledReason={tCheckout("zone-not-covered-short")}
+          />
         </DrawerContent>
       </Drawer>
     </>
