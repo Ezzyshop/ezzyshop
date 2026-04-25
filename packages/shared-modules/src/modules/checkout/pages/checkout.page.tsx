@@ -12,7 +12,7 @@ import { CheckoutNote } from "../components/checkout-note";
 import { CheckoutCoupon } from "../components/checkout-coupon";
 import { ICheckoutForm } from "../utils/checkout.interface";
 import { useUserContext } from "@repo/contexts/user-context/user.context";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   OrderService,
   IOrderCreateRequest,

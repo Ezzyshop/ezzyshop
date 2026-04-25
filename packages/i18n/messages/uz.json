@@ -104,9 +104,11 @@
       "discount": "Chegirma",
       "min_order": "Min. buyurtma",
       "expires": "Amal qilish muddati",
+      "uses_left": "Qolgan foydalanishlar",
       "apply": "Qo'llash",
       "remove": "Bekor qilish",
-      "selected": "Qo'llanilgan"
+      "selected": "Qo'llanilgan",
+      "empty": "Mavjud kuponlar yo'q"
     }
   },
   "contact_seller": {

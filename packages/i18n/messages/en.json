@@ -104,9 +104,11 @@
       "discount": "Discount",
       "min_order": "Min. order",
       "expires": "Valid until",
+      "uses_left": "Uses left",
       "apply": "Apply",
       "remove": "Remove",
-      "selected": "Applied"
+      "selected": "Applied",
+      "empty": "You have no available coupons"
     }
   },
   "contact_seller": {

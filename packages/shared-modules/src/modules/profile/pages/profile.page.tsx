@@ -15,7 +15,7 @@ import { LoginButton } from "../components/login-button";
 import { ChangeLanguageButton } from "../components/change-language-button";
 import { LogoutButton } from "../components/logout-button";
 import { SocialNetworks } from "../components/social-networks";
-import { ProfileCoupons } from "../components/profile-coupons";
+import { ProfileCouponsButton } from "../components/profile-coupons";
 
 export const ProfilePage = () => {
   const t = useTranslations("profile");
@@ -51,7 +51,7 @@ export const ProfilePage = () => {
           href="/contact-seller"
           hidden={!user}
         />
-        {user && <ProfileCoupons />}
+        {user && <ProfileCouponsButton />}
         <ChangeLanguageButton />
         <LogoutButton />
         <LoginButton />

@@ -14,6 +14,7 @@ interface IProps {
   variant?: "ghost" | "destructiveGhost";
   href?: string;
   hidden?: boolean;
+  badge?: number;
 }
 export const ProfileLinkButton = ({
   icon,
@@ -21,6 +22,7 @@ export const ProfileLinkButton = ({
   variant = "ghost",
   href,
   hidden = false,
+  badge,
 }: IProps) => {
   const { shopId, locale } = useParams<ICommonParams>();
   const router = useRouter();
@@ -49,6 +51,11 @@ export const ProfileLinkButton = ({
         {icon}
       </div>
       <span className="text-sm font-medium flex-grow text-start">{title}</span>
+      {badge !== undefined && (
+        <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+          {badge}
+        </span>
+      )}
       <ChevronRightIcon className="w-6 h-6" />
     </Button>
   );
