@@ -46,7 +46,7 @@ export const CheckoutPage = () => {
 
       if (isCardTransfer) {
         router.push(
-          `/${locale}/${shopId}/profile/orders/${data.data._id}/confirm-card-transfer`
+          `/${locale}/${shopId}/profile/orders/${data.data._id}/confirm-card-transfer`,
         );
       } else {
         router.push(`/${locale}/${shopId}/checkout/success`);
@@ -74,7 +74,6 @@ export const CheckoutPage = () => {
       },
       delivery_address: user?.address
         ? {
-            _id: user.address._id,
             address: user.address.address,
             lat: user.address.lat,
             lng: user.address.lng,
@@ -124,7 +123,7 @@ export const CheckoutPage = () => {
           product: item.product._id,
           variant: item.variant?._id ?? null,
           quantity: item.quantity,
-        }))
+        })),
       );
     }
   }, [items, form]);
