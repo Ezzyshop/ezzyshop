@@ -90,7 +90,13 @@
       "enter-note": "Enter additional information",
       "delete-address": "Do you want to delete the address?",
       "delete": "Delete",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "no-address-title": "Select your location",
+      "no-address-description": "To see available products and delivery options, please add a delivery address.",
+      "outside-zone-title": "We do not deliver here",
+      "outside-zone-description": "Your selected address is outside our delivery zone. Please select another location.",
+      "select-another": "Select another",
+      "go-to-addresses": "My addresses"
     },
     "otp": "Enter OTP code"
   },

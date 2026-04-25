@@ -90,7 +90,13 @@
       "enter-note": "Qo'shimcha ma'lumotni kiriting",
       "delete-address": "Manzilni o'chirishni xohlaysizmi?",
       "delete": "O'chirish",
-      "cancel": "Bekor qilish"
+      "cancel": "Bekor qilish",
+      "no-address-title": "Manzilingizni tanlang",
+      "no-address-description": "Mavjud mahsulotlar va yetkazib berish imkoniyatlarini ko'rish uchun yetkazib berish manzilini qo'shing.",
+      "outside-zone-title": "Bu manzilga yetkazib bermaymiz",
+      "outside-zone-description": "Tanlangan manzilingiz bizning yetkazib berish zonasidan tashqarida. Boshqa manzil tanlang.",
+      "select-another": "Boshqa manzil tanlash",
+      "go-to-addresses": "Manzillarim"
     },
     "otp": "OTP kodini kiriting"
   },

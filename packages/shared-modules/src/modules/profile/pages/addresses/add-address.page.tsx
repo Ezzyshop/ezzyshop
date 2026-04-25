@@ -26,7 +26,7 @@ export const AddAddressPage = () => {
   return (
     <div>
       <PageHeader title={t("add-new-address")} />
-      <AddAddressForm onSubmit={addAddress} isLoading={isLoading} />
+      <AddAddressForm onSubmit={addAddress} isLoading={isLoading} shopId={shopId as string} />
     </div>
   );
 };

@@ -5,6 +5,7 @@ import {
   addressSchema,
   IAddressRequest,
 } from "@repo/api/services/address/index";
+import { DeliveryZoneService } from "@repo/api/services/delivery-zone/index";
 import { Button } from "@repo/ui/components/ui/button";
 import {
   Drawer,
@@ -20,6 +21,7 @@ import {
 } from "@repo/ui/components/ui/form";
 import { Input } from "@repo/ui/components/ui/input";
 import { YandexMap } from "@repo/ui/components/ui/yandex-map/yandex-map";
+import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -40,12 +42,31 @@ interface IAddAddressForm {
 interface IProps {
   onSubmit: (data: IAddressRequest) => void;
   isLoading: boolean;
+  shopId: string;
 }
 
-export const AddAddressForm = ({ onSubmit, isLoading }: IProps) => {
+export const AddAddressForm = ({ onSubmit, isLoading, shopId }: IProps) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [currentCoords, setCurrentCoords] = useState<[number, number] | null>(null);
   const t = useTranslations("profile.address");
   const mapT = useTranslations("map");
+
+  const { data: zones = [] } = useQuery({
+    queryKey: ["delivery-zones", shopId],
+    queryFn: () => DeliveryZoneService.getPublicZones(shopId),
+    staleTime: 10 * 60 * 1000,
+    enabled: !!shopId,
+  });
+
+  const { data: isInZone, isLoading: isCheckingZone } = useQuery({
+    queryKey: ["delivery-zone-check", shopId, currentCoords?.[0], currentCoords?.[1]],
+    queryFn: () => DeliveryZoneService.checkZone(shopId, currentCoords![0], currentCoords![1]),
+    staleTime: 5 * 60 * 1000,
+    enabled: !!currentCoords && !!shopId,
+  });
+
+  const isOutOfZone = !!currentCoords && isInZone === false;
+
   const form = useForm<IAddAddressForm>({
     resolver: joiResolver(addressSchema),
     defaultValues: {
@@ -96,7 +117,9 @@ export const AddAddressForm = ({ onSubmit, isLoading }: IProps) => {
             ]}
             myLocationLabel={mapT("my_location")}
             confirmLabel={mapT("confirm")}
+            zones={zones}
             onLocationChange={({ coordinates, address }) => {
+              setCurrentCoords(coordinates);
               field.onChange({
                 ...field.value,
                 lat: coordinates[0],
@@ -105,6 +128,7 @@ export const AddAddressForm = ({ onSubmit, isLoading }: IProps) => {
               });
             }}
             onLocationSelect={({ coordinates, address }) => {
+              setCurrentCoords(coordinates);
               field.onChange({
                 ...field.value,
                 lat: coordinates[0],
@@ -122,6 +146,16 @@ export const AddAddressForm = ({ onSubmit, isLoading }: IProps) => {
           <DrawerTitle className="hidden">{t("add-new-address")}</DrawerTitle>
           <form onSubmit={form.handleSubmit(handleSubmit)}>
             <div className="space-y-4 p-4 rounded-t-lg">
+              {isOutOfZone && (
+                <div className="rounded-lg bg-destructive/10 px-4 py-3 text-center">
+                  <p className="text-sm font-semibold text-destructive">
+                    {t("outside-zone-title")}
+                  </p>
+                  <p className="text-xs text-destructive/80 mt-0.5">
+                    {t("outside-zone-description")}
+                  </p>
+                </div>
+              )}
               <FormField
                 control={form.control}
                 name="name"
@@ -197,7 +231,11 @@ export const AddAddressForm = ({ onSubmit, isLoading }: IProps) => {
                   </FormItem>
                 )}
               />
-              <Button className="w-full" size="lg" disabled={isLoading}>
+              <Button
+                className="w-full"
+                size="lg"
+                disabled={isLoading || isCheckingZone || isOutOfZone}
+              >
                 {t("save")}
               </Button>
             </div>

@@ -11,7 +11,7 @@ import { OnSaleProducts } from "../components/products-by-categories/on-sale-pro
 export const HomepagePage = ({ shopId }: ICommonParams) => {
   return (
     <div className="space-y-4">
-      <AddressSelect />
+      <AddressSelect shopId={shopId} />
       <Header />
       <HomepageSearch />
       <PopularCategories shopId={shopId} />

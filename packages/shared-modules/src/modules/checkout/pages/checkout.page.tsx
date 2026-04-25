@@ -72,6 +72,14 @@ export const CheckoutPage = () => {
         name: user?.full_name,
         phone: user?.phone ?? undefined,
       },
+      delivery_address: user?.address
+        ? {
+            _id: user.address._id,
+            address: user.address.address,
+            lat: user.address.lat,
+            lng: user.address.lng,
+          }
+        : undefined,
       product: items.map((item) => ({
         product: item.product._id,
         variant: item.variant?._id ?? null,
