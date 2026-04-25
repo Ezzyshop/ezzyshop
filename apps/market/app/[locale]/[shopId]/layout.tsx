@@ -7,6 +7,7 @@ import { CartProvider } from "@repo/contexts/cart-context/cart.context";
 import { WishlistProvider } from "@repo/contexts/wishlist-context/wishlist.context";
 import { ViewedProductsProvider } from "@repo/contexts/viewed-products-context/viewed-products.context";
 import { UserProvider } from "@repo/contexts/user-context/user.context";
+import { CouponProvider } from "@repo/contexts/coupon-context/coupon.context";
 import { Dock } from "@repo/shared-modules/components/dock/dock";
 import { Toaster } from "@repo/ui/components/ui/sonner";
 import { ICommonParams } from "@/utils/interfaces";
@@ -34,13 +35,15 @@ export default async function Layout({ children, params }: IProps) {
         <TMAInitClient />
         <UserProvider>
           <CartProvider shopId={shopId}>
-            <WishlistProvider shopId={shopId}>
-              <ViewedProductsProvider shopId={shopId}>
-                <div className="flex-1 flex flex-col">{children}</div>
-                <Dock />
-                <Toaster richColors position="top-center" />
-              </ViewedProductsProvider>
-            </WishlistProvider>
+            <CouponProvider shopId={shopId}>
+              <WishlistProvider shopId={shopId}>
+                <ViewedProductsProvider shopId={shopId}>
+                  <div className="flex-1 flex flex-col">{children}</div>
+                  <Dock />
+                  <Toaster richColors position="top-center" />
+                </ViewedProductsProvider>
+              </WishlistProvider>
+            </CouponProvider>
           </CartProvider>
         </UserProvider>
       </NextIntlClientProvider>

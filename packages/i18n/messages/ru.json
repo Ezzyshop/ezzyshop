@@ -98,7 +98,16 @@
       "select-another": "Выбрать другой",
       "go-to-addresses": "Мои адреса"
     },
-    "otp": "Введите OTP-код"
+    "otp": "Введите OTP-код",
+    "coupons": {
+      "title": "Мои купоны",
+      "discount": "Скидка",
+      "min_order": "Мин. заказ",
+      "expires": "Действует до",
+      "apply": "Применить",
+      "remove": "Убрать",
+      "selected": "Применён"
+    }
   },
   "contact_seller": {
     "title": "Связаться с продавцом",

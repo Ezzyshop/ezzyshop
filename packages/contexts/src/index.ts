@@ -3,3 +3,4 @@ export * from "./cart-context";
 export * from "./wishlist-context";
 export * from "./viewed-products-context";
 export * from "./user-context";
+export * from "./coupon-context";

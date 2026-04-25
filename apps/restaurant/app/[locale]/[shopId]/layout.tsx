@@ -5,6 +5,7 @@ import { routing } from "@repo/i18n/routing";
 import { Locale } from "@repo/i18n/types";
 import { CartProvider } from "@repo/contexts/cart-context/cart.context";
 import { UserProvider } from "@repo/contexts/user-context/user.context";
+import { CouponProvider } from "@repo/contexts/coupon-context/coupon.context";
 import { WishlistProvider } from "@repo/contexts/wishlist-context/wishlist.context";
 import { ViewedProductsProvider } from "@repo/contexts/viewed-products-context/viewed-products.context";
 import { Dock } from "@repo/shared-modules/components/dock/dock";
@@ -34,13 +35,15 @@ export default async function Layout({ children, params }: IProps) {
           <TMAInitClient />
           <UserProvider>
             <CartProvider shopId={`${shopId}-restaurant`}>
-              <WishlistProvider shopId={`${shopId}-restaurant`}>
-                <ViewedProductsProvider shopId={`${shopId}-restaurant`}>
-                  <div className="flex-1 flex flex-col">{children}</div>
-                  <Dock />
-                  <Toaster richColors position="top-center" />
-                </ViewedProductsProvider>
-              </WishlistProvider>
+              <CouponProvider shopId={`${shopId}-restaurant`}>
+                <WishlistProvider shopId={`${shopId}-restaurant`}>
+                  <ViewedProductsProvider shopId={`${shopId}-restaurant`}>
+                    <div className="flex-1 flex flex-col">{children}</div>
+                    <Dock />
+                    <Toaster richColors position="top-center" />
+                  </ViewedProductsProvider>
+                </WishlistProvider>
+              </CouponProvider>
             </CartProvider>
           </UserProvider>
         </ShopProvider>

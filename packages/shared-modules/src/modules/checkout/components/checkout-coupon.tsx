@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
@@ -10,6 +10,7 @@ import { CouponService, ICouponApplyResponse } from "@repo/api/services/coupon/i
 import { ICheckoutForm } from "../utils/checkout.interface";
 import { ICommonParams } from "@repo/shared-modules/utils/interfaces/common.interface";
 import { IData } from "@repo/api/utils/interfaces/index";
+import { useCoupon } from "@repo/contexts/coupon-context/coupon.context";
 
 interface IProps {
   form: UseFormReturn<ICheckoutForm>;
@@ -21,12 +22,14 @@ interface IProps {
 export const CheckoutCoupon = ({ form, cartSubtotal, onCouponApplied, onCouponRemoved }: IProps) => {
   const t = useTranslations();
   const { shopId } = useParams<ICommonParams>();
-  const [code, setCode] = useState("");
+  const { selectedCouponCode, clearSelectedCoupon } = useCoupon();
+  const [code, setCode] = useState(selectedCouponCode ?? "");
   const [applied, setApplied] = useState<ICouponApplyResponse | null>(null);
+  const autoApplied = useRef(false);
 
   const { mutate: applyCoupon, isPending } = useMutation({
-    mutationFn: () =>
-      CouponService.apply(shopId, { code: code.trim().toUpperCase(), cart_total: cartSubtotal }),
+    mutationFn: (codeToApply: string) =>
+      CouponService.apply(shopId, { code: codeToApply.trim().toUpperCase(), cart_total: cartSubtotal }),
     onSuccess: (data: IData<ICouponApplyResponse>) => {
       setApplied(data.data);
       form.setValue("coupon_code", data.data.code);
@@ -34,10 +37,21 @@ export const CheckoutCoupon = ({ form, cartSubtotal, onCouponApplied, onCouponRe
     },
   });
 
+  useEffect(() => {
+    if (selectedCouponCode && !autoApplied.current && cartSubtotal > 0) {
+      autoApplied.current = true;
+      setCode(selectedCouponCode);
+      applyCoupon(selectedCouponCode);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedCouponCode, cartSubtotal]);
+
   const handleRemove = () => {
     setApplied(null);
     setCode("");
+    autoApplied.current = false;
     form.setValue("coupon_code", undefined);
+    clearSelectedCoupon();
     onCouponRemoved();
   };
 
@@ -71,7 +85,7 @@ export const CheckoutCoupon = ({ form, cartSubtotal, onCouponApplied, onCouponRe
         type="button"
         variant="outline"
         disabled={!code.trim() || isPending}
-        onClick={() => applyCoupon()}
+        onClick={() => applyCoupon(code)}
       >
         {isPending ? "..." : t("checkout.coupon.apply")}
       </Button>

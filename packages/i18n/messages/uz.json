@@ -98,7 +98,16 @@
       "select-another": "Boshqa manzil tanlash",
       "go-to-addresses": "Manzillarim"
     },
-    "otp": "OTP kodini kiriting"
+    "otp": "OTP kodini kiriting",
+    "coupons": {
+      "title": "Mening kuponlarim",
+      "discount": "Chegirma",
+      "min_order": "Min. buyurtma",
+      "expires": "Amal qilish muddati",
+      "apply": "Qo'llash",
+      "remove": "Bekor qilish",
+      "selected": "Qo'llanilgan"
+    }
   },
   "contact_seller": {
     "title": "Sotuvchi bilan bog'lanish",

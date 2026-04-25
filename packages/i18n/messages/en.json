@@ -98,7 +98,16 @@
       "select-another": "Select another",
       "go-to-addresses": "My addresses"
     },
-    "otp": "Enter OTP code"
+    "otp": "Enter OTP code",
+    "coupons": {
+      "title": "My Coupons",
+      "discount": "Discount",
+      "min_order": "Min. order",
+      "expires": "Valid until",
+      "apply": "Apply",
+      "remove": "Remove",
+      "selected": "Applied"
+    }
   },
   "contact_seller": {
     "title": "Contact seller",
