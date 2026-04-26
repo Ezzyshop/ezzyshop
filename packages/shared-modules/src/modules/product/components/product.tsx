@@ -79,24 +79,33 @@ export const Product = ({ product, shopId }: IProps) => {
         <ProductDescription product={product} />
 
         {hasReviews && (
-          <Card className="p-4 gap-3 border shadow-sm">
-            {/* Header */}
+          <Card className="p-4 gap-3 border-none shadow-none">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <StarRating value={Math.round(product.avg_rating ?? 0)} readonly size="sm" />
-                <span className="text-sm font-semibold">{(product.avg_rating ?? 0).toFixed(1)}</span>
+                <StarRating
+                  value={Math.round(product.avg_rating ?? 0)}
+                  readonly
+                  size="sm"
+                />
+                <span className="text-sm font-semibold">
+                  {(product.avg_rating ?? 0).toFixed(1)}
+                </span>
                 <span className="text-sm text-muted-foreground">
                   ({t("review_count", { count: product.review_count ?? 0 })})
                 </span>
               </div>
               <CustomLink href={`/products/${product._id}/reviews`}>
-                <span className="text-sm text-primary font-medium">{t("see_all_reviews")} →</span>
+                <span className="text-sm text-primary font-medium">
+                  {t("see_all_reviews")} →
+                </span>
               </CustomLink>
             </div>
 
-            {/* Top review sample */}
             {topReview && (
-              <CustomLink href={`/products/${product._id}/reviews`} className="block">
+              <CustomLink
+                href={`/products/${product._id}/reviews`}
+                className="block"
+              >
                 <div className="space-y-1 pt-2 border-t border-border">
                   <div className="flex items-center justify-between">
                     <p className="text-sm font-medium">

@@ -44,7 +44,11 @@ export const MyReviewsPage = () => {
     queryFn: () => ReviewService.getMyOrderProductsWithReviews(shopId),
   });
 
-  const items = data?.data ?? [];
+  const items = [...(data?.data ?? [])].sort((a, b) => {
+    if (!a.review && b.review) return -1;
+    if (a.review && !b.review) return 1;
+    return 0;
+  });
 
   // Per-item form state keyed by `${orderId}:${productId}`
   const [forms, setForms] = useState<Record<string, IFormState>>({});
