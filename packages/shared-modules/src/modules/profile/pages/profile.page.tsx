@@ -7,6 +7,7 @@ import {
   MapPinIcon,
   MessageCircleIcon,
   ShoppingBagIcon,
+  StarIcon as StarIconLucide,
   User2Icon,
 } from "@repo/ui/components/icons/index";
 import { UserProfileCard } from "../components/user-profile-card";
@@ -37,6 +38,12 @@ export const ProfilePage = () => {
           icon={<ShoppingBagIcon className="text-white" />}
           title={t("orders")}
           href="/orders"
+          hidden={!user}
+        />
+        <ProfileLinkButton
+          icon={<StarIconLucide className="text-white" />}
+          title={t("my_reviews")}
+          href="/my-reviews"
           hidden={!user}
         />
         <ProfileLinkButton

@@ -51,6 +51,7 @@
     "title": "Профиль",
     "profile": "Мои данные",
     "orders": "Мои заказы",
+    "my_reviews": "Мои отзывы",
     "addresses": "Мои адреса",
     "contact_seller": "Связаться с продавцом",
     "language": "Изменить язык платформы",
@@ -288,7 +289,8 @@
     "cheque_upload_pending_button": "Чек проверяется",
     "cheque_upload_verified_button": "Чек подтвержден",
     "cheque_upload_rejected_button": "Чек отклонен",
-    "cheques": "Отправленные чеки"
+    "cheques": "Отправленные чеки",
+    "review_order": "Оценить заказ"
   },
   "map": {
     "title": "Карта",
@@ -298,5 +300,23 @@
   "price": {
     "from": "от {price}"
   },
-  "powered_by": "Разработано {company}"
+  "powered_by": "Разработано {company}",
+  "reviews": {
+    "reviews": "Отзывы",
+    "review_order": "Оценить заказ",
+    "rating": "Оценка",
+    "message_placeholder": "Напишите ваш отзыв (необязательно)...",
+    "photos_optional": "Фотографии (необязательно)",
+    "submit_review": "Отправить отзыв",
+    "submitting": "Отправляется...",
+    "review_count": "{count} отзывов",
+    "see_all_reviews": "Все отзывы",
+    "no_reviews": "Отзывов пока нет",
+    "no_unreviewed": "Все ваши заказы оценены",
+    "pending_reviews_title": "Товары для отзыва",
+    "review_now": "Оценить",
+    "shop_reply": "Ответ магазина",
+    "anonymous": "Аноним",
+    "review_success": "Спасибо! Ваш отзыв успешно отправлен"
+  }
 }

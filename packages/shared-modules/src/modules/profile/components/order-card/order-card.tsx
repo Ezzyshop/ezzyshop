@@ -188,6 +188,21 @@ export const OrderCard = ({ order, transaction }: IProps) => {
       {transaction.provider.type === PaymentMethodType.CardTransfer && (
         <OrderCheques transaction={transaction} orderStatus={order.status} />
       )}
+
+      {order.status === OrderStatus.Completed && (
+        <CustomLink
+          href={`/review/${order._id}`}
+          className="w-full mt-1"
+        >
+          <button
+            type="button"
+            className="w-full border border-primary text-primary rounded-lg py-2 text-sm font-medium hover:bg-primary/5 transition-colors"
+          >
+            ⭐ {t("review_order")}
+          </button>
+        </CustomLink>
+      )}
+
       <Separator className="my-2" />
       <OrderProducts products={order.products} />
     </Card>

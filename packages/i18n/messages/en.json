@@ -51,6 +51,7 @@
     "title": "Profile",
     "profile": "My profile information",
     "orders": "My orders",
+    "my_reviews": "My reviews",
     "addresses": "My addresses",
     "contact_seller": "Contact seller",
     "language": "Change platform language",
@@ -288,7 +289,8 @@
     "cheque_upload_pending_button": "Receipt is being reviewed",
     "cheque_upload_verified_button": "Receipt confirmed",
     "cheque_upload_rejected_button": "Receipt rejected",
-    "cheques": "Submitted receipts"
+    "cheques": "Submitted receipts",
+    "review_order": "Review Order"
   },
   "map": {
     "title": "Map",
@@ -298,5 +300,23 @@
   "price": {
     "from": "from {price}"
   },
-  "powered_by": "Powered by {company}"
+  "powered_by": "Powered by {company}",
+  "reviews": {
+    "reviews": "Reviews",
+    "review_order": "Review Order",
+    "rating": "Rating",
+    "message_placeholder": "Write your review (optional)...",
+    "photos_optional": "Photos (optional)",
+    "submit_review": "Submit Review",
+    "submitting": "Submitting...",
+    "review_count": "{count} reviews",
+    "see_all_reviews": "See all reviews",
+    "no_reviews": "No reviews yet",
+    "no_unreviewed": "All your orders have been reviewed",
+    "pending_reviews_title": "Products to review",
+    "review_now": "Review",
+    "shop_reply": "Shop reply",
+    "anonymous": "Anonymous",
+    "review_success": "Thank you! Your review was submitted successfully"
+  }
 }

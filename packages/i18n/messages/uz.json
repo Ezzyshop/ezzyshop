@@ -51,6 +51,7 @@
     "title": "Profil",
     "profile": "Foydalanuvchi ma'lumotlarim",
     "orders": "Buyurtmalarim",
+    "my_reviews": "Mening sharhlarim",
     "addresses": "Manzillarim",
     "contact_seller": "Sotuvchi bilan bog'lanish",
     "language": "Platforma tilini o'zgartirish",
@@ -288,7 +289,8 @@
     "cheque_upload_pending_button": "Chek tekshrilmoqda",
     "cheque_upload_verified_button": "Chek tasdiqlandi",
     "cheque_upload_rejected_button": "Chek rad etildi",
-    "cheques": "Yuborilgan cheklar"
+    "cheques": "Yuborilgan cheklar",
+    "review_order": "Buyurtmani baholash"
   },
   "map": {
     "title": "Xarita",
@@ -298,5 +300,23 @@
   "price": {
     "from": "{price} dan"
   },
-  "powered_by": "{company} tomonidan yaratilgan"
+  "powered_by": "{company} tomonidan yaratilgan",
+  "reviews": {
+    "reviews": "Sharhlar",
+    "review_order": "Buyurtmani baholash",
+    "rating": "Baho",
+    "message_placeholder": "Fikringizni yozing (ixtiyoriy)...",
+    "photos_optional": "Rasmlar (ixtiyoriy)",
+    "submit_review": "Sharhni yuborish",
+    "submitting": "Yuborilmoqda...",
+    "review_count": "{count} sharh",
+    "see_all_reviews": "Barcha sharhlar",
+    "no_reviews": "Hali sharhlar yo'q",
+    "no_unreviewed": "Barcha buyurtmalaringiz baholangan",
+    "pending_reviews_title": "Baholanmagan mahsulotlar",
+    "review_now": "Baholash",
+    "shop_reply": "Do'kon javobi",
+    "anonymous": "Anonim",
+    "review_success": "Rahmat! Sharhingiz muvaffaqiyatli yuborildi"
+  }
 }

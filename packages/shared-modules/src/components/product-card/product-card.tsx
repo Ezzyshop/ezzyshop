@@ -20,6 +20,7 @@ import { useState, useEffect } from "react";
 import { useProductCart } from "@repo/hooks/index";
 import { ILocale } from "@repo/api/utils/interfaces/base.interface";
 import { CustomLink } from "../custom-link";
+import { Star } from "@repo/ui/components/icons/index";
 
 interface IProps {
   product: IProductResponse;
@@ -174,6 +175,16 @@ export const ProductsCard = ({ product }: IProps) => {
           <p className="text-muted-foreground text-sm mt-1 line-clamp-2">
             {product.name[locale]}
           </p>
+
+          {(product.avg_rating ?? 0) > 0 && (
+            <div className="flex items-center gap-1 mt-1">
+              <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+              <span className="text-xs text-muted-foreground">
+                {(product.avg_rating ?? 0).toFixed(1)}
+                {(product.review_count ?? 0) > 0 && ` (${product.review_count})`}
+              </span>
+            </div>
+          )}
         </CustomLink>
 
         {hasNoVariants ? (

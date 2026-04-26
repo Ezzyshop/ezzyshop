@@ -23,6 +23,8 @@ export interface IProductResponse {
   __v: number;
   views: number;
   delivery_time?: number;
+  avg_rating: number;
+  review_count: number;
 }
 
 export interface IProductParams {
