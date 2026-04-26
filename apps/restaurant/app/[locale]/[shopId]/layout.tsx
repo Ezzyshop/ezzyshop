@@ -14,6 +14,7 @@ import { ICommonParams } from "@/utils/interfaces";
 import TMAInitClient from "@/components/tma-init-client";
 import { QueryClientProvider } from "@repo/contexts/react-query.context";
 import { ShopProvider } from "@repo/contexts/shop-context/shop.context";
+import { WorkHoursBanner } from "@/components/work-hours-banner/work-hours-banner";
 
 interface IProps {
   children: React.ReactNode;
@@ -33,6 +34,7 @@ export default async function Layout({ children, params }: IProps) {
       <QueryClientProvider>
         <ShopProvider>
           <TMAInitClient />
+          <WorkHoursBanner />
           <UserProvider>
             <CartProvider shopId={`${shopId}-restaurant`}>
               <CouponProvider shopId={`${shopId}-restaurant`}>

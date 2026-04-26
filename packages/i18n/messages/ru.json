@@ -1,4 +1,9 @@
 {
+  "work_hours": {
+    "closed_title": "Магазин сейчас закрыт",
+    "closed_description": "Время работы: {open} – {close}",
+    "closed_all_day": "Сегодня не работает"
+  },
   "homepage": {
     "search": {
       "placeholder": "Поиск"

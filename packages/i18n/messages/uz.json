@@ -1,4 +1,9 @@
 {
+  "work_hours": {
+    "closed_title": "Do'kon hozirda yopiq",
+    "closed_description": "Ish vaqti: {open} – {close}",
+    "closed_all_day": "Bugun ishlamaydi"
+  },
   "homepage": {
     "search": {
       "placeholder": "Qidirish"

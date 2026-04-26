@@ -56,4 +56,19 @@ export interface IShopResponse {
     youtube?: string;
   };
   brand_color?: string;
+  work_hours?: {
+    monday: IWorkHourDay;
+    tuesday: IWorkHourDay;
+    wednesday: IWorkHourDay;
+    thursday: IWorkHourDay;
+    friday: IWorkHourDay;
+    saturday: IWorkHourDay;
+    sunday: IWorkHourDay;
+  };
+}
+
+export interface IWorkHourDay {
+  is_open: boolean;
+  open: string;
+  close: string;
 }

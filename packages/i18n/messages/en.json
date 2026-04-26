@@ -1,4 +1,9 @@
 {
+  "work_hours": {
+    "closed_title": "Store is currently closed",
+    "closed_description": "Working hours: {open} – {close}",
+    "closed_all_day": "Closed today"
+  },
   "homepage": {
     "search": {
       "placeholder": "Search"
