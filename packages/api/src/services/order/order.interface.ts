@@ -60,6 +60,7 @@ export interface IOrderResponse {
   transaction: {
     _id: string;
     status: TransactionStatus;
+    amount: number;
     cheque_images: {
       url: string;
       status: TransactionChequeImageStatus;

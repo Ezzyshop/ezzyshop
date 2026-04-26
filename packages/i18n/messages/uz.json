@@ -225,6 +225,7 @@
     "confirm-card-transfer": {
       "title": "To'lov chekini yuborish",
       "description": "Buyurtmanizni to'lov chekini yuborish orqali tasdiqlang",
+      "total-price": "Jami narx:",
       "important-information": {
         "title": "Muhim ma'lumotlar",
         "1": "• To'lov chekni yuborishdan oldin, to'lov summasini tekshirib ko'ring",

@@ -1,7 +1,12 @@
 "use client";
 import { ICommonParams } from "@repo/shared-modules/utils/interfaces";
 import { OrderService } from "@repo/api/services/order/order.service";
-import { CheckCircle2, FileText, TimerIcon } from "@repo/ui/components/icons/index";
+import {
+  CheckCircle2,
+  Copy,
+  FileText,
+  TimerIcon,
+} from "@repo/ui/components/icons/index";
 import {
   Card,
   CardContent,
@@ -10,20 +15,30 @@ import {
   CardTitle,
 } from "@repo/ui/components/ui/card";
 import { useQuery } from "@tanstack/react-query";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { useRouter } from "nextjs-toploader/app";
 import { ConfirmCardTransferUploadImage } from "../../components/confirm-card-transfer/upload-image";
 import { ConfirmCardTransferImportant } from "../../components/confirm-card-transfer/important";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { PaymentMethodType } from "@repo/api/services/payment-method/payment-method.enum";
 import { TransactionChequeImageStatus } from "@repo/api/services/transaction/transaction.enum";
 import { Button } from "@repo/ui/components/ui/button";
+import { ILocale } from "@repo/api/utils/interfaces/base.interface";
+import { useShopContext } from "@repo/contexts/shop-context/shop.context";
 
 export const ConfirmCardTransferPage = () => {
   const { shopId, orderId, locale } = useParams<ICommonParams>();
+  const { currency } = useShopContext();
   const router = useRouter();
   const t = useTranslations();
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const { data: order } = useQuery({
     queryKey: ["order", orderId],
@@ -45,11 +60,11 @@ export const ConfirmCardTransferPage = () => {
   if (!order) return null;
 
   const isCardTransferVerified = order.data.transaction.cheque_images.some(
-    (cheque) => cheque.status === TransactionChequeImageStatus.Verified
+    (cheque) => cheque.status === TransactionChequeImageStatus.Verified,
   );
 
   const isCardTransferPending = order.data.transaction.cheque_images.some(
-    (cheque) => cheque.status === TransactionChequeImageStatus.Pending
+    (cheque) => cheque.status === TransactionChequeImageStatus.Pending,
   );
 
   if (isCardTransferPending) {
@@ -61,7 +76,7 @@ export const ConfirmCardTransferPage = () => {
         </h2>
         <p className="text-center  text-muted-foreground max-w-sm">
           {t(
-            "checkout.confirm-card-transfer.payment-verification.waiting-description"
+            "checkout.confirm-card-transfer.payment-verification.waiting-description",
           )}
         </p>
         <Button
@@ -83,7 +98,7 @@ export const ConfirmCardTransferPage = () => {
         </h2>
         <p className="text-center  text-muted-foreground max-w-sm">
           {t(
-            "checkout.confirm-card-transfer.payment-verification.success-description"
+            "checkout.confirm-card-transfer.payment-verification.success-description",
           )}
         </p>
         <Button
@@ -113,9 +128,36 @@ export const ConfirmCardTransferPage = () => {
           </CardTitle>
           <CardDescription>
             {t(
-              "checkout.confirm-card-transfer.payment-verification.description"
+              "checkout.confirm-card-transfer.payment-verification.description",
             )}
           </CardDescription>
+          <div className="p-4 bg-muted rounded-xl space-y-2">
+            <div className="flex items-center justify-between gap-2">
+              <p className="text-center flex-1">
+                {order.data.transaction.provider.instructions.uz}
+              </p>
+              <Button
+                size="icon"
+                variant="ghost"
+                className="shrink-0"
+                onClick={() =>
+                  handleCopy(
+                    order.data.transaction.provider.instructions.uz ?? "",
+                  )
+                }
+              >
+                <Copy className={copied ? "text-primary" : ""} />
+              </Button>
+            </div>
+            <div className="flex items-center justify-between">
+              <p className="text-muted-foreground text-sm">
+                {t("checkout.confirm-card-transfer.total-price")}
+              </p>
+              <p className="font-semibold">
+                {order.data.transaction.amount.toLocaleString()} {currency.symbol}
+              </p>
+            </div>
+          </div>
         </CardHeader>
 
         <CardContent className="space-y-4">

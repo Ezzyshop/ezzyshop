@@ -225,6 +225,7 @@
     "confirm-card-transfer": {
       "title": "Send payment receipt",
       "description": "Confirm your order by sending the payment receipt",
+      "total-price": "Total price:",
       "important-information": {
         "title": "Important information",
         "1": "• Before sending the payment receipt, please verify the payment amount",
