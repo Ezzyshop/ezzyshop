@@ -37,42 +37,44 @@ export const ProductDrawer = ({ product, setSelectedProduct }: IProps) => {
       <DrawerContent
         data-vaul-custom-container="true"
         withTrigger={false}
-        className="max-h-[90vh]! h-[90vh] overflow-y-auto bg-muted space-y-4"
+        className="max-h-[90vh] h-[90vh] flex flex-col bg-muted"
       >
         <DialogTitle className="hidden" />
-        <div className="relative w-full max-h-[60vh] aspect-9/16 rounded-xl bg-background">
-          <Image
-            src={product.main_image}
-            alt={product.name[language]}
-            fill
-            className="object-contain w-full rounded-xl"
-            fetchPriority="high"
-            loading="lazy"
-            sizes="100vw"
+        <div className="flex-1 overflow-y-auto space-y-4 pb-4">
+          <div className="relative w-full max-h-[60vh] aspect-9/16 rounded-xl bg-background">
+            <Image
+              src={product.main_image}
+              alt={product.name[language]}
+              fill
+              className="object-contain w-full rounded-xl"
+              fetchPriority="high"
+              loading="lazy"
+              sizes="100vw"
+            />
+          </div>
+          <div className="p-4 bg-background rounded-xl">
+            <h2 className="text-xl font-bold">{product.name[language]}</h2>
+            <p className="text-lg mt-2">
+              {selectedVariant?.price.toLocaleString()} {currency.symbol}
+            </p>
+            <p
+              dangerouslySetInnerHTML={{ __html: product.description[language] }}
+            />
+          </div>
+
+          <ProductVariants
+            variants={product.variants || []}
+            setSelectedVariant={setSelectedVariant}
+            selectedVariant={selectedVariant}
+          />
+
+          <ProductAddToCardButton
+            currentQuantity={currentQuantity}
+            handleAddToCart={handleAddToCart}
+            handleDecrement={handleDecrement}
+            handleIncrement={handleIncrement}
           />
         </div>
-        <div className="p-4 bg-background rounded-xl">
-          <h2 className="text-2xl font-bold">{product.name[language]}</h2>
-          <p>
-            {selectedVariant?.price.toLocaleString()} {currency.symbol}
-          </p>
-          <p
-            dangerouslySetInnerHTML={{ __html: product.description[language] }}
-          />
-        </div>
-
-        <ProductVariants
-          variants={product.variants || []}
-          setSelectedVariant={setSelectedVariant}
-          selectedVariant={selectedVariant}
-        />
-
-        <ProductAddToCardButton
-          currentQuantity={currentQuantity}
-          handleAddToCart={handleAddToCart}
-          handleDecrement={handleDecrement}
-          handleIncrement={handleIncrement}
-        />
       </DrawerContent>
     </Drawer>
   );
