@@ -46,7 +46,7 @@ export const Categories = ({ categories }: IProps) => {
   }, [currentCategoryId]);
 
   return (
-    <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide sticky top-0 z-10 bg-background py-2">
+    <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide sticky top-0 z-20 bg-background py-2">
       {categories?.map((category) => (
         <a
           key={category._id}
