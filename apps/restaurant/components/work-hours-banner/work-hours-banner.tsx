@@ -22,11 +22,8 @@ function getCurrentUzbekistanDate(): Date {
 
 function parseMinutes(time: string): number {
   const [h, m] = time.split(":").map(Number);
-
-  if (h && m) {
-    return h * 60 + m;
-  }
-  return 0;
+  if (isNaN(h!) || isNaN(m!)) return 0;
+  return h! * 60 + m!;
 }
 
 function getShopStatus(day: IWorkHourDay | undefined): {
