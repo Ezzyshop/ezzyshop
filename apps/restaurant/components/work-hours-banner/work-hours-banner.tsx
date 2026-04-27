@@ -48,7 +48,10 @@ function getShopStatus(day: IWorkHourDay | undefined): {
     uzbekDate.getUTCHours() * 60 + uzbekDate.getUTCMinutes();
   const openMinutes = parseMinutes(day.open);
   const closeMinutes = parseMinutes(day.close);
-  const isOpen = currentMinutes >= openMinutes && currentMinutes < closeMinutes;
+  const overnight = closeMinutes <= openMinutes;
+  const isOpen = overnight
+    ? currentMinutes >= openMinutes || currentMinutes < closeMinutes
+    : currentMinutes >= openMinutes && currentMinutes < closeMinutes;
 
   return { isOpen, open: day.open, close: day.close, isClosedAllDay: false };
 }
