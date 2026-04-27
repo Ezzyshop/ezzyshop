@@ -22,16 +22,28 @@ function getCurrentUzbekistanDate(): Date {
 
 function parseMinutes(time: string): number {
   const [h, m] = time.split(":").map(Number);
-  return h * 60 + m;
+
+  if (h && m) {
+    return h * 60 + m;
+  }
+  return 0;
 }
 
-function getShopStatus(
-  day: IWorkHourDay | undefined,
-): { isOpen: boolean; open: string; close: string; isClosedAllDay: boolean } {
+function getShopStatus(day: IWorkHourDay | undefined): {
+  isOpen: boolean;
+  open: string;
+  close: string;
+  isClosedAllDay: boolean;
+} {
   if (!day) return { isOpen: true, open: "", close: "", isClosedAllDay: false };
 
   if (!day.is_open) {
-    return { isOpen: false, open: day.open, close: day.close, isClosedAllDay: true };
+    return {
+      isOpen: false,
+      open: day.open,
+      close: day.close,
+      isClosedAllDay: true,
+    };
   }
 
   const uzbekDate = getCurrentUzbekistanDate();
@@ -51,7 +63,7 @@ export const WorkHoursBanner = () => {
   if (!shop.work_hours) return null;
 
   const uzbekDate = getCurrentUzbekistanDate();
-  const dayName = DAYS[uzbekDate.getUTCDay()];
+  const dayName = DAYS[uzbekDate.getUTCDay()]!;
   const todayHours = shop.work_hours[dayName];
   const { isOpen, open, close, isClosedAllDay } = getShopStatus(todayHours);
 
