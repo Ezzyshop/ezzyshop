@@ -46,8 +46,11 @@ function DrawerOverlay({
 function DrawerContent({
   className,
   children,
+  withTrigger = true,
   ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Content>) {
+}: React.ComponentProps<typeof DrawerPrimitive.Content> & {
+  withTrigger?: boolean;
+}) {
   return (
     <DrawerPortal data-slot="drawer-portal">
       <DrawerOverlay />
@@ -63,6 +66,9 @@ function DrawerContent({
         )}
         {...props}
       >
+        {withTrigger && (
+          <div className="bg-muted mx-auto mt-4 hidden h-2 w-[100px] shrink-0 rounded-full group-data-[vaul-drawer-direction=bottom]/drawer-content:block group-data-[without-trigger=true]/drawer-content:hidden" />
+        )}
         {children}
       </DrawerPrimitive.Content>
     </DrawerPortal>
