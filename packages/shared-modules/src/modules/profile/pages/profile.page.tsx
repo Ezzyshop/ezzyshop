@@ -65,7 +65,19 @@ export const ProfilePage = () => {
       </div>
       <SocialNetworks />
       <p className="text-muted-foreground text-center text-sm">
-        {useTranslations()("powered_by", { company: "ezzyshop" })}
+        {useTranslations().rich("powered_by", {
+          company: "ezzyshop",
+          link: (chunks) => (
+            <a
+              href="https://www.instagram.com/ezzyshopuz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium hover:underline text-primary"
+            >
+              {chunks}
+            </a>
+          ),
+        })}
       </p>
     </div>
   );

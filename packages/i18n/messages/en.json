@@ -1,6 +1,6 @@
 {
   "work_hours": {
-    "closed_title": "Store is currently closed",
+    "closed_title": "Restaurant is currently closed",
     "closed_description": "Working hours: {open} – {close}",
     "closed_all_day": "Closed today"
   },
@@ -306,7 +306,7 @@
   "price": {
     "from": "from {price}"
   },
-  "powered_by": "Powered by {company}",
+  "powered_by": "Powered by <link>{company}</link>",
   "reviews": {
     "reviews": "Reviews",
     "review_order": "Review Order",

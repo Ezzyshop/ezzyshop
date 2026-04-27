@@ -1,6 +1,6 @@
 {
   "work_hours": {
-    "closed_title": "Магазин сейчас закрыт",
+    "closed_title": "Ресторан сейчас закрыт",
     "closed_description": "Время работы: {open} – {close}",
     "closed_all_day": "Сегодня не работает"
   },
@@ -306,7 +306,7 @@
   "price": {
     "from": "от {price}"
   },
-  "powered_by": "Разработано {company}",
+  "powered_by": "Разработано <link>{company}</link>",
   "reviews": {
     "reviews": "Отзывы",
     "review_order": "Оценить заказ",

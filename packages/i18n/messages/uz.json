@@ -1,6 +1,6 @@
 {
   "work_hours": {
-    "closed_title": "Do'kon hozirda yopiq",
+    "closed_title": "Restoran hozirda yopiq",
     "closed_description": "Ish vaqti: {open} – {close}",
     "closed_all_day": "Bugun ishlamaydi"
   },
@@ -306,7 +306,7 @@
   "price": {
     "from": "{price} dan"
   },
-  "powered_by": "{company} tomonidan yaratilgan",
+  "powered_by": "<link>{company}</link> tomonidan yaratilgan",
   "reviews": {
     "reviews": "Sharhlar",
     "review_order": "Buyurtmani baholash",
