@@ -52,8 +52,8 @@ export const ProductDrawer = ({ product, setSelectedProduct }: IProps) => {
           />
         </div>
         <div className="p-4 bg-background rounded-xl">
-          <h2 className="text-2xl font-bold">{product.name[language]}</h2>
-          <p>
+          <h2 className="text-xl font-bold">{product.name[language]}</h2>
+          <p className="text-lg mt-2">
             {selectedVariant?.price.toLocaleString()} {currency.symbol}
           </p>
           <p

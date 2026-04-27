@@ -70,7 +70,7 @@ export const ProductVariants = ({
               />
               <Label
                 htmlFor={inputId}
-                className="cursor-pointer flex-1 text-lg font-medium"
+                className="cursor-pointer flex-1 font-medium"
               >
                 {variantLabel}
                 {priceDifference ? (
