@@ -32,6 +32,7 @@ export const ProductVariants = ({
     <div className="p-4 bg-background rounded-xl">
       <RadioGroup
         value={selectedVariant?._id}
+        className="gap-0"
         onValueChange={(variantId) => {
           const variant = variants.find((item) => item._id === variantId);
           if (variant) setSelectedVariant(variant);
@@ -45,30 +46,38 @@ export const ProductVariants = ({
           const inputId = `variant-${variant._id}`;
 
           return (
-            <div key={variant._id} className="flex items-center gap-3">
+            <div
+              key={variant._id}
+              className="flex items-center gap-3 border-b last:border-0 p-3"
+            >
               <RadioGroupItem
                 disabled={variant.quantity <= 0}
                 value={variant._id}
                 id={inputId}
                 className={cn(
-                  "bg-muted border-none shadow-inner-md",
-                  selectedVariant?._id === variant._id && "bg-primary "
+                  "bg-muted border-none shadow-inner-md size-7!",
+                  selectedVariant?._id === variant._id && "bg-primary ",
                 )}
                 icon={
                   <CheckIcon
                     className={cn(
-                      " absolute top-1/2 left-1/2 size-4 -translate-x-1/2 -translate-y-1/2",
+                      " absolute top-1/2 left-1/2 size-5 -translate-x-1/2 -translate-y-1/2",
                       selectedVariant?._id === variant._id &&
-                        "text-primary-foreground"
+                        "text-primary-foreground",
                     )}
                   />
                 }
               />
-              <Label htmlFor={inputId} className="cursor-pointer font-normal">
+              <Label
+                htmlFor={inputId}
+                className="cursor-pointer flex-1 text-lg font-medium"
+              >
                 {variantLabel}
-                <span className="text-muted-foreground">
-                  (+{priceDifference.toLocaleString()} {currency.symbol})
-                </span>
+                {priceDifference ? (
+                  <span className="text-muted-foreground">
+                    (+{priceDifference.toLocaleString()} {currency.symbol})
+                  </span>
+                ) : null}
               </Label>
             </div>
           );
