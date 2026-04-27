@@ -306,7 +306,7 @@
   "price": {
     "from": "от {price}"
   },
-  "powered_by": "Разработано {company}",
+  "powered_by": "Разработано <link>{company}</link>",
   "reviews": {
     "reviews": "Отзывы",
     "review_order": "Оценить заказ",

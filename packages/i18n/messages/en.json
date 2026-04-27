@@ -306,7 +306,7 @@
   "price": {
     "from": "from {price}"
   },
-  "powered_by": "Powered by {company}",
+  "powered_by": "Powered by <link>{company}</link>",
   "reviews": {
     "reviews": "Reviews",
     "review_order": "Review Order",
