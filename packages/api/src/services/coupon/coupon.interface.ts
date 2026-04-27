@@ -20,6 +20,7 @@ export interface IMyCoupon {
   max_uses: number | null;
   max_uses_per_user: number | null;
   used_count: number;
+  user_used_count: number;
   expires_at: string | null;
   status: 'ACTIVE' | 'INACTIVE' | 'DELETED';
 }

@@ -19,6 +19,7 @@ import {
   createOrderValidator,
 } from "@repo/api/services/order/index";
 import { IOutOfStockItem, useCart } from "@repo/contexts/cart-context";
+import { useCoupon } from "@repo/contexts/coupon-context/coupon.context";
 import { joiResolver } from "@hookform/resolvers/joi";
 import { ErrorMessages } from "@repo/api/utils/enums/api.enum";
 import { useRouter } from "nextjs-toploader/app";
@@ -32,6 +33,7 @@ export const CheckoutPage = () => {
   const t = useTranslations();
   const { user } = useUserContext();
   const { items, clearCart, setOutOfStockItems, totalPrice } = useCart();
+  const { clearSelectedCoupon } = useCoupon();
   const [couponDiscount, setCouponDiscount] = useState(0);
   const router = useRouter();
   const { locale, shopId } = useParams<ICommonParams>();
@@ -43,6 +45,7 @@ export const CheckoutPage = () => {
       OrderService.createOrder(shopId, order),
     onSuccess: (data) => {
       clearCart();
+      clearSelectedCoupon();
       queryClient.invalidateQueries({ queryKey: ["my-coupons", shopId] });
       const isCardTransfer =
         data.data.transaction.provider.type === PaymentMethodType.CardTransfer;

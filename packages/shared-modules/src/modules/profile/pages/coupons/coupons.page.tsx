@@ -74,7 +74,11 @@ const CouponCard = ({
 
   const usesLeft =
     coupon.max_uses !== null ? coupon.max_uses - coupon.used_count : null;
-  const isExhausted = usesLeft !== null && usesLeft <= 0;
+  const isGloballyExhausted = usesLeft !== null && usesLeft <= 0;
+  const isUserLimitReached =
+    coupon.max_uses_per_user !== null &&
+    coupon.user_used_count >= coupon.max_uses_per_user;
+  const isExhausted = isGloballyExhausted || isUserLimitReached;
 
   useEffect(() => {
     if (isSelected && isExhausted) {
