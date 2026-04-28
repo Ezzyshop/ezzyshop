@@ -42,7 +42,7 @@ export const Dock = () => {
   ];
 
   return (
-    <div className="sticky bottom-0 left-0 right-0 bg-white flex justify-around items-center p-4 border-t">
+    <div className="sticky bottom-0 left-0 right-0 bg-white flex justify-around items-center p-4 border-t z-20">
       {dockElements.map((element) => {
         const isActive = pathname.includes(element.href);
 

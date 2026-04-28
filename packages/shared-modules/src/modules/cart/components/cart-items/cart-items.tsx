@@ -4,10 +4,21 @@ import { useTranslations } from "next-intl";
 import { Package } from "@repo/ui/components/icons/index";
 import { Button } from "@repo/ui/components/ui/button";
 import { CustomLink } from "@repo/shared-modules/components/custom-link";
+import { useShopContext } from "@repo/contexts/shop-context/shop.context";
+import { useEffect } from "react";
 
 export const CartItems = () => {
-  const { items } = useCart();
+  const { items, trackViewCart } = useCart();
+  const { currency } = useShopContext();
   const t = useTranslations("cart.empty");
+
+  useEffect(() => {
+    if (items.length > 0) {
+      trackViewCart(currency.symbol ?? "UZS");
+    }
+    // Fire once on mount — items.length used only as a guard
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (items.length === 0) {
     return (
@@ -17,8 +28,8 @@ export const CartItems = () => {
         <p className="text-muted-foreground text-sm text-center mt-1">
           {t("description")}
         </p>
-        <Button className="mt-4">
-          <CustomLink href={`/home`}>{t("go_to_home")}</CustomLink>
+        <Button className="mt-4" asChild>
+          <CustomLink href="/home">{t("go_to_home")}</CustomLink>
         </Button>
       </div>
     );
