@@ -3,6 +3,7 @@ import { PageHeader } from "@repo/shared-modules/components/page-header/page-hea
 import { ProductsGrid } from "@repo/shared-modules/components/products-group/products-grid";
 import { SearchInput } from "@repo/shared-modules/components/search-input";
 import { ProductService } from "@repo/api/services/products/product.service";
+import { SearchEventService } from "@repo/api/services/search-event/search-event.service";
 import { useQueryParams } from "@repo/hooks/use-query-params";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
@@ -41,6 +42,7 @@ export default function SearchPage() {
 
   const filterBySearch = (value: string) => {
     setQueryParams({ ...getQueryParams(), search: value });
+    SearchEventService.track(shopId as string, value);
   };
 
   return (

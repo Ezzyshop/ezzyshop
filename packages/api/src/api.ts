@@ -10,6 +10,18 @@ export const api = axios.create({
   withCredentials: true,
 });
 
+api.interceptors.request.use((config) => {
+  if (typeof window !== "undefined") {
+    let sessionId = localStorage.getItem("_sid");
+    if (!sessionId) {
+      sessionId = crypto.randomUUID();
+      localStorage.setItem("_sid", sessionId);
+    }
+    config.headers["X-Session-ID"] = sessionId;
+  }
+  return config;
+});
+
 api.interceptors.response.use(
   (response) => response,
   (error) => {
