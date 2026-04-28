@@ -28,6 +28,8 @@ import { ICommonParams } from "@repo/shared-modules/utils/interfaces";
 import { useEffect, useState } from "react";
 import { PaymentMethodType } from "@repo/api/services/payment-method/payment-method.enum";
 import WebApp from "@twa-dev/sdk";
+import { CartAnalyticsService } from "@repo/api/services/cart-analytics/index";
+import { useShopContext } from "@repo/contexts/shop-context/shop.context";
 
 export const CheckoutPage = () => {
   const t = useTranslations();
@@ -37,22 +39,37 @@ export const CheckoutPage = () => {
   const [couponDiscount, setCouponDiscount] = useState(0);
   const router = useRouter();
   const { locale, shopId } = useParams<ICommonParams>();
-
+  const { currency } = useShopContext();
   const queryClient = useQueryClient();
+
+  const ga4Items = items.map((item) => ({
+    item_id: item.product._id,
+    item_name: item.product.name.uz,
+    price: item.variant?.price ?? 0,
+    quantity: item.quantity,
+  }));
 
   const { mutate: createOrder, isPending } = useMutation({
     mutationFn: (order: IOrderCreateRequest) =>
       OrderService.createOrder(shopId, order),
     onSuccess: (data) => {
+      CartAnalyticsService.trackPurchase(shopId, {
+        orderId: data.data._id,
+        value: data.data.total_price,
+        currency: currency.symbol ?? "UZS",
+        items: ga4Items,
+      });
+
       clearCart();
       clearSelectedCoupon();
       queryClient.invalidateQueries({ queryKey: ["my-coupons", shopId] });
+
       const isCardTransfer =
         data.data.transaction.provider.type === PaymentMethodType.CardTransfer;
 
       if (isCardTransfer) {
         router.push(
-          `/${locale}/${shopId}/profile/orders/${data.data._id}/confirm-card-transfer`,
+          `/${locale}/${shopId}/profile/orders/${data.data._id}/confirm-card-transfer`
         );
       } else {
         router.push(`/${locale}/${shopId}/checkout/success`);
@@ -129,7 +146,7 @@ export const CheckoutPage = () => {
           product: item.product._id,
           variant: item.variant?._id ?? null,
           quantity: item.quantity,
-        })),
+        }))
       );
     }
   }, [items, form]);

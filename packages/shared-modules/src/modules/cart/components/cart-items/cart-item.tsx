@@ -6,11 +6,13 @@ import { ILocale } from "@repo/api/utils/interfaces/base.interface";
 import { AddToCartButton } from "@repo/shared-modules/components/add-to-cart-button/add-to-cart-button";
 import { useCart } from "@repo/contexts/cart-context/cart.context";
 import { useShopContext } from "@repo/contexts/shop-context/shop.context";
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { cn } from "@repo/ui/lib/utils";
 import { CustomLink } from "@repo/shared-modules/components/custom-link";
 import { Button } from "@repo/ui/components/ui/button";
 import { CircleSlash2 } from "@repo/ui/components/icons/index";
+
+const INCREMENT_DEBOUNCE_MS = 600;
 
 interface IProps {
   item: ICartItem;
@@ -21,55 +23,73 @@ export const CartItem = ({ item }: IProps) => {
   const locale = useLocale() as keyof ILocale;
   const { updateQuantity, removeItem, addItem } = useCart();
   const { currency } = useShopContext();
-  const [isLoading, setIsLoading] = useState(false);
 
   const availableStock = item.variant?.quantity ?? Infinity;
+  const compareAtPrice = item.variant?.compare_at_price;
 
-  const handleIncrement = async () => {
-    try {
-      setIsLoading(true);
+  // ── Debounced increment ───────────────────────────────────────────────────
+  // pendingRef holds the accumulated click count that hasn't been dispatched yet.
+  // displayExtra mirrors it as React state so the counter re-renders immediately.
+  const pendingRef = useRef(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [displayExtra, setDisplayExtra] = useState(0);
 
-      if (item.quantity >= availableStock) {
-        return;
-      }
+  // Reset display state if item.quantity is updated externally (e.g. after flush)
+  useEffect(() => {
+    pendingRef.current = 0;
+    setDisplayExtra(0);
+  }, [item.quantity]);
 
-      addItem(item.product, item.variant, 1);
-    } catch (error) {
-      console.error("Error incrementing quantity:", error);
-    } finally {
-      setIsLoading(false);
-    }
+  const displayQuantity = item.quantity + displayExtra;
+
+  const flushIncrement = () => {
+    const qty = pendingRef.current;
+    if (qty <= 0) return;
+    pendingRef.current = 0;
+    setDisplayExtra(0);
+    addItem(item.product, item.variant, qty);
   };
 
-  const handleDecrement = async () => {
-    try {
-      setIsLoading(true);
+  const handleIncrement = () => {
+    if (displayQuantity >= availableStock) return;
 
-      if (item.quantity <= 1) {
-        removeItem(item.id);
-      } else {
-        updateQuantity(item.id, item.quantity - 1);
-      }
-    } catch (error) {
-      console.error("Error decrementing quantity:", error);
-    } finally {
-      setIsLoading(false);
-    }
+    pendingRef.current += 1;
+    setDisplayExtra(pendingRef.current);
+
+    if (timerRef.current) clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(flushIncrement, INCREMENT_DEBOUNCE_MS);
   };
 
-  const handleAddToCart = () => {
-    handleIncrement();
+  // Flush on unmount so pending clicks aren't lost
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+      flushIncrement();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleDecrement = () => {
+    // Flush any pending increment first so we decrement the correct quantity
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+      flushIncrement();
+    }
+
+    if (item.quantity <= 1) {
+      removeItem(item.id);
+    } else {
+      updateQuantity(item.id, item.quantity - 1);
+    }
   };
 
   const getVariantDisplayText = () => {
-    if (!item.variant || !item.variant.attributes) return null;
-
+    if (!item.variant?.attributes) return null;
     return Object.entries(item.variant.attributes)
       .map(([key, value]) => `${key}: ${value}`)
       .join(", ");
   };
-
-  const compareAtPrice = item.variant?.compare_at_price;
 
   return (
     <Card className="p-4 flex flex-row items-start shadow-none border-0">
@@ -89,25 +109,14 @@ export const CartItem = ({ item }: IProps) => {
       </div>
 
       <div className="flex-grow">
-        <CustomLink
-          href={`/products/${item.product._id}`}
-          className="block mb-1"
-        >
-          <p className="font-medium line-clamp-1">
-            {item.product.name[locale]}
-          </p>
+        <CustomLink href={`/products/${item.product._id}`} className="block mb-1">
+          <p className="font-medium line-clamp-1">{item.product.name[locale]}</p>
           {item.variant && (
             <p className="text-xs text-gray-600">{getVariantDisplayText()}</p>
           )}
-          <p
-            className={cn(
-              "text-sm font-medium",
-              compareAtPrice && "text-red-500"
-            )}
-          >
+          <p className={cn("text-sm font-medium", compareAtPrice && "text-red-500")}>
             {item.variant?.price.toLocaleString()} {currency.symbol}
           </p>
-
           {compareAtPrice && (
             <p className="text-xs text-gray-600 line-through">
               {compareAtPrice.toLocaleString()} {currency.symbol}
@@ -130,13 +139,13 @@ export const CartItem = ({ item }: IProps) => {
         ) : (
           <AddToCartButton
             size="sm"
-            onAddToCart={handleAddToCart}
-            currentQuantity={item.quantity}
+            onAddToCart={handleIncrement}
+            currentQuantity={displayQuantity}
             selectedVariant={item.variant}
             product={item.product}
             onIncrement={handleIncrement}
             onDecrement={handleDecrement}
-            disabled={isLoading}
+            disabled={false}
           />
         )}
       </div>

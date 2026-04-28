@@ -5,7 +5,8 @@ const generateCartItemId = (productId: string, variantId?: string): string => {
 };
 
 const calculateItemPrice = (item: ICartItem): number => {
-  return item.variant!.price * item.quantity;
+  const price = item.variant?.price ?? item.product?.variants?.[0]?.price ?? 0;
+  return price * item.quantity;
 };
 
 const calculateTotals = (items: ICartItem[]) => {
@@ -14,20 +15,16 @@ const calculateTotals = (items: ICartItem[]) => {
     (sum, item) => sum + calculateItemPrice(item),
     0
   );
-  // totalDiscount is based on product.compare_at_price if present.
-  // We assume compare_at_price is the pre-discount price for the base product (variants may override selling price but not compare_at_price per schema).
   const totalDiscount = items.reduce((sum, item) => {
-    const sellingUnitPrice = item.variant!.price;
-    const compareAt = item.variant!.compare_at_price ?? null;
+    const sellingUnitPrice = item.variant?.price ?? item.product?.variants?.[0]?.price ?? 0;
+    const compareAt = item.variant?.compare_at_price ?? null;
     if (!compareAt || compareAt <= sellingUnitPrice) return sum;
-    const discountPerUnit = compareAt - sellingUnitPrice;
-    return sum + discountPerUnit * item.quantity;
+    return sum + (compareAt - sellingUnitPrice) * item.quantity;
   }, 0);
   const totalPriceWithoutDiscount = items.reduce((sum, item) => {
-    const sellingUnitPrice = item.variant!.price;
-    const compareAt = item.variant!.compare_at_price ?? null;
-    const baseUnitPrice =
-      compareAt && compareAt > 0 ? compareAt : sellingUnitPrice;
+    const sellingUnitPrice = item.variant?.price ?? item.product?.variants?.[0]?.price ?? 0;
+    const compareAt = item.variant?.compare_at_price ?? null;
+    const baseUnitPrice = compareAt && compareAt > 0 ? compareAt : sellingUnitPrice;
     return sum + baseUnitPrice * item.quantity;
   }, 0);
   return { totalItems, totalPrice, totalDiscount, totalPriceWithoutDiscount };
