@@ -40,7 +40,7 @@ export const PopularCategories = () => {
           loop: true,
           inViewThreshold: 0.1,
         }}
-        plugins={[Autoplay({ delay: 6000 })]}
+        plugins={[Autoplay({ delay: 3000, stopOnMouseEnter: true })]}
       >
         <CarouselContent>
           {categories?.data.map((category: ICategoriesResponse) => (
@@ -57,7 +57,7 @@ export const PopularCategories = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselDots className="-bottom-10" />
+        <CarouselDots className="bottom-3" dotClassName="bg-white/70 aria-selected:bg-white" />
       </Carousel>
     </div>
   );
