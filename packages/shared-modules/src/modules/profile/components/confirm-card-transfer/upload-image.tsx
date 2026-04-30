@@ -44,7 +44,7 @@ export const ConfirmCardTransferUploadImage = ({ order }: IProps) => {
   });
 
   const uploadMutation = useMutation({
-    mutationFn: (file: File) => UploadService.uploadImage(file),
+    mutationFn: (file: File) => UploadService.uploadImage(file, shopId, "cheque"),
     onSuccess: (data) => {
       mutate(data.data.url);
     },

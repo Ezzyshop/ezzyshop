@@ -185,7 +185,7 @@ export const ContactSellerChatPage = ({ sessionId }: IProps) => {
   const handleUpload = useCallback(async (file: File) => {
     setUploading(true);
     try {
-      const res = await UploadService.uploadImage(file);
+      const res = await UploadService.uploadImage(file, shopId, "product");
       const url = res.data?.url;
       if (url) setPendingImages((prev) => [...prev, url]);
     } finally {

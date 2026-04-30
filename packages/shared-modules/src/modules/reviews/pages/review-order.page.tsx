@@ -87,7 +87,7 @@ export const ReviewOrderPage = () => {
         const uploadedUrls: string[] = [];
 
         for (const file of review.imageFiles) {
-          const res = await UploadService.uploadImage(file);
+          const res = await UploadService.uploadImage(file, shopId, "product");
           uploadedUrls.push(res.data.url);
         }
 
