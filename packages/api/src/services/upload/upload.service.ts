@@ -72,7 +72,7 @@ async function compressImage(file: File): Promise<File> {
   });
 }
 
-export type UploadType = "product" | "category" | "cheque" | "logo";
+export type UploadType = "product" | "category" | "cheque" | "logo" | "review";
 
 export class UploadService {
   static async uploadImage(
