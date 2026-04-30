@@ -27,7 +27,7 @@ export const OrderChequeUploadButton = ({ transactionId }: IProps) => {
   });
 
   const { mutate: uploadImage, isPending: isUploading } = useMutation({
-    mutationFn: (image: File) => UploadService.uploadImage(image),
+    mutationFn: (image: File) => UploadService.uploadImage(image, shopId, "cheque"),
     onSuccess: (data) => {
       console.log(data);
       uploadChequeImage(data.data.url);

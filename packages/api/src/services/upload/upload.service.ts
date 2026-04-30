@@ -72,17 +72,24 @@ async function compressImage(file: File): Promise<File> {
   });
 }
 
+export type UploadType = "product" | "category" | "cheque" | "logo" | "review";
+
 export class UploadService {
-  static async uploadImage(image: File): Promise<IData<IUploadResponse>> {
+  static async uploadImage(
+    image: File,
+    shopId: string,
+    type: UploadType,
+  ): Promise<IData<IUploadResponse>> {
     const compressed = await compressImage(image);
 
     const formData = new FormData();
     formData.append("image", compressed);
-    const response = await api.post("/upload/single", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    formData.append("type", type);
+    const response = await api.post(
+      `/shops/${shopId}/upload/single`,
+      formData,
+      { headers: { "Content-Type": "multipart/form-data" } },
+    );
     return response.data;
   }
 }

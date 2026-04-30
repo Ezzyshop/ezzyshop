@@ -54,9 +54,25 @@ export const ProductDrawer = ({ product, setSelectedProduct }: IProps) => {
           </div>
           <div className="p-4 bg-background rounded-xl">
             <h2 className="text-xl font-bold">{product.name[language]}</h2>
-            <p className="text-lg mt-2">
-              {selectedVariant?.price.toLocaleString()} {currency.symbol}
-            </p>
+            <div className="flex items-center gap-2 mt-2">
+              <p
+                className={
+                  selectedVariant?.compare_at_price != null &&
+                  selectedVariant.compare_at_price > selectedVariant.price
+                    ? "text-lg font-semibold text-red-500"
+                    : "text-lg"
+                }
+              >
+                {selectedVariant?.price.toLocaleString()} {currency.symbol}
+              </p>
+              {selectedVariant?.compare_at_price != null &&
+                selectedVariant.compare_at_price > selectedVariant.price && (
+                  <p className="text-sm text-muted-foreground line-through">
+                    {selectedVariant.compare_at_price.toLocaleString()}{" "}
+                    {currency.symbol}
+                  </p>
+                )}
+            </div>
             <p
               dangerouslySetInnerHTML={{ __html: product.description[language] }}
             />
