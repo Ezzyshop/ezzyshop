@@ -24,25 +24,28 @@ export const ProductCard = ({ product, setSelectedProduct }: IProps) => {
   const t = useTranslations("price");
   const isInWishlist = isItemInWishlist(product._id);
 
-  const mostCheapPrice = useMemo(
+  const mostCheapVariant = useMemo(
     () =>
-      product.variants.reduce((min, variant) => {
-        return Math.min(min, variant.price);
-      }, Infinity),
+      product.variants.reduce((min, variant) =>
+        variant.price < min.price ? variant : min
+      ),
     [product.variants]
   );
 
+  const mostCheapPrice = mostCheapVariant.price;
+  const compareAtPrice = mostCheapVariant.compare_at_price;
+  const isOnSale = compareAtPrice != null && compareAtPrice > mostCheapPrice;
+  const discountPercent = isOnSale
+    ? Math.round(((compareAtPrice - mostCheapPrice) / compareAtPrice) * 100)
+    : 0;
+
   const getProductPrice = () => {
-    let priceText = "";
     if (product.variants.length > 1) {
-      priceText = t("from", {
+      return t("from", {
         price: mostCheapPrice.toLocaleString() + " " + currency.symbol,
       });
-    } else {
-      priceText = mostCheapPrice.toLocaleString() + " " + currency.symbol;
     }
-
-    return priceText;
+    return mostCheapPrice.toLocaleString() + " " + currency.symbol;
   };
 
   const handleWishlistToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -57,6 +60,11 @@ export const ProductCard = ({ product, setSelectedProduct }: IProps) => {
     >
       <CardContent className="p-0">
         <div className="relative">
+          {isOnSale && (
+            <span className="absolute top-2 left-2 z-10 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded-md">
+              -{discountPercent}%
+            </span>
+          )}
           <Button
             variant="outline"
             size="icon"
@@ -87,7 +95,16 @@ export const ProductCard = ({ product, setSelectedProduct }: IProps) => {
           />
         </div>
         <div className="p-2">
-          <p className="text-sm font-semibold mt-2">{getProductPrice()}</p>
+          <div className="mt-2 flex flex-col">
+            <p className={cn("text-sm font-semibold", isOnSale && "text-red-500")}>
+              {getProductPrice()}
+            </p>
+            {isOnSale && (
+              <p className="text-xs text-muted-foreground line-through">
+                {compareAtPrice!.toLocaleString()} {currency.symbol}
+              </p>
+            )}
+          </div>
           <p className="text-xs line-clamp-2">{product.name[locale]}</p>
         </div>
       </CardContent>
