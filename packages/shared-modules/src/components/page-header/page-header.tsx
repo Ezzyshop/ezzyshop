@@ -33,7 +33,7 @@ export const PageHeader = ({
 
   return (
     <div
-      className={cn("sticky top-0 z-10 bg-white", isScrolled && "shadow-sm")}
+      className={cn("sticky top-0 z-20 bg-white", isScrolled && "shadow-sm")}
     >
       <div className="flex flex-col justify-center gap-2 px-4 py-4 relative">
         <Button

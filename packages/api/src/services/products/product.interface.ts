@@ -6,6 +6,7 @@ export interface IProductResponse {
   description: ILocale;
   _id: string;
   main_image: string;
+  video?: string;
   categories: string[];
   variants: {
     sku: string;
