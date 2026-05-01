@@ -9,6 +9,10 @@ import { useQuery } from "@tanstack/react-query";
 import { IProductParams } from "@repo/api/services/products/product.interface";
 import { ProductService } from "@repo/api/services/products/product.service";
 import { useCart } from "@repo/contexts/cart-context";
+import { useState } from "react";
+import { Button } from "@repo/ui/components/ui/button";
+import { Trash2 } from "@repo/ui/components/icons/index";
+import { ConfirmDrawer } from "../components/confirm-drawer";
 
 interface IProps {
   shopId: string;
@@ -16,8 +20,10 @@ interface IProps {
 
 export const CartPage = ({ shopId }: IProps) => {
   const t = useTranslations("cart");
-  const { totalItems } = useCart();
+  const { totalItems, clearCart } = useCart();
   const { items } = useViewedProducts();
+  const [clearOpen, setClearOpen] = useState(false);
+
   const params: IProductParams = {
     limit: 6,
   };
@@ -28,9 +34,21 @@ export const CartPage = ({ shopId }: IProps) => {
       ProductService.getProductsByCategory(shopId, "most-popular", params),
   });
 
+  const clearCartRight =
+    totalItems > 0 ? (
+      <Button
+        variant="ghost"
+        size="icon"
+        className="text-destructive hover:text-destructive"
+        onClick={() => setClearOpen(true)}
+      >
+        <Trash2 className="w-5 h-5" />
+      </Button>
+    ) : undefined;
+
   return (
     <div className="flex flex-col flex-grow">
-      <PageHeader title={t("title")} />
+      <PageHeader title={t("title")} rightElement={clearCartRight} />
       <div className="flex flex-col flex-grow px-4 pb-3">
         <div className="flex-grow space-y-3">
           <CartItems />
@@ -46,6 +64,15 @@ export const CartPage = ({ shopId }: IProps) => {
         </div>
       </div>
       {totalItems > 0 && <CartSummary />}
+      <ConfirmDrawer
+        open={clearOpen}
+        onOpenChange={setClearOpen}
+        title={t("clear_cart_confirm.title")}
+        description={t("clear_cart_confirm.description")}
+        confirmLabel={t("clear_cart_confirm.yes")}
+        cancelLabel={t("clear_cart_confirm.no")}
+        onConfirm={clearCart}
+      />
     </div>
   );
 };

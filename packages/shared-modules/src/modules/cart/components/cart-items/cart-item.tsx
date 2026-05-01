@@ -10,7 +10,8 @@ import { useRef, useState, useEffect } from "react";
 import { cn } from "@repo/ui/lib/utils";
 import { CustomLink } from "@repo/shared-modules/components/custom-link";
 import { Button } from "@repo/ui/components/ui/button";
-import { CircleSlash2 } from "@repo/ui/components/icons/index";
+import { CircleSlash2, Trash2 } from "@repo/ui/components/icons/index";
+import { ConfirmDrawer } from "../confirm-drawer";
 
 const INCREMENT_DEBOUNCE_MS = 600;
 
@@ -23,6 +24,7 @@ export const CartItem = ({ item }: IProps) => {
   const locale = useLocale() as keyof ILocale;
   const { updateQuantity, removeItem, addItem } = useCart();
   const { currency } = useShopContext();
+  const [removeOpen, setRemoveOpen] = useState(false);
 
   const availableStock = item.variant?.quantity ?? Infinity;
   const compareAtPrice = item.variant?.compare_at_price;
@@ -92,63 +94,74 @@ export const CartItem = ({ item }: IProps) => {
   };
 
   return (
-    <Card className="p-4 flex flex-row items-start shadow-none border-0">
-      <div className="relative min-w-24 w-24 h-24">
-        <Image
-          src={item.variant?.images[0] ?? item.product.main_image ?? ""}
-          alt={item.product.name[locale]}
-          fill
-          className="rounded-lg object-cover"
-          sizes="full"
-        />
-        {item.isOutOfStock && (
-          <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-md">
-            <CircleSlash2 className="text-white" />
-          </div>
-        )}
-      </div>
-
-      <div className="flex-grow">
-        <CustomLink href={`/products/${item.product._id}`} className="block mb-1">
-          <p className="font-medium line-clamp-1">{item.product.name[locale]}</p>
-          {item.variant && (
-            <p className="text-xs text-gray-600">{getVariantDisplayText()}</p>
-          )}
-          <p className={cn("text-sm font-medium", compareAtPrice && "text-red-500")}>
-            {item.variant?.price.toLocaleString()} {currency.symbol}
-          </p>
-          {compareAtPrice && (
-            <p className="text-xs text-gray-600 line-through">
-              {compareAtPrice.toLocaleString()} {currency.symbol}
-            </p>
-          )}
-        </CustomLink>
-
-        {item.isOutOfStock ? (
-          <>
-            <p className="text-sm text-destructive">{t("out_of_stock")}</p>
-            <Button
-              onClick={() => removeItem(item.id)}
-              variant="destructive"
-              size="sm"
-              className="w-full mt-1"
-            >
-              {t("remove")}
-            </Button>
-          </>
-        ) : (
-          <AddToCartButton
-            size="sm"
-            onAddToCart={handleIncrement}
-            currentQuantity={displayQuantity}
-            selectedVariant={item.variant}
-            product={item.product}
-            onIncrement={handleIncrement}
-            onDecrement={handleDecrement}
-            disabled={false}
+    <>
+      <Card className="p-4 flex flex-row items-start shadow-none border-0">
+        <div className="relative min-w-24 w-24 h-24">
+          <Image
+            src={item.variant?.images[0] ?? item.product.main_image ?? ""}
+            alt={item.product.name[locale]}
+            fill
+            className="rounded-lg object-cover"
+            sizes="full"
           />
-        )}
-      </div>
-    </Card>
+          {item.isOutOfStock && (
+            <div className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-md">
+              <CircleSlash2 className="text-white" />
+            </div>
+          )}
+        </div>
+
+        <div className="flex-grow">
+          <div className="flex items-start justify-between">
+            <CustomLink href={`/products/${item.product._id}`} className="block mb-1 flex-grow">
+              <p className="font-medium line-clamp-1">{item.product.name[locale]}</p>
+              {item.variant && (
+                <p className="text-xs text-gray-600">{getVariantDisplayText()}</p>
+              )}
+              <p className={cn("text-sm font-medium", compareAtPrice && "text-red-500")}>
+                {item.variant?.price.toLocaleString()} {currency.symbol}
+              </p>
+              {compareAtPrice && (
+                <p className="text-xs text-gray-600 line-through">
+                  {compareAtPrice.toLocaleString()} {currency.symbol}
+                </p>
+              )}
+            </CustomLink>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="shrink-0 text-muted-foreground hover:text-destructive -mt-1 -mr-2"
+              onClick={() => setRemoveOpen(true)}
+            >
+              <Trash2 className="w-4 h-4" />
+            </Button>
+          </div>
+
+          {item.isOutOfStock ? (
+            <p className="text-sm text-destructive">{t("out_of_stock")}</p>
+          ) : (
+            <AddToCartButton
+              size="sm"
+              onAddToCart={handleIncrement}
+              currentQuantity={displayQuantity}
+              selectedVariant={item.variant}
+              product={item.product}
+              onIncrement={handleIncrement}
+              onDecrement={handleDecrement}
+              disabled={false}
+            />
+          )}
+        </div>
+      </Card>
+      <ConfirmDrawer
+        open={removeOpen}
+        onOpenChange={setRemoveOpen}
+        title={t("remove_item_confirm.title")}
+        description={t("remove_item_confirm.description")}
+        confirmLabel={t("remove_item_confirm.yes")}
+        cancelLabel={t("remove_item_confirm.no")}
+        onConfirm={() => removeItem(item.id)}
+      />
+    </>
   );
 };

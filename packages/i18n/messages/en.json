@@ -47,7 +47,20 @@
       "go_to_home": "Go to home page"
     },
     "remove": "Remove from cart",
-    "out_of_stock": "Product is not available for sale"
+    "out_of_stock": "Product is not available for sale",
+    "clear_cart": "Clear cart",
+    "clear_cart_confirm": {
+      "title": "Clear cart",
+      "description": "All items in your cart will be removed. Are you sure?",
+      "yes": "Yes, clear",
+      "no": "Cancel"
+    },
+    "remove_item_confirm": {
+      "title": "Remove item",
+      "description": "This item will be removed from your cart. Are you sure?",
+      "yes": "Yes, remove",
+      "no": "Cancel"
+    }
   },
   "wishlist": {
     "title": "My wishlist"
