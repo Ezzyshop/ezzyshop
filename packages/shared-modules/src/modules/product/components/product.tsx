@@ -40,7 +40,7 @@ export const Product = ({ product, shopId }: IProps) => {
     <div className="space-y-3">
       <PageHeader
         title={product.name[lang as keyof typeof product.name]}
-        titleClassName="pl-8 z-20"
+        titleClassName="pl-8"
       />
       <div className="px-4 pb-3 space-y-3">
         <ProductBasicInformation product={product} />
