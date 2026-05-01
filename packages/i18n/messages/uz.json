@@ -47,7 +47,20 @@
       "go_to_home": "Bosh sahifaga o'tish"
     },
     "remove": "Savatdan olib tashlash",
-    "out_of_stock": "Mahsulot sotuvda mavjud emas"
+    "out_of_stock": "Mahsulot sotuvda mavjud emas",
+    "clear_cart": "Savatni tozalash",
+    "clear_cart_confirm": {
+      "title": "Savatni tozalash",
+      "description": "Savatchadagi barcha mahsulotlar o'chiriladi. Davom etasizmi?",
+      "yes": "Ha, tozalash",
+      "no": "Bekor qilish"
+    },
+    "remove_item_confirm": {
+      "title": "Mahsulotni o'chirish",
+      "description": "Bu mahsulot savatchangizdan o'chiriladi. Davom etasizmi?",
+      "yes": "Ha, o'chirish",
+      "no": "Bekor qilish"
+    }
   },
   "wishlist": {
     "title": "Istaklarim"
