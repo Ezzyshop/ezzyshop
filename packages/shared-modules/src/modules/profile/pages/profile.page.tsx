@@ -17,10 +17,13 @@ import { ChangeLanguageButton } from "../components/change-language-button";
 import { LogoutButton } from "../components/logout-button";
 import { SocialNetworks } from "../components/social-networks";
 import { ProfileCouponsButton } from "../components/profile-coupons";
+import { useShopContext } from "@repo/contexts/shop-context/shop.context";
+import { LinkClickService } from "@repo/api/services/link-click/link-click.service";
 
 export const ProfilePage = () => {
   const t = useTranslations("profile");
   const { user } = useUserContext();
+  const { _id: shopId } = useShopContext();
 
   return (
     <div className="space-y-3">
@@ -73,6 +76,7 @@ export const ProfilePage = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium hover:underline text-primary"
+              onClick={() => LinkClickService.track(shopId)}
             >
               {chunks}
             </a>
