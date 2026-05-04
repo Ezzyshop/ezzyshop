@@ -27,9 +27,10 @@ import { cn } from "@repo/ui/lib/utils";
 
 interface IProps {
   form: UseFormReturn<ICheckoutForm>;
+  couponDiscount?: number;
 }
 
-export const CheckoutShippingSelect = ({ form }: IProps) => {
+export const CheckoutShippingSelect = ({ form, couponDiscount = 0 }: IProps) => {
   const { shopId } = useParams<ICommonParams>();
   const { currency } = useShopContext();
   const t = useTranslations();
@@ -38,6 +39,7 @@ export const CheckoutShippingSelect = ({ form }: IProps) => {
   );
 
   const { totalPrice } = useCart();
+  const effectiveTotalPrice = totalPrice - couponDiscount;
 
   const deliveryAddress = useWatch({ control: form.control, name: "delivery_address" });
 
@@ -66,21 +68,32 @@ export const CheckoutShippingSelect = ({ form }: IProps) => {
       .filter((method) => {
         if (method.min_order_price == null) return true;
 
-        return totalPrice >= method.min_order_price;
+        return effectiveTotalPrice >= method.min_order_price;
       })
       .sort((a, b) => a.price - b.price)[0];
-  }, [deliveryMethods, totalPrice]);
+  }, [deliveryMethods, effectiveTotalPrice]);
 
   useEffect(() => {
     if (selectedTab !== "delivery") return;
-    if (!mostOptimalDeliveryMethod) return;
 
     const current = form.getValues("delivery_method");
 
     if (!current) {
-      form.setValue("delivery_method", mostOptimalDeliveryMethod._id);
+      if (mostOptimalDeliveryMethod) {
+        form.setValue("delivery_method", mostOptimalDeliveryMethod._id);
+      }
+      return;
     }
-  }, [selectedTab, mostOptimalDeliveryMethod, form]);
+
+    const currentMethod = deliveryMethods?.find((m) => m._id === current);
+    const isCurrentDisabled =
+      !!currentMethod?.min_order_price &&
+      currentMethod.min_order_price > effectiveTotalPrice;
+
+    if (isCurrentDisabled) {
+      form.setValue("delivery_method", mostOptimalDeliveryMethod?._id ?? "");
+    }
+  }, [selectedTab, mostOptimalDeliveryMethod, effectiveTotalPrice, deliveryMethods, form]);
 
   const getBranchesContent = () => {
     if (!branches?.length) {
@@ -181,7 +194,7 @@ export const CheckoutShippingSelect = ({ form }: IProps) => {
                     .map((deliveryMethod) => {
                       const isDisabled =
                         !!deliveryMethod.min_order_price &&
-                        deliveryMethod.min_order_price >= totalPrice;
+                        deliveryMethod.min_order_price > effectiveTotalPrice;
                       return (
                         <Card
                           key={deliveryMethod._id}

@@ -160,7 +160,7 @@ export const CheckoutPage = () => {
           className="px-4 pb-4 space-y-4 mt-4"
         >
           <CheckoutUserInfo form={form} />
-          <CheckoutShippingSelect form={form} />
+          <CheckoutShippingSelect form={form} couponDiscount={couponDiscount} />
           <CheckoutPaymentSelect form={form} />
           <CheckoutCoupon
             form={form}
