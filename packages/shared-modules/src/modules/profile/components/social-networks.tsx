@@ -21,11 +21,11 @@ export const SocialNetworks = () => {
 
   const availableSocialLinks = useMemo(
     () =>
-      Object.entries(social_links).filter(
+      Object.entries(social_links ?? {}).filter(
         (entry): entry is [keyof typeof socialIconMap, string] =>
-          Boolean(entry[1]) && entry[0] in socialIconMap
+          Boolean(entry[1]) && entry[0] in socialIconMap,
       ),
-    [social_links]
+    [social_links],
   );
 
   if (!availableSocialLinks.length) return null;
