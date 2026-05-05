@@ -56,6 +56,7 @@ export interface IShopResponse {
     youtube?: string;
   };
   brand_color?: string;
+  work_hours_indicator_color?: string;
   work_hours?: {
     monday: IWorkHourDay;
     tuesday: IWorkHourDay;

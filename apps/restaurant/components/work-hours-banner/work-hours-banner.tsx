@@ -69,8 +69,13 @@ export const WorkHoursBanner = () => {
 
   if (isOpen) return null;
 
+  const indicatorColor = shop.work_hours_indicator_color || "#F59E0B";
+
   return (
-    <div className="w-full bg-amber-500 text-white px-4 py-2.5 flex items-center justify-center gap-2 text-sm font-medium">
+    <div
+      className="w-full text-white px-4 py-2.5 flex items-center justify-center gap-2 text-sm font-medium"
+      style={{ backgroundColor: indicatorColor }}
+    >
       <span>🕐</span>
       <span>{t("closed_title")}</span>
       {!isClosedAllDay && (
