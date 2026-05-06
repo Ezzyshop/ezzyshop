@@ -8,8 +8,8 @@ import {
   CarouselImages,
   CarouselItem,
 } from "@repo/ui/components/ui/carousel";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { AdaptiveImage } from "../../../../components/adaptive-image/adaptive-image";
 
 interface IProps {
   images: IProductResponse["variants"][number]["images"];
@@ -63,16 +63,14 @@ export const ProductImages = ({ images, video }: IProps) => {
         <CarouselContent>
           {images.map((image) => (
             <CarouselItem key={image}>
-              <div className="relative aspect-[3/4] h-[334px] w-full rounded-lg">
-                <Image
-                  src={image}
-                  alt={image}
-                  fill
-                  className="rounded-lg object-cover"
-                  sizes="full"
-                  fetchPriority="high"
-                />
-              </div>
+              <AdaptiveImage
+                src={image}
+                alt={image}
+                maxHeight={200}
+                containerClassName="rounded-lg"
+                imageClassName="rounded-lg"
+                fetchPriority="high"
+              />
             </CarouselItem>
           ))}
         </CarouselContent>

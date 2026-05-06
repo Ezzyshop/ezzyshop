@@ -2,8 +2,8 @@ import { IProductResponse } from "@repo/api/services/products/product.interface"
 import { ILocale } from "@repo/api/utils/interfaces/base.interface";
 import { DialogTitle } from "@repo/ui/components/ui/dialog";
 import { Drawer, DrawerContent } from "@repo/ui/components/ui/drawer";
+import { AdaptiveImage } from "@repo/shared-modules/components/adaptive-image/adaptive-image";
 import { useLocale } from "next-intl";
-import Image from "next/image";
 import { ProductAddToCardButton } from "./product-add-to-card-button";
 import { useProductCart } from "@repo/hooks/use-product-cart";
 import { useEffect } from "react";
@@ -41,17 +41,15 @@ export const ProductDrawer = ({ product, setSelectedProduct }: IProps) => {
       >
         <DialogTitle className="hidden" />
         <div className="flex-1 overflow-y-auto space-y-4 pb-4">
-          <div className="relative w-full max-h-[60vh] aspect-9/16 rounded-xl bg-background">
-            <Image
-              src={product.main_image}
-              alt={product.name[language]}
-              fill
-              className="object-contain w-full rounded-xl"
-              fetchPriority="high"
-              loading="lazy"
-              sizes="100vw"
-            />
-          </div>
+          <AdaptiveImage
+            src={product.main_image}
+            alt={product.name[language]}
+            maxHeight={200}
+            containerClassName="rounded-xl bg-background"
+            imageClassName="rounded-xl"
+            fetchPriority="high"
+            loading="lazy"
+          />
           <div className="p-4 bg-background rounded-xl">
             <h2 className="text-xl font-bold">{product.name[language]}</h2>
             <div className="flex items-center gap-2 mt-2">

@@ -3,6 +3,7 @@ import { Card } from "@repo/ui/components/ui/card";
 import { ProductImages } from "./product-images";
 import { useLocale } from "next-intl";
 import { ILocale } from "@repo/api/utils/interfaces/base.interface";
+import { cn } from "@repo/ui/lib/utils";
 
 interface IProps {
   product: IProductResponse;
@@ -19,7 +20,7 @@ export const ProductBasicInformation = ({ product }: IProps) => {
         video={product.video}
       />
 
-      <p className="text-xl text-gray-500 mt-20">{product.name[locale]}</p>
+      <p className={cn("text-xl text-gray-500", allImages.length > 1 ? "mt-20" : "mt-4")}>{product.name[locale]}</p>
     </Card>
   );
 };

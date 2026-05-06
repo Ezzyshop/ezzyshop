@@ -25,13 +25,13 @@ export const ProductVariants = ({
   > = {};
 
   product.variants.forEach((variant) => {
-    Object.entries(variant.attributes).forEach(([key, value]) => {
+    Object.entries(variant.attributes ?? {}).forEach(([key, value]) => {
       if (!attributeGroups[key]) {
         attributeGroups[key] = [];
       }
 
       const existingGroup = attributeGroups[key].find(
-        (group) => group.value === value
+        (group) => group.value === value,
       );
       if (existingGroup) {
         existingGroup.variants.push(variant);
@@ -50,7 +50,7 @@ export const ProductVariants = ({
 
   const handleVariantSelect = (
     attributeKey: string,
-    attributeValue: string
+    attributeValue: string,
   ) => {
     // Get current selected attributes
     const currentSelectedAttributes = selectedVariant?.attributes || {};
@@ -161,7 +161,7 @@ export const ProductVariants = ({
   const isAttributeValueAvailable = (
     attributeKey: string,
     attributeValue: string,
-    attributeIndex: number
+    attributeIndex: number,
   ) => {
     // Always allow selection within the same attribute level
     // (don't disable other options in the same attribute group)
@@ -221,7 +221,7 @@ export const ProductVariants = ({
                 const isAvailable = isAttributeValueAvailable(
                   attributeKey,
                   value,
-                  attributeIndex
+                  attributeIndex,
                 );
 
                 return (
@@ -234,7 +234,7 @@ export const ProductVariants = ({
                     className={cn(
                       "h-9 min-w-16 relative",
                       !isAvailable &&
-                        "opacity-50 cursor-not-allowed before:absolute before:content-[''] before:w-full before:h-px before:bg-black/50 before:rotate-25 before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2"
+                        "opacity-50 cursor-not-allowed before:absolute before:content-[''] before:w-full before:h-px before:bg-black/50 before:rotate-25 before:top-1/2 before:left-1/2 before:-translate-x-1/2 before:-translate-y-1/2",
                     )}
                   >
                     {value}

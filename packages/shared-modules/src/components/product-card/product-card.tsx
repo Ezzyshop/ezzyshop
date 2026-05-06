@@ -6,7 +6,6 @@ import {
   CarouselDots,
   CarouselItem,
 } from "@repo/ui/components/ui/carousel";
-import Image from "next/image";
 import { Card } from "@repo/ui/components/ui/card";
 import { cn } from "@repo/ui/lib/utils";
 import { useLocale, useTranslations } from "next-intl";
@@ -21,6 +20,7 @@ import { useProductCart } from "@repo/hooks/index";
 import { ILocale } from "@repo/api/utils/interfaces/base.interface";
 import { CustomLink } from "../custom-link";
 import { Star } from "@repo/ui/components/icons/index";
+import { AdaptiveImage } from "../adaptive-image/adaptive-image";
 
 interface IProps {
   product: IProductResponse;
@@ -113,37 +113,35 @@ export const ProductsCard = ({ product }: IProps) => {
             {allImages.length > 0 ? (
               allImages.map((image) => (
                 <CarouselItem key={image}>
-                  <div className="relative aspect-[3/4] h-[194px] w-full rounded-lg ">
-                    <Image
-                      src={image}
-                      alt={product.name[locale]}
-                      fill
-                      className="rounded-lg object-cover"
-                      sizes="full"
-                      fetchPriority="high"
-                    />
+                  <AdaptiveImage
+                    src={image}
+                    alt={product.name[locale]}
+                    maxHeight={240}
+                    containerClassName="rounded-lg"
+                    imageClassName="rounded-lg"
+                    fetchPriority="high"
+                  >
                     <ProductBadges
                       product={product}
                       variant={firstAvailableVariant}
                     />
-                  </div>
+                  </AdaptiveImage>
                 </CarouselItem>
               ))
             ) : (
               <CarouselItem>
-                <div className="relative aspect-[3/4] h-[194px] w-full rounded-lg ">
-                  <Image
-                    src={product.main_image}
-                    alt={product.name[locale]}
-                    fill
-                    className="rounded-lg object-cover"
-                    sizes="full"
-                  />
+                <AdaptiveImage
+                  src={product.main_image}
+                  alt={product.name[locale]}
+                  maxHeight={240}
+                  containerClassName="rounded-lg"
+                  imageClassName="rounded-lg"
+                >
                   <ProductBadges
                     product={product}
                     variant={firstAvailableVariant}
                   />
-                </div>
+                </AdaptiveImage>
               </CarouselItem>
             )}
           </CarouselContent>
