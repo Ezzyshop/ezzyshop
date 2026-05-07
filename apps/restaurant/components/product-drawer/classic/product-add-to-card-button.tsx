@@ -17,10 +17,6 @@ export const ProductAddToCardButton = ({
 }: IProps) => {
   const t = useTranslations("product");
 
-  const handleAddToCartButton = () => {
-    handleAddToCart();
-  };
-
   return (
     <div className="bg-background rounded-xl p-1">
       {currentQuantity > 0 ? (
@@ -45,7 +41,7 @@ export const ProductAddToCardButton = ({
         </div>
       ) : (
         <Button
-          onClick={handleAddToCartButton}
+          onClick={handleAddToCart}
           className="w-full rounded-full"
           size="xl"
         >

@@ -1,5 +1,6 @@
 import {
   BusinessType,
+  HomepageLayout,
   ShopPlatform,
   ShopStatus,
   LanguageType,
@@ -66,10 +67,17 @@ export interface IShopResponse {
     saturday: IWorkHourDay;
     sunday: IWorkHourDay;
   };
+  eta?: IShopEta;
+  homepage_layout?: HomepageLayout;
 }
 
 export interface IWorkHourDay {
   is_open: boolean;
   open: string;
   close: string;
+}
+
+export interface IShopEta {
+  min: number;
+  max: number;
 }

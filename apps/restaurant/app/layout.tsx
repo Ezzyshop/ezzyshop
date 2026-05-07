@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { getLocale } from "next-intl/server";
-import { Rubik } from "next/font/google";
+import { Fraunces, Rubik } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 
 import "./globals.css";
@@ -9,6 +9,14 @@ const rubik = Rubik({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   variable: "--font-rubik",
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-fraunces",
   display: "swap",
 });
 
@@ -36,7 +44,7 @@ export default async function RootLayout({
     <html lang={locale}>
       <body
         suppressHydrationWarning
-        className={`${rubik.variable} bg-secondary`}
+        className={`${rubik.variable} ${fraunces.variable} bg-secondary`}
       >
         <div
           className="max-w-[425px] mx-auto min-h-screen bg-background flex flex-col"

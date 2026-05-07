@@ -1,13 +1,13 @@
 import { IProductResponse } from "@repo/api/services/products/product.interface";
 import { ILocale } from "@repo/api/utils/interfaces/base.interface";
+import { useShopContext } from "@repo/contexts/shop-context/shop.context";
+import { useProductCart } from "@repo/hooks/use-product-cart";
+import { AdaptiveImage } from "@repo/shared-modules/components/adaptive-image/adaptive-image";
 import { DialogTitle } from "@repo/ui/components/ui/dialog";
 import { Drawer, DrawerContent } from "@repo/ui/components/ui/drawer";
-import { AdaptiveImage } from "@repo/shared-modules/components/adaptive-image/adaptive-image";
 import { useLocale } from "next-intl";
-import { ProductAddToCardButton } from "./product-add-to-card-button";
-import { useProductCart } from "@repo/hooks/use-product-cart";
 import { useEffect } from "react";
-import { useShopContext } from "@repo/contexts/shop-context/shop.context";
+import { ProductAddToCardButton } from "./product-add-to-card-button";
 import { ProductVariants } from "./product-variants";
 
 interface IProps {
@@ -72,7 +72,9 @@ export const ProductDrawer = ({ product, setSelectedProduct }: IProps) => {
                 )}
             </div>
             <p
-              dangerouslySetInnerHTML={{ __html: product.description[language] }}
+              dangerouslySetInnerHTML={{
+                __html: product.description[language],
+              }}
             />
           </div>
 
@@ -84,7 +86,10 @@ export const ProductDrawer = ({ product, setSelectedProduct }: IProps) => {
 
           <ProductAddToCardButton
             currentQuantity={currentQuantity}
-            handleAddToCart={handleAddToCart}
+            handleAddToCart={() => {
+              handleAddToCart();
+              setSelectedProduct(null);
+            }}
             handleDecrement={handleDecrement}
             handleIncrement={handleIncrement}
           />

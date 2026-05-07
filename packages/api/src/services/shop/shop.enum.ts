@@ -16,3 +16,8 @@ export enum LanguageType {
   Ru = "ru",
   En = "en",
 }
+
+export enum HomepageLayout {
+  Classic = "CLASSIC",
+  Editorial = "EDITORIAL",
+}

@@ -20,6 +20,17 @@
       "new-arrivals": "New arrivals",
       "on-sale": "On sale",
       "view-all": "All products"
+    },
+    "topbar": {
+      "delivery": "Delivery to",
+      "address_placeholder": "Select address",
+      "eta_minutes": "{min}–{max} min"
+    },
+    "section": {
+      "count_label": "{count} dishes"
+    },
+    "cart_bar": {
+      "go_to_cart": "Go to cart"
     }
   },
   "product": {
@@ -30,7 +41,10 @@
     "no_options_available": "Out of stock",
     "out_of_stock": "Out of stock",
     "adding": "Adding...",
-    "delivery_time": "Delivery within {day} days"
+    "delivery_time": "Delivery within {day} days",
+    "reviews_count": "{count} reviews",
+    "free": "Free",
+    "options": "Options"
   },
   "categories": {
     "title": "Categories"

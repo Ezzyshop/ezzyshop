@@ -56,14 +56,14 @@ export const ProductVariants = ({
                 id={inputId}
                 className={cn(
                   "bg-muted border-none shadow-inner-md size-7!",
-                  selectedVariant?._id === variant._id && "bg-primary ",
+                  selectedVariant?._id === variant._id && "bg-primary "
                 )}
                 icon={
                   <CheckIcon
                     className={cn(
                       " absolute top-1/2 left-1/2 size-5 -translate-x-1/2 -translate-y-1/2",
                       selectedVariant?._id === variant._id &&
-                        "text-primary-foreground",
+                        "text-primary-foreground"
                     )}
                   />
                 }

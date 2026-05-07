@@ -2,7 +2,7 @@ import { ILocale } from "@repo/api/utils/interfaces/base.interface";
 import { cn } from "@repo/ui/lib/utils";
 import { useLocale } from "next-intl";
 import { useEffect, useRef, useState } from "react";
-import { TMergedProductAndCategory } from "../../utils/types";
+import { TMergedProductAndCategory } from "../../../utils/types";
 
 interface IProps {
   categories: TMergedProductAndCategory[];

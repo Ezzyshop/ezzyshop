@@ -1,11 +1,11 @@
 "use client";
 
 import { ILocale } from "@repo/api/utils/interfaces/base.interface";
-import { useLocale } from "next-intl";
-import { useEffect } from "react";
-import { TMergedProductAndCategory } from "../../utils/types";
-import { ProductCard } from "@/components/product-card/product-card";
 import { IProductResponse } from "@repo/api/services/products/product.interface";
+import { useLocale, useTranslations } from "next-intl";
+import { useEffect } from "react";
+import { TMergedProductAndCategory } from "../../../utils/types";
+import { EditorialDishCard } from "./editorial-dish-card";
 
 interface IProps {
   mergedCategoriesAndProducts: TMergedProductAndCategory[];
@@ -17,6 +17,7 @@ export const MergedCategoriesAndProducts = ({
   setSelectedProduct,
 }: IProps) => {
   const language = useLocale() as keyof ILocale;
+  const t = useTranslations("homepage.section");
 
   useEffect(() => {
     if (!mergedCategoriesAndProducts.length) return;
@@ -80,25 +81,44 @@ export const MergedCategoriesAndProducts = ({
   }, [mergedCategoriesAndProducts]);
 
   return (
-    <div className="px-4 space-y-4">
-      {mergedCategoriesAndProducts.map((item) => (
-        <div
-          key={item._id}
-          id={`category-${item._id}`}
-          className="scroll-mt-12"
-        >
-          <span className="font-bold text-lg">{item.name[language]}</span>
-          <div className="grid grid-cols-2 gap-4 mt-4">
-            {item.products.map((product) => (
-              <ProductCard
-                product={product}
-                key={product._id}
-                setSelectedProduct={setSelectedProduct}
+    <div className="px-4 pb-10">
+      {mergedCategoriesAndProducts.map((item, index) => {
+        const sectionNumber = String(index + 1).padStart(2, "0");
+        const count = item.products.length;
+        return (
+          <section
+            key={item._id}
+            id={`category-${item._id}`}
+            className="scroll-mt-20 pt-8 first:pt-6"
+          >
+            <div className="flex items-baseline gap-3">
+              <span className="font-display italic text-[13px] tracking-wide text-primary">
+                № {sectionNumber}
+              </span>
+              <span
+                aria-hidden
+                className="flex-1 h-px bg-border"
               />
-            ))}
-          </div>
-        </div>
-      ))}
+              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                {t("count_label", { count })}
+              </span>
+            </div>
+            <h2 className="font-display mt-2.5 text-[32px] leading-[1.05] tracking-[-0.02em] font-medium text-foreground">
+              {item.name[language]}
+            </h2>
+
+            <div className="mt-5 grid gap-4">
+              {item.products.map((product) => (
+                <EditorialDishCard
+                  key={product._id}
+                  product={product}
+                  setSelectedProduct={setSelectedProduct}
+                />
+              ))}
+            </div>
+          </section>
+        );
+      })}
     </div>
   );
 };

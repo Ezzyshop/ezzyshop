@@ -57,7 +57,10 @@ export const PopularCategories = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselDots className="bottom-3" dotClassName="bg-white/70 aria-selected:bg-white" />
+        <CarouselDots
+          className="bottom-3"
+          dotClassName="bg-white/70 aria-selected:bg-white"
+        />
       </Carousel>
     </div>
   );

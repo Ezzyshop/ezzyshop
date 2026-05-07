@@ -20,6 +20,17 @@
       "new-arrivals": "Новинки",
       "on-sale": "Скидки",
       "view-all": "Все товары"
+    },
+    "topbar": {
+      "delivery": "Доставка",
+      "address_placeholder": "Выберите адрес",
+      "eta_minutes": "{min}–{max} мин."
+    },
+    "section": {
+      "count_label": "{count} блюд"
+    },
+    "cart_bar": {
+      "go_to_cart": "Перейти в корзину"
     }
   },
   "product": {
@@ -30,7 +41,10 @@
     "no_options_available": "Нет в наличии",
     "out_of_stock": "Нет в наличии",
     "adding": "Добавление...",
-    "delivery_time": "Доставка в течение {day} дней"
+    "delivery_time": "Доставка в течение {day} дней",
+    "reviews_count": "{count} отзывов",
+    "free": "Бесплатно",
+    "options": "Варианты"
   },
   "categories": {
     "title": "Категории"

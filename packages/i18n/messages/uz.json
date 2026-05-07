@@ -20,6 +20,17 @@
       "new-arrivals": "Yangi kelganlar",
       "on-sale": "Chegirmalar",
       "view-all": "Barcha mahsulotlar"
+    },
+    "topbar": {
+      "delivery": "Yetkazib berish",
+      "address_placeholder": "Manzilni tanlang",
+      "eta_minutes": "{min}–{max} daq."
+    },
+    "section": {
+      "count_label": "{count} taom"
+    },
+    "cart_bar": {
+      "go_to_cart": "Savatga o'tish"
     }
   },
   "product": {
@@ -30,7 +41,10 @@
     "no_options_available": "Sotuvda yo'q",
     "out_of_stock": "Sotuvda yo'q",
     "adding": "Qo'shilmoqda...",
-    "delivery_time": "Yetkazib berish {day} kun ichida"
+    "delivery_time": "Yetkazib berish {day} kun ichida",
+    "reviews_count": "{count} sharh",
+    "free": "Bepul",
+    "options": "Variantlar"
   },
   "categories": {
     "title": "Kategoriyalar"
