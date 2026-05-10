@@ -1,7 +1,9 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useQueries, useQuery } from "@tanstack/react-query";
 import { DeliveryMethodService } from "@repo/api/services/delivery-method/index";
+import { DeliveryMethodDeliveryType } from "@repo/api/services/delivery-method/delivery-method.enum";
+import type { IDeliveryMethodResponse } from "@repo/api/services/delivery-method/delivery-method.interface";
 import { BranchService } from "@repo/api/services/branch/index";
 import { DeliveryZoneService } from "@repo/api/services/delivery-zone/index";
 import { ICommonParams } from "@repo/shared-modules/utils/interfaces";
@@ -61,6 +63,64 @@ export const CheckoutShippingSelect = ({ form, couponDiscount = 0 }: IProps) => 
     enabled: !!shopId && selectedTab === "delivery" && !!deliveryAddress?.lat && !!deliveryAddress?.lng,
   });
 
+  const dynamicMethodIds = useMemo(
+    () =>
+      (deliveryMethods ?? [])
+        .filter((m) => m.deliveryType === DeliveryMethodDeliveryType.Dynamic)
+        .map((m) => m._id),
+    [deliveryMethods]
+  );
+
+  const calculationQueries = useQueries({
+    queries: dynamicMethodIds.map((methodId) => ({
+      queryKey: [
+        "delivery-calc",
+        shopId,
+        methodId,
+        deliveryAddress?.lat,
+        deliveryAddress?.lng,
+      ],
+      queryFn: () =>
+        DeliveryMethodService.calculateDelivery(
+          shopId,
+          methodId,
+          deliveryAddress!.lat,
+          deliveryAddress!.lng
+        ),
+      enabled:
+        !!shopId &&
+        selectedTab === "delivery" &&
+        !!deliveryAddress?.lat &&
+        !!deliveryAddress?.lng &&
+        isInZone,
+      staleTime: 5 * 60 * 1000,
+    })),
+  });
+
+  const calculationByMethodId = useMemo(() => {
+    const map: Record<
+      string,
+      { price: number; distance_km: number | null; applicable: boolean; isLoading: boolean } | undefined
+    > = {};
+    dynamicMethodIds.forEach((methodId, idx) => {
+      const q = calculationQueries[idx];
+      map[methodId] = {
+        price: q?.data?.price ?? 0,
+        distance_km: q?.data?.distance_km ?? null,
+        applicable: q?.data?.applicable ?? false,
+        isLoading: q?.isLoading ?? false,
+      };
+    });
+    return map;
+  }, [dynamicMethodIds, calculationQueries]);
+
+  const getMethodPrice = (method: IDeliveryMethodResponse) => {
+    if (method.deliveryType === DeliveryMethodDeliveryType.Dynamic) {
+      return calculationByMethodId[method._id]?.price ?? 0;
+    }
+    return method.price ?? 0;
+  };
+
   const mostOptimalDeliveryMethod = useMemo(() => {
     if (!deliveryMethods?.length) return undefined;
 
@@ -70,8 +130,9 @@ export const CheckoutShippingSelect = ({ form, couponDiscount = 0 }: IProps) => 
 
         return effectiveTotalPrice >= method.min_order_price;
       })
-      .sort((a, b) => a.price - b.price)[0];
-  }, [deliveryMethods, effectiveTotalPrice]);
+      .sort((a, b) => getMethodPrice(a) - getMethodPrice(b))[0];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [deliveryMethods, effectiveTotalPrice, calculationByMethodId]);
 
   useEffect(() => {
     if (selectedTab !== "delivery") return;
@@ -190,11 +251,21 @@ export const CheckoutShippingSelect = ({ form, couponDiscount = 0 }: IProps) => 
                   }}
                 >
                   {deliveryMethods
-                    .sort((a, b) => a.price - b.price)
+                    .sort((a, b) => getMethodPrice(a) - getMethodPrice(b))
                     .map((deliveryMethod) => {
+                      const isDynamic =
+                        deliveryMethod.deliveryType ===
+                        DeliveryMethodDeliveryType.Dynamic;
+                      const calc = calculationByMethodId[deliveryMethod._id];
                       const isDisabled =
                         !!deliveryMethod.min_order_price &&
                         deliveryMethod.min_order_price > effectiveTotalPrice;
+                      const computedPrice = getMethodPrice(deliveryMethod);
+                      const showAddressPrompt =
+                        isDynamic && (!deliveryAddress?.lat || !deliveryAddress?.lng);
+                      const showCalcLoading = isDynamic && calc?.isLoading;
+                      const showDistance =
+                        isDynamic && calc && !calc.isLoading && calc.distance_km != null;
                       return (
                         <Card
                           key={deliveryMethod._id}
@@ -210,10 +281,20 @@ export const CheckoutShippingSelect = ({ form, couponDiscount = 0 }: IProps) => 
                             <h3 className="font-medium text-base">
                               {deliveryMethod.name.uz}
                             </h3>
-                            {deliveryMethod.price ? (
+                            {showAddressPrompt ? (
                               <p className="text-sm text-muted-foreground line-clamp-2">
-                                {deliveryMethod?.price?.toLocaleString()}{" "}
-                                {currency.symbol}
+                                {t("checkout.shipping.select-address-first")}
+                              </p>
+                            ) : showCalcLoading ? (
+                              <p className="text-sm text-muted-foreground line-clamp-2">
+                                {t("checkout.shipping.calculating")}
+                              </p>
+                            ) : computedPrice > 0 ? (
+                              <p className="text-sm text-muted-foreground line-clamp-2">
+                                {showDistance && calc?.distance_km != null
+                                  ? `${calc.distance_km} km · `
+                                  : ""}
+                                {computedPrice.toLocaleString()} {currency.symbol}
                               </p>
                             ) : null}
                             {isDisabled && (

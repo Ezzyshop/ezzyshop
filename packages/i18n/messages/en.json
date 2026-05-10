@@ -200,7 +200,9 @@
       },
       "min-order-price": "Minimum order amount",
       "zone-not-covered": "Sorry, we do not deliver to your selected address",
-      "zone-not-covered-short": "Not in delivery zone"
+      "zone-not-covered-short": "Not in delivery zone",
+      "select-address-first": "Select an address to calculate delivery price",
+      "calculating": "Calculating..."
     },
     "payment": {
       "title": "Payment method",

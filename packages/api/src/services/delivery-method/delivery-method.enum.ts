@@ -21,3 +21,14 @@ export enum DeliveryMethodEstimatedDayPrefix {
   Day = "DAY",
   Hour = "HOUR",
 }
+
+export enum DeliveryMethodPricingMode {
+  PerKm = "PER_KM",
+  FlatAfterThreshold = "FLAT_AFTER_THRESHOLD",
+}
+
+export enum DeliveryCalculationReason {
+  OutOfZone = "OUT_OF_ZONE",
+  ShopAddressMissing = "SHOP_ADDRESS_MISSING",
+  RoutingUnavailable = "ROUTING_UNAVAILABLE",
+}

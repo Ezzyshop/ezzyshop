@@ -200,7 +200,9 @@
       },
       "min-order-price": "Minimal buyurtma narxi",
       "zone-not-covered": "Kechirasiz, siz tanlagan manzilga yetkazib berilmaydi",
-      "zone-not-covered-short": "Bu manzilga yetkazib berilmaydi"
+      "zone-not-covered-short": "Bu manzilga yetkazib berilmaydi",
+      "select-address-first": "Yetkazib berish narxini hisoblash uchun manzilni tanlang",
+      "calculating": "Narx hisoblanmoqda..."
     },
     "payment": {
       "title": "To'lov usuli",
