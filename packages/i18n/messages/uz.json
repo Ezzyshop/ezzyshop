@@ -251,6 +251,20 @@
       "go_to_home": "Bosh sahifaga o'tish",
       "go_to_orders": "Buyurtmalarimga o'tish"
     },
+    "return": {
+      "checking": "To'lov tekshirilmoqda...",
+      "checking_description": "Iltimos, biroz kuting. Provayderdan javob olinmoqda.",
+      "success_title": "To'lov muvaffaqiyatli!",
+      "success_description": "Buyurtmangiz to'landi va tez orada yetkazib beriladi.",
+      "failed_title": "To'lov amalga oshmadi",
+      "failed_description": "To'lov bekor qilindi yoki xatolik yuz berdi. Qaytadan urinib ko'ring.",
+      "pending_title": "To'lov kutilmoqda",
+      "pending_description": "Tasdiqlash davom etmoqda. Buyurtma sahifasidan holatni kuzatib turing.",
+      "missing_order": "Buyurtma topilmadi",
+      "view_order": "Buyurtmani ko'rish",
+      "go_to_home": "Bosh sahifaga o'tish",
+      "retry": "Qaytadan urinib ko'rish"
+    },
     "confirm-card-transfer": {
       "title": "To'lov chekini yuborish",
       "description": "Buyurtmanizni to'lov chekini yuborish orqali tasdiqlang",

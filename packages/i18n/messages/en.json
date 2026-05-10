@@ -251,6 +251,20 @@
       "go_to_home": "Go to home page",
       "go_to_orders": "Go to my orders"
     },
+    "return": {
+      "checking": "Verifying payment...",
+      "checking_description": "Please wait. We're confirming the payment with the provider.",
+      "success_title": "Payment successful!",
+      "success_description": "Your order has been paid and will be delivered soon.",
+      "failed_title": "Payment failed",
+      "failed_description": "The payment was cancelled or an error occurred. Please try again.",
+      "pending_title": "Payment pending",
+      "pending_description": "Confirmation is in progress. Track the status from your orders page.",
+      "missing_order": "Order not found",
+      "view_order": "View order",
+      "go_to_home": "Go to home",
+      "retry": "Try again"
+    },
     "confirm-card-transfer": {
       "title": "Send payment receipt",
       "description": "Confirm your order by sending the payment receipt",

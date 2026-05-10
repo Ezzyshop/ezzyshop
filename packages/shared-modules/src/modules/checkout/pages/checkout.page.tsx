@@ -30,6 +30,7 @@ import { PaymentMethodType } from "@repo/api/services/payment-method/payment-met
 import WebApp from "@twa-dev/sdk";
 import { CartAnalyticsService } from "@repo/api/services/cart-analytics/index";
 import { useShopContext } from "@repo/contexts/shop-context/shop.context";
+import { redirectToPaymentProvider } from "../utils/payment-redirect";
 
 export const CheckoutPage = () => {
   const t = useTranslations();
@@ -64,16 +65,21 @@ export const CheckoutPage = () => {
       clearSelectedCoupon();
       queryClient.invalidateQueries({ queryKey: ["my-coupons", shopId] });
 
-      const isCardTransfer =
-        data.data.transaction.provider.type === PaymentMethodType.CardTransfer;
+      const providerType = data.data.transaction.provider.type;
 
-      if (isCardTransfer) {
+      if (data.data.payment) {
+        redirectToPaymentProvider(data.data.payment);
+        return;
+      }
+
+      if (providerType === PaymentMethodType.CardTransfer) {
         router.push(
           `/${locale}/${shopId}/profile/orders/${data.data._id}/confirm-card-transfer`
         );
-      } else {
-        router.push(`/${locale}/${shopId}/checkout/success`);
+        return;
       }
+
+      router.push(`/${locale}/${shopId}/checkout/success`);
     },
     onError: (error: {
       response: { data: { message: ErrorMessages; data: IOutOfStockItem[] } };
@@ -113,6 +119,11 @@ export const CheckoutPage = () => {
   });
 
   const onSubmit = (data: ICheckoutForm) => {
+    const returnUrl =
+      typeof window !== "undefined"
+        ? `${window.location.origin}/${locale}/${shopId}/checkout/return`
+        : undefined;
+
     const payload: IOrderCreateRequest = {
       product: data.product,
       payment_method: data.payment_method,
@@ -125,6 +136,8 @@ export const CheckoutPage = () => {
       },
       telegram_chat_id: data.telegram_chat_id,
       coupon_code: data.coupon_code,
+      return_url: returnUrl,
+      locale: locale as "uz" | "ru" | "en",
     };
 
     if (data.delivery_address) {

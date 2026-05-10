@@ -1,4 +1,8 @@
-import { PaymentMethodStatus, PaymentMethodType } from "./payment-method.enum";
+import {
+  PaymentMethodStatus,
+  PaymentMethodType,
+  PaymentProviderMode,
+} from "./payment-method.enum";
 
 export interface IPaymentMethodResponse {
   _id: string;
@@ -9,7 +13,9 @@ export interface IPaymentMethodResponse {
     en: string;
   };
   type: PaymentMethodType;
-  click_config: IClickPaymentMethodConfig;
+  click_config?: IClickConfig;
+  click_telegram_config?: IClickTelegramConfig;
+  payme_config?: IPaymeConfig;
   instructions: {
     uz: string | null;
     ru: string | null;
@@ -20,9 +26,21 @@ export interface IPaymentMethodResponse {
   updatedAt: string;
 }
 
-export interface IClickPaymentMethodConfig {
-  merchant_id: string;
+export interface IClickConfig {
   service_id: string;
-  merchant_user_id: string | null;
+  merchant_id: string;
+  merchant_user_id: string;
   secret_key: string;
+  mode: PaymentProviderMode;
+}
+
+export interface IClickTelegramConfig {
+  telegram_provider_token: string | null;
+}
+
+export interface IPaymeConfig {
+  merchant_id: string;
+  test_key: string;
+  prod_key: string;
+  mode: PaymentProviderMode;
 }

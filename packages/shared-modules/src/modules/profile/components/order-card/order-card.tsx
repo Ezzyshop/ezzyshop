@@ -72,6 +72,14 @@ const paymentMethodWithText: Record<
     text: "payment-method.click",
     color: "bg-primary",
   },
+  [PaymentMethodType.ClickTelegram]: {
+    text: "payment-method.click",
+    color: "bg-primary",
+  },
+  [PaymentMethodType.Payme]: {
+    text: "payment-method.payme",
+    color: "bg-primary",
+  },
   [PaymentMethodType.CardTransfer]: {
     text: "payment-method.card-transfer",
     color: "bg-primary",

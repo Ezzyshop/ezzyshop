@@ -1,4 +1,7 @@
-import { IPaymentMethodResponse } from "../payment-method";
+import {
+  IPaymentMethodResponse,
+  PaymentMethodType,
+} from "../payment-method";
 import {
   TransactionChequeImageStatus,
   TransactionStatus,
@@ -26,6 +29,14 @@ export interface IOrderCreateRequest {
   notes?: string;
   telegram_chat_id?: string;
   coupon_code?: string;
+  return_url?: string;
+  locale?: "uz" | "ru" | "en";
+}
+
+export interface IOrderPaymentInfo {
+  provider: PaymentMethodType;
+  web_url: string;
+  app_url: string;
 }
 
 export interface IOrderResponse {
@@ -67,6 +78,7 @@ export interface IOrderResponse {
     }[];
     provider: IPaymentMethodResponse;
   };
+  payment?: IOrderPaymentInfo;
 }
 
 export interface IOrderProduct {

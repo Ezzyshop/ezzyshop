@@ -17,6 +17,7 @@ import { FormField } from "@repo/ui/components/ui/form";
 import clickIcon from "../../../assets/icons/payment-providers/click.svg";
 import cashIcon from "../../../assets/images/payment-providers/cash.png";
 import cardTransferIcon from "../../../assets/icons/payment-providers/card.svg";
+import paymeIcon from "../../../assets/icons/payment-providers/payme.svg";
 
 interface IProps {
   form: UseFormReturn<ICheckoutForm>;
@@ -33,6 +34,8 @@ export const CheckoutPaymentSelect = ({ form }: IProps) => {
 
   const providerIcons: Record<PaymentMethodType, string | StaticImageData> = {
     [PaymentMethodType.Click]: clickIcon,
+    [PaymentMethodType.ClickTelegram]: clickIcon,
+    [PaymentMethodType.Payme]: paymeIcon,
     [PaymentMethodType.Cash]: cashIcon,
     [PaymentMethodType.CardTransfer]: cardTransferIcon,
   };

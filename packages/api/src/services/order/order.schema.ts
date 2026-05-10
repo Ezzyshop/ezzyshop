@@ -63,6 +63,8 @@ export const orderFields: Record<keyof IOrderCreateRequest, Joi.Schema> = {
     "string.max": "Telegram chat ID must be less than 500 characters",
   }),
   coupon_code: Joi.string().optional().allow("", null),
+  return_url: Joi.string().uri().optional().allow(""),
+  locale: Joi.string().valid("uz", "ru", "en").optional(),
 };
 
 export const createOrderValidator = Joi.object(orderFields)
