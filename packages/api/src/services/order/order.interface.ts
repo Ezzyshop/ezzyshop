@@ -39,6 +39,13 @@ export interface IOrderPaymentInfo {
   app_url: string;
 }
 
+export interface IOrderPaymentLinkResponse {
+  provider: PaymentMethodType;
+  web_url: string;
+  app_url: string;
+  expires_at: string;
+}
+
 export interface IOrderResponse {
   _id: string;
   status: OrderStatus;

@@ -13,6 +13,13 @@ import { PaymentMethodType } from "@repo/api/services/payment-method/payment-met
 
 import { OrderCheques } from "./order-cheque/order-cheques";
 import { CopyableText } from "@repo/ui/components/ui/copyable-text";
+import { OrderPayNow } from "./order-pay-now";
+
+const PAYMENT_TIMEOUT_MINUTES = 30;
+const RETRYABLE_PROVIDER_TYPES = [
+  PaymentMethodType.Click,
+  PaymentMethodType.Payme,
+];
 
 interface IProps {
   order: IOrderResponse;
@@ -196,6 +203,20 @@ export const OrderCard = ({ order, transaction }: IProps) => {
       {transaction.provider.type === PaymentMethodType.CardTransfer && (
         <OrderCheques transaction={transaction} orderStatus={order.status} />
       )}
+
+      {order.status === OrderStatus.New &&
+        transaction.status === TransactionStatus.Pending &&
+        RETRYABLE_PROVIDER_TYPES.includes(transaction.provider.type) && (
+          <OrderPayNow
+            orderId={order._id}
+            expiresAt={
+              new Date(
+                new Date(order.createdAt).getTime() +
+                  PAYMENT_TIMEOUT_MINUTES * 60 * 1000
+              )
+            }
+          />
+        )}
 
       {order.status === OrderStatus.Completed && (
         <CustomLink

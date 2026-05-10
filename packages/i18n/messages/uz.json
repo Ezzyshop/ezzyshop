@@ -319,8 +319,17 @@
     "payment-method": {
       "title": "To'lov usuli",
       "click": "Click",
+      "payme": "Payme",
       "card-transfer": "Karta orqali",
       "cash": "Naqd pul"
+    },
+    "pay-now": {
+      "title": "To'lov qilinmagan",
+      "description": "To'lov hali amalga oshirilmadi. Pastdagi tugma orqali to'lashni yakunlang.",
+      "pay_button": "💳 Hozir to'lash",
+      "auto_cancel_in": "{time} dan keyin avtomatik bekor qilinadi",
+      "expired_title": "To'lov muddati o'tib ketdi",
+      "expired_description": "Buyurtma tez orada avtomatik bekor qilinadi. Iltimos, yangi buyurtma bering."
     },
     "payment-status": {
       "title": "To'lov holati",

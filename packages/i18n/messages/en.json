@@ -319,8 +319,17 @@
     "payment-method": {
       "title": "Payment method",
       "click": "Click",
+      "payme": "Payme",
       "card-transfer": "Bank card transfer",
       "cash": "Cash"
+    },
+    "pay-now": {
+      "title": "Payment not completed",
+      "description": "Your payment is still pending. Complete it using the button below.",
+      "pay_button": "💳 Pay now",
+      "auto_cancel_in": "Auto-cancels in {time}",
+      "expired_title": "Payment window has expired",
+      "expired_description": "The order will be cancelled automatically. Please place a new order."
     },
     "payment-status": {
       "title": "Payment status",

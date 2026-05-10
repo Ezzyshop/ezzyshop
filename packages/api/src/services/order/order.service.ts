@@ -3,6 +3,7 @@ import { api } from "../../api";
 import {
   IOrderCreateRequest,
   IOrderParams,
+  IOrderPaymentLinkResponse,
   IOrderResponse,
 } from "./order.interface";
 
@@ -28,6 +29,18 @@ export class OrderService {
     orderId: string
   ): Promise<IData<IOrderResponse>> {
     const response = await api.get(`/orders/${shopId}/user/${orderId}`);
+    return response.data;
+  }
+
+  static async getOrderPaymentLink(
+    shopId: string,
+    orderId: string,
+    params?: { return_url?: string; locale?: "uz" | "ru" | "en" }
+  ): Promise<IData<IOrderPaymentLinkResponse>> {
+    const response = await api.get(
+      `/orders/${shopId}/${orderId}/payment-link`,
+      { params }
+    );
     return response.data;
   }
 }
