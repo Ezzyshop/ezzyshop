@@ -7,6 +7,7 @@ import { UseFormReturn } from "react-hook-form";
 import { ICheckoutForm } from "../utils/checkout.interface";
 import { useQuery } from "@tanstack/react-query";
 import { DeliveryMethodService } from "@repo/api/services/delivery-method/delivery-method.service";
+import { DeliveryMethodDeliveryType } from "@repo/api/services/delivery-method/delivery-method.enum";
 
 interface IProps {
   form: UseFormReturn<ICheckoutForm>;
@@ -16,6 +17,7 @@ interface IProps {
 export const CheckoutProductsSummary = ({ form, couponDiscount = 0 }: IProps) => {
   const t = useTranslations();
   const deliveryMethodId = form.watch("delivery_method");
+  const deliveryAddress = form.watch("delivery_address");
   const { currency, _id: shopId } = useShopContext();
   const { totalItems, totalPrice, totalPriceWithoutDiscount, totalDiscount } =
     useCart();
@@ -27,7 +29,36 @@ export const CheckoutProductsSummary = ({ form, couponDiscount = 0 }: IProps) =>
     enabled: !!shopId && !!deliveryMethodId,
   });
 
-  const deliveryPrice = deliveryMethod?.price ?? 0;
+  const isDynamic =
+    deliveryMethod?.deliveryType === DeliveryMethodDeliveryType.Dynamic;
+
+  const { data: dynamicCalculation } = useQuery({
+    queryKey: [
+      "delivery-calc",
+      shopId,
+      deliveryMethodId,
+      deliveryAddress?.lat,
+      deliveryAddress?.lng,
+    ],
+    queryFn: () =>
+      DeliveryMethodService.calculateDelivery(
+        shopId,
+        deliveryMethodId,
+        deliveryAddress!.lat,
+        deliveryAddress!.lng
+      ),
+    enabled:
+      !!shopId &&
+      !!deliveryMethodId &&
+      isDynamic &&
+      !!deliveryAddress?.lat &&
+      !!deliveryAddress?.lng,
+    staleTime: 5 * 60 * 1000,
+  });
+
+  const deliveryPrice = isDynamic
+    ? dynamicCalculation?.price ?? 0
+    : deliveryMethod?.price ?? 0;
   const appliedCouponCode = form.watch("coupon_code");
   const finalPrice = totalPrice + deliveryPrice - (couponDiscount ?? 0);
 
