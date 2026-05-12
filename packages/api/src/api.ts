@@ -27,8 +27,10 @@ api.interceptors.response.use(
   (error) => {
     const message = error.response?.data?.message as ErrorMessages;
 
-    toast.error(errorMessagesMap[message] ?? "Internal server error");
+    if (message !== ErrorMessages.UnauthorizedError) {
+      toast.error(errorMessagesMap[message] ?? "Internal server error");
+    }
 
     return Promise.reject(error);
-  }
+  },
 );
