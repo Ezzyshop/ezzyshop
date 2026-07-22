@@ -25,6 +25,7 @@ export const ClassicHome = () => {
         queryFn: () =>
           CategoriesService.getPublicCategories(shopId, {
             is_popular: false,
+            limit: "all",
           }),
       },
       {
