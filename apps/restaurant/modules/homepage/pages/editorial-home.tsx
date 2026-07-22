@@ -27,6 +27,7 @@ export const EditorialHome = () => {
         queryFn: () =>
           CategoriesService.getPublicCategories(shopId, {
             is_popular: false,
+            limit: "all",
           }),
       },
       {
@@ -54,7 +55,7 @@ export const EditorialHome = () => {
           products: products?.filter(
             (product) =>
               product.categories.includes(category._id) &&
-              product.variants.some((v) => Boolean(v.quantity))
+              product.variants.some((v) => Boolean(v.quantity)),
           ),
         }))
         .filter((item) => Boolean(item.products.length));
