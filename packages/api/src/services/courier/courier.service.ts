@@ -3,6 +3,7 @@ import { IData } from "../../utils/interfaces";
 import {
   IAcceptCourierOrderResponse,
   ICourierOrder,
+  ICourierOrderDetail,
   ICourierProfile,
 } from "./courier.interface";
 
@@ -14,6 +15,31 @@ export class CourierService {
 
   static async getFeed(): Promise<IData<ICourierOrder[]>> {
     const response = await api.get(`/courier/orders`);
+    return response.data;
+  }
+
+  static async getActiveOrders(): Promise<IData<ICourierOrderDetail[]>> {
+    const response = await api.get(`/courier/orders/active`);
+    return response.data;
+  }
+
+  static async getOrderDetail(
+    shopId: string,
+    orderId: string
+  ): Promise<IData<ICourierOrderDetail>> {
+    const response = await api.get(`/courier/orders/${shopId}/${orderId}`);
+    return response.data;
+  }
+
+  static async updateOrderStatus(
+    shopId: string,
+    orderId: string,
+    status: string
+  ): Promise<IData<unknown>> {
+    const response = await api.put(
+      `/courier/orders/${shopId}/${orderId}/status`,
+      { status }
+    );
     return response.data;
   }
 

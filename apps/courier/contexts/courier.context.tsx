@@ -13,6 +13,7 @@ import {
 interface ICourierContext {
   profile: ICourierProfile | null;
   isLoading: boolean;
+  isFetching: boolean;
   isCourier: boolean;
   refetch: () => void;
 }
@@ -20,6 +21,7 @@ interface ICourierContext {
 const CourierContext = createContext<ICourierContext>({
   profile: null,
   isLoading: true,
+  isFetching: false,
   isCourier: false,
   refetch: () => {},
 });
@@ -27,7 +29,7 @@ const CourierContext = createContext<ICourierContext>({
 export const useCourierContext = () => useContext(CourierContext);
 
 export const CourierProvider = ({ children }: PropsWithChildren) => {
-  const { data, isLoading, refetch } = useQuery({
+  const { data, isLoading, isFetching, refetch } = useQuery({
     queryKey: ["courier-me"],
     queryFn: () => CourierService.getMe(),
   });
@@ -37,7 +39,7 @@ export const CourierProvider = ({ children }: PropsWithChildren) => {
 
   return (
     <CourierContext.Provider
-      value={{ profile, isLoading, isCourier, refetch: () => void refetch() }}
+      value={{ profile, isLoading, isFetching, isCourier, refetch: () => void refetch() }}
     >
       {children}
     </CourierContext.Provider>

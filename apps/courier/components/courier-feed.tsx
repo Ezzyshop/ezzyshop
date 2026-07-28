@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useI18nRouter } from "@repo/i18n/hooks";
 import { useTranslations } from "next-intl";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Button } from "@repo/ui/components/ui/button";
 import { BellRing, Loader2, PackageCheck } from "lucide-react";
@@ -14,6 +14,7 @@ import { useCourierContext } from "@/contexts/courier.context";
 import { useCourierFeed } from "@/hooks/use-courier-feed";
 import { isAudioUnlocked, unlockAudio } from "@/utils/audio";
 import { OrderCard } from "./order-card";
+import { CourierEarnings } from "./courier-earnings";
 
 export const CourierFeed = () => {
   const t = useTranslations("courier");
@@ -32,6 +33,7 @@ export const CourierFeed = () => {
   }, []);
 
   const { orders, isLoading, removeOrder } = useCourierFeed(isCourier);
+  const queryClient = useQueryClient();
 
   const [acceptingId, setAcceptingId] = useState<string | null>(null);
 
@@ -44,6 +46,8 @@ export const CourierFeed = () => {
         toast.info(t("already_taken"));
       } else {
         toast.success(t("accepted_success"));
+        // Refresh the active-orders list so the dock badge reflects the new order
+        queryClient.invalidateQueries({ queryKey: ["courier-active-orders"] });
       }
       removeOrder(order.orderId);
     },
@@ -61,26 +65,28 @@ export const CourierFeed = () => {
 
   return (
     <div className="flex flex-1 flex-col">
-      <header className="sticky top-0 z-10 bg-background/95 backdrop-blur border-b px-4 py-3">
+      <header className="sticky top-0 z-10 bg-background/95 backdrop-blur border-b px-4 py-3 space-y-2">
         <div className="flex items-center justify-between gap-2">
           <div>
             <p className="text-xs text-muted-foreground">{t("greeting")}</p>
             <p className="font-semibold">{profile?.full_name}</p>
           </div>
-          {!soundArmed && (
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() => {
-                unlockAudio();
-                setSoundArmed(true);
-              }}
-            >
-              <BellRing className="size-4" />
-              {t("enable_sound")}
-            </Button>
-          )}
+          <CourierEarnings />
         </div>
+        {!soundArmed && (
+          <Button
+            size="sm"
+            variant="outline"
+            className="w-full"
+            onClick={() => {
+              unlockAudio();
+              setSoundArmed(true);
+            }}
+          >
+            <BellRing className="size-4" />
+            {t("enable_sound")}
+          </Button>
+        )}
       </header>
 
       <div className="flex-1 space-y-3 p-4">

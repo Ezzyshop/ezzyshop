@@ -402,6 +402,50 @@
       "instruction": "Bir martalik kodni olish uchun botga kiring:",
       "verifying": "Tekshirilmoqda...",
       "invalid_otp": "Kod noto'g'ri yoki eskirgan"
-    }
+    },
+    "details": "Batafsil",
+    "open_map": "Xaritada ochish",
+    "active_empty": "Faol buyurtmalaringiz yo'q",
+    "dock": {
+      "main": "Asosiy",
+      "active": "Faol buyurtmalar"
+    },
+    "status": {
+      "NEW": "Yangi",
+      "PROCESSING": "Qabul qilindi",
+      "DELIVERING": "Yetkazilmoqda",
+      "COMPLETED": "Yakunlandi",
+      "CANCELLED": "Bekor qilindi"
+    },
+    "detail": {
+      "title": "Buyurtma tafsilotlari",
+      "customer": "Mijoz",
+      "address": "Yetkazish manzili",
+      "products": "Mahsulotlar",
+      "total": "Jami",
+      "accepted_at": "Qabul qilingan",
+      "notes": "Izoh"
+    },
+    "status_updated": "Buyurtma holati yangilandi",
+    "status_update_error": "Holatni yangilashda xatolik",
+    "accept_drawer": {
+      "title": "Buyurtmani qabul qilish",
+      "description": "Buyurtmani qabul qilish uchun tugmani suring.",
+      "swipe": "Qabul qilish uchun suring",
+      "cash_hint": "shu summani restoranga topshirasiz"
+    },
+    "map": {
+      "title": "Xaritada ochish",
+      "google": "Google Maps",
+      "yandex": "Yandex Maps"
+    },
+    "action": {
+      "picked_up": "Buyurtmani oldim",
+      "delivered": "Buyurtmani yetkazdim",
+      "updating": "Saqlanmoqda...",
+      "confirm_hint": "Tasdiqlash uchun tugmani suring.",
+      "swipe": "Tasdiqlash uchun suring"
+    },
+    "balance": "Balans"
   }
 }

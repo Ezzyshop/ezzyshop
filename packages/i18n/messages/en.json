@@ -402,6 +402,50 @@
       "instruction": "Get a one-time code from the bot:",
       "verifying": "Verifying...",
       "invalid_otp": "Invalid or expired code"
-    }
+    },
+    "details": "Details",
+    "open_map": "Open on map",
+    "active_empty": "You have no active orders",
+    "dock": {
+      "main": "Home",
+      "active": "Active orders"
+    },
+    "status": {
+      "NEW": "New",
+      "PROCESSING": "Accepted",
+      "DELIVERING": "Delivering",
+      "COMPLETED": "Completed",
+      "CANCELLED": "Cancelled"
+    },
+    "detail": {
+      "title": "Order details",
+      "customer": "Customer",
+      "address": "Delivery address",
+      "products": "Products",
+      "total": "Total",
+      "accepted_at": "Accepted",
+      "notes": "Note"
+    },
+    "status_updated": "Order status updated",
+    "status_update_error": "Failed to update status",
+    "accept_drawer": {
+      "title": "Accept order",
+      "description": "Swipe to accept the order.",
+      "swipe": "Swipe to accept",
+      "cash_hint": "you hand this amount to the restaurant"
+    },
+    "map": {
+      "title": "Open on map",
+      "google": "Google Maps",
+      "yandex": "Yandex Maps"
+    },
+    "action": {
+      "picked_up": "Picked up",
+      "delivered": "Delivered",
+      "updating": "Saving...",
+      "confirm_hint": "Swipe to confirm.",
+      "swipe": "Swipe to confirm"
+    },
+    "balance": "Balance"
   }
 }

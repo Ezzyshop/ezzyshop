@@ -4,3 +4,10 @@ export const COURIER_ORDER_CLAIMED = "courier:order:claimed";
 
 // Cash payment method type — matches backend PaymentMethodType.Cash
 export const PAYMENT_METHOD_CASH = "CASH";
+
+// Order statuses relevant to couriers — matches backend OrderStatus
+export enum CourierOrderStatus {
+  Processing = "PROCESSING",
+  Delivering = "DELIVERING",
+  Completed = "COMPLETED",
+}

@@ -5,6 +5,7 @@ import { routing } from "@repo/i18n/routing";
 import { Locale } from "@repo/i18n/types";
 import { Toaster } from "@repo/ui/components/ui/sonner";
 import TMAInitClient from "@/components/tma-init-client";
+import { CourierDock } from "@/components/courier-dock";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -34,6 +35,7 @@ export default async function LocaleLayout({ children, params }: IProps) {
       <NextIntlClientProvider messages={messages}>
         <TMAInitClient />
         <div className="flex-1 flex flex-col">{children}</div>
+        <CourierDock />
         <Toaster richColors position="top-center" />
       </NextIntlClientProvider>
     </div>

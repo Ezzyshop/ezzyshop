@@ -8,7 +8,7 @@ import {
 } from "@repo/api/services/courier/index";
 import { useTranslations } from "next-intl";
 import { MapPin, Phone, Wallet } from "lucide-react";
-import { CashConfirmationDrawer } from "./cash-confirmation-drawer";
+import { AcceptDrawer } from "./accept-drawer";
 
 interface IProps {
   order: ICourierOrder;
@@ -18,16 +18,8 @@ interface IProps {
 
 export const OrderCard = ({ order, onAccept, isAccepting }: IProps) => {
   const t = useTranslations("courier");
-  const [cashOpen, setCashOpen] = useState(false);
+  const [acceptOpen, setAcceptOpen] = useState(false);
   const isCash = order.payment_method_type === PAYMENT_METHOD_CASH;
-
-  const handleAcceptClick = () => {
-    if (isCash) {
-      setCashOpen(true);
-    } else {
-      onAccept(order);
-    }
-  };
 
   return (
     <Card className="py-4">
@@ -72,16 +64,17 @@ export const OrderCard = ({ order, onAccept, isAccepting }: IProps) => {
         <Button
           className="w-full"
           size="xl"
-          onClick={handleAcceptClick}
+          onClick={() => setAcceptOpen(true)}
           disabled={isAccepting}
         >
           {isAccepting ? t("accepting") : t("accept")}
         </Button>
       </CardContent>
 
-      <CashConfirmationDrawer
-        open={cashOpen}
-        onOpenChange={setCashOpen}
+      <AcceptDrawer
+        open={acceptOpen}
+        onOpenChange={setAcceptOpen}
+        isCash={isCash}
         amount={order.total_price}
         currencySymbol={order.currency_symbol}
         isConfirming={isAccepting}
