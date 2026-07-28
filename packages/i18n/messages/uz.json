@@ -270,9 +270,9 @@
       "description": "Buyurtmanizni to'lov chekini yuborish orqali tasdiqlang",
       "total-price": "Jami narx:",
       "important-information": {
-        "title": "Muhim ma'lumotlar",
         "1": "• To'lov chekni yuborishdan oldin, to'lov summasini tekshirib ko'ring",
-        "2": "• Chek sotuvchi tomonidan tekshiriladi va tasdiqlanganligi haqida xabar yuboriladi"
+        "2": "• Chek sotuvchi tomonidan tekshiriladi va tasdiqlanganligi haqida xabar yuboriladi",
+        "title": "Muhim ma'lumotlar"
       },
       "payment-verification": {
         "title": "To'lov tasdiqlanishi",
@@ -376,5 +376,32 @@
     "shop_reply": "Do'kon javobi",
     "anonymous": "Anonim",
     "review_success": "Rahmat! Sharhingiz muvaffaqiyatli yuborildi"
+  },
+  "courier": {
+    "greeting": "Assalomu alaykum",
+    "enable_sound": "Ovozni yoqish",
+    "empty": "Hozircha yangi buyurtma yo'q",
+    "accept": "Qabul qilish",
+    "accepting": "Qabul qilinmoqda...",
+    "accepted_success": "Buyurtma qabul qilindi",
+    "already_taken": "Buyurtmani boshqa kuryer oldi",
+    "accept_error": "Buyurtmani qabul qilishda xatolik",
+    "payment": {
+      "cash": "Naqd to'lov",
+      "online": "Onlayn to'lov"
+    },
+    "cash": {
+      "title": "Naqd to'lov",
+      "description": "Siz {amount}ni restoranga topshirishingiz kerak. Rozimisiz?",
+      "confirm": "Ha, roziman",
+      "confirming": "Tasdiqlanmoqda...",
+      "cancel": "Bekor qilish"
+    },
+    "login": {
+      "title": "Kuryer paneli",
+      "instruction": "Bir martalik kodni olish uchun botga kiring:",
+      "verifying": "Tekshirilmoqda...",
+      "invalid_otp": "Kod noto'g'ri yoki eskirgan"
+    }
   }
 }

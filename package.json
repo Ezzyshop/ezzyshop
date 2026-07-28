@@ -9,6 +9,8 @@
     "market:build": "turbo run build --filter=market",
     "restaurant": "turbo run dev --filter=restaurant",
     "restaurant:build": "turbo run build --filter=restaurant",
+    "courier": "turbo run dev --filter=courier",
+    "courier:build": "turbo run build --filter=courier",
     "pages:build": "npx @cloudflare/next-on-pages",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"

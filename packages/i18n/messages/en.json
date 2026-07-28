@@ -270,9 +270,9 @@
       "description": "Confirm your order by sending the payment receipt",
       "total-price": "Total price:",
       "important-information": {
-        "title": "Important information",
         "1": "• Before sending the payment receipt, please verify the payment amount",
-        "2": "• The receipt will be checked by the seller and you will be notified once it is confirmed"
+        "2": "• The receipt will be checked by the seller and you will be notified once it is confirmed",
+        "title": "Important information"
       },
       "payment-verification": {
         "title": "Payment verification",
@@ -376,5 +376,32 @@
     "shop_reply": "Shop reply",
     "anonymous": "Anonymous",
     "review_success": "Thank you! Your review was submitted successfully"
+  },
+  "courier": {
+    "greeting": "Hello",
+    "enable_sound": "Enable sound",
+    "empty": "No new orders yet",
+    "accept": "Accept",
+    "accepting": "Accepting...",
+    "accepted_success": "Order accepted",
+    "already_taken": "Another courier took the order",
+    "accept_error": "Failed to accept the order",
+    "payment": {
+      "cash": "Cash",
+      "online": "Online payment"
+    },
+    "cash": {
+      "title": "Cash payment",
+      "description": "You must hand {amount} to the restaurant. Do you agree?",
+      "confirm": "Yes, I agree",
+      "confirming": "Confirming...",
+      "cancel": "Cancel"
+    },
+    "login": {
+      "title": "Courier panel",
+      "instruction": "Get a one-time code from the bot:",
+      "verifying": "Verifying...",
+      "invalid_otp": "Invalid or expired code"
+    }
   }
 }

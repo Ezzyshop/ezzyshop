@@ -1,0 +1,45 @@
+{
+  "name": "courier",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --turbopack --port 5003",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint --max-warnings 0",
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.2.1",
+    "@repo/api": "workspace:*",
+    "@repo/contexts": "workspace:*",
+    "@repo/i18n": "workspace:*",
+    "@repo/ui": "workspace:*",
+    "@tailwindcss/postcss": "^4.1.11",
+    "@tanstack/react-query": "^5.83.0",
+    "@twa-dev/sdk": "^8.0.2",
+    "autoprefixer": "^10.4.21",
+    "dayjs": "^1.11.13",
+    "eslint": "^9.30.0",
+    "joi": "^17.13.3",
+    "lucide-react": "^0.525.0",
+    "next": "15.4.10",
+    "next-intl": "^3.25.0",
+    "nextjs-toploader": "^3.8.16",
+    "postcss": "^8.5.6",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-hook-form": "^7.61.1",
+    "sonner": "^2.0.6",
+    "tailwindcss": "^4.1.11"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^22.15.3",
+    "@types/react": "19.1.0",
+    "@types/react-dom": "19.1.1",
+    "typescript": "5.8.2"
+  }
+}

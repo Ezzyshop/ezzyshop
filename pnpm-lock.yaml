@@ -18,6 +18,94 @@ importers:
         specifier: 5.8.2
         version: 5.8.2
 
+  apps/courier:
+    dependencies:
+      '@hookform/resolvers':
+        specifier: ^5.2.1
+        version: 5.2.2(react-hook-form@7.71.2(react@19.2.4))
+      '@repo/api':
+        specifier: workspace:*
+        version: link:../../packages/api
+      '@repo/contexts':
+        specifier: workspace:*
+        version: link:../../packages/contexts
+      '@repo/i18n':
+        specifier: workspace:*
+        version: link:../../packages/i18n
+      '@repo/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      '@tailwindcss/postcss':
+        specifier: ^4.1.11
+        version: 4.2.1
+      '@tanstack/react-query':
+        specifier: ^5.83.0
+        version: 5.90.21(react@19.2.4)
+      '@twa-dev/sdk':
+        specifier: ^8.0.2
+        version: 8.0.2(react@19.2.4)
+      autoprefixer:
+        specifier: ^10.4.21
+        version: 10.4.27(postcss@8.5.8)
+      dayjs:
+        specifier: ^1.11.13
+        version: 1.11.20
+      eslint:
+        specifier: ^9.30.0
+        version: 9.39.4(jiti@2.6.1)
+      joi:
+        specifier: ^17.13.3
+        version: 17.13.3
+      lucide-react:
+        specifier: ^0.525.0
+        version: 0.525.0(react@19.2.4)
+      next:
+        specifier: 15.4.10
+        version: 15.4.10(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      next-intl:
+        specifier: ^3.25.0
+        version: 3.26.5(next@15.4.10(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react@19.2.4)
+      nextjs-toploader:
+        specifier: ^3.8.16
+        version: 3.9.17(next@15.4.10(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      postcss:
+        specifier: ^8.5.6
+        version: 8.5.8
+      react:
+        specifier: ^19.1.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.1.0
+        version: 19.2.4(react@19.2.4)
+      react-hook-form:
+        specifier: ^7.61.1
+        version: 7.71.2(react@19.2.4)
+      sonner:
+        specifier: ^2.0.6
+        version: 2.0.7(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      tailwindcss:
+        specifier: ^4.1.11
+        version: 4.2.1
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      '@types/node':
+        specifier: ^22.15.3
+        version: 22.19.15
+      '@types/react':
+        specifier: 19.1.0
+        version: 19.1.0
+      '@types/react-dom':
+        specifier: 19.1.1
+        version: 19.1.1(@types/react@19.1.0)
+      typescript:
+        specifier: 5.8.2
+        version: 5.8.2
+
   apps/market:
     dependencies:
       '@hookform/resolvers':

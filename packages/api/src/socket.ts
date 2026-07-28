@@ -27,7 +27,7 @@ export const closeSupportSocket = () => {
   }
 };
 
-export const reconnectSupportSocket = () => {
+export const reconnectSupportSocket = (): Socket => {
   closeSupportSocket();
   return getSupportSocket();
 };
