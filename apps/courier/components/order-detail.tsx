@@ -53,6 +53,7 @@ export const OrderDetail = () => {
       });
       queryClient.invalidateQueries({ queryKey: ["courier-active-orders"] });
       queryClient.invalidateQueries({ queryKey: ["courier-me"] });
+      queryClient.invalidateQueries({ queryKey: ["courier-history"] });
     },
     onError: () => toast.error(t("status_update_error")),
   });

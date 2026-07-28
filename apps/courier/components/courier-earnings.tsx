@@ -18,9 +18,9 @@ export const CourierEarnings = () => {
     >
       <Wallet className="size-4 text-primary" />
       <div className="leading-tight text-right">
-        <p className="text-[10px] text-muted-foreground">{t("balance")}</p>
+        <p className="text-[10px] text-muted-foreground">{t("today_profit")}</p>
         <p className="text-sm font-bold text-primary">
-          {profile.total_earnings.toLocaleString()} {profile.currency_symbol}
+          {profile.today_earnings.toLocaleString()} {profile.currency_symbol}
         </p>
       </div>
       <RefreshCw

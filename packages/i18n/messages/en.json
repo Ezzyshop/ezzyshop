@@ -408,7 +408,9 @@
     "active_empty": "You have no active orders",
     "dock": {
       "main": "Home",
-      "active": "Active orders"
+      "active": "Active orders",
+      "history": "History",
+      "report": "Report"
     },
     "status": {
       "NEW": "New",
@@ -446,6 +448,14 @@
       "confirm_hint": "Swipe to confirm.",
       "swipe": "Swipe to confirm"
     },
-    "balance": "Balance"
+    "history_empty": "Order history is empty",
+    "today_profit": "Today's profit",
+    "report": {
+      "from": "From",
+      "to": "To",
+      "total": "Total profit",
+      "orders": "Orders",
+      "empty": "No data for this period"
+    }
   }
 }

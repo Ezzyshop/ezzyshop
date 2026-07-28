@@ -45,6 +45,7 @@ export const ActiveOrderCard = ({ order }: IProps) => {
         queryKey: ["courier-order", order.shopId, order.orderId],
       });
       queryClient.invalidateQueries({ queryKey: ["courier-me"] });
+      queryClient.invalidateQueries({ queryKey: ["courier-history"] });
     },
     onError: () => toast.error(t("status_update_error")),
   });

@@ -10,8 +10,24 @@ export interface ICourierProfile {
   photo: string | null;
   shops: ICourierShop[];
   total_earnings: number;
+  today_earnings: number;
   completed_count: number;
   currency_symbol: string;
+}
+
+export interface ICourierReportDay {
+  date: string;
+  earnings: number;
+  count: number;
+}
+
+export interface ICourierReport {
+  from: string;
+  to: string;
+  currency_symbol: string;
+  total_earnings: number;
+  total_count: number;
+  days: ICourierReportDay[];
 }
 
 export interface ICourierOrderProduct {
@@ -66,6 +82,7 @@ export interface ICourierOrderDetail {
   total_price: number;
   total_quantity: number;
   total_discount: number;
+  delivery_price: number;
   currency_symbol: string;
   payment_method_type: string;
   customer_info: {
@@ -81,4 +98,5 @@ export interface ICourierOrderDetail {
   notes?: string;
   createdAt?: string;
   accepted_at?: string;
+  updatedAt?: string;
 }

@@ -5,6 +5,7 @@ import {
   ICourierOrder,
   ICourierOrderDetail,
   ICourierProfile,
+  ICourierReport,
 } from "./courier.interface";
 
 export class CourierService {
@@ -28,6 +29,21 @@ export class CourierService {
     orderId: string
   ): Promise<IData<ICourierOrderDetail>> {
     const response = await api.get(`/courier/orders/${shopId}/${orderId}`);
+    return response.data;
+  }
+
+  static async getHistory(): Promise<IData<ICourierOrderDetail[]>> {
+    const response = await api.get(`/courier/orders/history`);
+    return response.data;
+  }
+
+  static async getReport(
+    from: string,
+    to: string
+  ): Promise<IData<ICourierReport>> {
+    const response = await api.get(`/courier/report`, {
+      params: { from, to },
+    });
     return response.data;
   }
 

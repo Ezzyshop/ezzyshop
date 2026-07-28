@@ -2,7 +2,7 @@
 import { useI18nRouter } from "@repo/i18n/hooks";
 import { useTranslations } from "next-intl";
 import { useQuery } from "@tanstack/react-query";
-import { Home, ClipboardList } from "lucide-react";
+import { Home, ClipboardList, History, BarChart3 } from "lucide-react";
 import { CourierService } from "@repo/api/services/courier/index";
 import { useCourierContext } from "@/contexts/courier.context";
 
@@ -22,8 +22,13 @@ export const CourierDock = () => {
   // Hidden on the login screen and until the courier is authenticated
   if (!isCourier || path.startsWith("/login")) return null;
 
-  const isActiveTab = path.startsWith("/active") || path.startsWith("/orders");
-  const isHomeTab = !isActiveTab;
+  const isHistoryTab = path.startsWith("/history");
+  const isReportTab = path.startsWith("/report");
+  const isActiveTab =
+    !isHistoryTab &&
+    !isReportTab &&
+    (path.startsWith("/active") || path.startsWith("/orders"));
+  const isHomeTab = !isActiveTab && !isHistoryTab && !isReportTab;
 
   const items = [
     {
@@ -42,11 +47,27 @@ export const CourierDock = () => {
       badge: activeCount,
       onClick: () => router.push("/active"),
     },
+    {
+      key: "history",
+      label: t("dock.history"),
+      icon: History,
+      active: isHistoryTab,
+      badge: 0,
+      onClick: () => router.push("/history"),
+    },
+    {
+      key: "report",
+      label: t("dock.report"),
+      icon: BarChart3,
+      active: isReportTab,
+      badge: 0,
+      onClick: () => router.push("/report"),
+    },
   ];
 
   return (
     <nav
-      className="sticky bottom-0 z-20 grid grid-cols-2 border-t bg-background/95 backdrop-blur"
+      className="sticky bottom-0 z-20 grid grid-cols-4 border-t bg-background/95 backdrop-blur"
       style={{
         paddingBottom:
           "calc(var(--tg-safe-area-inset-bottom, 0px) + 0.25rem)",

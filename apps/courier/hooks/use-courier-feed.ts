@@ -1,5 +1,6 @@
 "use client";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import {
   CourierService,
   ICourierOrder,
@@ -11,42 +12,34 @@ import { getSupportSocket, reconnectSupportSocket } from "@repo/api/socket";
 import { startAlarm, stopAlarm } from "@/utils/audio";
 
 /**
- * Loads the initial feed of unclaimed delivery orders and keeps it live over the
- * socket. Plays the looping alarm whenever there is at least one pending order.
- * `enabled` gates the whole thing on the courier being authenticated.
+ * Loads the feed of unclaimed delivery orders and keeps it live over the socket.
+ * The initial load is backed by React Query (so remounting doesn't get stuck on a
+ * spinner), while socket events mutate a local copy for instant updates.
  */
 export const useCourierFeed = (enabled: boolean) => {
   const [orders, setOrders] = useState<ICourierOrder[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const seededRef = useRef(false);
+
+  const { data, isLoading, isFetching } = useQuery({
+    queryKey: ["courier-feed"],
+    queryFn: () => CourierService.getFeed(),
+    enabled,
+    refetchOnMount: true,
+    staleTime: 0,
+  });
+
+  // Seed / re-sync local orders whenever the query returns fresh data
+  useEffect(() => {
+    if (data?.data) setOrders(data.data);
+  }, [data]);
 
   const removeOrder = useCallback((orderId: string) => {
     setOrders((prev) => prev.filter((o) => o.orderId !== orderId));
   }, []);
 
-  // Initial feed load
-  useEffect(() => {
-    if (!enabled || seededRef.current) return;
-    seededRef.current = true;
-    let cancelled = false;
-    CourierService.getFeed()
-      .then((res) => {
-        if (!cancelled) setOrders(res.data ?? []);
-      })
-      .catch(() => {})
-      .finally(() => {
-        if (!cancelled) setIsLoading(false);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [enabled]);
-
   // Live socket subscription
   useEffect(() => {
     if (!enabled) return;
 
-    // Ensure the socket carries the freshly stored auth token
     reconnectSupportSocket();
     const socket = getSupportSocket();
 
@@ -55,7 +48,6 @@ export const useCourierFeed = (enabled: boolean) => {
         prev.some((o) => o.orderId === order.orderId) ? prev : [order, ...prev]
       );
     };
-
     const onClaimed = (payload: ICourierOrderClaimed) => {
       removeOrder(payload.orderId);
     };
@@ -79,5 +71,6 @@ export const useCourierFeed = (enabled: boolean) => {
     return () => stopAlarm();
   }, [enabled, orders.length]);
 
-  return { orders, isLoading, removeOrder };
+  // Only show the full-screen spinner on the very first load (no data yet)
+  return { orders, isLoading: enabled && isLoading, isFetching, removeOrder };
 };

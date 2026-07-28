@@ -408,7 +408,9 @@
     "active_empty": "Faol buyurtmalaringiz yo'q",
     "dock": {
       "main": "Asosiy",
-      "active": "Faol buyurtmalar"
+      "active": "Faol buyurtmalar",
+      "history": "Tarix",
+      "report": "Hisobot"
     },
     "status": {
       "NEW": "Yangi",
@@ -446,6 +448,14 @@
       "confirm_hint": "Tasdiqlash uchun tugmani suring.",
       "swipe": "Tasdiqlash uchun suring"
     },
-    "balance": "Balans"
+    "history_empty": "Buyurtmalar tarixi bo'sh",
+    "today_profit": "Bugungi foyda",
+    "report": {
+      "from": "Dan",
+      "to": "Gacha",
+      "total": "Jami foyda",
+      "orders": "Buyurtmalar",
+      "empty": "Bu davrda ma'lumot yo'q"
+    }
   }
 }
