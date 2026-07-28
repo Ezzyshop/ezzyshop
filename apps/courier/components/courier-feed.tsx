@@ -15,6 +15,7 @@ import { useCourierFeed } from "@/hooks/use-courier-feed";
 import { isAudioUnlocked, unlockAudio } from "@/utils/audio";
 import { OrderCard } from "./order-card";
 import { CourierEarnings } from "./courier-earnings";
+import { CourierLanguageSwitcher } from "./courier-language-switcher";
 
 export const CourierFeed = () => {
   const t = useTranslations("courier");
@@ -71,7 +72,10 @@ export const CourierFeed = () => {
             <p className="text-xs text-muted-foreground">{t("greeting")}</p>
             <p className="font-semibold">{profile?.full_name}</p>
           </div>
-          <CourierEarnings />
+          <div className="flex items-center gap-2">
+            <CourierEarnings />
+            <CourierLanguageSwitcher />
+          </div>
         </div>
         {!soundArmed && (
           <Button

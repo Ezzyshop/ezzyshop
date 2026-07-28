@@ -456,6 +456,7 @@
       "total": "Total profit",
       "orders": "Orders",
       "empty": "No data for this period"
-    }
+    },
+    "select_language": "Select language"
   }
 }
