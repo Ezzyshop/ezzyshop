@@ -2,10 +2,12 @@ import { api } from "../../api";
 import { IData } from "../../utils/interfaces";
 import {
   IAcceptCourierOrderResponse,
+  ICourierDebts,
   ICourierOrder,
   ICourierOrderDetail,
   ICourierProfile,
   ICourierReport,
+  IUpdateCourierOrderStatusResponse,
 } from "./courier.interface";
 
 export class CourierService {
@@ -51,7 +53,7 @@ export class CourierService {
     shopId: string,
     orderId: string,
     status: string
-  ): Promise<IData<unknown>> {
+  ): Promise<IUpdateCourierOrderStatusResponse> {
     const response = await api.put(
       `/courier/orders/${shopId}/${orderId}/status`,
       { status }
@@ -61,11 +63,18 @@ export class CourierService {
 
   static async acceptOrder(
     shopId: string,
-    orderId: string
+    orderId: string,
+    etaMinutes: number
   ): Promise<IAcceptCourierOrderResponse> {
     const response = await api.put(
-      `/courier/orders/${shopId}/${orderId}/accept`
+      `/courier/orders/${shopId}/${orderId}/accept`,
+      { eta_minutes: etaMinutes }
     );
+    return response.data;
+  }
+
+  static async getDebts(): Promise<IData<ICourierDebts>> {
+    const response = await api.get(`/courier/debts`);
     return response.data;
   }
 }

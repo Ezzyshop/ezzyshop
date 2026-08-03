@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Button } from "@repo/ui/components/ui/button";
-import { BellRing, Loader2, PackageCheck } from "lucide-react";
+import { BellRing, Loader2, PackageCheck, ShieldAlert } from "lucide-react";
 import {
   CourierService,
   ICourierOrder,
@@ -39,15 +39,14 @@ export const CourierFeed = () => {
   const [acceptingId, setAcceptingId] = useState<string | null>(null);
 
   const { mutate: accept } = useMutation({
-    mutationFn: (order: ICourierOrder) =>
-      CourierService.acceptOrder(order.shopId, order.orderId),
-    onMutate: (order) => setAcceptingId(order.orderId),
-    onSuccess: (res, order) => {
+    mutationFn: ({ order, eta }: { order: ICourierOrder; eta: number }) =>
+      CourierService.acceptOrder(order.shopId, order.orderId, eta),
+    onMutate: ({ order }) => setAcceptingId(order.orderId),
+    onSuccess: (res, { order }) => {
       if (res.already_accepted) {
         toast.info(t("already_taken"));
       } else {
         toast.success(t("accepted_success"));
-        // Refresh the active-orders list so the dock badge reflects the new order
         queryClient.invalidateQueries({ queryKey: ["courier-active-orders"] });
       }
       removeOrder(order.orderId);
@@ -55,6 +54,9 @@ export const CourierFeed = () => {
     onError: () => toast.error(t("accept_error")),
     onSettled: () => setAcceptingId(null),
   });
+
+  const isBlocked =
+    !!profile?.blocked_until && new Date(profile.blocked_until) > new Date();
 
   if (isProfileLoading) {
     return (
@@ -77,6 +79,16 @@ export const CourierFeed = () => {
             <CourierLanguageSwitcher />
           </div>
         </div>
+        {isBlocked && (
+          <div className="flex items-center gap-2 rounded-lg bg-destructive/10 px-3 py-2 text-destructive text-sm">
+            <ShieldAlert className="size-4 shrink-0" />
+            <span>
+              {t("blocked_until", {
+                date: new Date(profile!.blocked_until!).toLocaleString(),
+              })}
+            </span>
+          </div>
+        )}
         {!soundArmed && (
           <Button
             size="sm"
@@ -108,8 +120,8 @@ export const CourierFeed = () => {
             <OrderCard
               key={order.orderId}
               order={order}
-              onAccept={(o) => accept(o)}
-              isAccepting={acceptingId === order.orderId}
+              onAccept={(o, eta) => accept({ order: o, eta })}
+              isAccepting={acceptingId === order.orderId || isBlocked}
             />
           ))
         )}

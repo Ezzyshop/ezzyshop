@@ -8,6 +8,7 @@ export const PAYMENT_METHOD_CASH = "CASH";
 // Order statuses relevant to couriers — matches backend OrderStatus
 export enum CourierOrderStatus {
   Processing = "PROCESSING",
+  CourierInShop = "COURIER_IN_SHOP",
   Delivering = "DELIVERING",
   Completed = "COMPLETED",
 }

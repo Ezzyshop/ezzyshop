@@ -7,12 +7,12 @@ import {
   PAYMENT_METHOD_CASH,
 } from "@repo/api/services/courier/index";
 import { useTranslations } from "next-intl";
-import { MapPin, Phone, Wallet } from "lucide-react";
+import { MapPin, Phone, Wallet, Store } from "lucide-react";
 import { AcceptDrawer } from "./accept-drawer";
 
 interface IProps {
   order: ICourierOrder;
-  onAccept: (order: ICourierOrder) => void;
+  onAccept: (order: ICourierOrder, etaMinutes: number) => void;
   isAccepting: boolean;
 }
 
@@ -25,7 +25,15 @@ export const OrderCard = ({ order, onAccept, isAccepting }: IProps) => {
     <Card className="py-4">
       <CardContent className="space-y-3">
         <div className="flex items-start justify-between gap-2">
-          <div className="font-semibold">{order.customer_info.name}</div>
+          <div>
+            {order.shop_name && (
+              <div className="flex items-center gap-1 text-xs text-muted-foreground mb-0.5">
+                <Store className="size-3 shrink-0" />
+                <span>{order.shop_name}</span>
+              </div>
+            )}
+            <div className="font-semibold">{order.customer_info.name}</div>
+          </div>
           <div className="text-primary font-bold whitespace-nowrap">
             {order.total_price.toLocaleString()} {order.currency_symbol}
           </div>
@@ -78,7 +86,10 @@ export const OrderCard = ({ order, onAccept, isAccepting }: IProps) => {
         amount={order.total_price}
         currencySymbol={order.currency_symbol}
         isConfirming={isAccepting}
-        onConfirm={() => onAccept(order)}
+        onConfirm={(eta) => {
+          setAcceptOpen(false);
+          onAccept(order, eta);
+        }}
       />
     </Card>
   );

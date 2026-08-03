@@ -410,11 +410,21 @@
       "main": "Home",
       "active": "Active orders",
       "history": "History",
-      "report": "Report"
+      "report": "Report",
+      "debts": "Debts"
+    },
+    "debts": {
+      "title": "Debts",
+      "empty": "No outstanding debts",
+      "total": "Total owed",
+      "currency": "UZS",
+      "total_accrued": "Total accrued",
+      "total_paid": "Total paid"
     },
     "status": {
       "NEW": "New",
       "PROCESSING": "Accepted",
+      "COURIER_IN_SHOP": "Courier at restaurant",
       "DELIVERING": "Delivering",
       "COMPLETED": "Completed",
       "CANCELLED": "Cancelled"
@@ -434,7 +444,10 @@
       "title": "Accept order",
       "description": "Swipe to accept the order.",
       "swipe": "Swipe to accept",
-      "cash_hint": "you hand this amount to the restaurant"
+      "cash_hint": "you hand this amount to the restaurant",
+      "eta_label": "How long will it take to reach the restaurant?",
+      "eta_min": "min",
+      "eta_required": "Please select a time"
     },
     "map": {
       "title": "Open on map",
@@ -442,11 +455,20 @@
       "yandex": "Yandex Maps"
     },
     "action": {
+      "arrived_at_shop": "Arrived at restaurant",
       "picked_up": "Picked up",
       "delivered": "Delivered",
       "updating": "Saving...",
       "confirm_hint": "Swipe to confirm.",
       "swipe": "Swipe to confirm"
+    },
+    "blocked_until": "Your profile is blocked until {date}. You cannot accept new orders.",
+    "penalty": {
+      "warning_title": "You were late!",
+      "warning_description": "You have {left} warning(s) remaining. After 3, your profile will be blocked for 1 day.",
+      "blocked_title": "Profile blocked",
+      "blocked_description": "You have accumulated 3 late arrivals. Your profile is blocked until {date}.",
+      "ok": "Got it"
     },
     "history_empty": "Order history is empty",
     "today_profit": "Today's profit",

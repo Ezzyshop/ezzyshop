@@ -410,11 +410,21 @@
       "main": "Asosiy",
       "active": "Faol buyurtmalar",
       "history": "Tarix",
-      "report": "Hisobot"
+      "report": "Hisobot",
+      "debts": "Qarzlar"
+    },
+    "debts": {
+      "title": "Qarzlar",
+      "empty": "Hozircha qarzlar yo'q",
+      "total": "Jami qarz",
+      "currency": "so'm",
+      "total_accrued": "Jami hisoblangan",
+      "total_paid": "Jami to'langan"
     },
     "status": {
       "NEW": "Yangi",
       "PROCESSING": "Qabul qilindi",
+      "COURIER_IN_SHOP": "Kuryer restoranda",
       "DELIVERING": "Yetkazilmoqda",
       "COMPLETED": "Yakunlandi",
       "CANCELLED": "Bekor qilindi"
@@ -434,7 +444,10 @@
       "title": "Buyurtmani qabul qilish",
       "description": "Buyurtmani qabul qilish uchun tugmani suring.",
       "swipe": "Qabul qilish uchun suring",
-      "cash_hint": "shu summani restoranga topshirasiz"
+      "cash_hint": "shu summani restoranga topshirasiz",
+      "eta_label": "Restoranga qancha vaqtda yetasiz?",
+      "eta_min": "daqiqa",
+      "eta_required": "Vaqtni tanlang"
     },
     "map": {
       "title": "Xaritada ochish",
@@ -442,11 +455,20 @@
       "yandex": "Yandex Maps"
     },
     "action": {
+      "arrived_at_shop": "Restoranga keldim",
       "picked_up": "Buyurtmani oldim",
       "delivered": "Buyurtmani yetkazdim",
       "updating": "Saqlanmoqda...",
       "confirm_hint": "Tasdiqlash uchun tugmani suring.",
       "swipe": "Tasdiqlash uchun suring"
+    },
+    "blocked_until": "Profilingiz {date} gacha bloklangan. Yangi buyurtmalarni qabul qila olmaysiz.",
+    "penalty": {
+      "warning_title": "Kechikdingiz!",
+      "warning_description": "Sizda {left} ta ogohlantirish qoldi. 3 tadan keyin profilingiz 1 kunga bloklanadi.",
+      "blocked_title": "Profilingiz bloklandi",
+      "blocked_description": "Siz 3 ta kechikish qildingiz. Profilingiz {date} gacha bloklangan.",
+      "ok": "Tushunarli"
     },
     "history_empty": "Buyurtmalar tarixi bo'sh",
     "today_profit": "Bugungi foyda",

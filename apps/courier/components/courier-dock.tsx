@@ -2,7 +2,7 @@
 import { useI18nRouter } from "@repo/i18n/hooks";
 import { useTranslations } from "next-intl";
 import { useQuery } from "@tanstack/react-query";
-import { Home, ClipboardList, History, BarChart3 } from "lucide-react";
+import { Home, ClipboardList, History, BarChart3, Wallet } from "lucide-react";
 import { CourierService } from "@repo/api/services/courier/index";
 import { useCourierContext } from "@/contexts/courier.context";
 
@@ -24,11 +24,13 @@ export const CourierDock = () => {
 
   const isHistoryTab = path.startsWith("/history");
   const isReportTab = path.startsWith("/report");
+  const isDebtsTab = path.startsWith("/debts");
   const isActiveTab =
     !isHistoryTab &&
     !isReportTab &&
+    !isDebtsTab &&
     (path.startsWith("/active") || path.startsWith("/orders"));
-  const isHomeTab = !isActiveTab && !isHistoryTab && !isReportTab;
+  const isHomeTab = !isActiveTab && !isHistoryTab && !isReportTab && !isDebtsTab;
 
   const items = [
     {
@@ -63,11 +65,19 @@ export const CourierDock = () => {
       badge: 0,
       onClick: () => router.push("/report"),
     },
+    {
+      key: "debts",
+      label: t("dock.debts"),
+      icon: Wallet,
+      active: isDebtsTab,
+      badge: 0,
+      onClick: () => router.push("/debts"),
+    },
   ];
 
   return (
     <nav
-      className="sticky bottom-0 z-20 grid grid-cols-4 border-t bg-background/95 backdrop-blur"
+      className="sticky bottom-0 z-20 grid grid-cols-5 border-t bg-background/95 backdrop-blur"
       style={{
         paddingBottom:
           "calc(var(--tg-safe-area-inset-bottom, 0px) + 0.25rem)",

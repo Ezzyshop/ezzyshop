@@ -13,6 +13,9 @@ export interface ICourierProfile {
   today_earnings: number;
   completed_count: number;
   currency_symbol: string;
+  penalty_count: number;
+  blocked_until: string | null;
+  block_count: number;
 }
 
 export interface ICourierReportDay {
@@ -38,6 +41,7 @@ export interface ICourierOrderProduct {
 export interface ICourierOrder {
   orderId: string;
   shopId: string;
+  shop_name?: string;
   total_price: number;
   total_quantity: number;
   currency_symbol: string;
@@ -75,9 +79,35 @@ export interface ICourierOrderDetailProduct {
   image?: string;
 }
 
+export interface ICourierDebtShop {
+  shop_id: string;
+  shop_name: string;
+  balance: number;
+}
+
+export interface ICourierDebts {
+  total_balance: number;
+  debts: ICourierDebtShop[];
+}
+
+export interface ICourierPenalty {
+  penalized: boolean;
+  penalty_count: number;
+  penalties_left: number;
+  blocked: boolean;
+  blocked_until: string | null;
+}
+
+export interface IUpdateCourierOrderStatusResponse {
+  message: string;
+  data: unknown;
+  penalty: ICourierPenalty | null;
+}
+
 export interface ICourierOrderDetail {
   orderId: string;
   shopId: string;
+  shop_name?: string;
   status: string;
   total_price: number;
   total_quantity: number;
@@ -99,4 +129,7 @@ export interface ICourierOrderDetail {
   createdAt?: string;
   accepted_at?: string;
   updatedAt?: string;
+  courier_eta_minutes?: number;
+  courier_deadline_at?: string;
+  courier_arrived_at?: string;
 }

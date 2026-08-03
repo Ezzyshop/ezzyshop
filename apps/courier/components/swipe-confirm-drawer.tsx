@@ -19,6 +19,8 @@ interface IProps {
   onConfirm: () => void;
   isConfirming: boolean;
   children?: ReactNode;
+  /** Bump this value externally to reset the swipe (e.g. after a validation failure). */
+  externalResetToken?: number;
 }
 
 /**
@@ -35,6 +37,7 @@ export const SwipeConfirmDrawer = ({
   onConfirm,
   isConfirming,
   children,
+  externalResetToken,
 }: IProps) => {
   const [resetToken, setResetToken] = useState(0);
   const prevConfirming = useRef(false);
@@ -49,6 +52,10 @@ export const SwipeConfirmDrawer = ({
   useEffect(() => {
     if (open) setResetToken((v) => v + 1);
   }, [open]);
+
+  useEffect(() => {
+    if (externalResetToken) setResetToken((v) => v + 1);
+  }, [externalResetToken]);
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
