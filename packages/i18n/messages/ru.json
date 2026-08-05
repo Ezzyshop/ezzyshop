@@ -411,7 +411,8 @@
       "active": "Активные заказы",
       "history": "История",
       "report": "Отчёт",
-      "debts": "Долги"
+      "debts": "Долги",
+      "profile": "Профиль"
     },
     "debts": {
       "title": "Долги",
@@ -482,6 +483,15 @@
       "orders": "Заказы",
       "empty": "Нет данных за период"
     },
-    "select_language": "Выберите язык"
+    "select_language": "Выберите язык",
+    "profile": {
+      "title": "Профиль",
+      "login": "Войти",
+      "logout": "Выйти",
+      "cancel": "Отмена",
+      "logout_confirmation": "Вы хотите выйти из системы?",
+      "logout_state_message": "Войдите в систему, чтобы открыть панель курьера",
+      "language": "Язык"
+    }
   }
 }

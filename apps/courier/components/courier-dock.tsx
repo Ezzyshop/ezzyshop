@@ -2,7 +2,7 @@
 import { useI18nRouter } from "@repo/i18n/hooks";
 import { useTranslations } from "next-intl";
 import { useQuery } from "@tanstack/react-query";
-import { Home, ClipboardList, History, BarChart3, Wallet } from "lucide-react";
+import { Home, ClipboardList, History, UserRound } from "lucide-react";
 import { CourierService } from "@repo/api/services/courier/index";
 import { useCourierContext } from "@/contexts/courier.context";
 
@@ -23,14 +23,16 @@ export const CourierDock = () => {
   if (!isCourier || path.startsWith("/login")) return null;
 
   const isHistoryTab = path.startsWith("/history");
-  const isReportTab = path.startsWith("/report");
-  const isDebtsTab = path.startsWith("/debts");
+  // Report and debts are reached from the profile tab, so they keep it highlighted
+  const isProfileTab =
+    path.startsWith("/profile") ||
+    path.startsWith("/report") ||
+    path.startsWith("/debts");
   const isActiveTab =
     !isHistoryTab &&
-    !isReportTab &&
-    !isDebtsTab &&
+    !isProfileTab &&
     (path.startsWith("/active") || path.startsWith("/orders"));
-  const isHomeTab = !isActiveTab && !isHistoryTab && !isReportTab && !isDebtsTab;
+  const isHomeTab = !isActiveTab && !isHistoryTab && !isProfileTab;
 
   const items = [
     {
@@ -58,26 +60,18 @@ export const CourierDock = () => {
       onClick: () => router.push("/history"),
     },
     {
-      key: "report",
-      label: t("dock.report"),
-      icon: BarChart3,
-      active: isReportTab,
+      key: "profile",
+      label: t("dock.profile"),
+      icon: UserRound,
+      active: isProfileTab,
       badge: 0,
-      onClick: () => router.push("/report"),
-    },
-    {
-      key: "debts",
-      label: t("dock.debts"),
-      icon: Wallet,
-      active: isDebtsTab,
-      badge: 0,
-      onClick: () => router.push("/debts"),
+      onClick: () => router.push("/profile"),
     },
   ];
 
   return (
     <nav
-      className="sticky bottom-0 z-20 grid grid-cols-5 border-t bg-background/95 backdrop-blur"
+      className="sticky bottom-0 z-20 grid grid-cols-4 border-t bg-background/95 backdrop-blur"
       style={{
         paddingBottom:
           "calc(var(--tg-safe-area-inset-bottom, 0px) + 0.25rem)",

@@ -411,7 +411,8 @@
       "active": "Faol buyurtmalar",
       "history": "Tarix",
       "report": "Hisobot",
-      "debts": "Qarzlar"
+      "debts": "Qarzlar",
+      "profile": "Profil"
     },
     "debts": {
       "title": "Qarzlar",
@@ -482,6 +483,15 @@
       "orders": "Buyurtmalar",
       "empty": "Bu davrda ma'lumot yo'q"
     },
-    "select_language": "Tilni tanlang"
+    "select_language": "Tilni tanlang",
+    "profile": {
+      "title": "Profil",
+      "login": "Kirish",
+      "logout": "Chiqish",
+      "cancel": "Bekor qilish",
+      "logout_confirmation": "Siz tizimdan chiqmoqchimisiz?",
+      "logout_state_message": "Kuryer paneliga kirish uchun tizimga kiring",
+      "language": "Til"
+    }
   }
 }

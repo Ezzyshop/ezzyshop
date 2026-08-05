@@ -411,7 +411,8 @@
       "active": "Active orders",
       "history": "History",
       "report": "Report",
-      "debts": "Debts"
+      "debts": "Debts",
+      "profile": "Profile"
     },
     "debts": {
       "title": "Debts",
@@ -482,6 +483,15 @@
       "orders": "Orders",
       "empty": "No data for this period"
     },
-    "select_language": "Select language"
+    "select_language": "Select language",
+    "profile": {
+      "title": "Profile",
+      "login": "Log in",
+      "logout": "Log out",
+      "cancel": "Cancel",
+      "logout_confirmation": "Do you want to log out?",
+      "logout_state_message": "Log in to open the courier panel",
+      "language": "Language"
+    }
   }
 }
