@@ -43,6 +43,7 @@ export interface ICourierOrder {
   shopId: string;
   shop_name?: string;
   total_price: number;
+  delivery_price: number;
   total_quantity: number;
   currency_symbol: string;
   payment_method_type: string;

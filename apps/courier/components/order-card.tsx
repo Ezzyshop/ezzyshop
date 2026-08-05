@@ -7,7 +7,7 @@ import {
   PAYMENT_METHOD_CASH,
 } from "@repo/api/services/courier/index";
 import { useTranslations } from "next-intl";
-import { MapPin, Phone, Wallet, Store } from "lucide-react";
+import { MapPin, Phone, Wallet, Store, Bike } from "lucide-react";
 import { AcceptDrawer } from "./accept-drawer";
 
 interface IProps {
@@ -24,18 +24,32 @@ export const OrderCard = ({ order, onAccept, isAccepting }: IProps) => {
   return (
     <Card className="py-4">
       <CardContent className="space-y-3">
-        <div className="flex items-start justify-between gap-2">
-          <div>
-            {order.shop_name && (
-              <div className="flex items-center gap-1 text-xs text-muted-foreground mb-0.5">
-                <Store className="size-3 shrink-0" />
-                <span>{order.shop_name}</span>
-              </div>
-            )}
-            <div className="font-semibold">{order.customer_info.name}</div>
+        <div className="flex flex-col gap-1.5">
+          {order.shop_name && (
+            <span className="inline-flex w-fit items-center gap-1 rounded-full bg-primary/10 px-2.5 py-1 text-xs font-semibold text-primary">
+              <Store className="size-3 shrink-0" />
+              {order.shop_name}
+            </span>
+          )}
+          <div className="font-semibold">{order.customer_info.name}</div>
+        </div>
+
+        {/* Prices — highlighted */}
+        <div className="space-y-1.5 rounded-lg bg-primary/5 p-3">
+          <div className="flex items-center justify-between gap-2 text-sm">
+            <span className="text-muted-foreground">{t("detail.order_price")}</span>
+            <span className="font-semibold whitespace-nowrap">
+              {order.total_price.toLocaleString()} {order.currency_symbol}
+            </span>
           </div>
-          <div className="text-primary font-bold whitespace-nowrap">
-            {order.total_price.toLocaleString()} {order.currency_symbol}
+          <div className="flex items-center justify-between gap-2 text-sm">
+            <span className="flex items-center gap-1.5 text-green-700">
+              <Bike className="size-4 shrink-0" />
+              {t("detail.delivery_price")}
+            </span>
+            <span className="font-bold text-green-700 whitespace-nowrap">
+              {order.delivery_price.toLocaleString()} {order.currency_symbol}
+            </span>
           </div>
         </div>
 

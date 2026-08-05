@@ -424,6 +424,7 @@
     "status": {
       "NEW": "New",
       "PROCESSING": "Accepted",
+      "COURIER_ACCEPTED": "Accepted by courier",
       "COURIER_IN_SHOP": "Courier at restaurant",
       "DELIVERING": "Delivering",
       "COMPLETED": "Completed",
@@ -436,7 +437,9 @@
       "products": "Products",
       "total": "Total",
       "accepted_at": "Accepted",
-      "notes": "Note"
+      "notes": "Note",
+      "order_price": "Order price",
+      "delivery_price": "Delivery fee"
     },
     "status_updated": "Order status updated",
     "status_update_error": "Failed to update status",

@@ -38,11 +38,11 @@ export const ActiveOrderCard = ({ order }: IProps) => {
   const [penaltyAlert, setPenaltyAlert] = useState<ICourierPenalty | null>(null);
 
   const remaining = useCountdown(
-    order.status === CourierOrderStatus.Processing ? order.courier_deadline_at : undefined,
+    order.status === CourierOrderStatus.CourierAccepted ? order.courier_deadline_at : undefined,
   );
 
   const nextStatus =
-    order.status === CourierOrderStatus.Processing
+    order.status === CourierOrderStatus.CourierAccepted
       ? CourierOrderStatus.CourierInShop
       : order.status === CourierOrderStatus.CourierInShop
         ? CourierOrderStatus.Delivering
@@ -72,14 +72,14 @@ export const ActiveOrderCard = ({ order }: IProps) => {
   });
 
   const actionLabel =
-    order.status === CourierOrderStatus.Processing
+    order.status === CourierOrderStatus.CourierAccepted
       ? t("action.arrived_at_shop")
       : order.status === CourierOrderStatus.CourierInShop
         ? t("action.picked_up")
         : t("action.delivered");
 
   const ActionIcon =
-    order.status === CourierOrderStatus.Processing
+    order.status === CourierOrderStatus.CourierAccepted
       ? Store
       : order.status === CourierOrderStatus.CourierInShop
         ? Bike
@@ -92,12 +92,12 @@ export const ActiveOrderCard = ({ order }: IProps) => {
       <Card className="py-4">
         <CardContent className="space-y-3">
           <div className="flex items-start justify-between gap-2">
-            <div>
+            <div className="flex flex-col gap-1.5">
               {order.shop_name && (
-                <div className="flex items-center gap-1 text-xs text-muted-foreground mb-0.5">
+                <span className="inline-flex w-fit items-center gap-1 rounded-full bg-primary/10 px-2.5 py-1 text-xs font-semibold text-primary">
                   <Store className="size-3 shrink-0" />
-                  <span>{order.shop_name}</span>
-                </div>
+                  {order.shop_name}
+                </span>
               )}
               <div className="font-semibold">{order.customer_info.name}</div>
             </div>
@@ -118,17 +118,31 @@ export const ActiveOrderCard = ({ order }: IProps) => {
             </div>
           </div>
 
-          <div className="flex items-center justify-between gap-2">
-            <a
-              href={`tel:${order.customer_info.phone}`}
-              className="text-sm text-muted-foreground flex items-center gap-2"
-            >
-              <Phone className="size-4 shrink-0" />
-              {order.customer_info.phone}
-            </a>
-            <span className="text-primary font-bold whitespace-nowrap">
-              {order.total_price.toLocaleString()} {order.currency_symbol}
-            </span>
+          <a
+            href={`tel:${order.customer_info.phone}`}
+            className="text-sm text-muted-foreground flex items-center gap-2"
+          >
+            <Phone className="size-4 shrink-0" />
+            {order.customer_info.phone}
+          </a>
+
+          {/* Prices — highlighted */}
+          <div className="space-y-1.5 rounded-lg bg-primary/5 p-3">
+            <div className="flex items-center justify-between gap-2 text-sm">
+              <span className="text-muted-foreground">{t("detail.order_price")}</span>
+              <span className="font-semibold whitespace-nowrap">
+                {order.total_price.toLocaleString()} {order.currency_symbol}
+              </span>
+            </div>
+            <div className="flex items-center justify-between gap-2 text-sm">
+              <span className="flex items-center gap-1.5 text-green-700">
+                <Bike className="size-4 shrink-0" />
+                {t("detail.delivery_price")}
+              </span>
+              <span className="font-bold text-green-700 whitespace-nowrap">
+                {order.delivery_price.toLocaleString()} {order.currency_symbol}
+              </span>
+            </div>
           </div>
 
           {order.delivery_address?.address && (

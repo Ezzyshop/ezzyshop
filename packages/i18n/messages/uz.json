@@ -424,6 +424,7 @@
     "status": {
       "NEW": "Yangi",
       "PROCESSING": "Qabul qilindi",
+      "COURIER_ACCEPTED": "Qabul qilindi",
       "COURIER_IN_SHOP": "Kuryer restoranda",
       "DELIVERING": "Yetkazilmoqda",
       "COMPLETED": "Yakunlandi",
@@ -436,7 +437,9 @@
       "products": "Mahsulotlar",
       "total": "Jami",
       "accepted_at": "Qabul qilingan",
-      "notes": "Izoh"
+      "notes": "Izoh",
+      "order_price": "Buyurtma narxi",
+      "delivery_price": "Yetkazish narxi"
     },
     "status_updated": "Buyurtma holati yangilandi",
     "status_update_error": "Holatni yangilashda xatolik",

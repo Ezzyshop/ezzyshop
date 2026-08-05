@@ -15,6 +15,7 @@ import {
   Loader2,
   Wallet,
   Bike,
+  Store,
   PackageCheck,
 } from "lucide-react";
 import {
@@ -69,17 +70,25 @@ export const OrderDetail = () => {
   const isCash = order.payment_method_type === PAYMENT_METHOD_CASH;
 
   const nextStatus =
-    order.status === CourierOrderStatus.Processing
-      ? CourierOrderStatus.Delivering
-      : order.status === CourierOrderStatus.Delivering
-        ? CourierOrderStatus.Completed
-        : null;
+    order.status === CourierOrderStatus.CourierAccepted
+      ? CourierOrderStatus.CourierInShop
+      : order.status === CourierOrderStatus.CourierInShop
+        ? CourierOrderStatus.Delivering
+        : order.status === CourierOrderStatus.Delivering
+          ? CourierOrderStatus.Completed
+          : null;
   const actionLabel =
-    order.status === CourierOrderStatus.Processing
-      ? t("action.picked_up")
-      : t("action.delivered");
+    order.status === CourierOrderStatus.CourierAccepted
+      ? t("action.arrived_at_shop")
+      : order.status === CourierOrderStatus.CourierInShop
+        ? t("action.picked_up")
+        : t("action.delivered");
   const ActionIcon =
-    order.status === CourierOrderStatus.Processing ? Bike : PackageCheck;
+    order.status === CourierOrderStatus.CourierAccepted
+      ? Store
+      : order.status === CourierOrderStatus.CourierInShop
+        ? Bike
+        : PackageCheck;
 
   return (
     <div className="flex flex-1 flex-col">
@@ -162,6 +171,15 @@ export const OrderDetail = () => {
               <span>{t("detail.total")}</span>
               <span className="text-primary">
                 {order.total_price.toLocaleString()} {order.currency_symbol}
+              </span>
+            </div>
+            <div className="flex items-center justify-between rounded-lg bg-green-500/10 px-3 py-2 font-semibold text-green-700">
+              <span className="flex items-center gap-2">
+                <Bike className="size-4" />
+                {t("detail.delivery_price")}
+              </span>
+              <span>
+                {order.delivery_price.toLocaleString()} {order.currency_symbol}
               </span>
             </div>
             {order.accepted_at && (

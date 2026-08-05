@@ -424,6 +424,7 @@
     "status": {
       "NEW": "Новый",
       "PROCESSING": "Принят",
+      "COURIER_ACCEPTED": "Принят курьером",
       "COURIER_IN_SHOP": "Курьер в ресторане",
       "DELIVERING": "Доставляется",
       "COMPLETED": "Завершён",
@@ -436,7 +437,9 @@
       "products": "Товары",
       "total": "Итого",
       "accepted_at": "Принят",
-      "notes": "Примечание"
+      "notes": "Примечание",
+      "order_price": "Стоимость заказа",
+      "delivery_price": "Стоимость доставки"
     },
     "status_updated": "Статус заказа обновлён",
     "status_update_error": "Ошибка обновления статуса",
