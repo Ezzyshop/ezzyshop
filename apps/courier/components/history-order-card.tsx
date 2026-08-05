@@ -13,7 +13,8 @@ interface IProps {
 export const HistoryOrderCard = ({ order }: IProps) => {
   const t = useTranslations("courier");
   const router = useI18nRouter();
-  const date = order.updatedAt ?? order.accepted_at ?? order.createdAt;
+  const date =
+    order.completed_at ?? order.updatedAt ?? order.accepted_at ?? order.createdAt;
 
   return (
     <Card

@@ -410,7 +410,6 @@
       "main": "Asosiy",
       "active": "Faol buyurtmalar",
       "history": "Tarix",
-      "report": "Hisobot",
       "debts": "Qarzlar",
       "profile": "Profil"
     },
@@ -474,15 +473,7 @@
       "blocked_description": "Siz 3 ta kechikish qildingiz. Profilingiz {date} gacha bloklangan.",
       "ok": "Tushunarli"
     },
-    "history_empty": "Buyurtmalar tarixi bo'sh",
     "today_profit": "Bugungi foyda",
-    "report": {
-      "from": "Dan",
-      "to": "Gacha",
-      "total": "Jami foyda",
-      "orders": "Buyurtmalar",
-      "empty": "Bu davrda ma'lumot yo'q"
-    },
     "select_language": "Tilni tanlang",
     "profile": {
       "title": "Profil",
@@ -492,6 +483,53 @@
       "logout_confirmation": "Siz tizimdan chiqmoqchimisiz?",
       "logout_state_message": "Kuryer paneliga kirish uchun tizimga kiring",
       "language": "Til"
+    },
+    "history": {
+      "title": "Tarix",
+      "tab_stats": "Analitika",
+      "tab_orders": "Buyurtmalar",
+      "empty": "Bu davrda buyurtmalar yo'q",
+      "load_more": "Ko'proq ko'rsatish",
+      "all_shops": "Barchasi",
+      "from": "Dan",
+      "to": "Gacha",
+      "period": {
+        "today": "Bugun",
+        "week": "7 kun",
+        "month": "30 kun",
+        "custom": "Boshqa"
+      }
+    },
+    "stats": {
+      "earnings": "Daromad",
+      "orders": "Buyurtmalar",
+      "orders_short": "ta buyurtma",
+      "cash": "Naqd (qo'lda)",
+      "online": "Onlayn (qarz)",
+      "online_hint": "Onlayn to'langan yetkazish haqi do'konga topshiriladi — u qarzga qo'shiladi.",
+      "debt_total": "Qarz",
+      "averages_title": "O'rtacha ko'rsatkichlar",
+      "avg_per_day": "Kunlik daromad",
+      "avg_per_order": "Bitta buyurtma",
+      "best_day": "Eng yaxshi kun",
+      "active_days": "Faol kunlar",
+      "chart_empty": "Bu davrda ma'lumot yo'q",
+      "timing_title": "Vaqt ko'rsatkichlari",
+      "avg_accept": "O'rtacha qabul qilish",
+      "avg_delivery": "O'rtacha yetkazish",
+      "on_time": "O'z vaqtida",
+      "late": "Kechikkan",
+      "discipline_title": "Intizom",
+      "discipline_clean": "Kechikish va bloklar yo'q. Shunday davom eting!",
+      "warnings": "Ogohlantirishlar",
+      "blocks": "Bloklar",
+      "shops_title": "Do'konlar bo'yicha",
+      "shops_empty": "Bu davrda do'kon ma'lumoti yo'q",
+      "sec": "sek",
+      "min": "daq",
+      "hour": "soat",
+      "no_data": "—",
+      "day": "kun"
     }
   }
 }

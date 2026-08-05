@@ -24,13 +24,58 @@ export interface ICourierReportDay {
   count: number;
 }
 
-export interface ICourierReport {
+export interface ICourierStatsTotals {
+  earnings: number;
+  orders: number;
+  /** Collected by the courier in cash */
+  cash_earnings: number;
+  /** Paid online — collected by the shop, becomes courier debt */
+  online_earnings: number;
+  avg_per_order: number;
+  avg_per_active_day: number;
+  active_days: number;
+  best_day: { date: string; earnings: number } | null;
+}
+
+export interface ICourierStatsTiming {
+  /** null when no order in the range carries the underlying data */
+  avg_accept_seconds: number | null;
+  avg_delivery_seconds: number | null;
+  on_time_count: number;
+  late_count: number;
+  on_time_rate: number | null;
+}
+
+export interface ICourierShopStat {
+  shop_id: string;
+  shop_name: string;
+  orders: number;
+  earnings: number;
+  cash_earnings: number;
+  online_earnings: number;
+  late_count: number;
+  avg_delivery_seconds: number | null;
+  debt_balance: number;
+  share_pct: number;
+}
+
+export interface ICourierStats {
   from: string;
   to: string;
   currency_symbol: string;
-  total_earnings: number;
-  total_count: number;
+  totals: ICourierStatsTotals;
+  timing: ICourierStatsTiming;
+  debts: { total_balance: number };
   days: ICourierReportDay[];
+  shops: ICourierShopStat[];
+}
+
+export interface ICourierHistoryParams {
+  from?: string;
+  to?: string;
+  shopId?: string;
+  page?: number;
+  limit?: number;
 }
 
 export interface ICourierOrderProduct {
@@ -130,6 +175,7 @@ export interface ICourierOrderDetail {
   createdAt?: string;
   accepted_at?: string;
   updatedAt?: string;
+  completed_at?: string;
   courier_eta_minutes?: number;
   courier_deadline_at?: string;
   courier_arrived_at?: string;

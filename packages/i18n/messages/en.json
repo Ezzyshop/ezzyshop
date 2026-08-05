@@ -410,7 +410,6 @@
       "main": "Home",
       "active": "Active orders",
       "history": "History",
-      "report": "Report",
       "debts": "Debts",
       "profile": "Profile"
     },
@@ -474,15 +473,7 @@
       "blocked_description": "You have accumulated 3 late arrivals. Your profile is blocked until {date}.",
       "ok": "Got it"
     },
-    "history_empty": "Order history is empty",
     "today_profit": "Today's profit",
-    "report": {
-      "from": "From",
-      "to": "To",
-      "total": "Total profit",
-      "orders": "Orders",
-      "empty": "No data for this period"
-    },
     "select_language": "Select language",
     "profile": {
       "title": "Profile",
@@ -492,6 +483,53 @@
       "logout_confirmation": "Do you want to log out?",
       "logout_state_message": "Log in to open the courier panel",
       "language": "Language"
+    },
+    "history": {
+      "title": "History",
+      "tab_stats": "Analytics",
+      "tab_orders": "Orders",
+      "empty": "No orders in this period",
+      "load_more": "Load more",
+      "all_shops": "All",
+      "from": "From",
+      "to": "To",
+      "period": {
+        "today": "Today",
+        "week": "7 days",
+        "month": "30 days",
+        "custom": "Custom"
+      }
+    },
+    "stats": {
+      "earnings": "Earnings",
+      "orders": "Orders",
+      "orders_short": "orders",
+      "cash": "Cash (on hand)",
+      "online": "Online (debt)",
+      "online_hint": "Delivery fees paid online are handed back to the shop — they add to your debt.",
+      "debt_total": "Debt",
+      "averages_title": "Averages",
+      "avg_per_day": "Per day",
+      "avg_per_order": "Per order",
+      "best_day": "Best day",
+      "active_days": "Active days",
+      "chart_empty": "No data for this period",
+      "timing_title": "Timing",
+      "avg_accept": "Avg. time to accept",
+      "avg_delivery": "Avg. delivery time",
+      "on_time": "On time",
+      "late": "Late",
+      "discipline_title": "Discipline",
+      "discipline_clean": "No delays or blocks. Keep it up!",
+      "warnings": "Warnings",
+      "blocks": "Blocks",
+      "shops_title": "By shop",
+      "shops_empty": "No shop data for this period",
+      "sec": "sec",
+      "min": "min",
+      "hour": "h",
+      "no_data": "—",
+      "day": "d"
     }
   }
 }

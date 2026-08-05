@@ -23,11 +23,8 @@ export const CourierDock = () => {
   if (!isCourier || path.startsWith("/login")) return null;
 
   const isHistoryTab = path.startsWith("/history");
-  // Report and debts are reached from the profile tab, so they keep it highlighted
-  const isProfileTab =
-    path.startsWith("/profile") ||
-    path.startsWith("/report") ||
-    path.startsWith("/debts");
+  // Debts are reached from the profile tab, so they keep it highlighted
+  const isProfileTab = path.startsWith("/profile") || path.startsWith("/debts");
   const isActiveTab =
     !isHistoryTab &&
     !isProfileTab &&

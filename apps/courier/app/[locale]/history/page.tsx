@@ -1,5 +1,5 @@
-import { OrderHistory } from "@/components/order-history";
+import { CourierHistory } from "@/components/courier-history";
 
 export default function Page() {
-  return <OrderHistory />;
+  return <CourierHistory />;
 }

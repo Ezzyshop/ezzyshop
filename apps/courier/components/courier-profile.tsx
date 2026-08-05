@@ -7,7 +7,7 @@ import {
   AvatarImage,
 } from "@repo/ui/components/ui/avatar";
 import { Card } from "@repo/ui/components/ui/card";
-import { BarChart3, Loader2, LogIn, UserRound, Wallet } from "lucide-react";
+import { Loader2, LogIn, UserRound, Wallet } from "lucide-react";
 import { useCourierContext } from "@/contexts/courier.context";
 import { CourierProfileLinkButton } from "./courier-profile-link-button";
 import { CourierLanguageButton } from "./courier-language-button";
@@ -74,11 +74,6 @@ export const CourierProfile = () => {
               icon={<Wallet className="size-4 text-white" />}
               title={t("dock.debts")}
               onClick={() => router.push("/debts")}
-            />
-            <CourierProfileLinkButton
-              icon={<BarChart3 className="size-4 text-white" />}
-              title={t("dock.report")}
-              onClick={() => router.push("/report")}
             />
             <CourierLanguageButton />
             <CourierLogoutButton />

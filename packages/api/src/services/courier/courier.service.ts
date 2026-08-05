@@ -1,12 +1,13 @@
 import { api } from "../../api";
-import { IData } from "../../utils/interfaces";
+import { IData, IPaginatedData } from "../../utils/interfaces";
 import {
   IAcceptCourierOrderResponse,
   ICourierDebts,
+  ICourierHistoryParams,
   ICourierOrder,
   ICourierOrderDetail,
   ICourierProfile,
-  ICourierReport,
+  ICourierStats,
   IUpdateCourierOrderStatusResponse,
 } from "./courier.interface";
 
@@ -34,16 +35,15 @@ export class CourierService {
     return response.data;
   }
 
-  static async getHistory(): Promise<IData<ICourierOrderDetail[]>> {
-    const response = await api.get(`/courier/orders/history`);
+  static async getHistory(
+    params?: ICourierHistoryParams
+  ): Promise<IPaginatedData<ICourierOrderDetail>> {
+    const response = await api.get(`/courier/orders/history`, { params });
     return response.data;
   }
 
-  static async getReport(
-    from: string,
-    to: string
-  ): Promise<IData<ICourierReport>> {
-    const response = await api.get(`/courier/report`, {
+  static async getStats(from: string, to: string): Promise<IData<ICourierStats>> {
+    const response = await api.get(`/courier/stats`, {
       params: { from, to },
     });
     return response.data;
