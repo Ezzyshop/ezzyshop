@@ -122,6 +122,16 @@
   user-select: none;
 }
 
+/* Pastki drawer tugmalari Android navigation/gesture bar tagida qolib
+   ketmasligi uchun: Telegram mini-app --tg-* insetlarini beradi,
+   oddiy brauzerda env() ishlaydi (viewport-fit=cover yoqilgan). */
+[data-slot="drawer-content"][data-vaul-drawer-direction="bottom"] {
+  padding-bottom: max(
+    var(--tg-safe-area-inset-bottom, 0px),
+    env(safe-area-inset-bottom, 0px)
+  );
+}
+
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
   15% { transform: translateX(-6px); }

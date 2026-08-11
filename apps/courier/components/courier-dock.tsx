@@ -71,7 +71,7 @@ export const CourierDock = () => {
       className="sticky bottom-0 z-20 grid grid-cols-4 border-t bg-background/95 backdrop-blur"
       style={{
         paddingBottom:
-          "calc(var(--tg-safe-area-inset-bottom, 0px) + 0.25rem)",
+          "calc(max(var(--tg-safe-area-inset-bottom, 0px), env(safe-area-inset-bottom, 0px)) + 0.25rem)",
       }}
     >
       {items.map((item) => (
