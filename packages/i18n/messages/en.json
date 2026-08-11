@@ -386,6 +386,7 @@
     "accepted_success": "Order accepted",
     "already_taken": "Another courier took the order",
     "accept_error": "Failed to accept the order",
+    "has_active_delivery": "You cannot accept new orders until you deliver your current order",
     "payment": {
       "cash": "Cash",
       "online": "Online payment"

@@ -2,11 +2,12 @@
 import { useEffect, useState } from "react";
 import { useI18nRouter } from "@repo/i18n/hooks";
 import { useTranslations } from "next-intl";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Button } from "@repo/ui/components/ui/button";
-import { BellRing, Loader2, PackageCheck, ShieldAlert } from "lucide-react";
+import { BellRing, Loader2, PackageCheck, ShieldAlert, Truck } from "lucide-react";
 import {
+  CourierOrderStatus,
   CourierService,
   ICourierOrder,
 } from "@repo/api/services/courier/index";
@@ -36,6 +37,16 @@ export const CourierFeed = () => {
   const { orders, isLoading, removeOrder } = useCourierFeed(isCourier);
   const queryClient = useQueryClient();
 
+  const { data: activeOrdersData } = useQuery({
+    queryKey: ["courier-active-orders"],
+    queryFn: () => CourierService.getActiveOrders(),
+    enabled: isCourier,
+  });
+  // Pick-up qilingan (DELIVERING) buyurtma yetkazilmaguncha yangi buyurtma olish mumkin emas
+  const hasActiveDelivery = (activeOrdersData?.data ?? []).some(
+    (order) => order.status === CourierOrderStatus.Delivering,
+  );
+
   const [acceptingId, setAcceptingId] = useState<string | null>(null);
 
   const { mutate: accept } = useMutation({
@@ -51,7 +62,17 @@ export const CourierFeed = () => {
       }
       removeOrder(order.orderId);
     },
-    onError: () => toast.error(t("accept_error")),
+    onError: (error) => {
+      const message = (
+        error as { response?: { data?: { message?: string } } }
+      )?.response?.data?.message;
+      if (message === "COURIER_HAS_ACTIVE_DELIVERY") {
+        toast.error(t("has_active_delivery"));
+        queryClient.invalidateQueries({ queryKey: ["courier-active-orders"] });
+      } else {
+        toast.error(t("accept_error"));
+      }
+    },
     onSettled: () => setAcceptingId(null),
   });
 
@@ -89,6 +110,12 @@ export const CourierFeed = () => {
             </span>
           </div>
         )}
+        {hasActiveDelivery && (
+          <div className="flex items-center gap-2 rounded-lg bg-amber-500/10 px-3 py-2 text-amber-600 text-sm">
+            <Truck className="size-4 shrink-0" />
+            <span>{t("has_active_delivery")}</span>
+          </div>
+        )}
         {!soundArmed && (
           <Button
             size="sm"
@@ -121,7 +148,9 @@ export const CourierFeed = () => {
               key={order.orderId}
               order={order}
               onAccept={(o, eta) => accept({ order: o, eta })}
-              isAccepting={acceptingId === order.orderId || isBlocked}
+              isAccepting={
+                acceptingId === order.orderId || isBlocked || hasActiveDelivery
+              }
             />
           ))
         )}

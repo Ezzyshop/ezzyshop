@@ -386,6 +386,7 @@
     "accepted_success": "Buyurtma qabul qilindi",
     "already_taken": "Buyurtmani boshqa kuryer oldi",
     "accept_error": "Buyurtmani qabul qilishda xatolik",
+    "has_active_delivery": "Qo'ldagi buyurtmani yetkazib bo'lmaguningizcha yangi buyurtma qabul qila olmaysiz",
     "payment": {
       "cash": "Naqd to'lov",
       "online": "Onlayn to'lov"
